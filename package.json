@@ -1,0 +1,54 @@
+{
+  "name": "@webpros/tsxUserProfile",
+  "description": "DESCRIPTION",
+  "author": "AUTHOR",
+  "license": "MIT",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "REPOURLGIT"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite build && vite preview",
+    "start": "yarn dev & wait-on tcp:3000 -v",
+    "generateCss": "postcss ./src/assets/index.css -o ./src/assets/output.css",
+    "prePublish": "npm run generateCss && npm run build"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.5.0",
+    "marked": "^4.2.2",
+    "mitt": "^3.0.0",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.7.0",
+    "postcss": "^8.4.19",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^15.0.0",
+    "postcss-nested": "^6.0.0",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3",
+    "wait-on": "^6.0.1"
+  }
+}
