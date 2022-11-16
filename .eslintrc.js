@@ -9,14 +9,14 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     '@vue/typescript',
-    'plugin:vue/base',
+    'plugin:vue/base'
   ],
   // plugins: [
   //   "vue",
   //   "@typescript-eslint"
   // ],
   parserOptions: {
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     ecmaFeatures : {
       jsx : false
     }
@@ -35,6 +35,8 @@ module.exports = {
     'max-params': ['error', 3],
     'max-statements': ['off', 10],
     'comma-dangle': ['error', 'never'],
+    'object-curly-spacing': ['error', 'always', { 'arraysInObjects': false }],
+    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }],
     'no-unneeded-ternary': ['error', { 'defaultAssignment': false }],
     '@typescript-eslint/no-non-null-assertion': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -42,7 +44,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'no-multiple-empty-lines': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/no-unused-components': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'vue/multiline-html-element-content-newline': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-trailing-spaces': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
@@ -68,6 +69,6 @@ module.exports = {
     defineProps: 'readonly',
     defineEmits: 'readonly',
     defineExpose: 'readonly',
-    withDefaults: 'readonly',
-  },
+    withDefaults: 'readonly'
+  }
 }

@@ -10,8 +10,9 @@ module.exports = {
           'black-08': 'rgba(0,0,0,.8)'
         }
       }
-    },
+    }
   },
   plugins: [
-  ],
+    require('@tailwindcss/container-queries')
+  ]
 }

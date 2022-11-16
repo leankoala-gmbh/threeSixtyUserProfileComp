@@ -1,6 +1,7 @@
 {
   "name": "@webpros/tsxUserProfile",
   "description": "DESCRIPTION",
+  "main": "dist/tsxUserProfile.js",
   "author": "AUTHOR",
   "license": "MIT",
   "version": "1.0.0",
@@ -23,10 +24,15 @@
     "prePublish": "npm run generateCss && npm run build"
   },
   "dependencies": {
+    "@tailwindcss/container-queries": "^0.1.0",
     "@vueuse/core": "^9.5.0",
+    "@vueuse/integrations": "^9.5.0",
+    "container-query-polyfill": "^1.0.2",
     "marked": "^4.2.2",
     "mitt": "^3.0.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-multiselect": "^3.0.0-alpha.2",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.43.0",

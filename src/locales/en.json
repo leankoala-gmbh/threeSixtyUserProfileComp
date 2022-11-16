@@ -1,0 +1,8 @@
+{
+  "Timezone": "Timezone",
+  "Save": "Save",
+  "TimezoneChanged": "Time zone has been changed, please save",
+  "AccountDetails": "Account Details",
+  "RemoveAccount": "Remove account",
+  "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data."
+}

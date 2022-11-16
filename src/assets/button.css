@@ -1,0 +1,8 @@
+.tsx-up-button {
+  color: var(--tsxUp-button-color);
+  background-color: var(--tsxUp-button-bg);
+  &:hover {
+    color: var(--tsxUp-button-color-hover);
+    background-color: var(--tsxUp-button-bg-hover);
+  }
+}

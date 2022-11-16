@@ -12,6 +12,7 @@
       "cypress",
       "@types/node",
       "@vueuse/core",
+      "@vueuse/integrations",
       "@types/marked"
     ],
     "resolveJsonModule": true,

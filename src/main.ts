@@ -1,8 +1,15 @@
-import { defineCustomElement } from 'vue'
-import ExampleWrapper from './components/feature/ExampleWrapper/ExampleWrapper.ce.vue'
-import ExampleTrigger from './components/feature/ExampleTrigger/ExampleTrigger.ce.vue'
+import { createApp } from 'vue'
+import App from './App.vue'
+import './assets/index.css'
+import './assets/colors.css'
 
-const ExampleWrapperComponent = defineCustomElement(ExampleWrapper)
-const ExampleTriggerComponent = defineCustomElement(ExampleTrigger)
-customElements.define('example-wrapper', ExampleWrapperComponent)
-customElements.define('example-trigger', ExampleTriggerComponent)
+import { defineCustomElement } from 'vue'
+import userProfile from './components/feature/TSXUserProfile/TSXUserProfile.ce.vue'
+
+const userProfileComponent = defineCustomElement(userProfile)
+customElements.define('tsx-user-profile', userProfileComponent)
+
+const app = createApp(App)
+
+app.mount('#app')
+

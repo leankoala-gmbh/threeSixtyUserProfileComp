@@ -1,0 +1,16 @@
+.tsxUp-grid-formRow {
+  display: grid;
+  gap: 16px;
+  grid-template:
+    'tupgfw1' auto
+    'tupgfw2' auto /
+     minmax(0, 1fr);
+}
+
+@container tsxupmain (min-width: 660px) {
+  .tsxUp-grid-formRow {
+    grid-template:
+      'tupgfw1 tupgfw2' auto /
+       200px minmax(0, 1fr);
+  }
+}

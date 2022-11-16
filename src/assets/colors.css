@@ -1,0 +1,14 @@
+:root {
+  --tsxup-brightest: #fff;
+  --tsxup-darkest: theme('colors.gray.900');
+  --tsxup-darkest-light: theme('colors.gray.600');
+  --tsxup-primary: #1E40AF;
+  --tsxup-primary-light: #668bca;
+  --tsxup-text: var(--tsxup-darkest);
+  --tsxup-text-lighter: var(--tsxup-darkest-light);
+  --tsxup-headline: var(--tsxup-darkest);
+  --tsxUp-button-color: var(--tsxup-brightest);
+  --tsxUp-button-bg: var(--tsxup-primary);
+  --tsxUp-button-color-hover: var(--tsxup-brightest);
+  --tsxUp-button-bg-hover: var(--tsxup-primary-light);
+}
