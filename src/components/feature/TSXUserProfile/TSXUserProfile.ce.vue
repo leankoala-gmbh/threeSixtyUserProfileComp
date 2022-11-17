@@ -33,7 +33,7 @@ const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
 
 const updateTimezone = (event: string) => {
-  window.mitt.on('tsxUserProfile', {
+  window.mitt.emit('tsxUserProfile', {
     timezone: event
   })
 }
