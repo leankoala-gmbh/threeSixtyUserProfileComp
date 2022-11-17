@@ -1,5 +1,6 @@
 :root {
-  --tsxup-brightest: #fff;
+  --tsxup-brightest: #ffffff;
+  --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-light: theme('colors.gray.600');
   --tsxup-primary: #1E40AF;
@@ -11,4 +12,11 @@
   --tsxUp-button-bg: var(--tsxup-primary);
   --tsxUp-button-color-hover: var(--tsxup-brightest);
   --tsxUp-button-bg-hover: var(--tsxup-primary-light);
+  --tsxUp-selectField-border: var(--tsxup-brightest-darker);
+  --tsxUp-selectField-background: var(--tsxup-brightest);
+  --tsxUp-selectField-backgroundHover: var(--tsxup-brightest);
+  --tsxUp-selectField-backgroundDisabled: var(--tsxup-brightest-darker);
+  --tsxUp-selectField-color: var(--tsxup-darkest);
+  --tsxUp-selectField-selectedBackground: var(--tsxup-primary-light);
+  --tsxUp-selectField-selectedColor: var(--tsxup-brightest);
 }

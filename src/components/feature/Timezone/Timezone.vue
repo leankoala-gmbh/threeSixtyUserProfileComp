@@ -16,6 +16,8 @@ const props = defineProps({
   }
 })
 
+const timeZoneObj = JSON.parse(JSON.stringify(timezones))
+
 const timezone = ref<null|string>(null)
 const changeTimeZoneInfo = ref(false)
 
@@ -54,10 +56,11 @@ watch(() => timezone.value, (o, n) => {
       <div class="w-full">
         <VueMultiselect
           v-model="timezone"
-          :options="JSON.parse(JSON.stringify(timezones))"
+          :options="Object.keys(timeZoneObj)"
           :searchable="true"
           :close-on-select="true"
           :allow-empty="false"
+          :custom-label="opt => timeZoneObj[opt]"
           placeholder=""
           select-label=""
           deselect-label=""

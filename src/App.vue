@@ -3,8 +3,7 @@ import TSXUserProfile from './components/feature/TSXUserProfile/TSXUserProfile.c
 
 const userData = {
   avatar: 'sf',
-  email: 'gisu2onic@gmail.com',
-  timezone: 'America/Jamaica'
+  email: 'gisu2onic@gmail.com'
 }
 const inactiveFields = []
 </script>

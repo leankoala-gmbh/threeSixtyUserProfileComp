@@ -3,9 +3,9 @@ import { onMounted } from 'vue'
 import mitt from 'mitt'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import { setLanguage, translator } from '@/composables/translator'
-import TSXUserProfileTimezone from '@/components/feature/TSXUserProfileTimezone/TSXUserProfileTimezone.vue'
+import Timezone from '@/components/feature/Timezone/Timezone.vue'
 import 'container-query-polyfill'
-import TSXUserProfileInfos from '@/components/feature/TSXUserProfileInfos/TSXUserProfileInfos.vue'
+import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
 
 window.mitt = window.mitt || mitt()
 
@@ -49,11 +49,11 @@ onMounted(() => {
     <h2 class="text-3xl font-medium mb-6">
       {{ translator('AccountDetails') }}
     </h2>
-    <TSXUserProfileInfos
+    <ProfileInfos
       :user-data="userDataObj"
       :inactive-fields="inactiveFieldsArr"
     />
-    <TSXUserProfileTimezone
+    <Timezone
       v-if="!inactiveFieldsArr.includes('timezone')"
       :user-data="userDataObj"
       @update-timezone="updateTimezone"
