@@ -3,7 +3,7 @@ name: Publish ThreeSixtyContentScreen
 on:
   push:
     branches:
-      - branchname
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
