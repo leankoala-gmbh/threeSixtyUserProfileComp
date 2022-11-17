@@ -6,6 +6,7 @@ import { setLanguage, translator } from '@/composables/translator'
 import Timezone from '@/components/feature/Timezone/Timezone.vue'
 import 'container-query-polyfill'
 import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
+import { IProfileUser } from '@/types/general.interfaces'
 
 window.mitt = window.mitt || mitt()
 
@@ -27,7 +28,7 @@ const props = defineProps({
   }
 })
 
-const userDataObj = JSON.parse(props.userData)
+const userDataObj: IProfileUser = JSON.parse(props.userData)
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 
 const cookies = useCookies(['locale'])
@@ -40,7 +41,7 @@ const updateTimezone = (event: string) => {
 
 onMounted(() => {
   const cookieLang = cookies.get('locale')
-  setLanguage(cookieLang ||props.currentLanguage)
+  setLanguage(cookieLang || props.currentLanguage)
 })
 </script>
 

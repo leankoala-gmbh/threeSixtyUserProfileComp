@@ -18,7 +18,9 @@ const props = defineProps({
   <div v-if="!inactiveFields.includes('avatar')" class="tsxUp-grid-formRow items-center mb-6">
     <div>{{ translator('Avatar') }}</div>
     <div>
-      <div v-if="userData.avatar.includes('http')" />
+      <div v-if="userData.avatar.includes('http')">
+        <img :src="userData.avatar" alt="avatar">
+      </div>
       <div v-else class="h-40 w-40 flex items-center justify-center rounded-full customAvatar font-medium uppercase">
         {{ userData.avatar }}
       </div>
