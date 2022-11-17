@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { translator } from '@/composables/translator'
 import { IProfileUser } from '@/types/general.interfaces'
+import { debugEcho } from '@/utils/echo'
 
 const props = defineProps({
   userData: {
@@ -12,14 +13,20 @@ const props = defineProps({
     default: () => []
   }
 })
+
+debugEcho('ProfileInfos UserData', props.userData)
 </script>
 
 <template>
   <div v-if="!inactiveFields.includes('avatar')" class="tsxUp-grid-formRow items-center mb-6">
     <div>{{ translator('Avatar') }}</div>
     <div>
-      <div v-if="userData.avatar">
-        <img :src="userData.avatar" alt="avatar">
+      <div v-if="userData.avatar" class="h-40 w-40 rounded-full overflow-hidden flex items-center justify-center">
+        <img
+          :src="userData.avatar"
+          alt="avatar"
+          class="w-full"
+        >
       </div>
       <div v-else-if="userData.name" class="h-40 w-40 flex items-center justify-center rounded-full customAvatar font-medium uppercase">
         {{ userData.name }}
