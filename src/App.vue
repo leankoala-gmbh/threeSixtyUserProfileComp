@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import TSXUserProfile from './components/feature/TSXUserProfile/TSXUserProfile.ce.vue'
 
-const userData = { 'email':'features@leankoala.com' }
+const userData = { 'name':'Sascha Georg Fuchs', 'email':'features@leankoala.com' }
 
 const inactiveFields = []
 </script>

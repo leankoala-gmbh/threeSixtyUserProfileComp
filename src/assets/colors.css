@@ -3,6 +3,8 @@
   --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-light: theme('colors.gray.600');
+  --tsxup-signal-success: #4CA154;
+  --tsxup-signal-error: #b73737;
   --tsxup-primary: #1E40AF;
   --tsxup-primary-light: #668bca;
   --tsxup-text: var(--tsxup-darkest);

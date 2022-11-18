@@ -1,7 +1,7 @@
 {
   "Timezone": "Zeitzone",
   "Save": "Speichern",
-  "TimezoneChanged": "Zeitzone wurde geändert, bitte abspeichern",
+  "TimezoneSaved": "Zeitzone gespeichert",
   "AccountDetails": "Account Details",
   "RemoveAccount": "Account entfernen",
   "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data."
