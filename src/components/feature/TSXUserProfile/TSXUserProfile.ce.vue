@@ -25,6 +25,10 @@ const props = defineProps({
   inactiveFields: {
     type: String,
     default: '["removeAccount"]'
+  },
+  header: {
+    type: String,
+    default: 'Account Details'
   }
 })
 
@@ -47,8 +51,8 @@ onMounted(() => {
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile">
-    <h2 v-if="$slots.default" class="text-3xl font-medium mb-6">
-      <slot />
+    <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
+      {{ header }}
     </h2>
     <ProfileInfos
       :user-data="userDataObj"
