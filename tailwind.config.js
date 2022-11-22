@@ -3,6 +3,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   mode: 'jit',
   content: ['./index.html', './src/**/*.{vue,ts}'],
+  safelist: ['text-3xl', 'font-medium', 'mb-6'],
   theme: {
     extend: {
       colors: {

@@ -47,8 +47,8 @@ onMounted(() => {
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile">
-    <h2 class="text-3xl font-medium mb-6">
-      {{ translator('AccountDetails') }}
+    <h2 v-if="$slots.default" class="text-3xl font-medium mb-6">
+      <slot />
     </h2>
     <ProfileInfos
       :user-data="userDataObj"
