@@ -28,7 +28,7 @@ const props = defineProps({
   },
   header: {
     type: String,
-    default: 'Account Details'
+    default: 'Profile'
   }
 })
 
@@ -52,7 +52,7 @@ onMounted(() => {
 <template>
   <div class="@container/tsxupmain tsxUserProfile">
     <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
-      {{ header }}
+      {{ translator('Profile') }}
     </h2>
     <ProfileInfos
       :user-data="userDataObj"

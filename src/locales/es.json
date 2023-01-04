@@ -2,7 +2,7 @@
   "Timezone": "Timezone",
   "Save": "Save",
   "TimezoneSaved": "Timezone saved",
-  "AccountDetails": "Account Details",
+  "Profile": "Profile",
   "RemoveAccount": "Remove account",
   "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data."
 }
