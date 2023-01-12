@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import TSXUserProfile from './components/feature/TSXUserProfile/TSXUserProfile.ce.vue'
 
 const userData = { 'name':'Sascha Georg Fuchs', 'email':'features@leankoala.com' }
-
 const inactiveFields = []
 </script>
 

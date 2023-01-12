@@ -12,15 +12,15 @@ export default defineConfig({
   plugins: [
     vue({
       script: {
-        refSugar: true,
-      },
-    }),
+        refSugar: true
+      }
+    })
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '~': path.resolve(__dirname, './src'),
-    },
+      '~': path.resolve(__dirname, './src')
+    }
   },
   build: {
     cssCodeSplit: false,
@@ -35,6 +35,14 @@ export default defineConfig({
           return assetInfo.name
         }
       }
+    }
+  },
+  // https://github.com/vitest-dev/vitest
+  test: {
+    include: ['tests/**/*.test.ts', 'src/components/**/*.test.ts'],
+    environment: 'jsdom',
+    deps: {
+      inline: ['@vue']
     }
   }
 })

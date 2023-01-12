@@ -1,19 +1,18 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+import { Tabs, Tab } from 'vue3-tabs-component'
 import mitt from 'mitt'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import { setLanguage, translator } from '@/composables/translator'
-import Timezone from '@/components/feature/Timezone/Timezone.vue'
 import 'container-query-polyfill'
-import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
 import { IProfileUser } from '@/types/general.interfaces'
+import TabviewGeneral from '@/components/feature/TabviewGeneral/TabviewGeneral.vue'
+import TabviewUserData from '@/components/feature/TabviewUserData/TabviewUserData.vue'
+import TabviewLicense from '@/components/feature/TabviewLicense/TabviewLicense.vue'
 
 window.mitt = window.mitt || mitt()
 
 const props = defineProps({
-  /**
-   * Current language of the application
-   */
   currentLanguage: {
     type: String,
     default: 'en'
@@ -37,12 +36,6 @@ const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 
 const cookies = useCookies(['locale'])
 
-const updateTimezone = (event: string) => {
-  window.mitt.emit('tsxUserProfile', {
-    timezone: event
-  })
-}
-
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
@@ -54,15 +47,20 @@ onMounted(() => {
     <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
       {{ translator('Profile') }}
     </h2>
-    <ProfileInfos
-      :user-data="userDataObj"
-      :inactive-fields="inactiveFieldsArr"
-    />
-    <Timezone
-      v-if="!inactiveFieldsArr.includes('timezone')"
-      :user-data="userDataObj"
-      @update-timezone="updateTimezone"
-    />
+    <tabs>
+      <tab name="General">
+        <TabviewGeneral
+          :user-data-obj="userDataObj"
+          :inactive-fields-arr="inactiveFieldsArr"
+        />
+      </tab>
+      <tab name="User Data">
+        <TabviewUserData />
+      </tab>
+      <tab name="License">
+        <TabviewLicense />
+      </tab>
+    </tabs>
   </div>
 </template>
 

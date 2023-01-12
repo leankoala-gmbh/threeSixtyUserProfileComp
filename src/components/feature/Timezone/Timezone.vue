@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import VueMultiselect from 'vue-multiselect'
 import timezones from '@/data/timezones.json'
 import { onMounted, ref, watch } from 'vue'
 import { translator } from '@/composables/translator'
-import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
 import { debugEcho } from '@/utils/echo'
 import { IProfileUser } from '@/types/general.interfaces'
 
@@ -67,7 +68,7 @@ watch(() => timezone.value, (o, n) => {
         :searchable="true"
         :close-on-select="true"
         :allow-empty="false"
-        :custom-label="opt => timeZoneObj[opt]"
+        :custom-label="(opt:string) => timeZoneObj[opt]"
         placeholder=""
         select-label=""
         deselect-label=""
