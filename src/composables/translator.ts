@@ -7,8 +7,7 @@ interface ILocales {
   }
 }
 
-
-const currentLanguage = ref('en')
+const currentLanguage = ref<string>('en')
 
 export function translator (key: string) : string {
   const translations: ILocales = locales()
@@ -23,6 +22,6 @@ export function setLanguage (lang: string) {
   currentLanguage.value = lang
 }
 
-export function getLanguage () {
+export function getLanguage (): string {
   return currentLanguage.value
 }
