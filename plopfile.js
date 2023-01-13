@@ -1,8 +1,12 @@
+const inputRequired = name => {
+  return value => (/.+/.test(value) ? true : `${name} is required`)
+}
+
 module.exports = function (plop) {
   const COMPONENT_PATH = 'src/components/'
   const LAYOUT_PATH = 'src/layouts/'
   const PAGE_PATH = 'src/pages/'
-  const COMPOSABLE_PATH = 'src/composables/'
+  const COMPOSABLE_PATH = 'src/composable/'
   const STORE_PATH = 'src/store/'
   const TYPES_PATH = 'src/types/'
 
@@ -12,7 +16,8 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'Name of the component?'
+        message: 'Name of the component?',
+        validate: inputRequired('title')
       },
       {
         type: 'list',
@@ -60,11 +65,10 @@ module.exports = function (plop) {
         path: `${COMPONENT_PATH}{{type}}/{{pascalCase name}}/{{pascalCase name}}.test.ts`,
         templateFile: 'plopTemplates/unitComponent.hbs',
         skipIfExists: true
-
       },
       {
         skip: function (answers) {
-          return !answers.files.includes('stories') ? 'skipped' : null
+          return !answers.files.includes('story') ? 'skipped' : null
         },
         type: 'add',
         path: `${COMPONENT_PATH}{{type}}/{{pascalCase name}}/{{pascalCase name}}.stories.ts`,

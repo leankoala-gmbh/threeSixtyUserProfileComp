@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { Tabs, Tab } from 'vue3-tabs-component'
-import mitt from 'mitt'
-import { useCookies } from '@vueuse/integrations/useCookies'
-import { setLanguage, translator } from '@/composables/translator'
-import 'container-query-polyfill'
-import { IProfileUser } from '@/types/general.interfaces'
 import TabviewGeneral from '@/components/feature/TabviewGeneral/TabviewGeneral.vue'
-import TabviewUserData from '@/components/feature/TabviewUserData/TabviewUserData.vue'
 import TabviewLicense from '@/components/feature/TabviewLicense/TabviewLicense.vue'
+import TabviewUserData from '@/components/feature/TabviewUserData/TabviewUserData.vue'
+import { setLanguage, translator } from '@/composables/translator'
+import { IProfileUser } from '@/types/general.interfaces'
+import { useCookies } from '@vueuse/integrations/useCookies'
+import 'container-query-polyfill'
+import mitt from 'mitt'
+import { onMounted } from 'vue'
+import { Tab, Tabs } from 'vue3-tabs-component'
 
 window.mitt = window.mitt || mitt()
 
