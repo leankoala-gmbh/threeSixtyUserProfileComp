@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 export type TButtonTags = 'a' | 'button' | 'div' | 'input'
 
+defineEmits(['click'])
+
 const props = defineProps({
   tag: {
     type: String as () => TButtonTags,

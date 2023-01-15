@@ -4,5 +4,6 @@
   "TimezoneSaved": "Timezone saved",
   "Profile": "Profile",
   "RemoveAccount": "Remove account",
-  "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data."
+  "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data.",
+  "Sentence for general Tab": "A general sentence for general tab"
 }

@@ -1,6 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`TabviewGeneral.vue > renders props.msg when passed 1`] = `
-"<profile-infos-stub userdata=\\"[object Object]\\" inactivefields=\\"\\"></profile-infos-stub>
+"<div class=\\"font-medium mb-4 text-lg\\">A general sentence for general tab</div>
+<profile-infos-stub userdata=\\"[object Object]\\" inactivefields=\\"\\"></profile-infos-stub>
 <timezone-stub userdata=\\"[object Object]\\"></timezone-stub>"
 `;

@@ -33,7 +33,6 @@ const props = defineProps({
 
 const userDataObj: IProfileUser = JSON.parse(props.userData)
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
-
 const cookies = useCookies(['locale'])
 
 onMounted(() => {

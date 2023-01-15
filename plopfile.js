@@ -10,6 +10,9 @@ module.exports = function (plop) {
   const STORE_PATH = 'src/store/'
   const TYPES_PATH = 'src/types/'
 
+  plop.setWelcomeMessage(
+    'Welcome to the Vue 3 Plop generator! Please select a generator.'
+  )
   plop.setGenerator('components', {
     description: 'Build a Component Skeleton',
     prompts: [
@@ -86,7 +89,6 @@ module.exports = function (plop) {
         name: 'name',
         message: 'Name of the Layout'
       }
-
     ],
     actions: [
       {
@@ -149,7 +151,7 @@ module.exports = function (plop) {
           return !answers.unit ? 'skipped' : null
         },
         type: 'add',
-        path: 'src/composable/{{camelCase name}}/{{camelCase name}}.test.ts',
+        path: `${COMPOSABLE_PATH}{{camelCase name}}/{{camelCase name}}.test.ts`,
         templateFile: 'plopTemplates/unitComposable.hbs',
         skipIfExists: true
       }
@@ -169,6 +171,12 @@ module.exports = function (plop) {
         name: 'persist',
         message: 'Persist the Store?',
         default: false
+      },
+      {
+        type: 'confirm',
+        name: 'unit',
+        message: 'Add a Unit Test File?',
+        default: true
       }
     ],
     actions: [
@@ -176,6 +184,15 @@ module.exports = function (plop) {
         type: 'add',
         path: `${STORE_PATH}{{camelCase name}}.ts`,
         templateFile: 'plopTemplates/piniaStore.hbs',
+        skipIfExists: true
+      },
+      {
+        skip: function (answers) {
+          return !answers.unit ? 'skipped' : null
+        },
+        type: 'add',
+        path: `${STORE_PATH}{{camelCase name}}.test.ts`,
+        templateFile: 'plopTemplates/unitStore.hbs',
         skipIfExists: true
       }
     ]

@@ -1,26 +1,51 @@
-<script lang="ts">
+<script lang="ts" setup>
+import FormInput from '@/components/base/FormInput/FormInput.vue'
 import { translator } from '@/composables/translator'
-import { defineComponent } from 'vue'
+import { reactive } from 'vue'
 
-export default defineComponent({
-  methods: { translator }
+const submitName = () => {
+  window.mitt.emit('tsxUserProfile', {
+    firstname: 'John',
+    lastname: 'Doe'
+  })
+}
+
+const namingForm = reactive({
+  firstname: '',
+  lastname: ''
 })
 
 </script>
 
 <template>
   <div>
-    <h3 class="mb-4 font-medium">
-      {{ translator('Change your First and Lastname') }}
+    <h3 class="font-medium mb-4 text-lg">
+      {{ translator('Sentence for user data') }}
     </h3>
+    {{ namingForm }}
     <form @submit="submitName">
-      <div class="tsxUp-grid-formRow items-center mb-6">
-        <div>{{ translator('Firstname') }}</div>
-        <div><input type="text" class="border p-2 w-full"></div>
+      <div class="tsxUp-grid-formRow mb-6">
+        <label
+          for=""
+          class="block h-[38px] flex items-center"
+        >{{ translator('Firstname') }}</label>
+        <FormInput
+          v-model="namingForm.firstname"
+          name="firstname"
+          type="text"
+          error-string=""
+        />
       </div>
-      <div class="tsxUp-grid-formRow items-center mb-6">
-        <div>{{ translator('Lastname') }}</div>
-        <div><input type="text" class="border p-2 w-full"></div>
+      <div class="tsxUp-grid-formRow">
+        <label
+          for=""
+          class="block h-[38px] flex items-center"
+        >{{ translator('Lastname') }}</label>
+        <FormInput
+          v-model="namingForm.lastname"
+          name="lastname"
+          type="text"
+        />
       </div>
     </form>
   </div>
