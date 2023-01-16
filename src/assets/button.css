@@ -5,4 +5,12 @@
     color: var(--tsxUp-button-color-hover);
     background-color: var(--tsxUp-button-bg-hover);
   }
+  &.isDisabled {
+    color: var(--tsxUp-button-color-disabled);
+    background-color: var(--tsxUp-button-bg-disabled);
+    &:hover {
+      color: var(--tsxUp-button-color-disabled);
+      background-color: var(--tsxUp-button-bg-disabled);
+    }
+  }
 }

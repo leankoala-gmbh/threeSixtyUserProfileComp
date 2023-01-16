@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`TabviewHeader.vue > should render 1`] = `
+"<header class=\\"tabviewHeader mb-4\\">
+  <h3 class=\\"font-medium mb-1 text-lg\\">Hello World</h3>
+  <p>This is a subline</p>
+</header>"
+`;

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import {{ pascalCase name }} from './{{ pascalCase name }}.vue'
+import TabviewPassword from './TabviewPassword.vue'
 
-const meta: Meta<typeof {{ pascalCase name }}> = {
-  title: 'Components/{{pascalCase type}}/{{ pascalCase name }}',
-  component: {{ pascalCase name }},
+const meta: Meta<typeof TabviewPassword> = {
+  title: 'Components/Feature/TabviewPassword',
+  component: TabviewPassword,
   tags: ['autodocs'],
   argTypes: {
     // Define your interactive Props here
@@ -23,17 +23,17 @@ const meta: Meta<typeof {{ pascalCase name }}> = {
 }
 
 export default meta
-type Story = StoryObj<typeof {{ pascalCase name }}>
+type Story = StoryObj<typeof TabviewPassword>
 
 // First Story of the Component
-export const {{ pascalCase name }}Story: Story = {
+export const TabviewPasswordStory: Story = {
   // name: 'Self defined Story Name',
   render: (args) => ({
-    components: { {{ pascalCase name }} },
+    components: { TabviewPassword },
     setup() {
       return { args }
     },
-    template: '<{{ pascalCase name }} v-bind="args" />'
+    template: '<TabviewPassword v-bind="args" />'
   }),
   args: {
     // Define the Data for your props

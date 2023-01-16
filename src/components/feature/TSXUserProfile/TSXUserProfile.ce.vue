@@ -2,6 +2,7 @@
 import TabviewGeneral from '@/components/feature/TabviewGeneral/TabviewGeneral.vue'
 import TabviewLicense from '@/components/feature/TabviewLicense/TabviewLicense.vue'
 import TabviewUserData from '@/components/feature/TabviewUserData/TabviewUserData.vue'
+import TabviewPassword from '@/components/feature/TabviewPassword/TabviewPassword.vue'
 import { setLanguage, translator } from '@/composables/translator'
 import { IProfileUser } from '@/types/general.interfaces'
 import { useCookies } from '@vueuse/integrations/useCookies'
@@ -47,16 +48,19 @@ onMounted(() => {
       {{ translator('Profile') }}
     </h2>
     <tabs>
-      <tab name="General">
+      <tab :name="translator('General Tab')">
         <TabviewGeneral
           :user-data-obj="userDataObj"
           :inactive-fields-arr="inactiveFieldsArr"
         />
       </tab>
-      <tab name="User Data">
+      <tab :name="translator('Name Tab')">
         <TabviewUserData />
       </tab>
-      <tab name="License">
+      <tab :name="translator('Password Tab')">
+        <TabviewPassword />
+      </tab>
+      <tab :name="translator('License Tab')">
         <TabviewLicense />
       </tab>
     </tabs>

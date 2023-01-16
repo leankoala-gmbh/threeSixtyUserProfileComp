@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { translator } from '@/composables/translator'
-
+import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
 </script>
 
 <template>
-  <div>
-    <div class="font-medium mb-4 text-lg">
+  <div class="tabviewLicense">
+    <TabviewHeader>
       {{ translator('Sentence for license tab') }}
-    </div>
+      <template #subline>
+        hello world
+      </template>
+    </TabviewHeader>
   </div>
 </template>

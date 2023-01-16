@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
 import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
 import Timezone from '@/components/feature/Timezone/Timezone.vue'
 import { translator } from '@/composables/translator'
@@ -23,16 +24,15 @@ const updateTimezone = (event: string) => {
 </script>
 
 <template>
-  <div class="font-medium mb-4 text-lg">
-    {{ translator('Sentence for general Tab') }}
+  <div class="tabviewGeneral">
+    <TabviewHeader>
+      {{ translator('Sentence for general Tab') }}
+    </TabviewHeader>
+    <ProfileInfos :user-data="userDataObj" :inactive-fields="inactiveFieldsArr" />
+    <Timezone
+      v-if="!inactiveFieldsArr.includes('timezone')"
+      :user-data="userDataObj"
+      @update-timezone="updateTimezone"
+    />
   </div>
-  <ProfileInfos
-    :user-data="userDataObj"
-    :inactive-fields="inactiveFieldsArr"
-  />
-  <Timezone
-    v-if="!inactiveFieldsArr.includes('timezone')"
-    :user-data="userDataObj"
-    @update-timezone="updateTimezone"
-  />
 </template>

@@ -17,8 +17,8 @@ export const validateUrl = (url: string): boolean => {
 /**
  * Validate the minimum length of a string.
  */
-export const validateMinLength = (value: string, length: number): boolean => {
-  return value.length >= length
+export const validateMinLength = (value: string | null, length: number): boolean => {
+  return value ? value.length >= length : false
 }
 
 /**

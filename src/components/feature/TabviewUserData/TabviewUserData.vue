@@ -1,51 +1,92 @@
 <script lang="ts" setup>
 import FormInput from '@/components/base/FormInput/FormInput.vue'
 import { translator } from '@/composables/translator'
-import { reactive } from 'vue'
+import { computed, onMounted, reactive  } from 'vue'
+import { validateMinLength } from '@/utils/formValidators'
+import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
+import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
 
-const submitName = () => {
-  window.mitt.emit('tsxUserProfile', {
-    firstname: 'John',
-    lastname: 'Doe'
-  })
-}
+const props = defineProps({
+  firstName: {
+    type: String,
+    default: ''
+  },
+  lastName: {
+    type: String,
+    default: ''
+  }
+})
 
-const namingForm = reactive({
+const namingForm = reactive<{[key: string]: string}>({
   firstname: '',
   lastname: ''
 })
 
+onMounted(() => {
+  namingForm.firstname = props.firstName
+  namingForm.lastname = props.lastName
+})
+
+const firstNameIsValid = computed(() => {
+  const isValid = validateMinLength(namingForm.firstname, 3)
+  return !isValid
+    ? translator('Firstname must be at least 3 characters long')
+    : ''
+})
+
+const lastNameIsValid = computed(() => {
+  const isValid = validateMinLength(namingForm.lastname, 3)
+  return !isValid
+    ? translator('Lastname must be at least 3 characters long')
+    : ''
+})
+
+const submitName = () => {
+  console.log('submitName')
+}
 </script>
 
 <template>
   <div>
-    <h3 class="font-medium mb-4 text-lg">
+    <TabviewHeader>
       {{ translator('Sentence for user data') }}
-    </h3>
-    {{ namingForm }}
-    <form @submit="submitName">
+      <template #subline>
+        hello world
+      </template>
+    </TabviewHeader>
+    <form @submit.stop="submitName">
       <div class="tsxUp-grid-formRow mb-6">
         <label
-          for=""
-          class="block h-[38px] flex items-center"
+          class="@[660px]/tsxupmain:h-[38px]  flex items-center"
         >{{ translator('Firstname') }}</label>
         <FormInput
           v-model="namingForm.firstname"
           name="firstname"
           type="text"
-          error-string=""
+          :error-string="firstNameIsValid"
         />
       </div>
       <div class="tsxUp-grid-formRow">
         <label
-          for=""
-          class="block h-[38px] flex items-center"
+          class="@tsxupmain[660px]:h-[38px]  flex items-center"
         >{{ translator('Lastname') }}</label>
         <FormInput
           v-model="namingForm.lastname"
           name="lastname"
           type="text"
+          :error-string="lastNameIsValid"
         />
+      </div>
+      <div class="tsxUp-grid-formRow mt-4">
+        <div />
+        <div>
+          <GeneralButton
+            type="submit"
+            :is-disabled="!!firstNameIsValid.length || !!lastNameIsValid.length"
+          >
+            {{ translator('Save') }}
+          </GeneralButton>
+        </div>
       </div>
     </form>
   </div>

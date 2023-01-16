@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import FormInput from './FormInput.vue'
 
 const meta: Meta<typeof FormInput> = {
-  title: 'FormInput',
+  title: 'Components/Base/FormInput',
   component: FormInput,
   tags: ['autodocs'],
   argTypes: {

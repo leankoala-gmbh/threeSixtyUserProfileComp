@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require('path')
+
 module.exports = {
   "stories": [
     "../src/components/**/*.mdx",
