@@ -39,14 +39,20 @@ debugEcho('ProfileInfos UserData', props.userData)
           class="w-full"
         >
       </div>
-      <div v-else-if="userData.name" class="h-40 w-40 flex items-center justify-center rounded-full customAvatar font-medium uppercase">
+      <div
+        v-else-if="userData.name"
+        class="h-40 w-40 flex items-center justify-center rounded-full customAvatar font-medium uppercase"
+      >
         <div class="text-center">
           {{ nameInitials }}
         </div>
       </div>
     </div>
   </div>
-  <div v-if="!inactiveFields.includes('email') && userData.email?.length" class="tsxUp-grid-formRow items-center mb-6">
+  <div
+    v-if="!inactiveFields.includes('email') && userData.email?.length"
+    class="tsxUp-grid-formRow items-center mb-6"
+  >
     <div>{{ translator('Email') }}</div>
     <div class="font-medium">
       {{ userData.email }}
