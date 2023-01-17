@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { translator } from '@/composables/translator'
-import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
 </script>
 
 <template>

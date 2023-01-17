@@ -4,7 +4,8 @@ module.exports = {
     browser: true,
     node: true
   },
-  extends: ['plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'eslint:recommended', '@vue/typescript', 'plugin:vue/base', 'plugin:storybook/recommended'],
+  extends: [
+    'plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'eslint:recommended', '@vue/typescript', 'plugin:vue/base', 'plugin:storybook/recommended', './.eslintrc-auto-import.json'],
   // plugins: [
   //   "vue",
   //   "@typescript-eslint"
@@ -13,6 +14,11 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     ecmaFeatures: {
       jsx: false
+    }
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {} // this loads <rootdir>/tsconfig.json to eslint
     }
   },
   rules: {
@@ -87,4 +93,4 @@ module.exports = {
     defineExpose: 'readonly',
     withDefaults: 'readonly'
   }
-};
+}

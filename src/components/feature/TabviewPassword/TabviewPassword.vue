@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import { translator } from '@/composables/translator'
-import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
-import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
-import { reactive } from 'vue'
-import FormInput from '@/components/base/FormInput/FormInput.vue'
-
 const props = defineProps({
   currentPassword: {
     type: String,

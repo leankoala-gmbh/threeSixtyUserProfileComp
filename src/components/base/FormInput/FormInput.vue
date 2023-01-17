@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import ErrorMessage from '@/components/pure/ErrorMessage/ErrorMessage.vue'
-
 type TInputType = 'text' | 'email' | 'password' | 'number' | 'url'
 
 defineEmits(['update:modelValue'])

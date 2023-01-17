@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { translator } from '@/composables/translator'
-import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
 </script>
 
 <template>

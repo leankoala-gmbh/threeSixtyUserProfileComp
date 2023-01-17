@@ -1,6 +1,8 @@
-import * as path from 'path'
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import * as path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
 import pkg from './package.json'
 
 process.env.VITE_APP_VERSION = pkg.version
@@ -13,6 +15,34 @@ export default defineConfig({
     vue({
       script: {
         refSugar: true
+      }
+    }),
+    Components({
+      dirs: ['./src/components'],
+      dts: true
+    }),
+    AutoImport({
+      dts: './auto-imports.d.ts',
+      defaultExportByFilename: false,
+      vueTemplate: true,
+      include: [
+        /\.[tj]s?$/,
+        /\.vue\??/,
+        /\.mdx?$/
+      ],
+      dirs: [
+        './src/composables/**',
+        './src/composables',
+        './src/utils/**',
+        './src/utils'
+      ],
+      imports: [
+        'vue'
+      ],
+      eslintrc: {
+        enabled: true,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true
       }
     })
   ],
