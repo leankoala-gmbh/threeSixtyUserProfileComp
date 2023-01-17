@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import TabviewGeneral from '@/components/feature/TabviewGeneral/TabviewGeneral.vue'
-import TabviewLicense from '@/components/feature/TabviewLicense/TabviewLicense.vue'
-import TabviewUserData from '@/components/feature/TabviewUserData/TabviewUserData.vue'
-import TabviewPassword from '@/components/feature/TabviewPassword/TabviewPassword.vue'
-import { setLanguage, translator } from '@/composables/translator'
+import { translator } from '@/composables/translateHelper'
 import { IProfileUser } from '@/types/general.interfaces'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'

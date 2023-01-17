@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
-import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
-import Timezone from '@/components/feature/Timezone/Timezone.vue'
-import { translator } from '@/composables/translator'
 import { IProfileUser } from '@/types/general.interfaces'
 
 const props = defineProps({

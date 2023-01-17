@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import { translator } from '@/composables/translator'
 import { IProfileUser } from '@/types/general.interfaces'
-import { debugEcho } from '@/utils/echo'
-import { computed } from 'vue'
 
 const props = defineProps({
   userData: {

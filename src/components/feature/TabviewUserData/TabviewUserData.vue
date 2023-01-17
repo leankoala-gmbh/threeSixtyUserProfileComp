@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-import FormInput from '@/components/base/FormInput/FormInput.vue'
-import { translator } from '@/composables/translator'
-import { computed, onMounted, reactive  } from 'vue'
-import { validateMinLength } from '@/utils/formValidators'
-import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
-import TabviewHeader from '@/components/pure/TabviewHeader/TabviewHeader.vue'
-
 const props = defineProps({
   firstName: {
     type: String,

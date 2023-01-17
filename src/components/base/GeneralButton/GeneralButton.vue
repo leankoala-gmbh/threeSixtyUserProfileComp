@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { is } from '@babel/types'
-
 export type TButtonTags = 'a' | 'button' | 'div'
 
 defineEmits(['click'])
