@@ -6,7 +6,7 @@ defineEmits(['update:modelValue'])
 defineProps({
   name: {
     type: String,
-    default: ''
+    required: true
   },
   modelValue: {
     type: [String, Number],

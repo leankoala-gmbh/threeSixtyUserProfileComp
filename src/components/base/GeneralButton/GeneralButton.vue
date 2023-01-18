@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 export type TButtonTags = 'a' | 'button' | 'div'
 
-defineEmits(['click'])
+const emit = defineEmits(['click'])
 
 const props = defineProps({
   tag: {
@@ -13,6 +13,11 @@ const props = defineProps({
     default: false
   }
 })
+
+const sendClick = () => {
+  if (props.isDisabled) return
+  emit('click')
+}
 </script>
 
 <template>
@@ -25,7 +30,7 @@ const props = defineProps({
         ? 'isDisabled italic'
         : ''
     ]"
-    @click.stop="$emit('click')"
+    @click.stop="sendClick"
   >
     <slot />
   </component>

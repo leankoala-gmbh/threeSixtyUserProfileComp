@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { translator } from '@/composables/translateHelper'
 import { IProfileUser } from '@/types/general.interfaces'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
