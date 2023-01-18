@@ -13,9 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 export default defineConfig({
   plugins: [
     vue({
-      script: {
-        refSugar: true
-      }
+      script: {}
     }),
     Components({
       dirs: ['./src/components'],
