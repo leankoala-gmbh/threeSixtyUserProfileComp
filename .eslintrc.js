@@ -75,6 +75,7 @@ module.exports = {
     'vue/no-mutating-props': 'off',
     'vue/no-v-html': 'off',
     'no-case-declarations': 'off',
+    'vue/multi-word-component-names': 'off',
     camelcase: 'off',
     curly: 0,
     'dot-notation': 0,
