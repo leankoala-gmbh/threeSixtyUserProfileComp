@@ -2,6 +2,9 @@
 /public/
 /.idea/
 /tests/
+/.storybook/
+/.vscode/
+/plopTemplates/
 .editorconfig
 .eslintrc.js
 .gitignore
