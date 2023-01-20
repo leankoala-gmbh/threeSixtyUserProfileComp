@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils"
-import { describe, expect, it, test } from "vitest"
+import { describe, expect, it } from "vitest"
 import TabviewUserData from "./TabviewUserData.vue"
 
 describe("TabviewUserData.vue", () => {
@@ -12,14 +12,14 @@ describe("TabviewUserData.vue", () => {
     const wrapper = mount(TabviewUserData)
     const button = wrapper.find('button[type="submit"]')
     expect(button.exists()).toBe(true)
-    expect(button.attributes().disabled).toBeTruthy()
+    expect(button.attributes().disabled).toBe("")
   })
   it("enables the save button after input", async () => {
     const wrapper = mount(TabviewUserData)
     const firstName = wrapper.find('input[name="firstname"]')
     const lastName = wrapper.find('input[name="lastname"]')
-    await firstName.setValue("John")
-    await lastName.setValue("Doe")
+    await firstName.setValue("WebPros")
+    await lastName.setValue("Rocks")
     const button = wrapper.find('button[type="submit"]')
     expect(button.attributes().disabled).toBe(undefined)
   })
