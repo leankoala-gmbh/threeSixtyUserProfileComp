@@ -18,3 +18,8 @@ vite.config.js
 webpack.config.js
 tailwind.config.js
 postcss.config.js
+plopfile.js
+auto-imports.d.ts
+components.d.ts
+/.github/
+.eslintrc-auto-import.json

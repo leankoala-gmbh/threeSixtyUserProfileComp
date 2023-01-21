@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 console.log('hello world')
 const getLicense = async () => {
-  const response = await fetch('https://monitoring.my-hosting.world/license/')
-  const data = response
-  console.log(data)
+  try {
+    const response = await fetch('https://monitoring.my-hosting.world/license/')
+    console.log('🚀 ~ file: TabviewLicense.vue:5 ~ getLicense ~ response', JSON.stringify(response))
+  } catch (error) {
+    console.log('🚀 ~ file: TabviewLicense.vue:5 ~ getLicense ~ error', error)
+  }
 }
 
 getLicense()
