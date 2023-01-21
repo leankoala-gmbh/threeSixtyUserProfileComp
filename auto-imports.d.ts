@@ -8,7 +8,7 @@ declare global {
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
-  const debugEcho: typeof import('./src/utils/echo')['debugEcho']
+  const debugEcho: typeof import('./src/utils/debugHelper')['debugEcho']
   const deepMerge: typeof import('./src/utils/index')['deepMerge']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
@@ -95,7 +95,7 @@ declare module 'vue' {
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly debugEcho: UnwrapRef<typeof import('./src/utils/echo')['debugEcho']>
+    readonly debugEcho: UnwrapRef<typeof import('./src/utils/debugHelper')['debugEcho']>
     readonly deepMerge: UnwrapRef<typeof import('./src/utils/index')['deepMerge']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
