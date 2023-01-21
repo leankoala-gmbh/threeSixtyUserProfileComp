@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "author": "Sascha Fuchs <sascha.fuchs@webpros.com>",
   "license": "MIT",
-  "version": "1.0.18-beta",
+  "version": "1.0.19-beta",
   "engines": {
     "node": "16.x"
   },
@@ -38,6 +38,7 @@
     "container-query-polyfill": "^1.0.2",
     "marked": "^4.2.5",
     "mitt": "^3.0.0",
+    "terser": "^5.16.1",
     "universal-cookie": "^4.0.4",
     "vue": "^3.2.45",
     "vue-multiselect": "^3.0.0-alpha.2",

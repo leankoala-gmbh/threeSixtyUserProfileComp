@@ -52,8 +52,9 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
+    target: 'es2018',
+    format: 'cjs',
     rollupOptions: {
-      format: 'cjs',
       output: {
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
