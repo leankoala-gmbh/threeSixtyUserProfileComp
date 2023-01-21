@@ -42,7 +42,9 @@ onMounted(() => {
     <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
       {{ translator('Profile') }}
     </h2>
-    <tabs>
+    <tabs
+      :options="{ useUrlFragment: false }"
+    >
       <tab :name="translator('General Tab')">
         <TabviewGeneral
           :user-data-obj="userDataObj"
