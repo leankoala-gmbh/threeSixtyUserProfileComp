@@ -68,6 +68,7 @@
     "translator": true,
     "triggerRef": true,
     "unref": true,
+    "useApiAbstraction": true,
     "useAttrs": true,
     "useCssModule": true,
     "useCssVars": true,

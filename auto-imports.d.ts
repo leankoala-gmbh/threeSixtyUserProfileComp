@@ -69,6 +69,7 @@ declare global {
   const translator: typeof import('./src/composables/translateHelper')['translator']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
+  const useApiAbstraction: typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -156,6 +157,7 @@ declare module 'vue' {
     readonly translator: UnwrapRef<typeof import('./src/composables/translateHelper')['translator']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
+    readonly useApiAbstraction: UnwrapRef<typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

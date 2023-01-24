@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IProfileUser } from '@/types/general.interfaces'
+import type { IProfileUser } from '@/types/general.interfaces'
 
 const props = defineProps({
   userDataObj: {
@@ -17,6 +17,7 @@ const updateTimezone = (event: string) => {
     timezone: event
   })
 }
+
 </script>
 
 <template>
@@ -24,7 +25,10 @@ const updateTimezone = (event: string) => {
     <TabviewHeader>
       {{ translator('Sentence for general Tab') }}
     </TabviewHeader>
-    <ProfileInfos :user-data="userDataObj" :inactive-fields="inactiveFieldsArr" />
+    <ProfileInfos
+      :user-data="userDataObj"
+      :inactive-fields="inactiveFieldsArr"
+    />
     <Timezone
       v-if="!inactiveFieldsArr.includes('timezone')"
       :user-data="userDataObj"

@@ -70,6 +70,7 @@ export default defineConfig({
   test: {
     include: ['tests/**/*.test.ts', 'src/components/**/*.test.ts', 'src/composables/**/*.test.ts'],
     environment: 'jsdom',
+    setupFiles: ['./vitest.setup.js'],
     deps: {
       inline: ['@vue']
     }

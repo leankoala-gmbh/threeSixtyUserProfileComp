@@ -4,3 +4,27 @@ export interface IProfileUser {
   avatar?: string
   timezone?: null | string
 }
+
+export interface ILicenses {
+  keyId: string
+  keyNumber: string
+  status: string
+  createDate: string
+  nextBillingDate:string
+  type: string
+  renewalCostNet: number
+  renewalCostVat: number
+  renewalCostGross: number
+  renewalCurrency: string
+  billingPeriod: string
+  activationCode: string
+  changePaymentSubscriptionUrl: string
+  websites: ILicensesServers
+  servers: ILicensesServers
+}
+
+export interface ILicensesServers {
+  count: number
+  min: number
+  max: number
+}

@@ -1,9 +1,18 @@
 <script lang="ts" setup>
-console.log('hello world')
+const props = defineProps({
+  baseApiUrl: {
+    type: String,
+    required: true
+  }
+})
+
+const licenseData = ref<null|unknown>(null)
+
 const getLicense = async () => {
   try {
-    const response = await fetch('https://monitoring.my-hosting.world/license/')
-    console.log('🚀 ~ file: TabviewLicense.vue:5 ~ getLicense ~ response', JSON.stringify(response))
+
+    const data = await useApiAbstraction().getLicenses()
+    licenseData.value = data[0]
   } catch (error) {
     console.log('🚀 ~ file: TabviewLicense.vue:5 ~ getLicense ~ error', error)
   }
@@ -20,5 +29,6 @@ getLicense()
         hello world
       </template>
     </TabviewHeader>
+    {{ licenseData }}
   </div>
 </template>

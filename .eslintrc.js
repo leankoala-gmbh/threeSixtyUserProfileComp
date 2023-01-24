@@ -5,11 +5,19 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'eslint:recommended', '@vue/typescript', 'plugin:vue/base', 'plugin:storybook/recommended', './.eslintrc-auto-import.json'],
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'eslint:recommended',
+    '@vue/typescript',
+    'plugin:vue/base',
+    'plugin:storybook/recommended',
+    './.eslintrc-auto-import.json'
+  ],
   // plugins: [
-  //   "vue",
-  //   "@typescript-eslint"
+  //   'vue',
+  //   '@typescript-eslint'
   // ],
+  // parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaFeatures: {
@@ -22,6 +30,23 @@ module.exports = {
     }
   },
   rules: {
+    'multiline-ternary': ['error', 'always-multiline'],
+    'no-multi-spaces': 'error',
+    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 2 }],
+    'no-whitespace-before-property': 'error',
+    'indent': [
+      'error',
+      2,
+      {
+        'CallExpression': { 'arguments': 'first' },
+        'FunctionExpression': { 'parameters': 'first' },
+        'offsetTernaryExpressions': true,
+        'SwitchCase': 1,
+        'FunctionDeclaration': { 'body': 1, 'parameters': 2 },
+        'ImportDeclaration': 1,
+        'ObjectExpression': 1
+      }
+    ],
     'array-bracket-spacing': ['error', 'never'],
     'comma-spacing': ['error', {
       'before': false,

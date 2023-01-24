@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IProfileUser } from '@/types/general.interfaces'
+import type { IProfileUser } from '@/types/general.interfaces'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
 import mitt from 'mitt'
@@ -9,6 +9,10 @@ import { Tab, Tabs } from 'vue3-tabs-component'
 window.mitt = window.mitt || mitt()
 
 const props = defineProps({
+  baseApiUrl: {
+    type: String,
+    required: true
+  },
   currentLanguage: {
     type: String,
     default: 'en'
@@ -30,10 +34,12 @@ const props = defineProps({
 const userDataObj: IProfileUser = JSON.parse(props.userData)
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
+useApiAbstraction().setBaseUrl(props.baseApiUrl)
 
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
+
 })
 </script>
 
@@ -58,7 +64,7 @@ onMounted(() => {
         <TabviewPassword />
       </tab>
       <tab :name="translator('License Tab')">
-        <TabviewLicense />
+        <TabviewLicense :base-api-url="baseApiUrl" />
       </tab>
     </tabs>
   </div>

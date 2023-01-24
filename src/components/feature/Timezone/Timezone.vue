@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 import timezones from '@/data/timezones.json'
-import { IProfileUser } from '@/types/general.interfaces'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import type { IProfileUser } from '@/types/general.interfaces'
 import VueMultiselect from 'vue-multiselect'
-
 
 const emit = defineEmits(['updateTimezone'])
 

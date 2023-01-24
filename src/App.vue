@@ -10,7 +10,11 @@ const inactiveFields = []
 
 <template>
   <div class="p-12">
-    <TSXUserProfile :user-data="JSON.stringify(userData)" :inactive-fields="JSON.stringify(inactiveFields)" />
+    <TSXUserProfile
+      :user-data="JSON.stringify(userData)"
+      :inactive-fields="JSON.stringify(inactiveFields)"
+      base-api-url="https://monitoring.my-hosting.world/license"
+    />
   </div>
 </template>
 
