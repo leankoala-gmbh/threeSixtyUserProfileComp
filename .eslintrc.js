@@ -13,10 +13,10 @@ module.exports = {
     'plugin:storybook/recommended',
     './.eslintrc-auto-import.json'
   ],
-  // plugins: [
-  //   'vue',
-  //   '@typescript-eslint'
-  // ],
+  plugins: [
+    // 'vue',
+    '@typescript-eslint'
+  ],
   // parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
