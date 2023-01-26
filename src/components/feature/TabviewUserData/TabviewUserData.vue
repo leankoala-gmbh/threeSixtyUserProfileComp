@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { z } from 'zod'
+
 const props = defineProps({
   firstName: {
     type: String,
@@ -8,6 +10,11 @@ const props = defineProps({
     type: String,
     default: ''
   }
+})
+
+const NamingSchema = z.object({
+  firstname: z.string().min(3),
+  lastname: z.string().min(3)
 })
 
 const namingForm = reactive<{[key: string]: string}>({
@@ -21,20 +28,23 @@ onMounted(() => {
 })
 
 const firstNameIsValid = computed(() => {
-  const isValid = validateMinLength(namingForm.firstname, 3)
-  return !isValid
+  return !NamingSchema.shape.firstname.safeParse(namingForm.firstname).success
     ? translator('Firstname must be at least 3 characters long')
     : ''
 })
 
 const lastNameIsValid = computed(() => {
-  const isValid = validateMinLength(namingForm.lastname, 3)
-  return !isValid
+  return !NamingSchema.shape.lastname.safeParse(namingForm.lastname).success
     ? translator('Lastname must be at least 3 characters long')
     : ''
 })
 
+const formIsValid = computed(()=> {
+  return NamingSchema.safeParse(namingForm).success
+})
+
 const submitName = () => {
+  if (!formIsValid.value) return
   console.log('submitName')
 }
 </script>
@@ -50,7 +60,7 @@ const submitName = () => {
     <form @submit.stop="submitName">
       <div class="tsxUp-grid-formRow mb-6">
         <label
-          class="@[660px]/tsxupmain:h-[38px]  flex items-center"
+          class="@[660px]/tsxupmain:h-[38px] flex items-center"
         >{{ translator('Firstname') }}</label>
         <FormInput
           v-model="namingForm.firstname"
@@ -75,7 +85,7 @@ const submitName = () => {
         <div>
           <GeneralButton
             type="submit"
-            :is-disabled="!!firstNameIsValid.length || !!lastNameIsValid.length"
+            :is-disabled="!formIsValid"
           >
             {{ translator('Save') }}
           </GeneralButton>

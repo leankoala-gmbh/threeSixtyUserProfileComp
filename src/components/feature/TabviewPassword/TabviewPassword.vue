@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { z } from 'zod'
+
 const props = defineProps({
   currentPassword: {
     type: String,
@@ -10,6 +12,19 @@ const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
   newPassword: '',
   newPasswordRepeat: ''
+})
+
+const PasswordSchema = z.object({
+  currentPassword: z.string().min(8),
+  newPassword: z.string().min(8),
+  newPasswordRepeat: z.string().min(8)
+}).superRefine(({ newPassword, newPasswordRepeat }, ctx) => {
+  if (newPassword !== newPasswordRepeat) {
+    ctx.addIssue({
+      code: 'custom',
+      message: 'The passwords did not match'
+    })
+  }
 })
 
 onMounted(() => {
@@ -37,6 +52,7 @@ const checkAllPasswords = () => {
 }
 
 watch(() => passwordForm, () => {
+  console.log(PasswordSchema.safeParse(passwordForm).success)
   checkAllPasswords()
 }, { deep: true })
 

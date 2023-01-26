@@ -42,7 +42,8 @@
     "universal-cookie": "^4.0.4",
     "vue": "^3.2.45",
     "vue-multiselect": "^3.0.0-alpha.2",
-    "vue3-tabs-component": "^1.1.2"
+    "vue3-tabs-component": "^1.1.2",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
