@@ -3,6 +3,9 @@ export interface IProfileUser {
   email?: string
   avatar?: string
   timezone?: null | string
+  nickname?: string
+  firstname?: string
+  lastname?: string
 }
 
 export interface ILicenses {

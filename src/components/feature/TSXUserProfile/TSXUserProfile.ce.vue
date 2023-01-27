@@ -39,8 +39,9 @@ useApiAbstraction().setBaseUrl(props.baseApiUrl)
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
-
+  debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
+
 </script>
 
 <template>
