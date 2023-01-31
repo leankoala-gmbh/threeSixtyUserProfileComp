@@ -8,6 +8,11 @@ const props = defineProps({
   }
 })
 
+const updateTimezone = (event: string) => {
+  window.mitt.emit('tsxUserProfile', {
+    timezone: event
+  })
+}
 </script>
 
 <template>
@@ -15,8 +20,14 @@ const props = defineProps({
     class="profilePassword"
   >
     <div class="p-6">
-      <div class="text-base font-medium">
+      <div class="text-base font-medium mb-4">
         {{ translator('updateTimezone') }}
+      </div>
+      <div class="smoothGridBox">
+        <Timezone
+          :user-data="userData"
+          @update-timezone="updateTimezone"
+        />
       </div>
     </div>
   </ProfileDetailBox>

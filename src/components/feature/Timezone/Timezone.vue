@@ -52,11 +52,11 @@ watch(() => timezone.value, (o, n) => {
 </script>
 
 <template>
-  <div class="tsx-up-timeZonesForm tsxUp-grid-formRow items-center">
-    <div>
-      {{ translator('Timezone') }}
-    </div>
+  <div>
     <div class="w-full relative">
+      <div v-if="timezoneSavedInfo" class="pl-2 text-sm text-signalSuccess">
+        {{ translator('TimezoneSaved') }}
+      </div>
       <VueMultiselect
         v-model="timezone"
         :options="Object.keys(timeZoneObj)"
@@ -69,9 +69,6 @@ watch(() => timezone.value, (o, n) => {
         deselect-label=""
         selected-label=""
       />
-      <div v-if="timezoneSavedInfo" class="absolute top-0 left-0 mt-12 pl-2 text-sm text-signalSuccess">
-        {{ translator('TimezoneSaved') }}
-      </div>
     </div>
   </div>
 </template>
