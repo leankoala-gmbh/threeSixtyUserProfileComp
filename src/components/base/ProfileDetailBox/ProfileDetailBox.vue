@@ -19,19 +19,18 @@ const isOpen = ref(true)
 
 <template>
   <div class="profileDetail rounded px-6">
-    <div class="py-6 flex justify-between items-center">
+    <div v-if="!isOpen" class="py-6 flex justify-between items-center">
       <div
-        v-if="!isOpen"
         :class="[
           withHover ? 'profilDetail--hover' : ''
         ]"
       >
         <slot>hello</slot>
       </div>
-      <ProfileBoxHeader v-else>
-        {{ headingForClosing }}
-      </ProfileBoxHeader>
     </div>
+    <ProfileBoxHeader v-else>
+      {{ headingForClosing }}
+    </ProfileBoxHeader>
     <div
       v-if="isExpandable"
       class="pb-6"

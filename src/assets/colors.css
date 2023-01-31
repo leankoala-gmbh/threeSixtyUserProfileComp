@@ -17,10 +17,10 @@
   --tsxUp-button-regular-bg-hover: var(--tsxup-primary-light);
   --tsxUp-button-regular-color-disabled: var(--tsxup-darkest-light);
   --tsxUp-button-regular-bg-disabled: var(--tsxup-darkest-mid);
-  --tsxUp-button-ghost-color: var(--tsxup-brightest);
-  --tsxUp-button-ghost-bg: var(--tsxup-primary);
-  --tsxUp-button-ghost-color-hover: var(--tsxup-brightest);
-  --tsxUp-button-ghost-bg-hover: var(--tsxup-primary-light);
+  --tsxUp-button-ghost-color: var(--tsxup-darkest-light);
+  --tsxUp-button-ghost-bg: var(--tsxup-brightest);
+  --tsxUp-button-ghost-color-hover: var(--tsxup-darkest-mid);
+  --tsxUp-button-ghost-bg-hover: var(--tsxup-brightest);
   --tsxUp-selectField-border: var(--tsxup-brightest-darker);
   --tsxUp-selectField-background: var(--tsxup-brightest);
   --tsxUp-selectField-backgroundHover: var(--tsxup-brightest);
