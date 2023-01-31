@@ -32,7 +32,7 @@ module.exports = {
   rules: {
     'multiline-ternary': ['error', 'always-multiline'],
     'no-multi-spaces': 'error',
-    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 2 }],
+    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 4 }],
     'no-whitespace-before-property': 'error',
     'indent': [
       'error',

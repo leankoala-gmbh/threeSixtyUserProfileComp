@@ -58,6 +58,7 @@ export function useApiAbstraction () {
     })
   }
 
+
   return {
     setBaseUrl,
     getLicenses,

@@ -56,7 +56,7 @@ watch(() => timezone.value, (o, n) => {
     <div>
       {{ translator('Timezone') }}
     </div>
-    <div class=" w-full relative">
+    <div class="w-full relative">
       <VueMultiselect
         v-model="timezone"
         :options="Object.keys(timeZoneObj)"

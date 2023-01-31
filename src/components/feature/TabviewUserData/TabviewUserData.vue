@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { z } from 'zod'
+import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
 
 const props = defineProps({
   firstName: {
@@ -9,22 +10,29 @@ const props = defineProps({
   lastName: {
     type: String,
     default: ''
+  },
+  nickName: {
+    type: String,
+    default: ''
   }
 })
 
 const NamingSchema = z.object({
   firstname: z.string().min(3),
-  lastname: z.string().min(3)
+  lastname: z.string().min(3),
+  nickname: z.string().optional()
 })
 
 const namingForm = reactive<{[key: string]: string}>({
   firstname: '',
-  lastname: ''
+  lastname: '',
+  nickname: ''
 })
 
 onMounted(() => {
   namingForm.firstname = props.firstName
   namingForm.lastname = props.lastName
+  namingForm.nickname = props.lastName
 })
 
 const firstNameIsValid = computed(() => {
@@ -39,13 +47,19 @@ const lastNameIsValid = computed(() => {
     : ''
 })
 
+const nickNameIsValid = computed(() => {
+  return !NamingSchema.shape.nickname.safeParse(namingForm.nickname).success
+    ? translator('Nickname must be at least 3 characters long')
+    : ''
+})
+
 const formIsValid = computed(()=> {
   return NamingSchema.safeParse(namingForm).success
 })
 
-const submitName = () => {
+const submitName = async () => {
   if (!formIsValid.value) return
-  console.log('submitName')
+  const response = await useApiAbstraction().post('/user/name', namingForm)
 }
 </script>
 
@@ -69,7 +83,7 @@ const submitName = () => {
           :error-string="firstNameIsValid"
         />
       </div>
-      <div class="tsxUp-grid-formRow">
+      <div class="tsxUp-grid-formRow mb-6">
         <label
           class="@tsxupmain[660px]:h-[38px]  flex items-center"
         >{{ translator('Lastname') }}</label>
@@ -78,6 +92,17 @@ const submitName = () => {
           name="lastname"
           type="text"
           :error-string="lastNameIsValid"
+        />
+      </div>
+      <div class="tsxUp-grid-formRow">
+        <label
+          class="@tsxupmain[660px]:h-[38px]  flex items-center"
+        >{{ translator('Nickname') }}</label>
+        <FormInput
+          v-model="namingForm.nickname"
+          name="nickname"
+          type="text"
+          :error-string="nickNameIsValid"
         />
       </div>
       <div class="tsxUp-grid-formRow mt-4">

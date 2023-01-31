@@ -58,13 +58,22 @@ onMounted(() => {
           :inactive-fields-arr="inactiveFieldsArr"
         />
       </tab>
-      <tab :name="translator('Name Tab')">
+      <tab
+        v-if="!inactiveFields.includes('naming')"
+        :name="translator('Name Tab')"
+      >
         <TabviewUserData />
       </tab>
-      <tab :name="translator('Password Tab')">
+      <tab
+        v-if="!inactiveFields.includes('password')"
+        :name="translator('Password Tab')"
+      >
         <TabviewPassword />
       </tab>
-      <tab :name="translator('License Tab')">
+      <tab
+        v-if="!inactiveFields.includes('license')"
+        :name="translator('License Tab')"
+      >
         <TabviewLicense :base-api-url="baseApiUrl" />
       </tab>
     </tabs>
