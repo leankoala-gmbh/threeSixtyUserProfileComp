@@ -14,9 +14,7 @@ const props = defineProps({
 
 <template>
   <div class="profileDetail rounded">
-    <div class="p-6 relative">
-      <slot />
-    </div>
+    <slot />
     <div
       v-if="$slots.body"
       class="gridTransition"

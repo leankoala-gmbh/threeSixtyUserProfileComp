@@ -7,7 +7,8 @@
   --tsxup-signal-success: #4CA154;
   --tsxup-signal-error: #b73737;
   --tsxup-primary: #1E40AF;
-  --tsxup-primary-light: #668bca;
+  --tsxup-primary-light: #dbe8ff;
+  --tsxup-primary-lightest: #e6eaf2;
   --tsxup-text: var(--tsxup-darkest);
   --tsxup-text-lighter: var(--tsxup-darkest-light);
   --tsxup-headline: var(--tsxup-darkest);

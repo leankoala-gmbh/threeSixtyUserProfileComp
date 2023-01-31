@@ -4,7 +4,6 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
-import { Tab, Tabs } from 'vue3-tabs-component'
 
 window.mitt = window.mitt || mitt()
 
@@ -45,9 +44,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="@container/tsxupmain tsxUserProfile">
+  <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
     <ProfileNaming
       v-if="!inactiveFields.includes('naming')"
+      :user-data="userDataObj"
+    />
+    <ProfilePassword
+      v-if="!inactiveFields.includes('password')"
+      :user-data="userDataObj"
+    />
+    <ProfileTimezone
+      v-if="!inactiveFields.includes('timezone')"
+      :user-data="userDataObj"
+    />
+    <ProfileConsent
+      v-if="!inactiveFields.includes('consent')"
+      :user-data="userDataObj"
+    />
+    <ProfileRemove
+      v-if="!inactiveFields.includes('removeAccount')"
       :user-data="userDataObj"
     />
   </div>

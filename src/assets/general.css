@@ -7,3 +7,9 @@
     grid-template-rows: 1fr;
   }
 }
+
+.smoothGridBox {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+}

@@ -16,7 +16,7 @@ const isOpen = ref(false)
     :is-open="isOpen"
     class="profileNaming"
   >
-    <div v-if="!isOpen" class="flex justify-between">
+    <div v-if="!isOpen" class="flex justify-between p-6">
       <div class="flex gap-4 items-center text-sm">
         <ProfileAvatar :user-data="userData" />
         <div>
