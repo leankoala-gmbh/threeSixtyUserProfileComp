@@ -3,7 +3,7 @@ const emit = defineEmits(['close'])
 </script>
 
 <template>
-  <div class="profileBoxHeader flex justify-between items-center py-6 ">
+  <div class="profileBoxHeader flex justify-between items-center">
     <span class="font-medium"><slot /></span>
     <GeneralButton
       variant="ghost"

@@ -38,7 +38,7 @@ defineProps({
         @input="$emit('update:modelValue', $event.target.value)"
       >
     </div>
-    <ErrorMessage v-if="errorString.length" class="mt-2">
+    <ErrorMessage v-if="errorString.length" class="p-1">
       {{ errorString }}
     </ErrorMessage>
   </div>

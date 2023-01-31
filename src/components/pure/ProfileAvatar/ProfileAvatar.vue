@@ -1,0 +1,39 @@
+<script lang="ts" setup>
+import { IProfileUser } from '@/types/general.interfaces'
+
+const props = defineProps({
+  userData: {
+    type: Object as () => IProfileUser,
+    default: () => ({})
+  }
+})
+
+const nameInitials = computed(() => {
+  if (props.userData.avatar?.length || !props.userData.name?.length) {
+    return ''
+  }
+  const name = props.userData.name.split(' ')
+  return name.map((n) => n[0]).join('')
+})
+</script>
+
+<template>
+  <div
+    v-if="userData.avatar?.length"
+    class="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center"
+  >
+    <img
+      :src="userData.avatar"
+      alt="avatar"
+      class="w-full"
+    >
+  </div>
+  <div
+    v-else-if="userData.name?.length"
+    class="h-10 w-10 flex items-center justify-center rounded-full customAvatar font-medium uppercase text-sm"
+  >
+    <div class="text-center">
+      {{ nameInitials }}
+    </div>
+  </div>
+</template>

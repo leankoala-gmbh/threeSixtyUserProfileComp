@@ -4,41 +4,34 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-  isExpandable: {
+  isOpen: {
     type: Boolean,
     default: true
-  },
-  headingForClosing: {
-    type: String,
-    default: 'blah blah blah'
   }
 })
 
-const isOpen = ref(true)
 </script>
 
 <template>
-  <div class="profileDetail rounded px-6">
-    <div v-if="!isOpen" class="py-6 flex justify-between items-center">
-      <div
-        :class="[
-          withHover ? 'profilDetail--hover' : ''
-        ]"
-      >
-        <slot>hello</slot>
-      </div>
+  <div class="profileDetail rounded">
+    <div class="p-6 relative">
+      <slot />
     </div>
-    <ProfileBoxHeader v-else>
-      {{ headingForClosing }}
-    </ProfileBoxHeader>
     <div
-      v-if="isExpandable"
-      class="pb-6"
+      v-if="$slots.body"
+      class="gridTransition"
       :class="[
-        isExpandable ? 'expandable' : '',
+        isOpen ? 'gridTransition--open' : ''
       ]"
     >
-      <slot name="main" />
+      <div
+        class="overflow-hidden"
+        :class="[isOpen ? ' border-t border-gray-200' : '']"
+      >
+        <div class="p-6">
+          <slot name="body" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

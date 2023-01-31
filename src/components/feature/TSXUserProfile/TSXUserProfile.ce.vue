@@ -46,12 +46,10 @@ onMounted(() => {
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile">
-    <ProfileDetailBox>
-      Hello super box
-      <template #main>
-        main area content
-      </template>
-    </ProfileDetailBox>
+    <ProfileNaming
+      v-if="!inactiveFields.includes('naming')"
+      :user-data="userDataObj"
+    />
   </div>
 </template>
 

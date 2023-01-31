@@ -36,11 +36,8 @@ const sendClick = () => {
     :is="tag"
     :disabled="isDisabled"
     class="rounded h-10 flex items-center justify-center px-4 duration-300 transition border-current border font-medium"
-
     :class="[
-      isDisabled
-        ? 'isDisabled italic'
-        : '',
+      isDisabled ? 'isDisabled italic' : '',
       `generalButton--${variant}`
     ]"
     @click.stop="sendClick"

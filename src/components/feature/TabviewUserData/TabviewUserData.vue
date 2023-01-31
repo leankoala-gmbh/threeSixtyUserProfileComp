@@ -19,20 +19,17 @@ const props = defineProps({
 
 const NamingSchema = z.object({
   firstname: z.string().min(3),
-  lastname: z.string().min(3),
-  nickname: z.string().optional()
+  lastname: z.string().min(3)
 })
 
 const namingForm = reactive<{[key: string]: string}>({
   firstname: '',
-  lastname: '',
-  nickname: ''
+  lastname: ''
 })
 
 onMounted(() => {
   namingForm.firstname = props.firstName
   namingForm.lastname = props.lastName
-  namingForm.nickname = props.lastName
 })
 
 const firstNameIsValid = computed(() => {
@@ -47,11 +44,6 @@ const lastNameIsValid = computed(() => {
     : ''
 })
 
-const nickNameIsValid = computed(() => {
-  return !NamingSchema.shape.nickname.safeParse(namingForm.nickname).success
-    ? translator('Nickname must be at least 3 characters long')
-    : ''
-})
 
 const formIsValid = computed(()=> {
   return NamingSchema.safeParse(namingForm).success
@@ -92,17 +84,6 @@ const submitName = async () => {
           name="lastname"
           type="text"
           :error-string="lastNameIsValid"
-        />
-      </div>
-      <div class="tsxUp-grid-formRow">
-        <label
-          class="@tsxupmain[660px]:h-[38px]  flex items-center"
-        >{{ translator('Nickname') }}</label>
-        <FormInput
-          v-model="namingForm.nickname"
-          name="nickname"
-          type="text"
-          :error-string="nickNameIsValid"
         />
       </div>
       <div class="tsxUp-grid-formRow mt-4">
