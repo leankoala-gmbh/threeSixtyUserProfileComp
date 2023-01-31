@@ -10,6 +10,8 @@ declare module '@vue/runtime-core' {
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
+    ProfileBoxHeader: typeof import('./src/components/pure/ProfileBoxHeader/ProfileBoxHeader.vue')['default']
+    ProfileDetailBox: typeof import('./src/components/base/ProfileDetailBox/ProfileDetailBox.vue')['default']
     ProfileInfos: typeof import('./src/components/feature/ProfileInfos/ProfileInfos.vue')['default']
     RemoveAccount: typeof import('./src/components/feature/RemoveAccount/RemoveAccount.vue')['default']
     TabviewGeneral: typeof import('./src/components/feature/TabviewGeneral/TabviewGeneral.vue')['default']

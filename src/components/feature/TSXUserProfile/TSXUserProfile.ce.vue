@@ -46,37 +46,12 @@ onMounted(() => {
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile">
-    <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
-      {{ translator('Profile') }}
-    </h2>
-    <tabs
-      :options="{ useUrlFragment: false }"
-    >
-      <tab :name="translator('General Tab')">
-        <TabviewGeneral
-          :user-data-obj="userDataObj"
-          :inactive-fields-arr="inactiveFieldsArr"
-        />
-      </tab>
-      <tab
-        v-if="!inactiveFields.includes('naming')"
-        :name="translator('Name Tab')"
-      >
-        <TabviewUserData />
-      </tab>
-      <tab
-        v-if="!inactiveFields.includes('password')"
-        :name="translator('Password Tab')"
-      >
-        <TabviewPassword />
-      </tab>
-      <tab
-        v-if="!inactiveFields.includes('license')"
-        :name="translator('License Tab')"
-      >
-        <TabviewLicense :base-api-url="baseApiUrl" />
-      </tab>
-    </tabs>
+    <ProfileDetailBox>
+      Hello super box
+      <template #main>
+        main area content
+      </template>
+    </ProfileDetailBox>
   </div>
 </template>
 

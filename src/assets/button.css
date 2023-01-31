@@ -1,4 +1,4 @@
-.tsx-up-button {
+/* .tsx-up-button {
   color: var(--tsxUp-button-color);
   background-color: var(--tsxUp-button-bg);
   &:hover {
@@ -11,6 +11,33 @@
     &:hover {
       color: var(--tsxUp-button-color-disabled);
       background-color: var(--tsxUp-button-bg-disabled);
+    }
+  }
+} */
+
+.generalButton {
+  &--regular {
+    background-color: var(--tsxUp-button-regular-bg);
+    color: var(--tsxUp-button-regular-color);
+    &:hover {
+      background-color: var(--tsxUp-button-regular-hover-bg);
+      color: var(--tsxUp-button-regular-hover-color);
+    }
+    &.isDisabled {
+      color: var(--tsxUp-button-regular-color-disabled);
+      background-color: var(--tsxUp-button-regular-bg-disabled);
+      &:hover {
+        color: var(--tsxUp-button-regular-color-disabled);
+        background-color: var(--tsxUp-button-regular-bg-disabled);
+      }
+    }
+  }
+  &--ghost {
+    background-color: var(--tsxUp-button-ghost-bg);
+    color: var(--tsxUp-button-ghost-color);
+    &:hover {
+      background-color: var(--tsxUp-button-ghost-hover-bg);
+      color: var(--tsxUp-button-ghost-hover-color);
     }
   }
 }

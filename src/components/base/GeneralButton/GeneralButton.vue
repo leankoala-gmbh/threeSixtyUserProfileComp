@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-export type TButtonTags = 'a' | 'button' | 'div'
+import { PropType } from 'vue'
+
+type TButtonTags = 'a' | 'button' | 'div'
+type TVariant = 'regular' | 'ghost'
 
 const emit = defineEmits(['click'])
 
@@ -11,6 +14,14 @@ const props = defineProps({
   isDisabled: {
     type: Boolean,
     default: false
+  },
+  variant: {
+    type: String as () => TVariant,
+    default: 'regular'
+  },
+  buttonLayout: {
+    type: String,
+    default: 'rounded h-10 flex items-center justify-center px-4 duration-300 transition'
   }
 })
 
@@ -24,14 +35,17 @@ const sendClick = () => {
   <component
     :is="tag"
     :disabled="isDisabled"
-    class="tsx-up-button rounded h-10 flex items-center justify-center px-4 duration-300 transition"
+    class="rounded h-10 flex items-center justify-center px-4 duration-300 transition border-current border-2"
+
     :class="[
       isDisabled
         ? 'isDisabled italic'
-        : ''
+        : '',
+      `generalButton--${variant}`
     ]"
     @click.stop="sendClick"
   >
     <slot />
   </component>
 </template>
+

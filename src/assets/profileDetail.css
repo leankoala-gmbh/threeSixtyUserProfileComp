@@ -1,0 +1,17 @@
+.profileDetail {
+  background-color: var(--tsxup-brightest);
+  color: var(--tsxup-darkest-light);
+
+  &--hover {
+    /* todo: check hover color */
+    background-color: var(--tsxup-primary-light);
+  }
+
+  a {
+    color: var(--tsxup-primary);
+  }
+
+  h3 {
+    color: var(--tsxup-darkest);
+  }
+}

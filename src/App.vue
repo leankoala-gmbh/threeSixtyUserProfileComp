@@ -9,18 +9,12 @@ const inactiveFields = []
 
 
 <template>
-  <div class="p-12">
+  <div class="p-12 bg-slate-600">
     <TSXUserProfile
       :user-data="JSON.stringify(userData)"
       :inactive-fields="JSON.stringify(inactiveFields)"
-      base-api-urls=""
-      base-api-license-url="https://monitoring.my-hosting.world/license"
-      base-api-password-url="https://monitoring.my-hosting.world/license/password"
+      base-api-url="https://monitoring.my-hosting.world/license"
     />
   </div>
 </template>
 
-const test = {
-  license: '',
-  password: ''
-}
