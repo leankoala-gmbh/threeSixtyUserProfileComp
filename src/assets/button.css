@@ -19,6 +19,7 @@
   &--regular {
     background-color: var(--tsxup-button-regular-bg);
     color: var(--tsxup-button-regular-color);
+    border-color: var(--tsxup-button-regular-bg);
     &:hover {
       background-color: var(--tsxup-button-regular-hover-bg);
       color: var(--tsxup-button-regular-hover-color);
@@ -26,18 +27,22 @@
     &.isDisabled {
       color: var(--tsxup-button-regular-color-disabled);
       background-color: var(--tsxup-button-regular-bg-disabled);
+      border-color: var(--tsxup-button-regular-border-disabled);
       &:hover {
         color: var(--tsxup-button-regular-color-disabled);
         background-color: var(--tsxup-button-regular-bg-disabled);
+        border-color: var(--tsxup-button-regular-border-disabled);
       }
     }
   }
   &--ghost {
     background-color: var(--tsxup-button-ghost-bg);
     color: var(--tsxup-button-ghost-color);
+    border-color: var(--tsxup-button-ghost-border);
     &:hover {
       background-color: var(--tsxup-button-ghost-hover-bg);
       color: var(--tsxup-button-ghost-hover-color);
+      border-color: var(--tsxup-button-ghost-hover-border);
     }
   }
 }
