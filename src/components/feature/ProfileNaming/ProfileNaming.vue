@@ -48,7 +48,7 @@ const successForm = () => {
         </div>
       </div>
       <GeneralButton variant="ghost" @click="isOpen = true">
-        {{ translator('Edit') }}
+        {{ translator('edit') }}
       </GeneralButton>
     </div>
     <ProfileBoxHeader v-else @close="isOpen = false">

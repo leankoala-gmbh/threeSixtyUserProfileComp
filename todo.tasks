@@ -9,7 +9,7 @@ Todo:
     ☐ @low Unit Test
   Boxes:
     Consent:
-      ☐ @high Add Content
+      ✔ @high Add Content @done (1.2.2023, 20:41:27)
       ☐ @high Connect with API
     Update Password:
       ☐ @high Add Content
@@ -18,8 +18,8 @@ Todo:
       ✔ @high Add Content @done (1.2.2023, 16:14:44)
       ✔ @high Connect with API @done (1.2.2023, 16:14:44)
   Translations:
-    ☐ @high Normalize translation keys
-    ☐ @medium Generate translation files for other languages and fill it with translations
+    ✔ @high Normalize translation keys @done (1.2.2023, 20:02:58)
+    ✔ @medium Generate translation files for other languages and fill it with translations @done (1.2.2023, 20:03:04)
   Styling:
     ☐ @low Adopt the right Color Values from figma
     ☐ @low Check fontsizes and spacings

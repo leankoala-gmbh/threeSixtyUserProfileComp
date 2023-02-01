@@ -55,7 +55,7 @@ watch(() => timezone.value, (o, n) => {
   <div>
     <div class="w-full relative">
       <StatusMessage v-if="timezoneSavedInfo" class="mb-4">
-        {{ translator('TimezoneInfo') }}
+        {{ translator('timezoneInfo') }}
       </StatusMessage>
       <VueMultiselect
         v-model="timezone"

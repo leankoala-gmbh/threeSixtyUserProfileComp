@@ -29,13 +29,13 @@ onMounted(() => {
 
 const firstNameIsValid = computed(() => {
   return !NamingSchema.shape.firstname.safeParse(namingForm.firstname).success
-    ? translator('Firstname must be at least 3 characters long')
+    ? translator('firstNameError')
     : ''
 })
 
 const lastNameIsValid = computed(() => {
   return !NamingSchema.shape.lastname.safeParse(namingForm.lastname).success
-    ? translator('Lastname must be at least 3 characters long')
+    ? translator('lastNameError')
     : ''
 })
 
@@ -54,7 +54,7 @@ const submitName = () => {
 <template>
   <form class="namingFormular" @submit.prevent="submitName">
     <div class="mb-6">
-      <label class="mb-1 block text-sm">{{ translator('Firstname') }}</label>
+      <label class="mb-1 block text-sm">{{ translator('firstName') }}</label>
       <FormInput
         v-model="namingForm.firstname"
         name="firstname"
@@ -63,7 +63,7 @@ const submitName = () => {
       />
     </div>
     <div class="mb-6">
-      <label class="mb-1 block">{{ translator('Lastname') }}</label>
+      <label class="mb-1 block">{{ translator('lastName') }}</label>
       <FormInput
         v-model="namingForm.lastname"
         name="lastname"
@@ -77,7 +77,7 @@ const submitName = () => {
         type="submit"
         :is-disabled="!formIsValid"
       >
-        {{ translator('Save') }}
+        {{ translator('save') }}
       </GeneralButton>
     </div>
   </form>

@@ -23,7 +23,7 @@ const password = ref('')
 
 const checkPasswordField = computed(() => {
   return password.value?.length === 0
-    ? translator('Field should not be empty')
+    ? translator('emptyError')
     : ''
 })
 
@@ -49,7 +49,7 @@ const handleRemove = () => {
             {{ translator('removeAccount') }}
           </div>
           <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa vel aliquid dolorem sint accusantium quo facere nobis nam quasi, fugit voluptate nulla labore enim quis expedita nemo doloribus. Dolor, veniam!
+            {{ translator('removeAccountBody') }}
           </p>
         </div>
 
@@ -90,7 +90,7 @@ const handleRemove = () => {
             <div class="font-bold mb-2">
               {{ translator('removeAccountAnnotationTitle') }}
             </div>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa vel aliquid dolorem sint accusantium quo facere nobis nam quasi, fugit voluptate nulla labore enim quis expedita nemo doloribus. Dolor, veniam!
+            {{ translator('removeAccountAnnotationContent') }}
           </div>
         </div>
       </AnnotationBox>
@@ -109,7 +109,7 @@ const handleRemove = () => {
         :is-disabled="!!checkPasswordField.length"
         @click="handleRemove"
       >
-        {{ translator('removeAccount') }}
+        {{ translator('removeAccountButton') }}
       </GeneralButton>
     </template>
   </ProfileDetailBox>
