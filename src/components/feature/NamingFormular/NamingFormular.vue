@@ -3,8 +3,9 @@ import { z } from 'zod'
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
 import { IProfileUser } from '@/types/general.interfaces'
 
-const props = defineProps({
+const emit = defineEmits(['update'])
 
+const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
@@ -45,13 +46,13 @@ const formIsValid = computed(()=> {
 
 const submitName = () => {
   if (!formIsValid.value) return
-  // const response = await useApiAbstraction().post('/user/name', namingForm)
+  emit('update')
 }
 
 </script>
 
 <template>
-  <form class="namingFormular" @submit.stop="submitName">
+  <form class="namingFormular" @submit.prevent="submitName">
     <div class="mb-6">
       <label class="mb-1 block text-sm">{{ translator('Firstname') }}</label>
       <FormInput

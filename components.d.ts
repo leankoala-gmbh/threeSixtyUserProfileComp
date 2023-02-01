@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     ProfileTimezone: typeof import('./src/components/feature/ProfileTimezone/ProfileTimezone.vue')['default']
     RemoveAccount: typeof import('./src/components/feature/RemoveAccount/RemoveAccount.vue')['default']
     StatusMessage: typeof import('./src/components/base/StatusMessage/StatusMessage.vue')['default']
+    StatusMessageInner: typeof import('./src/components/base/StatusMessage/StatusMessageInner.vue')['default']
     TabviewGeneral: typeof import('./src/components/feature/TabviewGeneral/TabviewGeneral.vue')['default']
     TabviewHeader: typeof import('./src/components/pure/TabviewHeader/TabviewHeader.vue')['default']
     TabviewLicense: typeof import('./src/components/feature/TabviewLicense/TabviewLicense.vue')['default']

@@ -17,7 +17,18 @@ const isOpen = ref(false)
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
+
+const formSuccess = ref(false)
+
+const successForm = () => {
+  formSuccess.value = true
+
+  setTimeout(() => {
+    formSuccess.value = false
+  }, 3000)
+}
 </script>
+
 
 <template>
   <ProfileDetailBox
@@ -44,8 +55,14 @@ watch(() => props.open, () => {
       {{ translator('editPersonalInformation') }}
     </ProfileBoxHeader>
     <template #body>
+      <StatusMessage
+        v-if="formSuccess"
+        class="mb-4"
+      >
+        {{ translator('successPersonalInformation') }}
+      </StatusMessage>
       <ProfileAvatar :user-data="userData" class="mb-6" />
-      <NamingFormular :user-data="userData" />
+      <NamingFormular :user-data="userData" @update="successForm" />
     </template>
   </ProfileDetailBox>
 </template>
