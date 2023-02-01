@@ -1,4 +1,5 @@
 export type LooseOnionString<T extends string> = T | Omit<string, T>
+
 export interface IProfileUser {
   name?: string
   email?: string

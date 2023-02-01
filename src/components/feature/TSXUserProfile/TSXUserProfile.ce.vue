@@ -45,7 +45,6 @@ const checkRoute = () => {
 const userDataObj: IProfileUser = JSON.parse(props.userData)
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
-useApiAbstraction().setBaseUrl(props.baseApiUrl)
 
 onMounted(() => {
   const cookieLang = cookies.get('locale')
@@ -59,28 +58,28 @@ onMounted(() => {
 <template>
   <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
     <ProfileNaming
-      v-if="!inactiveFields.includes('naming')"
+      v-if="!inactiveFieldsArr.includes('naming')"
       :user-data="userDataObj"
       :open="boxToOpen === 'naming'"
     />
     <ProfilePassword
-      v-if="!inactiveFields.includes('password')"
+      v-if="!inactiveFieldsArr.includes('password')"
       id="password"
       :user-data="userDataObj"
       :open="boxToOpen === 'password'"
     />
     <ProfileTimezone
-      v-if="!inactiveFields.includes('timezone')"
+      v-if="!inactiveFieldsArr.includes('timezone')"
       id="timezone"
       :user-data="userDataObj"
     />
     <ProfileConsent
-      v-if="!inactiveFields.includes('consent')"
+      v-if="!inactiveFieldsArr.includes('consent')"
       id="consent"
       :user-data="userDataObj"
     />
     <ProfileRemove
-      v-if="!inactiveFields.includes('removeAccount')"
+      v-if="!inactiveFieldsArr.includes('removeAccount')"
       id="remove"
       :user-data="userDataObj"
       :open="boxToOpen === 'remove'"
