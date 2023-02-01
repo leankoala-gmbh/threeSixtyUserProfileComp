@@ -6,5 +6,14 @@ export const handlers = [
     return res(
       ctx.json(licensesData)
     )
+  }),
+  rest.get('https://monitoring.my-hosting.world/account-remove/', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: 'ok',
+        message: 'Account removed'
+      })
+    )
   })
 ]

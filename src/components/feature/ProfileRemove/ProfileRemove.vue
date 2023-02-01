@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
+import { z } from 'zod'
 
 const props = defineProps({
   userData: {
@@ -14,9 +15,34 @@ const props = defineProps({
 
 const isOpen = ref(false)
 
+const passwordSchema = z.string().min(1)
+
+
+const password = ref('')
+const checkPassword = ()=>{
+  return passwordSchema.safeParse(password.value).success
+}
+const confirmationIsValid = computed(()=>{
+  return checkPassword()
+})
+const passwordIsValid = computed(() => {
+  return !checkPassword()
+    ? translator('Field should not be empty')
+    : ''
+})
+
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
+
+const handleRemove = () => {
+  if (!confirmationIsValid.value) return
+
+  password.value = ''
+  useApiAbstraction().removeAccount()
+  isOpen.value = false
+}
+
 </script>
 
 <template>
@@ -57,11 +83,43 @@ watch(() => props.open, () => {
       {{ translator('removeAccount') }}
     </ProfileBoxHeader>
     <template #body>
-      cccc
+      <AnnotationBox type="error">
+        <div class="flex">
+          <div class="self-center mx-2 text-center text-current">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            ><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
+          </div>
+          <div class="text-justify px-4">
+            <div class="font-bold mb-2">
+              {{ translator('removeAccountAnnotationTitle') }}
+            </div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa vel aliquid dolorem sint accusantium quo facere nobis nam quasi, fugit voluptate nulla labore enim quis expedita nemo doloribus. Dolor, veniam!
+          </div>
+        </div>
+      </AnnotationBox>
+      <div class="my-6">
+        <div class="mt-6 mb-2">
+          {{ translator('enterPasswordConfirmRemove') }}
+        </div>
+        <FormInput
+          v-model="password"
+          name="passwordConfirm"
+          type="password"
+          :error-string="passwordIsValid"
+        />
+      </div>
+      <GeneralButton
+        :is-disabled="!confirmationIsValid"
+        @click="handleRemove"
+      >
+        {{ translator('removeAccount') }}
+      </GeneralButton>
     </template>
   </ProfileDetailBox>
 </template>
 
-<style>
-  .profileRemove {}
-</style>

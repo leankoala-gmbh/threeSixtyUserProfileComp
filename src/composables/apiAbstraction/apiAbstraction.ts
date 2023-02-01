@@ -62,6 +62,15 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     })
   }
 
+  const removeAccount = async () : Promise<unknown> => {
+    guardUrl()
+    return await fetch(`${baseUrl.value}/remove-account`, {
+      credentials: 'include',
+      method: 'GET'
+    }).then(()=>{
+      console.log('Account removed')
+    })
+  }
   const getProfile = async () : Promise<IProfile> => {
     guardUrl()
     const data = await fetch(`${baseUrl.value}/profile`, {
@@ -103,6 +112,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     downgradePlan,
     upgradeProperties,
     downgradeProperties,
-    terminateLicense
+    terminateLicense,
+    removeAccount
   }
 }
