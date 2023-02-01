@@ -5,5 +5,8 @@
   "Profile": "Profile",
   "RemoveAccount": "Remove account",
   "RemoveAccountInfo": "After removing your account you will lose access to your server, website, blacklist and log file monitors and to all historical data.",
-  "Sentence for general Tab": "A general sentence for general tab"
+  "Sentence for general Tab": "A general sentence for general tab",
+  "consentHeadline": "Receive 360 Monitoring updates and commercial communication",
+  "consentBody": "WebPros group companies may store and process the data I provide to deliver personalized marketing content such as newsletters and individual offers according to the Privacy Policy. Tailored offerings may be based on additional information like usage and behavior data (Profiling). I can revoke this consent at any time in the platform preferences.",
+  "consentSuccess": "Your agreement has been successfully changed"
 }

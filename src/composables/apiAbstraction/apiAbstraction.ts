@@ -105,6 +105,15 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     })
   }
 
+  const setConsent = async(consent: boolean) : Promise<unknown> => {
+    guardUrl()
+    return await fetch(`${baseUrl.value}/consent/revoke`, {
+      credentials: 'include',
+      method: 'PUT',
+      body: JSON.stringify({ consent })
+    })
+  }
+
 
   return {
     getLicenses,
