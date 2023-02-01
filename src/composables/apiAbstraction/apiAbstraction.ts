@@ -125,7 +125,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const changePassword = async (currentPassword: string, newPassword: string) : Promise<{error: unknown, data: unknown}> => {
+  const changePassword = async (currentPassword: string, newPassword: string) : Promise<{error: unknown, data?: unknown}> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/profile/password`, {
