@@ -18,10 +18,6 @@ const props = defineProps({
   variant: {
     type: String as () => TVariant,
     default: 'regular'
-  },
-  buttonLayout: {
-    type: String,
-    default: 'rounded h-10 flex items-center justify-center px-4 duration-300 transition'
   }
 })
 
