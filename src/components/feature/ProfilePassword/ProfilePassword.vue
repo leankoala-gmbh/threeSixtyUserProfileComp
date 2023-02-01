@@ -51,7 +51,9 @@ watch(() => props.open, () => {
       {{ translator('updatePassword') }}
     </ProfileBoxHeader>
     <template #body>
-      cccc
+      <PasswordFormular
+        :user-data="props.userData"
+      />
     </template>
   </ProfileDetailBox>
 </template>

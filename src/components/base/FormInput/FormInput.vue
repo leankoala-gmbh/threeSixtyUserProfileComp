@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 type TInputType = 'text' | 'email' | 'password' | 'number' | 'url'
 
 defineEmits(['update:modelValue'])
@@ -23,6 +24,10 @@ defineProps({
   errorString: {
     type: String,
     default: ''
+  },
+  disableAutoFocus: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -40,7 +45,8 @@ const showPassword = ref(false)
           inputClasses,
           type === 'password' ? 'pr-8' : ''
         ]"
-        @input="$emit('update:modelValue', $event.target?.value)"
+        @focus="disableAutoFocus ? null : ($event.target as HTMLInputElement).select()"
+        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       >
       <div
         v-if="type === 'password'"

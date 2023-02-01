@@ -10,110 +10,148 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     if (!baseUrl.value) throw new Error('No base url set')
   }
 
-  const getLicenses = async () : Promise<ILicenses[]> => {
+  const getLicenses = async () : Promise<{data: ILicenses[]}|{error:unknown}> => {
     guardUrl()
-    const data = await fetch(`${baseUrl.value}/license/`, {
-      credentials: 'include'
-    }).then(response => response.json())
+    try {
+      const data = await fetch(`${baseUrl.value}/license/`, {
+        credentials: 'include'
+      }).then(response => response.json())
 
-    if (ZLicenses.safeParse(data).success) {
-      return data
+      if (ZLicenses.safeParse(data).success) return { data }
+      return { error: new Error('Wrong licenses response') }
+    } catch (error) {
+      return { error }
     }
-    throw new Error('Wrong profile response')
   }
 
-  const upgradePlan = async () : Promise<unknown> => {
+  const upgradePlan = async () : Promise<void|{error:unknown}> => {
     guardUrl()
-    return await fetch(`${baseUrl.value}/license/upgrade-plan`, {
-      credentials: 'include',
-      method: 'POST'
-    })
-  }
-
-  const downgradePlan = async () : Promise<unknown> => {
-    guardUrl()
-    return await fetch(`${baseUrl.value}/license/downgrade-plan`, {
-      credentials: 'include',
-      method: 'POST'
-    })
-  }
-
-  const upgradeProperties = async () : Promise<unknown> => {
-    guardUrl()
-    return await fetch(`${baseUrl.value}/license/upgrade-properties`, {
-      credentials: 'include',
-      method: 'POST'
-    })
-  }
-
-  const downgradeProperties = async () : Promise<unknown> => {
-    guardUrl()
-    return await fetch(`${baseUrl.value}/license/downgrade-properties`, {
-      credentials: 'include',
-      method: 'POST'
-    })
-  }
-
-  const terminateLicense = async () : Promise<unknown> => {
-    guardUrl()
-    return await fetch(`${baseUrl.value}/license/terminate`, {
-      credentials: 'include',
-      method: 'POST'
-    })
-  }
-
-  const removeAccount = async () : Promise<unknown> => {
-    guardUrl()
-    return await fetch(`${baseUrl.value}/remove-account`, {
-      credentials: 'include',
-      method: 'GET'
-    }).then(()=>{
-      console.log('Account removed')
-    })
-  }
-  const getProfile = async () : Promise<IProfile> => {
-    guardUrl()
-    const data = await fetch(`${baseUrl.value}/profile`, {
-      credentials: 'include',
-      method: 'GET'
-    }).then(response => response.json())
-
-    if (ZProfile.safeParse(data).success) {
-      return data
+    try {
+      await fetch(`${baseUrl.value}/license/upgrade-plan`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
     }
-    throw new Error('Wrong profile response')
   }
 
-  const setProfile = async (profile: IProfile) : Promise<unknown> => {
+  const downgradePlan = async () : Promise<void|{error:unknown}> => {
     guardUrl()
-    if (!ZProfile.safeParse(profile).success) throw new Error('Invalid Profile Data')
-    return await fetch(`${baseUrl.value}/profile`, {
-      credentials: 'include',
-      method: 'PUT',
-      body: JSON.stringify(profile)
-    })
+    try {
+      await fetch(`${baseUrl.value}/license/downgrade-plan`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
+    }
   }
 
-  const changePassword = async (password: string) : Promise<unknown> => {
+  const upgradeProperties = async () : Promise<void|{error:unknown}> => {
     guardUrl()
-    if (!ZPassword.safeParse(password ).success) throw new Error('Password invalid')
-
-    return await fetch(`${baseUrl.value}/profile/password`, {
-      credentials: 'include',
-      method: 'PUT',
-      body: JSON.stringify({ password } )
-    })
+    try {
+      await fetch(`${baseUrl.value}/license/upgrade-properties`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
+    }
   }
 
-  const setConsent = async(consent: boolean) : Promise<unknown> => {
+  const downgradeProperties = async () : Promise<void|{error: unknown}> => {
     guardUrl()
-    return await fetch(`${baseUrl.value}/consent/revoke`, {
-      credentials: 'include',
-      method: 'PUT',
-      body: JSON.stringify({ consent })
-    })
+    try {
+      await fetch(`${baseUrl.value}/license/downgrade-properties`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
+    }
   }
 
+  const terminateLicense = async () : Promise<void|{error: unknown}> => {
+    guardUrl()
+    try {
+      await fetch(`${baseUrl.value}/license/terminate`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  const removeAccount = async () : Promise<void|{error: unknown}> => {
+    guardUrl()
+    try {
+      await fetch(`${baseUrl.value}/remove-account`, {
+        credentials: 'include',
+        method: 'POST'
+      })
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  const getProfile = async () : Promise<{data: IProfile}|{error: unknown}> => {
+    guardUrl()
+    try {
+      const data = await fetch(`${baseUrl.value}/profile`, {
+        credentials: 'include',
+        method: 'GET'
+      }).then(response => response.json())
+
+      if (ZProfile.safeParse(data).success) return { data }
+      return { error: new Error('Wrong profile response') }
+
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  const setProfile = async (profile: IProfile) : Promise<void|{error: unknown}> => {
+    guardUrl()
+    try {
+      await fetch(`${baseUrl.value}/profile`, {
+        credentials: 'include',
+        method: 'PUT',
+        body: JSON.stringify(profile)
+      })
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  const changePassword = async (currentPassword: string, newPassword: string) : Promise<{error: unknown, data: unknown}> => {
+    guardUrl()
+    try {
+      await fetch(`${baseUrl.value}/profile/password`, {
+        credentials: 'include',
+        method: 'PUT',
+        body: JSON.stringify({ currentPassword, newPassword } )
+      })
+      return { error: null, data: null }
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  const setConsent = async(consent: boolean) : Promise<void|{error: unknown}> => {
+    guardUrl()
+    try {
+      await fetch(`${baseUrl.value}/consent/revoke`, {
+        credentials: 'include',
+        method: 'PUT',
+        body: JSON.stringify({ consent })
+      })
+    } catch (error) {
+      return { error }
+    }
+
+  }
 
   return {
     getLicenses,
@@ -122,6 +160,10 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     upgradeProperties,
     downgradeProperties,
     terminateLicense,
-    removeAccount
+    removeAccount,
+    getProfile,
+    setProfile,
+    changePassword,
+    setConsent
   }
 }

@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
     NamingFormular: typeof import('./src/components/feature/NamingFormular/NamingFormular.vue')['default']
+    PasswordFormular: typeof import('./src/components/feature/PasswordFormular/PasswordFormular.vue')['default']
     ProfileAvatar: typeof import('./src/components/pure/ProfileAvatar/ProfileAvatar.vue')['default']
     ProfileBoxHeader: typeof import('./src/components/pure/ProfileBoxHeader/ProfileBoxHeader.vue')['default']
     ProfileConsent: typeof import('./src/components/feature/ProfileConsent/ProfileConsent.vue')['default']
