@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
-    MessageBox: typeof import('./src/components/base/MessageBox/MessageBox.vue')['default']
     NamingFormular: typeof import('./src/components/feature/NamingFormular/NamingFormular.vue')['default']
     ProfileAvatar: typeof import('./src/components/pure/ProfileAvatar/ProfileAvatar.vue')['default']
     ProfileBoxHeader: typeof import('./src/components/pure/ProfileBoxHeader/ProfileBoxHeader.vue')['default']

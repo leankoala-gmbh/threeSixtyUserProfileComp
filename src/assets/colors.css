@@ -18,6 +18,7 @@
   --tsxup-signal-info-light: theme('colors.blue.200');
   --tsxup-signal-info: theme('colors.blue.600');
   --tsxup-primary: #1E40AF;
+  --tsxup-primary-disabled: #003da685;
   --tsxup-primary-light: #dbe8ff;
   --tsxup-primary-lightest: #e6eaf2;
   --tsxup-text: var(--tsxup-darkest);
@@ -27,8 +28,8 @@
   --tsxup-button-regular-bg: var(--tsxup-primary);
   --tsxup-button-regular-color-hover: var(--tsxup-brightest);
   --tsxup-button-regular-bg-hover: var(--tsxup-primary-light);
-  --tsxup-button-regular-color-disabled: var(--tsxup-darkest-light);
-  --tsxup-button-regular-bg-disabled: var(--tsxup-darkest-mid);
+  --tsxup-button-regular-color-disabled: var(--tsxup-primary-lightest);
+  --tsxup-button-regular-bg-disabled: var(--tsxup-primary-disabled);
   --tsxup-button-ghost-color: var(--tsxup-darkest-light);
   --tsxup-button-ghost-bg: var(--tsxup-brightest);
   --tsxup-button-ghost-color-hover: var(--tsxup-darkest-mid);
