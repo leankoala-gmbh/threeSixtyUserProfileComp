@@ -1,0 +1,26 @@
+Todo:
+  General:
+    ☐ @critical Insert all endpoint to abstraction layer
+    ☐ @low Add all endpoints to MSW
+    ☐ @medium Open boxes with query param and scroll to
+    ☐ @low Statusbox - find a way that the component can use the internal timeout
+    ☐ @low Build Documentation (histoire) template for Plop
+    ☐ @low Documentation
+    ☐ @low Unit Test
+  Boxes:
+    Consent:
+      ☐ @high Add Content
+      ☐ @high Connect with API
+    Update Password:
+      ☐ @high Add Content
+      ☐ @high Connect with API
+    Remove Acc:
+      ☐ @high Add Content
+      ☐ @high Connect with API
+  Translations:
+    ☐ @high Normalize translation keys
+    ☐ @medium Generate translation files for other languages and fill it with translations
+  Styling:
+    ☐ @low Adopt the right Color Values from figma
+    ☐ @low Check fontsizes and spacings
+
