@@ -27,11 +27,11 @@
     &.isDisabled {
       color: var(--tsxup-button-regular-color-disabled);
       background-color: var(--tsxup-button-regular-bg-disabled);
-      border-color: var(--tsxup-button-regular-bg-disabled);
+      border-color: var(--tsxup-button-regular-border-disabled);
       &:hover {
         color: var(--tsxup-button-regular-color-disabled);
         background-color: var(--tsxup-button-regular-bg-disabled);
-        border-color: var(--tsxup-button-regular-hover-border-disabled);
+        border-color: var(--tsxup-button-regular-border-disabled);
       }
     }
   }

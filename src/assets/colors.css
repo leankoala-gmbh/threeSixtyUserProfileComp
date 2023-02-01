@@ -4,6 +4,7 @@
 
 :root {
   --tsxup-brightest: #ffffff;
+  --tsxup-transparent: transparent;
   --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-mid: theme('colors.gray.300');
@@ -32,7 +33,7 @@
   --tsxup-button-regular-bg-hover: var(--tsxup-primary-light);
   --tsxup-button-regular-color-disabled: var(--tsxup-primary-lightest);
   --tsxup-button-regular-bg-disabled: var(--tsxup-primary-disabled);
-  --tsxup-button-regular-border-disabled: var(--tsxup-primary-disabled);
+  --tsxup-button-regular-border-disabled: var(--tsxup-transparent);
   --tsxup-button-ghost-color: var(--tsxup-darkest-light);
   --tsxup-button-ghost-bg: var(--tsxup-brightest);
   --tsxup-button-ghost-border: var(--tsxup-darkest-mid);
