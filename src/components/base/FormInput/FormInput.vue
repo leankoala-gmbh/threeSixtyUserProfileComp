@@ -18,7 +18,7 @@ defineProps({
   },
   inputClasses: {
     type: String,
-    default: 'border p-2 w-full'
+    default: 'border p-2 w-full rounded'
   },
   errorString: {
     type: String,

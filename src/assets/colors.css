@@ -7,6 +7,7 @@
   --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-mid: theme('colors.gray.300');
+  --tsxup-darkest-mid-light: theme('colors.gray.500');
   --tsxup-darkest-light: theme('colors.gray.600');
   --tsxup-signal-success-lighter: theme('colors.green.100');
   --tsxup-signal-success-light: theme('colors.green.200');
@@ -26,14 +27,18 @@
   --tsxup-headline: var(--tsxup-darkest);
   --tsxup-button-regular-color: var(--tsxup-brightest);
   --tsxup-button-regular-bg: var(--tsxup-primary);
+  --tsxup-button-regular-border: var(--tsxup-primary);
   --tsxup-button-regular-color-hover: var(--tsxup-brightest);
   --tsxup-button-regular-bg-hover: var(--tsxup-primary-light);
   --tsxup-button-regular-color-disabled: var(--tsxup-primary-lightest);
   --tsxup-button-regular-bg-disabled: var(--tsxup-primary-disabled);
+  --tsxup-button-regular-border-disabled: var(--tsxup-primary-disabled);
   --tsxup-button-ghost-color: var(--tsxup-darkest-light);
   --tsxup-button-ghost-bg: var(--tsxup-brightest);
+  --tsxup-button-ghost-border: var(--tsxup-darkest-mid);
   --tsxup-button-ghost-color-hover: var(--tsxup-darkest-mid);
   --tsxup-button-ghost-bg-hover: var(--tsxup-brightest);
+  --tsxup-button-ghost-border-disabled: var(--tsxup-primary-disabled);
   --tsxup-selectField-border: var(--tsxup-brightest-darker);
   --tsxup-selectField-background: var(--tsxup-brightest);
   --tsxup-selectField-backgroundHover: var(--tsxup-brightest);
