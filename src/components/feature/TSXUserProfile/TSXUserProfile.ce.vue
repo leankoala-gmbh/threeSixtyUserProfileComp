@@ -5,6 +5,8 @@ import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
 
+type TBoxRouteTypes = 'naming' | 'password' | 'remove' | 'license'
+
 window.mitt = window.mitt || mitt()
 
 const props = defineProps({
@@ -30,6 +32,16 @@ const props = defineProps({
   }
 })
 
+const boxToOpen = ref<string|null>(null)
+
+const checkRoute = () => {
+  const query = window.location.hash?.length ? window.location.hash.slice(1) : null
+  const routeTargets = ['naming', 'password', 'remove', 'license']
+  if (query && routeTargets.includes(query)) {
+    boxToOpen.value = query
+  }
+}
+
 const userDataObj: IProfileUser = JSON.parse(props.userData)
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
@@ -38,6 +50,7 @@ useApiAbstraction().setBaseUrl(props.baseApiUrl)
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
+  checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
 
@@ -48,22 +61,29 @@ onMounted(() => {
     <ProfileNaming
       v-if="!inactiveFields.includes('naming')"
       :user-data="userDataObj"
+      :open="boxToOpen === 'naming'"
     />
     <ProfilePassword
       v-if="!inactiveFields.includes('password')"
+      id="password"
       :user-data="userDataObj"
+      :open="boxToOpen === 'password'"
     />
     <ProfileTimezone
       v-if="!inactiveFields.includes('timezone')"
+      id="timezone"
       :user-data="userDataObj"
     />
     <ProfileConsent
       v-if="!inactiveFields.includes('consent')"
+      id="consent"
       :user-data="userDataObj"
     />
     <ProfileRemove
       v-if="!inactiveFields.includes('removeAccount')"
+      id="remove"
       :user-data="userDataObj"
+      :open="boxToOpen === 'remove'"
     />
   </div>
 </template>

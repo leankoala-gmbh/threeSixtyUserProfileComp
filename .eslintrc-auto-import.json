@@ -70,6 +70,7 @@
     "unref": true,
     "useApiAbstraction": true,
     "useAttrs": true,
+    "useBoxRouteQuery": true,
     "useCssModule": true,
     "useCssVars": true,
     "useSlots": true,

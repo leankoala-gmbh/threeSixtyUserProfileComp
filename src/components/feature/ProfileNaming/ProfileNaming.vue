@@ -5,10 +5,18 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
+  },
+  open: {
+    type: Boolean,
+    default: false
   }
 })
 
 const isOpen = ref(false)
+
+watch(() => props.open, () => {
+  if (props.open) isOpen.value = true
+}, { immediate: true })
 </script>
 
 <template>

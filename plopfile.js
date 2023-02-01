@@ -6,7 +6,7 @@ module.exports = function (plop) {
   const COMPONENT_PATH = 'src/components/'
   const LAYOUT_PATH = 'src/layouts/'
   const PAGE_PATH = 'src/pages/'
-  const COMPOSABLE_PATH = 'src/composable/'
+  const COMPOSABLE_PATH = 'src/composables/'
   const STORE_PATH = 'src/store/'
   const TYPES_PATH = 'src/types/'
 

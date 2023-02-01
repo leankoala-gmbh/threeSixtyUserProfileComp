@@ -71,6 +71,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const useApiAbstraction: typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']
   const useAttrs: typeof import('vue')['useAttrs']
+  const useBoxRouteQuery: typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useSlots: typeof import('vue')['useSlots']
@@ -159,6 +160,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useApiAbstraction: UnwrapRef<typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useBoxRouteQuery: UnwrapRef<typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
