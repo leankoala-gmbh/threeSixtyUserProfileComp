@@ -2,14 +2,6 @@
   @apply text-sm font-normal;
   color: var(--tsxup-text);
 
-  p {
-    color: var(--tsxup-text);
-  }
-
-  h1, h2, h3 {
-    color: var(--tsxup-headline);
-  }
-
   .text-subtle {
     color: var(--tsxup-text-lighter);
   }
