@@ -1,11 +1,22 @@
+.test {
+  color: #ff0000
+}
+
 :root {
   --tsxup-brightest: #ffffff;
   --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-mid: theme('colors.gray.300');
   --tsxup-darkest-light: theme('colors.gray.600');
-  --tsxup-signal-success: #4CA154;
-  --tsxup-signal-error: #b73737;
+  --tsxup-signal-success-lighter: theme('colors.green.100');
+  --tsxup-signal-success-light: theme('colors.green.200');
+  --tsxup-signal-success: theme('colors.green.700');
+  --tsxup-signal-error-lighter: theme('colors.red.100');
+  --tsxup-signal-error-light: theme('colors.red.200');
+  --tsxup-signal-error: theme('colors.red.600');
+  --tsxup-signal-info-lighter: theme('colors.blue.100');
+  --tsxup-signal-info-light: theme('colors.blue.200');
+  --tsxup-signal-info: theme('colors.blue.600');
   --tsxup-primary: #1E40AF;
   --tsxup-primary-light: #dbe8ff;
   --tsxup-primary-lightest: #e6eaf2;
@@ -29,4 +40,16 @@
   --tsxUp-selectField-color: var(--tsxup-darkest);
   --tsxUp-selectField-selectedBackground: var(--tsxup-primary-light);
   --tsxUp-selectField-selectedColor: var(--tsxup-brightest);
+  --tsxup-abox-success-bg: var(--tsxup-signal-success-lighter);
+  --tsxup-abox-success-border: var(--tsxup-signal-success-light);
+  --tsxup-abox-success-color: var(--tsxup-signal-success);
+  --tsxup-abox-error-bg: var(--tsxup-signal-error-lighter);
+  --tsxup-abox-error-border: var(--tsxup-signal-error-light);
+  --tsxup-abox-error-color: var(--tsxup-signal-error);
+  --tsxup-abox-info-bg: var(--tsxup-signal-info-lighter);
+  --tsxup-abox-info-color: var(--tsxup-signal-info);
+  --tsxup-abox-info-border: var(--tsxup-signal-info-light);
+
 }
+
+
