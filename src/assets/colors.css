@@ -38,8 +38,8 @@
   --tsxup-selectField-backgroundHover: var(--tsxup-brightest);
   --tsxup-selectField-backgroundDisabled: var(--tsxup-brightest-darker);
   --tsxup-selectField-color: var(--tsxup-darkest);
-  --tsxup-selectField-selectedBackground: var(--tsxup-primary-light);
-  --tsxup-selectField-selectedColor: var(--tsxup-brightest);
+  --tsxup-selectField-selectedBackground: var(--tsxup-primary);
+  --tsxup-selectField-selectedColor: var(--tsxup-primary-light);
   --tsxup-abox-success-bg: var(--tsxup-signal-success-lighter);
   --tsxup-abox-success-border: var(--tsxup-signal-success-light);
   --tsxup-abox-success-color: var(--tsxup-signal-success);

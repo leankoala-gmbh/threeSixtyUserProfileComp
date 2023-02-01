@@ -23,13 +23,6 @@ const updateTimezone = (event: string) => {
       <div class="text-base font-medium mb-4">
         {{ translator('updateTimezone') }}
       </div>
-      <StatusMessage
-        type="success"
-        class="mb-4"
-        :timeout="2000"
-      >
-        hello
-      </StatusMessage>
       <div class="smoothGridBox">
         <Timezone
           :user-data="userData"
