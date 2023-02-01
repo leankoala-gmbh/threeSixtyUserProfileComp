@@ -15,28 +15,20 @@ const props = defineProps({
 
 const isOpen = ref(false)
 
-const passwordSchema = z.string().min(1)
-
-
-const password = ref('')
-const checkPassword = ()=>{
-  return passwordSchema.safeParse(password.value).success
-}
-const confirmationIsValid = computed(()=>{
-  return checkPassword()
-})
-const passwordIsValid = computed(() => {
-  return !checkPassword()
-    ? translator('Field should not be empty')
-    : ''
-})
-
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
+const password = ref('')
+
+const checkPasswordField = computed(() => {
+  return password.value?.length === 0
+    ? translator('Field should not be empty')
+    : ''
+})
+
 const handleRemove = () => {
-  if (!confirmationIsValid.value) return
+  if (checkPasswordField.value.length) return
 
   password.value = ''
   useApiAbstraction().removeAccount()
@@ -110,11 +102,11 @@ const handleRemove = () => {
           v-model="password"
           name="passwordConfirm"
           type="password"
-          :error-string="passwordIsValid"
+          :error-string="checkPasswordField"
         />
       </div>
       <GeneralButton
-        :is-disabled="!confirmationIsValid"
+        :is-disabled="!!checkPasswordField.length"
         @click="handleRemove"
       >
         {{ translator('removeAccount') }}
