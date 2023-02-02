@@ -51,7 +51,7 @@ watch(() => consentConfirm.value, (o, n) => {
     <div class="profileDetail--hover m-2 rounded px-4 py-5 cursor-pointer smoothGridBox">
       <StatusMessage
         v-if="savedConsent"
-        :type="consentConfirm ? 'success' : 'error'"
+        type="success"
         :timeout="3000"
         class="mb-4"
       >
