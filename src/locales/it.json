@@ -23,5 +23,11 @@
   "enterPasswordConfirmRemove": "Inserire la password per confermare la rimozione dell'account",
   "consentHeadline": "Ricevere gli aggiornamenti di 360 Monitoring e le comunicazioni commerciali",
   "consentBody": "Le società del gruppo WebPros possono memorizzare ed elaborare i dati da me forniti per fornire contenuti di marketing personalizzati, come newsletter e offerte individuali, in conformità con l'Informativa sulla privacy. Le offerte personalizzate possono basarsi su informazioni aggiuntive come i dati di utilizzo e di comportamento (Profilazione). Posso revocare questo consenso in qualsiasi momento nelle preferenze della piattaforma",
-  "consentSuccess": "Il vostro consenso è stato modificato con successo"
+  "consentSuccess": "Il vostro consenso è stato modificato con successo",
+  "consensoRevoca": "Hai effettuato con successo la disiscrizione dalla nostra comunicazione commerciale",
+  "currentPassword": "Password attuale",
+  "newPassword": "Nuova Password",
+  "newPasswordConfirm": "Conferma nuova password",
+  "passwordMinLength8": "La password deve essere lunga almeno 8 caratteri",
+  "passwordsNotMatch": "Le nuove password non corrispondono"
 }

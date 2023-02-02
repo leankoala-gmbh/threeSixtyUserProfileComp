@@ -11,7 +11,7 @@ const passwordForm = reactive<{[key: string]: string}>({
 const checkCurrentPassword = computed(() => {
   return passwordForm.currentPassword.length >= 8
     ? ''
-    : translator('Password must be at least 8 characters long')
+    : translator('passwordMinLength8')
 })
 
 const checkNewPassword = computed(() => {
@@ -51,7 +51,7 @@ const submitPassword = async () => {
     </StatusMessage>
     <form @submit.prevent="submitPassword">
       <div class="mb-6">
-        <label>{{ translator('Current Password') }}</label>
+        <label class="capitalize">{{ translator('currentPassword') }}</label>
         <FormInput
           id="currentPassword"
           v-model="passwordForm.currentPassword"
@@ -61,7 +61,7 @@ const submitPassword = async () => {
         />
       </div>
       <div class="mb-6">
-        <label>{{ translator('New Password') }}</label>
+        <label class="capitalize">{{ translator('newPassword') }}</label>
         <FormInput
           id="newPassword"
           v-model="passwordForm.newPassword"
@@ -70,7 +70,7 @@ const submitPassword = async () => {
         />
       </div>
       <div class="mb-6">
-        <label> {{ translator('New Password') }}</label>
+        <label class="capitalize"> {{ translator('newPasswordConfirm') }}</label>
         <FormInput
           id="newPasswordRepeat"
           v-model="passwordForm.newPasswordRepeat"
