@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
+import { string } from 'zod'
 
 const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
@@ -11,28 +12,34 @@ const error = reactive<{current: string, new: string}>({
   current: '',
   new: ''
 })
-
+const canBeSaved = reactive<{current:boolean, new:boolean}>({
+  current: false,
+  new: false
+})
 const checkCurrentPassword = () => {
   const isValid = passwordForm.currentPassword.length >=8
   error.current = isValid
     ? ''
     : translator('passwordMinLength8')
+  canBeSaved.current = isValid
 }
 const checkNewPasswordMatch = () => {
   const isValid = passwordForm.newPassword.length >= 8 && passwordForm.newPassword === passwordForm.newPasswordRepeat
   error.new = isValid
     ? ''
     : translator('passwordsNotMatch')
+  canBeSaved.new = isValid
 }
-const passwordCanSaved = computed(() => {
-  return error.current === '' && error.new === ''
+const checkCanBeSaved = computed(() => {
+  return canBeSaved.current && canBeSaved.new
+
 })
 
 const successForm = ref(false)
 
 const submitPassword = async () => {
   console.log('hello')
-  if (!passwordCanSaved.value) return
+  if (!canBeSaved) return
 
   const data = await useApiAbstraction().changePassword(passwordForm.currentPassword, passwordForm.newPassword)
   successForm.value = true
@@ -83,7 +90,7 @@ const submitPassword = async () => {
       <div>
         <GeneralButton
           type="submit"
-          :is-disabled="!passwordCanSaved"
+          :is-disabled="!checkCanBeSaved"
         >
           {{ translator('save') }}
         </GeneralButton>
