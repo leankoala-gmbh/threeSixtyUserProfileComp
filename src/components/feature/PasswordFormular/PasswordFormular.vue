@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
+import { clear } from 'console'
 
 const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
@@ -26,6 +27,7 @@ const passwordCanSaved = computed(() => {
 const successForm = ref(false)
 
 const submitPassword = async () => {
+  console.log('hello')
   if (!passwordCanSaved.value) return
 
   const { error } = await useApiAbstraction()
@@ -81,7 +83,6 @@ const submitPassword = async () => {
         <GeneralButton
           type="submit"
           :is-disabled="!passwordCanSaved"
-          @click="submitPassword"
         >
           {{ translator('save') }}
         </GeneralButton>
