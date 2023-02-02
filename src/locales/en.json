@@ -24,7 +24,7 @@
   "consentHeadline": "Receive 360 Monitoring updates and commercial communication",
   "consentBody": "WebPros group companies may store and process the data I provide to deliver personalized marketing content such as newsletters and individual offers according to the Privacy Policy. Tailored offerings may be based on additional information like usage and behavior data (Profiling). I can revoke this consent at any time in the platform preferences.",
   "consentSuccess": "Your agreement has been successfully changed",
-  "consentRevoke": "You have successfully desubscribed from our commercial communication.",
+  "consentRevoke": "You have successfully unsubscribed from our commercial communication.",
   "currentPassword": "Current Password",
   "newPassword": "New Password",
   "newPasswordConfirm": "Confirm New Password",
