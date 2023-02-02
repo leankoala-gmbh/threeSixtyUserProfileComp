@@ -12,11 +12,6 @@ const props = defineProps({
   }
 })
 
-const NamingSchema = z.object({
-  firstname: z.string().min(3),
-  lastname: z.string().min(3)
-})
-
 const namingForm = reactive<{[key: string]: string}>({
   firstname: '',
   lastname: ''
@@ -32,27 +27,24 @@ onMounted(() => {
   namingForm.lastname = props.userData?.lastname || ''
 })
 
+const validateField = (field: string, errorMsg: string, minLength = 3) => {
+  const isValid = field.length >= minLength
+  return isValid ? '' : translator(errorMsg)
+}
+
 const firstNameIsValid = () => {
-  const isValid = !NamingSchema.shape.firstname.safeParse(namingForm.firstname).success
-  error.firstname= isValid
-    ? translator('firstNameError')
-    : ''
+  error.firstname = validateField(namingForm.firstname, 'firstNameError')
 }
 
 const lastNameIsValid = () => {
-  const isValid = !NamingSchema.shape.lastname.safeParse(namingForm.lastname).success
-  error.lastname = isValid
-    ? translator('lastNameError')
-    : ''
+  error.lastname = validateField(namingForm.lastname, 'lastNameError')
 }
 
-
 const formIsValid = computed(()=> {
-  return NamingSchema.safeParse(namingForm).success
+  return namingForm.firstname.length >= 3 && namingForm.lastname.length >= 3
 })
 
 const submitName = async () => {
-  if (!formIsValid.value) return
   const payload = {
     firstName: namingForm.firstname,
     familyName: namingForm.lastname,
