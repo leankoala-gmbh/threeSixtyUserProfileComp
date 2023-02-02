@@ -101,5 +101,15 @@ export const handlers = [
         message: 'consent updated'
       })
     )
+  }),
+  rest.get(`${base}/consent/get`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: 'ok',
+        message: 'current consent received',
+        consent: true
+      })
+    )
   })
 ]

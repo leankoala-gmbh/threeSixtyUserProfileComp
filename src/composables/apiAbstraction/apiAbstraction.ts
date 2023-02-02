@@ -157,6 +157,18 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
       errorHandler(error)
     }
   }
+  const getConsent = async() : Promise<{data: unknown}| void> => {
+    guardUrl()
+    try {
+      const data = await fetch(`${baseUrl.value}/consent/get`, {
+        credentials: 'include',
+        method: 'GET'
+      }).then(response => response.json())
+      return { data }
+    } catch (error:unknown) {
+      errorHandler(error)
+    }
+  }
 
 
   return {
@@ -170,6 +182,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     getProfile,
     setProfile,
     changePassword,
-    setConsent
+    setConsent,
+    getConsent
   }
 }

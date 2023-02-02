@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
-
 const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
@@ -8,18 +7,41 @@ const props = defineProps({
   }
 })
 
-const consentConfirm = ref(false)
-const success = ref(false)
+const consentConfirm = ref()
+const savedConsent = ref(false)
+const initConsent = ref(0)
 
-watchEffect(() => {
-  if (consentConfirm.value) {
-    success.value = true
-    console.log('consentConfirm', consentConfirm.value)
-  } else {
-    success.value = false
+const successInfo = () => {
+  savedConsent.value = true
+  setTimeout(() => {
+    savedConsent.value = false
+  }, 3000)
+}
+
+const saveCurrentConsent = () => {
+  if (initConsent.value > 1) {
+    successInfo()
   }
+  initConsent.value += 1
+}
+
+const initialConsent = async () => {
+  // await useApiAbstraction().getConsent().then((res) => {
+  //   consentConfirm.value = res.data
+  // })
+  consentConfirm.value = Math.random() > 0.5
+  saveCurrentConsent()
+}
+
+onMounted(() => {
+  initialConsent()
 })
 
+watch(() => consentConfirm.value, (o, n) => {
+  if (n !== o) {
+    saveCurrentConsent()
+  }
+})
 </script>
 
 <template>
@@ -28,16 +50,21 @@ watchEffect(() => {
   >
     <div class="profileDetail--hover m-2 rounded px-4 py-5 cursor-pointer smoothGridBox">
       <StatusMessage
-        v-if="success"
+        v-if="savedConsent"
+        :type="consentConfirm ? 'success' : 'error'"
         :timeout="3000"
         class="mb-4"
       >
-        {{ translator('consentSuccess') }}
+        {{ consentConfirm ?
+          translator('consentSuccess') :
+          translator('consentRevoke')
+        }}
       </StatusMessage>
       <label class="flex gap-4">
         <div class="pt-1">
           <input
             v-model="consentConfirm"
+            :disabled="savedConsent"
             type="checkbox"
             aria-label="input"
           >
