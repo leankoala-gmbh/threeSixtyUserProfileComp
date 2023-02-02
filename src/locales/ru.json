@@ -29,5 +29,6 @@
   "newPassword": "Новый пароль",
   "newPasswordConfirm": "Подтвердите новый пароль",
   "passwordMinLength8": "Пароль должен содержать не менее 8 символов",
-  "passwordsNotMatch": "Новые пароли не совпадают"
+  "passwordsNotMatch": "Новые пароли не совпадают",
+  "successChangePassword": "Ваш пароль был успешно изменен"
 }
