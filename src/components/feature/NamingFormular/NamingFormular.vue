@@ -44,9 +44,20 @@ const formIsValid = computed(()=> {
   return NamingSchema.safeParse(namingForm).success
 })
 
-const submitName = () => {
+const submitName = async () => {
   if (!formIsValid.value) return
-  emit('update')
+  const payload = {
+    firstName: namingForm.firstname,
+    familyName: namingForm.lastname,
+    nickname: '',
+    timezone: ''
+  }
+  try {
+    await useApiAbstraction().setProfile(payload)
+    emit('update')
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 </script>

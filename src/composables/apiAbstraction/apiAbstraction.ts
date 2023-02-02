@@ -3,6 +3,13 @@ import { ZProfile, ZPassword, ZLicenses } from '@/types/general.schema'
 
 const baseUrl = ref<null|string>(null)
 
+const errorHandler = (error: unknown) => {
+  if (error instanceof Error) {
+    throw error
+  }
+  console.error(error)
+}
+
 export function useApiAbstraction (cnameOverride: string|null = null) {
   baseUrl.value = cnameOverride || window.location.origin
 
@@ -10,93 +17,92 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     if (!baseUrl.value) throw new Error('No base url set')
   }
 
-  const getLicenses = async () : Promise<{data: ILicenses[]}|{error:unknown}> => {
+  const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      const data = await fetch(`${baseUrl.value}/license/`, {
+      const response = await fetch(`${baseUrl.value}/license/`, {
         credentials: 'include'
-      }).then(response => response.json())
-
-      if (ZLicenses.safeParse(data).success) return { data }
-      return { error: new Error('Wrong licenses response') }
-    } catch (error) {
-      return { error }
+      })
+      return await response.json()
+    } catch (error: unknown) {
+      errorHandler(error)
+      return {} as ILicenses
     }
   }
 
-  const upgradePlan = async () : Promise<void|{error:unknown}> => {
+  const upgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/license/upgrade-plan`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const downgradePlan = async () : Promise<void|{error:unknown}> => {
+  const downgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/license/downgrade-plan`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const upgradeProperties = async () : Promise<void|{error:unknown}> => {
+  const upgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/license/upgrade-properties`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const downgradeProperties = async () : Promise<void|{error: unknown}> => {
+  const downgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/license/downgrade-properties`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const terminateLicense = async () : Promise<void|{error: unknown}> => {
+  const terminateLicense = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/license/terminate`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const removeAccount = async () : Promise<void|{error: unknown}> => {
+  const removeAccount = async () : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/remove-account`, {
         credentials: 'include',
         method: 'POST'
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const getProfile = async () : Promise<{data: IProfile}|{error: unknown}> => {
+  const getProfile = async () : Promise<IProfile> => {
     guardUrl()
     try {
       const data = await fetch(`${baseUrl.value}/profile`, {
@@ -104,15 +110,16 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
         method: 'GET'
       }).then(response => response.json())
 
-      if (ZProfile.safeParse(data).success) return { data }
-      return { error: new Error('Wrong profile response') }
+      if (ZProfile.safeParse(data).success) return data
+      throw new Error('Wrong profile response')
 
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
+      return {} as IProfile
     }
   }
 
-  const setProfile = async (profile: IProfile) : Promise<void|{error: unknown}> => {
+  const setProfile = async (profile: IProfile) : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/profile`, {
@@ -120,12 +127,12 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
         method: 'PUT',
         body: JSON.stringify(profile)
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const changePassword = async (currentPassword: string, newPassword: string) : Promise<{error: unknown, data?: unknown}> => {
+  const changePassword = async (currentPassword: string, newPassword: string) : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/profile/password`, {
@@ -133,13 +140,12 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
         method: 'PUT',
         body: JSON.stringify({ currentPassword, newPassword } )
       })
-      return { error: null, data: null }
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
   }
 
-  const setConsent = async(consent: boolean) : Promise<void|{error: unknown}> => {
+  const setConsent = async(consent: boolean) : Promise<void> => {
     guardUrl()
     try {
       await fetch(`${baseUrl.value}/consent/revoke`, {
@@ -147,11 +153,11 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
         method: 'PUT',
         body: JSON.stringify({ consent })
       })
-    } catch (error) {
-      return { error }
+    } catch (error: unknown) {
+      errorHandler(error)
     }
-
   }
+
 
   return {
     getLicenses,
