@@ -29,5 +29,6 @@
   "newPassword": "Nouveau mot de passe",
   "newPasswordConfirm": "Confirmer le nouveau mot de passe",
   "passwordMinLength8": "Le mot de passe doit comporter au moins 8 caractères",
-  "passwordsNotMatch": "Les nouveaux mots de passe ne correspondent pas"
+  "passwordsNotMatch": "Les nouveaux mots de passe ne correspondent pas",
+  "successChangePassword": "Votre mot de passe a été modifié avec succès"
 }

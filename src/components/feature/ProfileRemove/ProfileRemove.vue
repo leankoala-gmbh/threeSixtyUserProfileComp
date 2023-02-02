@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
-import { z } from 'zod'
 
 const props = defineProps({
   userData: {
@@ -21,15 +20,22 @@ watch(() => props.open, () => {
 
 const password = ref('')
 
-const checkPasswordField = computed(() => {
-  return password.value?.length === 0
-    ? translator('emptyError')
-    : ''
+const error = reactive<{password: string}>({
+  password: ''
 })
 
-const handleRemove = () => {
-  if (checkPasswordField.value.length) return
+const canBeRemoved = ref(true)
 
+const checkPassword = () => {
+  const isValid = password.value.length === 0
+  error.password = isValid
+    ? translator('emptyError')
+    : ''
+  canBeRemoved.value = isValid
+}
+
+
+const handleRemove = () => {
   password.value = ''
   useApiAbstraction().removeAccount()
   isOpen.value = false
@@ -102,11 +108,12 @@ const handleRemove = () => {
           v-model="password"
           name="passwordConfirm"
           type="password"
-          :error-string="checkPasswordField"
+          :error-string="error.password"
+          @input="checkPassword"
         />
       </div>
       <GeneralButton
-        :is-disabled="!!checkPasswordField.length"
+        :is-disabled="canBeRemoved"
         @click="handleRemove"
       >
         {{ translator('removeAccountButton') }}

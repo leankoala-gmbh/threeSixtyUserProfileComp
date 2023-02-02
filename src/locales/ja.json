@@ -29,5 +29,6 @@
   "newPassword": "新しいパスワード",
   "newPasswordConfirm": "新しいパスワードの確認",
   "passwordMinLength8": "パスワードは8文字以上でなければなりません",
-  "passwordsNotMatch": "新しいパスワードが一致しません"
+  "passwordsNotMatch": "新しいパスワードが一致しません",
+  "successChangePassword": "パスワードの変更に成功しました"
 }

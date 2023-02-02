@@ -29,5 +29,6 @@
   "newPassword": "Nova Palavra-passe",
   "newPasswordConfirm": "Confirmar nova senha",
   "passwordMinLength8": "A palavra-passe deve ter pelo menos 8 caracteres",
-  "passwordsNotMatch": "Novas senhas não coincidem"
+  "passwordsNotMatch": "Novas senhas não coincidem",
+  "successChangePassword": "A sua palavra-chave foi alterada com sucesso"
 }

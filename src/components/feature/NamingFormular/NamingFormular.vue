@@ -22,22 +22,29 @@ const namingForm = reactive<{[key: string]: string}>({
   lastname: ''
 })
 
+const error = reactive<{firstname: string, lastname: string}>({
+  firstname: '',
+  lastname: ''
+})
+
 onMounted(() => {
   namingForm.firstname = props.userData?.firstname || ''
   namingForm.lastname = props.userData?.lastname || ''
 })
 
-const firstNameIsValid = computed(() => {
-  return !NamingSchema.shape.firstname.safeParse(namingForm.firstname).success
+const firstNameIsValid = () => {
+  const isValid = !NamingSchema.shape.firstname.safeParse(namingForm.firstname).success
+  error.firstname= isValid
     ? translator('firstNameError')
     : ''
-})
+}
 
-const lastNameIsValid = computed(() => {
-  return !NamingSchema.shape.lastname.safeParse(namingForm.lastname).success
+const lastNameIsValid = () => {
+  const isValid = !NamingSchema.shape.lastname.safeParse(namingForm.lastname).success
+  error.lastname = isValid
     ? translator('lastNameError')
     : ''
-})
+}
 
 
 const formIsValid = computed(()=> {
@@ -70,7 +77,8 @@ const submitName = async () => {
         v-model="namingForm.firstname"
         name="firstname"
         type="text"
-        :error-string="firstNameIsValid"
+        :error-string="error.firstname"
+        @input="firstNameIsValid"
       />
     </div>
     <div class="mb-6">
@@ -79,7 +87,8 @@ const submitName = async () => {
         v-model="namingForm.lastname"
         name="lastname"
         type="text"
-        :error-string="lastNameIsValid"
+        :error-string="error.lastname"
+        @input="lastNameIsValid"
       />
     </div>
     <div class="mt-4">

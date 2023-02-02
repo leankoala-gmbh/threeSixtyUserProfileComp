@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
-import { clear } from 'console'
+import { string } from 'zod'
 
 const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
@@ -8,35 +8,40 @@ const passwordForm = reactive<{[key: string]: string}>({
   newPasswordRepeat: ''
 })
 
-const checkCurrentPassword = computed(() => {
-  return passwordForm.currentPassword.length >= 8
+const error = reactive<{current: string, new: string}>({
+  current: '',
+  new: ''
+})
+const canBeSaved = reactive<{current:boolean, new:boolean}>({
+  current: false,
+  new: false
+})
+const checkCurrentPassword = () => {
+  const isValid = passwordForm.currentPassword.length >=8
+  error.current = isValid
     ? ''
     : translator('passwordMinLength8')
-})
-
-const checkNewPassword = computed(() => {
-  return passwordForm.newPassword.length >= 8 && passwordForm.newPassword === passwordForm.newPasswordRepeat
+  canBeSaved.current = isValid
+}
+const checkNewPasswordMatch = () => {
+  const isValid = passwordForm.newPassword.length >= 8 && passwordForm.newPassword === passwordForm.newPasswordRepeat
+  error.new = isValid
     ? ''
     : translator('passwordsNotMatch')
-})
+  canBeSaved.new = isValid
+}
+const checkCanBeSaved = computed(() => {
+  return canBeSaved.current && canBeSaved.new
 
-const passwordCanSaved = computed(() => {
-  return checkCurrentPassword.value === '' && checkNewPassword.value === ''
 })
 
 const successForm = ref(false)
 
 const submitPassword = async () => {
   console.log('hello')
-  if (!passwordCanSaved.value) return
+  if (!canBeSaved) return
 
-  const { error } = await useApiAbstraction()
-    .changePassword(passwordForm.currentPassword, passwordForm.newPassword)
-
-  if (error) {
-    console.error(error)
-    return
-  }
+  const data = await useApiAbstraction().changePassword(passwordForm.currentPassword, passwordForm.newPassword)
   successForm.value = true
   setTimeout(() => {
     successForm.value = false
@@ -57,7 +62,8 @@ const submitPassword = async () => {
           v-model="passwordForm.currentPassword"
           name="currentPassword"
           type="password"
-          :error-string="checkCurrentPassword"
+          :error-string="error.current"
+          @input="checkCurrentPassword"
         />
       </div>
       <div class="mb-6">
@@ -67,6 +73,7 @@ const submitPassword = async () => {
           v-model="passwordForm.newPassword"
           name="newPassword"
           type="password"
+          @input="checkNewPasswordMatch"
         />
       </div>
       <div class="mb-6">
@@ -76,13 +83,14 @@ const submitPassword = async () => {
           v-model="passwordForm.newPasswordRepeat"
           name="newPasswordRepeat"
           type="password"
-          :error-string="checkNewPassword"
+          :error-string="error.new"
+          @input="checkNewPasswordMatch"
         />
       </div>
       <div>
         <GeneralButton
           type="submit"
-          :is-disabled="!passwordCanSaved"
+          :is-disabled="!checkCanBeSaved"
         >
           {{ translator('save') }}
         </GeneralButton>
