@@ -102,6 +102,9 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
+  /**
+   * Get the profile of the current user
+   */
   const getProfile = async () : Promise<IProfile> => {
     guardUrl()
     try {

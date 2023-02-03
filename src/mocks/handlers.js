@@ -69,9 +69,9 @@ export const handlers = [
       ctx.json({
         access: 'dsfsdfsdfs',
         timezone: 'Europe/Berlin',
-        nickname: 'John Doe',
+        familyName: 'Doe',
         firstName: 'John',
-        lastName: 'Doe'
+        nickname: 'Doe'
       })
     )
   }),

@@ -4,7 +4,7 @@
 import TSXUserProfile from './components/feature/TSXUserProfile/TSXUserProfile.ce.vue'
 
 const userData = { 'name':'Sascha Georg Fuchs', 'email':'features@leankoala.com' }
-const inactiveFields = []
+const inactiveFields = ['removeAccount']
 </script>
 
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { z } from 'zod'
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
-import { IProfileUser } from '@/types/general.interfaces'
+import { IProfileUser, IKeyValue } from '@/types/general.interfaces'
 
 const emit = defineEmits(['update'])
 
@@ -12,19 +12,19 @@ const props = defineProps({
   }
 })
 
-const namingForm = reactive<{[key: string]: string}>({
-  firstname: '',
-  lastname: ''
+const namingForm = reactive<IKeyValue>({
+  firstName: '',
+  familyName: ''
 })
 
-const error = reactive<{firstname: string, lastname: string}>({
-  firstname: '',
-  lastname: ''
+const error = reactive<IKeyValue>({
+  firstName: '',
+  familyName: ''
 })
 
 onMounted(() => {
-  namingForm.firstname = props.userData?.firstname || ''
-  namingForm.lastname = props.userData?.lastname || ''
+  namingForm.firstName = props.userData?.firstName || ''
+  namingForm.familyName = props.userData?.familyName || ''
 })
 
 const validateField = (field: string, errorMsg: string, minLength = 3) => {
@@ -33,23 +33,23 @@ const validateField = (field: string, errorMsg: string, minLength = 3) => {
 }
 
 const firstNameIsValid = () => {
-  error.firstname = validateField(namingForm.firstname, 'firstNameError')
+  error.firstName = validateField(namingForm.firstName, 'firstNameError')
 }
 
 const lastNameIsValid = () => {
-  error.lastname = validateField(namingForm.lastname, 'lastNameError')
+  error.familyName = validateField(namingForm.familyName, 'lastNameError')
 }
 
 const formIsValid = computed(()=> {
-  return namingForm.firstname.length >= 3 && namingForm.lastname.length >= 3
+  return namingForm.firstName.length >= 3 && namingForm.familyName.length >= 3
 })
 
 const submitName = async () => {
   const payload = {
-    firstName: namingForm.firstname,
-    familyName: namingForm.lastname,
-    nickname: '',
-    timezone: ''
+    firstName: namingForm.firstName,
+    familyName: namingForm.familyName,
+    nickname: props.userData.nickname || '',
+    timezone: props.userData.timezone || ''
   }
   try {
     await useApiAbstraction().setProfile(payload)
@@ -66,20 +66,20 @@ const submitName = async () => {
     <div class="mb-6">
       <label class="mb-1 block text-sm">{{ translator('firstName') }}</label>
       <FormInput
-        v-model="namingForm.firstname"
+        v-model="namingForm.firstName"
         name="firstname"
         type="text"
-        :error-string="error.firstname"
+        :error-string="error.firstName"
         @input="firstNameIsValid"
       />
     </div>
     <div class="mb-6">
       <label class="mb-1 block">{{ translator('lastName') }}</label>
       <FormInput
-        v-model="namingForm.lastname"
-        name="lastname"
+        v-model="namingForm.familyName"
+        name="familyName"
         type="text"
-        :error-string="error.lastname"
+        :error-string="error.familyName"
         @input="lastNameIsValid"
       />
     </div>

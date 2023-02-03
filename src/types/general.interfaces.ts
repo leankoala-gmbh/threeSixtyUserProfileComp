@@ -1,4 +1,5 @@
 export type LooseOnionString<T extends string> = T | Omit<string, T>
+export interface IKeyValue { [key: string]: string }
 
 export interface IProfileUser {
   name?: string
@@ -6,8 +7,9 @@ export interface IProfileUser {
   avatar?: string
   timezone?: null | string
   nickname?: string
-  firstname?: string
-  lastname?: string
+  firstName?: string
+  familyName?: string
+  access?: string
 }
 
 export interface ILicenses {

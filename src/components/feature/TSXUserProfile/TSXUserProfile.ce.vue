@@ -4,6 +4,7 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
+import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
 
 type TBoxRouteTypes = 'naming' | 'password' | 'remove' | 'license'
 
@@ -18,10 +19,10 @@ const props = defineProps({
     type: String,
     default: 'en'
   },
-  userData: {
-    type: String,
-    required: true
-  },
+  // userData: {
+  //   type: String,
+  //   required: true
+  // },
   inactiveFields: {
     type: String,
     default: '["removeAccount"]'
@@ -31,6 +32,7 @@ const props = defineProps({
     default: 'Profile'
   }
 })
+
 
 const boxToOpen = ref<string|null>(null)
 
@@ -42,11 +44,19 @@ const checkRoute = () => {
   }
 }
 
-const userDataObj: IProfileUser = JSON.parse(props.userData)
+// const userDataObj: IProfileUser = JSON.parse(props.userData)
+const userDataObj = ref({})
+
+const getUserProfile = async () => {
+  const data = await useApiAbstraction().getProfile()
+  userDataObj.value = data
+}
+
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
 
 onMounted(() => {
+  getUserProfile()
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
   checkRoute()
@@ -57,33 +67,35 @@ onMounted(() => {
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
-    <ProfileNaming
-      v-if="!inactiveFieldsArr.includes('naming')"
-      :user-data="userDataObj"
-      :open="boxToOpen === 'naming'"
-    />
-    <ProfilePassword
-      v-if="!inactiveFieldsArr.includes('password')"
-      id="password"
-      :user-data="userDataObj"
-      :open="boxToOpen === 'password'"
-    />
-    <ProfileTimezone
-      v-if="!inactiveFieldsArr.includes('timezone')"
-      id="timezone"
-      :user-data="userDataObj"
-    />
-    <ProfileConsent
-      v-if="!inactiveFieldsArr.includes('consent')"
-      id="consent"
-      :user-data="userDataObj"
-    />
-    <ProfileRemove
-      v-if="!inactiveFieldsArr.includes('removeAccount')"
-      id="remove"
-      :user-data="userDataObj"
-      :open="boxToOpen === 'remove'"
-    />
+    <template v-if="Object.keys(userDataObj).length">
+      <ProfileNaming
+        v-if="!inactiveFieldsArr.includes('naming')"
+        :user-data="userDataObj"
+        :open="boxToOpen === 'naming'"
+      />
+      <ProfilePassword
+        v-if="!inactiveFieldsArr.includes('password')"
+        id="password"
+        :user-data="userDataObj"
+        :open="boxToOpen === 'password'"
+      />
+      <ProfileTimezone
+        v-if="!inactiveFieldsArr.includes('timezone')"
+        id="timezone"
+        :user-data="userDataObj"
+      />
+      <ProfileConsent
+        v-if="!inactiveFieldsArr.includes('consent')"
+        id="consent"
+        :user-data="userDataObj"
+      />
+      <ProfileRemove
+        v-if="!inactiveFieldsArr.includes('removeAccount')"
+        id="remove"
+        :user-data="userDataObj"
+        :open="boxToOpen === 'remove'"
+      />
+    </template>
   </div>
 </template>
 
