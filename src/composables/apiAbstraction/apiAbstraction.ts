@@ -90,12 +90,12 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const removeAccount = async () : Promise<void> => {
+  const deleteUser = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/remove-account`, {
+      await fetch(`${baseUrl.value}/user`, {
         credentials: 'include',
-        method: 'POST'
+        method: 'DELETE'
       })
     } catch (error: unknown) {
       errorHandler(error)
@@ -148,7 +148,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const setConsent = async(consent: boolean) : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/consent/revoke`, {
+      await fetch(`${baseUrl.value}/consent/set`, {
         credentials: 'include',
         method: 'PUT',
         body: JSON.stringify({ consent })
@@ -178,7 +178,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     upgradeProperties,
     downgradeProperties,
     terminateLicense,
-    removeAccount,
+    deleteUser,
     getProfile,
     setProfile,
     changePassword,
