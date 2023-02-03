@@ -113,8 +113,9 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
         method: 'GET'
       }).then(response => response.json())
 
-      if (ZProfile.safeParse(data).success) return data
-      throw new Error('Wrong profile response')
+      // if (ZProfile.safeParse(data).success) return data
+      // throw new Error('Wrong profile response')
+      return data
 
     } catch (error: unknown) {
       errorHandler(error)
