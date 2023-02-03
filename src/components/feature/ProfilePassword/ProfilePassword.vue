@@ -9,6 +9,10 @@ const props = defineProps({
   open: {
     type: Boolean,
     default: false
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -53,6 +57,7 @@ watch(() => props.open, () => {
     <template #body>
       <PasswordFormular
         :user-data="props.userData"
+        :override-base-api-url="overrideBaseApiUrl"
       />
     </template>
   </ProfileDetailBox>

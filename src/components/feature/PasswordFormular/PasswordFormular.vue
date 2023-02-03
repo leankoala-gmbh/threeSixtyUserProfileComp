@@ -6,6 +6,10 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -48,10 +52,10 @@ const checkCanBeSaved = computed(() => {
 const successForm = ref(false)
 
 const submitPassword = async () => {
-  console.log('hello')
   if (!canBeSaved) return
 
-  await useApiAbstraction().changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.access||'')
+  await useApiAbstraction(props.overrideBaseApiUrl)
+    .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.access||'')
   successForm.value = true
   setTimeout(() => {
     successForm.value = false

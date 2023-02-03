@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { IProfileUser } from '@/types/general.interfaces'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
 import mitt from 'mitt'
@@ -37,6 +36,7 @@ const props = defineProps({
   }
 })
 
+const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : ''
 
 const boxToOpen = ref<string|null>(null)
 
@@ -48,11 +48,10 @@ const checkRoute = () => {
   }
 }
 
-// const userDataObj: IProfileUser = JSON.parse(props.userData)
 const userDataObj = ref({})
 
 const getUserProfile = async () => {
-  const data = await useApiAbstraction().getProfile()
+  const data = await useApiAbstraction(overrideBaseApiUrl).getProfile()
   userDataObj.value = { ...data, email: props.userEmail, gravatar: props.userGravatar }
 }
 
@@ -67,8 +66,6 @@ onMounted(() => {
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
 
-provide('overrideBaseApiUrl', props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : null)
-
 </script>
 
 <template>
@@ -78,28 +75,33 @@ provide('overrideBaseApiUrl', props.overrideBaseApiUrl?.length ? props.overrideB
         v-if="!inactiveFieldsArr.includes('naming')"
         :user-data="userDataObj"
         :open="boxToOpen === 'naming'"
+        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfilePassword
         v-if="!inactiveFieldsArr.includes('password')"
         id="password"
         :user-data="userDataObj"
         :open="boxToOpen === 'password'"
+        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfileTimezone
         v-if="!inactiveFieldsArr.includes('timezone')"
         id="timezone"
         :user-data="userDataObj"
+        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfileConsent
         v-if="!inactiveFieldsArr.includes('consent')"
         id="consent"
         :user-data="userDataObj"
+        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfileRemove
         v-if="!inactiveFieldsArr.includes('removeAccount')"
         id="remove"
         :user-data="userDataObj"
         :open="boxToOpen === 'remove'"
+        :override-base-api-url="overrideBaseApiUrl"
       />
     </template>
   </div>

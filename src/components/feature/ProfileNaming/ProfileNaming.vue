@@ -9,8 +9,13 @@ const props = defineProps({
   open: {
     type: Boolean,
     default: false
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
+
 
 const isOpen = ref(false)
 
@@ -62,7 +67,11 @@ const successForm = () => {
         {{ translator('successPersonalInformation') }}
       </StatusMessage>
       <ProfileAvatar :user-data="userData" class="mb-6" />
-      <NamingFormular :user-data="userData" @update="successForm" />
+      <NamingFormular
+        :user-data="userData"
+        :override-base-api-url="overrideBaseApiUrl"
+        @update="successForm"
+      />
     </template>
   </ProfileDetailBox>
 </template>

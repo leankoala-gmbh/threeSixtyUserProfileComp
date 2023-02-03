@@ -5,16 +5,21 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
 
 const savedConsent = ref(false)
 const initalState = ref(false)
+const api = useApiAbstraction(props.overrideBaseApiUrl)
 
 
 const getInitialConsent = async () => {
   try {
-    const { enabled } = await useApiAbstraction().getConsent()
+    const { enabled } = await api.getConsent()
     savedConsent.value = enabled
   } catch (e) {
     console.error(e)
@@ -42,7 +47,7 @@ const statusSwtich = () => {
 const saveConsent = async () => {
   try {
     disabledCheckbox.value = true
-    await useApiAbstraction().setConsent(savedConsent.value)
+    await api.setConsent(savedConsent.value)
     statusSwtich()
   } catch (e) {
     console.error(e)

@@ -1,5 +1,4 @@
 import type { IProfile, ILicenses } from '@/types/general.schema'
-import { ZProfile, ZPassword, ZLicenses } from '@/types/general.schema'
 
 const baseUrl = ref<null|string>(null)
 
@@ -10,10 +9,10 @@ const errorHandler = (error: unknown) => {
   console.error(error)
 }
 
-const overload = inject('overrideBaseApiUrl', null)
-
-export function useApiAbstraction (cnameOverride: string|null = overload) {
+export function useApiAbstraction (cnameOverride: string|null = null) {
   baseUrl.value = cnameOverride || window.location.origin
+
+  console.log('useApiAbstraction', baseUrl.value)
 
   const guardUrl = () => {
     if (!baseUrl.value) throw new Error('No base url set')
@@ -110,7 +109,7 @@ export function useApiAbstraction (cnameOverride: string|null = overload) {
   const getProfile = async () : Promise<IProfile> => {
     guardUrl()
     try {
-      const data = await fetch(`${baseUrl.value}/profile`, {
+      const data = await fetch(`${baseUrl.value}/token`, {
         credentials: 'include',
         method: 'GET'
       }).then(response => response.json())
@@ -141,9 +140,9 @@ export function useApiAbstraction (cnameOverride: string|null = overload) {
   const changePassword = async (currentPassword: string, newPassword: string, token: string) : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/profile/password`, {
+      await fetch(`${baseUrl.value}/profile/change-password`, {
         credentials: 'include',
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify({
           oldPassword: currentPassword,
           password: newPassword,
@@ -180,7 +179,6 @@ export function useApiAbstraction (cnameOverride: string|null = overload) {
       return {} as {enabled: boolean}
     }
   }
-
 
   return {
     getLicenses,

@@ -9,6 +9,10 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -52,7 +56,7 @@ const submitName = async () => {
     timezone: props.userData.timezone || ''
   }
   try {
-    await useApiAbstraction().setProfile(payload)
+    await useApiAbstraction(props.overrideBaseApiUrl).setProfile(payload)
     emit('update')
   } catch (error) {
     console.error(error)
