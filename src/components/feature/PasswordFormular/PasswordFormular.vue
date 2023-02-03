@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
+import { IProfileUser } from '@/types/general.interfaces'
+
+const props = defineProps({
+  userData: {
+    type: Object as () => IProfileUser,
+    default: () => ({})
+  }
+})
 
 const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
@@ -43,7 +51,7 @@ const submitPassword = async () => {
   console.log('hello')
   if (!canBeSaved) return
 
-  const data = await useApiAbstraction().changePassword(passwordForm.currentPassword, passwordForm.newPassword)
+  await useApiAbstraction().changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.access||'')
   successForm.value = true
   setTimeout(() => {
     successForm.value = false
