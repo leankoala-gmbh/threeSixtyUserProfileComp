@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
+
 const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
@@ -7,40 +8,45 @@ const props = defineProps({
   }
 })
 
-const consentConfirm = ref()
 const savedConsent = ref(false)
-const initConsent = ref(0)
 
-const successInfo = () => {
+// const getInitialConsent = async () => {
+//   try {
+//     const res = await useApiAbstraction().getConsent()
+//     savedConsent.value = true
+//   } catch (e) {
+//     console.error(e)
+//   }
+// }
+
+// TODO: Remove this mocked function when API is ready
+const getInitialConsent = () => {
   savedConsent.value = true
-  setTimeout(() => {
-    savedConsent.value = false
-  }, 3000)
-}
-
-const saveCurrentConsent = () => {
-  if (initConsent.value > 1) {
-    successInfo()
-  }
-  initConsent.value += 1
-}
-
-const initialConsent = async () => {
-  // await useApiAbstraction().getConsent().then((res) => {
-  //   consentConfirm.value = res.data
-  // })
-  consentConfirm.value = Math.random() > 0.5
-  saveCurrentConsent()
 }
 
 onMounted(() => {
-  initialConsent()
+  getInitialConsent()
 })
 
-watch(() => consentConfirm.value, (o, n) => {
-  if (n !== o) {
-    saveCurrentConsent()
+const consentConfirm = computed(() => {
+  return savedConsent.value ? translator('consentSuccess') : translator('consentRevoke')
+})
+
+const disabledCheckbox = ref(false)
+
+const saveConsent = async () => {
+  try {
+    disabledCheckbox.value = true
+    await useApiAbstraction().setConsent(savedConsent.value)
+  } catch (e) {
+    console.error(e)
+  } finally {
+    disabledCheckbox.value = false
   }
+}
+
+watch(() => savedConsent.value, () => {
+  saveConsent()
 })
 </script>
 
@@ -55,17 +61,14 @@ watch(() => consentConfirm.value, (o, n) => {
         :timeout="3000"
         class="mb-4"
       >
-        {{ consentConfirm ?
-          translator('consentSuccess') :
-          translator('consentRevoke')
-        }}
+        {{ consentConfirm }}
       </StatusMessage>
       <label class="flex gap-4">
         <div class="pt-1">
           <input
-            v-model="consentConfirm"
-            :disabled="savedConsent"
+            v-model="savedConsent"
             type="checkbox"
+            :disabled="disabledCheckbox"
             aria-label="input"
           >
         </div>
