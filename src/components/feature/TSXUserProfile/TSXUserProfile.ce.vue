@@ -23,17 +23,17 @@ const props = defineProps({
     type: String,
     required: true
   },
-  // userData: {
-  //   type: String,
-  //   required: true
-  // },
+  userGravatar: {
+    type: String,
+    required: true
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
+  },
   inactiveFields: {
     type: String,
     default: '["removeAccount"]'
-  },
-  header: {
-    type: String,
-    default: 'Profile'
   }
 })
 
@@ -52,8 +52,8 @@ const checkRoute = () => {
 const userDataObj = ref({})
 
 const getUserProfile = async () => {
-  const data = await useApiAbstraction().getProfile()
-  userDataObj.value = { ...data, email: props.userEmail }
+  const data = await useApiAbstraction(props.overrideBaseApiUrl?.length > 0 ? props.overrideBaseApiUrl : null).getProfile()
+  userDataObj.value = { ...data, email: props.userEmail, gravatar: props.userGravatar }
 }
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)

@@ -5,6 +5,7 @@ export interface IProfileUser {
   name?: string
   email?: string
   avatar?: string
+  gravatar?: string
   timezone?: null | string
   nickname?: string
   firstName?: string

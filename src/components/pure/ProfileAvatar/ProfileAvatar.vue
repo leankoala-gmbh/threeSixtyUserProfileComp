@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 const nameInitials = computed(() => {
-  if (props.userData.avatar?.length || !props.userData.name?.length) {
+  if (props.userData.gravatar?.length || !props.userData.name?.length) {
     return ''
   }
   const name = props.userData.name.split(' ')
@@ -19,11 +19,11 @@ const nameInitials = computed(() => {
 
 <template>
   <div
-    v-if="userData.avatar?.length"
+    v-if="userData.gravatar?.length"
     class="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center"
   >
     <img
-      :src="userData.avatar"
+      :src="userData.gravatar"
       alt="avatar"
       class="w-full"
     >
