@@ -29,7 +29,7 @@ const nameInitials = computed(() => {
     >
   </div>
   <div
-    v-else-if="userData.name?.length"
+    v-else
     class="h-10 w-10 flex items-center justify-center rounded-full customAvatar font-medium uppercase text-sm"
   >
     <div class="text-center">

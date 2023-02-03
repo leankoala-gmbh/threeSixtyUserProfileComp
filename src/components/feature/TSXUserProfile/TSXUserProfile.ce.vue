@@ -19,6 +19,10 @@ const props = defineProps({
     type: String,
     default: 'en'
   },
+  userEmail: {
+    type: String,
+    required: true
+  },
   // userData: {
   //   type: String,
   //   required: true
@@ -49,7 +53,7 @@ const userDataObj = ref({})
 
 const getUserProfile = async () => {
   const data = await useApiAbstraction().getProfile()
-  userDataObj.value = data
+  userDataObj.value = { ...data, email: props.userEmail }
 }
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)

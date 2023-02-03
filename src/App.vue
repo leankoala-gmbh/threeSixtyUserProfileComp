@@ -11,7 +11,7 @@ const inactiveFields = ['removeAccount']
 <template>
   <div class="p-12 bg-slate-600">
     <TSXUserProfile
-      :user-data="JSON.stringify(userData)"
+      user-email="features@leankoala.com"
       :inactive-fields="JSON.stringify(inactiveFields)"
     />
   </div>
