@@ -158,22 +158,23 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
       await fetch(`${baseUrl.value}/consent/set`, {
         credentials: 'include',
         method: 'PUT',
-        body: JSON.stringify({ consent })
+        body: JSON.stringify({ enabled: consent })
       })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
-  const getConsent = async() : Promise<{data: unknown}| void> => {
+  const getConsent = async() : Promise<{enabled: boolean}> => {
     guardUrl()
     try {
-      const data = await fetch(`${baseUrl.value}/consent/get`, {
+      const response = await fetch(`${baseUrl.value}/consent/get`, {
         credentials: 'include',
         method: 'GET'
-      }).then(response => response.json())
-      return { data }
-    } catch (error:unknown) {
+      })
+      return await response.json()
+    } catch (error: unknown) {
       errorHandler(error)
+      return {} as {enabled: boolean}
     }
   }
 

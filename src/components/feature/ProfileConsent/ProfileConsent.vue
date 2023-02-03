@@ -12,18 +12,13 @@ const savedConsent = ref(false)
 const initalState = ref(false)
 
 
-// const getInitialConsent = async () => {
-//   try {
-//     const res = await useApiAbstraction().getConsent()
-//     savedConsent.value = true
-//   } catch (e) {
-//     console.error(e)
-//   }
-// }
-
-// TODO: Remove this mocked function when API is ready
-const getInitialConsent = () => {
-  savedConsent.value = Math.random() < 0.5
+const getInitialConsent = async () => {
+  try {
+    const { enabled } = await useApiAbstraction().getConsent()
+    savedConsent.value = enabled
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 onMounted(() => {
