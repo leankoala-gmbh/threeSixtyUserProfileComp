@@ -54,7 +54,7 @@ export const handlers = [
       })
     )
   }),
-  rest.post(`${base}/remove-account`, (req, res, ctx) => {
+  rest.delete(`${base}/user`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -93,7 +93,7 @@ export const handlers = [
       })
     )
   }),
-  rest.put(`${base}/consent/revoke`, (req, res, ctx) => {
+  rest.post(`${base}/consent/set`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -107,8 +107,7 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         status: 'ok',
-        message: 'current consent received',
-        consent: true
+        message: 'current consent received'
       })
     )
   })

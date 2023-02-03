@@ -37,7 +37,7 @@ const checkPassword = () => {
 
 const handleRemove = () => {
   password.value = ''
-  useApiAbstraction().removeAccount()
+  useApiAbstraction().deleteUser()
   isOpen.value = false
 }
 

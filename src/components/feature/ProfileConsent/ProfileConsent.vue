@@ -23,7 +23,7 @@ const initalState = ref(false)
 
 // TODO: Remove this mocked function when API is ready
 const getInitialConsent = () => {
-  savedConsent.value = true
+  savedConsent.value = Math.random() < 0.5
 }
 
 onMounted(() => {
