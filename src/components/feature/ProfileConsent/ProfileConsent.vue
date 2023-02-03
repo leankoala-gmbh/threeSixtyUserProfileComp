@@ -34,12 +34,12 @@ const consentConfirm = computed(() => {
 })
 
 const disabledCheckbox = ref(false)
-const showStatus = ref(false)
+const statusState = ref(false)
 
 const statusSwtich = () => {
-  showStatus.value = true
+  statusState.value = true
   setTimeout(() => {
-    showStatus.value = false
+    statusState.value = false
   }, 3000)
 }
 
@@ -66,7 +66,7 @@ watch(() => savedConsent.value, () => {
   >
     <div class="profileDetail--hover m-2 rounded px-4 py-5 cursor-pointer smoothGridBox">
       <StatusMessage
-        v-if="showStatus"
+        v-if="statusState"
         type="success"
         class="mb-4"
       >
