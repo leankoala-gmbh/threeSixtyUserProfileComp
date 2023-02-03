@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const savedConsent = ref(false)
+const initalState = ref(false)
 
 
 // const getInitialConsent = async () => {
@@ -56,6 +57,10 @@ const saveConsent = async () => {
 }
 
 watch(() => savedConsent.value, () => {
+  if (!initalState.value) {
+    initalState.value = true
+    return
+  }
   saveConsent()
 })
 </script>
