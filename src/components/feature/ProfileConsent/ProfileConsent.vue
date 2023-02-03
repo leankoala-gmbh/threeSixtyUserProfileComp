@@ -10,6 +10,7 @@ const props = defineProps({
 
 const savedConsent = ref(false)
 
+
 // const getInitialConsent = async () => {
 //   try {
 //     const res = await useApiAbstraction().getConsent()
@@ -33,11 +34,20 @@ const consentConfirm = computed(() => {
 })
 
 const disabledCheckbox = ref(false)
+const showStatus = ref(false)
+
+const statusSwtich = () => {
+  showStatus.value = true
+  setTimeout(() => {
+    showStatus.value = false
+  }, 3000)
+}
 
 const saveConsent = async () => {
   try {
     disabledCheckbox.value = true
     await useApiAbstraction().setConsent(savedConsent.value)
+    statusSwtich()
   } catch (e) {
     console.error(e)
   } finally {
@@ -56,9 +66,8 @@ watch(() => savedConsent.value, () => {
   >
     <div class="profileDetail--hover m-2 rounded px-4 py-5 cursor-pointer smoothGridBox">
       <StatusMessage
-        v-if="savedConsent"
+        v-if="showStatus"
         type="success"
-        :timeout="3000"
         class="mb-4"
       >
         {{ consentConfirm }}
