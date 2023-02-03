@@ -52,7 +52,7 @@ const checkRoute = () => {
 const userDataObj = ref({})
 
 const getUserProfile = async () => {
-  const data = await useApiAbstraction(props.overrideBaseApiUrl?.length > 0 ? props.overrideBaseApiUrl : null).getProfile()
+  const data = await useApiAbstraction().getProfile()
   userDataObj.value = { ...data, email: props.userEmail, gravatar: props.userGravatar }
 }
 
@@ -66,6 +66,8 @@ onMounted(() => {
   checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
+
+provide('overrideBaseApiUrl', props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : null)
 
 </script>
 

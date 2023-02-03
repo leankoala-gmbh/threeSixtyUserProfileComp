@@ -10,7 +10,9 @@ const errorHandler = (error: unknown) => {
   console.error(error)
 }
 
-export function useApiAbstraction (cnameOverride: string|null = null) {
+const overload = inject('overrideBaseApiUrl', null)
+
+export function useApiAbstraction (cnameOverride: string|null = overload) {
   baseUrl.value = cnameOverride || window.location.origin
 
   const guardUrl = () => {
