@@ -57,6 +57,14 @@ onMounted(() => {
   checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
+
+const updateName = (payload: {firstName: string, familyName: string}) => {
+  userDataObj.value.firstName = payload.firstName
+  userDataObj.value.familyName = payload.familyName
+}
+const updateTimezone = (payload: {timezone: string}) => {
+  userDataObj.value.timezone = payload.timezone
+}
 </script>
 
 <template>
@@ -67,6 +75,7 @@ onMounted(() => {
         :user-data="userDataObj"
         :open="boxToOpen === 'naming'"
         :override-base-api-url="overrideBaseApiUrl"
+        @update="updateName"
       />
       <ProfilePassword
         v-if="!inactiveFieldsArr.includes('password')"
@@ -80,6 +89,7 @@ onMounted(() => {
         id="timezone"
         :user-data="userDataObj"
         :override-base-api-url="overrideBaseApiUrl"
+        @update="updateTimezone"
       />
       <ProfileConsent
         v-if="!inactiveFieldsArr.includes('consent')"

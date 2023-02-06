@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
 
+const emit = defineEmits(['update'])
+
 const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
@@ -9,6 +11,7 @@ const props = defineProps({
 })
 
 const updateTimezone = (event: string) => {
+  emit('update', event)
   window.mitt.emit('tsxUserProfile', {
     timezone: event
   })

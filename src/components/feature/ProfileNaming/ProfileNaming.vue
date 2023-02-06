@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { IProfileUser } from '@/types/general.interfaces'
 
+const emit = defineEmits(['update'])
+
 const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
@@ -18,7 +20,6 @@ const props = defineProps({
 
 const isOpen = ref(false)
 
-console.log('sdfsdf', props.userData)
 
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true
@@ -26,7 +27,8 @@ watch(() => props.open, () => {
 
 const formSuccess = ref(false)
 
-const successForm = () => {
+const successForm = (payload: {firstName: string, familyName: string}) => {
+  emit('update', payload)
   formSuccess.value = true
 
   setTimeout(() => {

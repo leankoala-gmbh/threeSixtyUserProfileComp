@@ -57,7 +57,10 @@ const submitName = async () => {
   }
   try {
     await useApiAbstraction(props.overrideBaseApiUrl).setProfile(payload)
-    emit('update')
+    emit('update', {
+      firstName: namingForm.firstName,
+      familyName: namingForm.familyName
+    })
   } catch (error) {
     console.error(error)
   }
