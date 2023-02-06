@@ -4,6 +4,7 @@ import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
+import { IProfileUser } from '@/types/general.interfaces'
 
 type TBoxRouteTypes = 'naming' | 'password' | 'remove' | 'license'
 
@@ -18,13 +19,9 @@ const props = defineProps({
     type: String,
     default: 'en'
   },
-  userEmail: {
+  userData: {
     type: String,
-    required: true
-  },
-  userGravatar: {
-    type: String,
-    required: true
+    default: '{}'
   },
   overrideBaseApiUrl: {
     type: String,
@@ -48,24 +45,18 @@ const checkRoute = () => {
   }
 }
 
-const userDataObj = ref({})
-
-const getUserProfile = async () => {
-  const data = await useApiAbstraction(overrideBaseApiUrl).getProfile()
-  userDataObj.value = { ...data, email: props.userEmail, gravatar: props.userGravatar }
-}
+const userDataObj = ref<IProfileUser>({})
+userDataObj.value = JSON.parse(JSON.stringify(props.userData))
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
 
 onMounted(() => {
-  getUserProfile()
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
   checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
-
 </script>
 
 <template>

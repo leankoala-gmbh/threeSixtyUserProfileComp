@@ -45,7 +45,7 @@ const successForm = () => {
         <ProfileAvatar :user-data="userData" />
         <div>
           <div class="font-medium">
-            {{ userData.name }}
+            {{ userData.firstName }} {{ userData.familyName }}
           </div>
           <div class="text-gray-400">
             {{ userData.email }}

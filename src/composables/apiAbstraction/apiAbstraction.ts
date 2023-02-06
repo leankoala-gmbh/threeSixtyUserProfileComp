@@ -12,8 +12,6 @@ const errorHandler = (error: unknown) => {
 export function useApiAbstraction (cnameOverride: string|null = null) {
   baseUrl.value = cnameOverride || window.location.origin
 
-  console.log('useApiAbstraction', baseUrl.value)
-
   const guardUrl = () => {
     if (!baseUrl.value) throw new Error('No base url set')
   }
@@ -103,26 +101,6 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  /**
-   * Get the profile of the current user
-   */
-  const getProfile = async () : Promise<IProfile> => {
-    guardUrl()
-    try {
-      const data = await fetch(`${baseUrl.value}/token`, {
-        credentials: 'include',
-        method: 'GET'
-      }).then(response => response.json())
-
-      // if (ZProfile.safeParse(data).success) return data
-      // throw new Error('Wrong profile response')
-      return data
-
-    } catch (error: unknown) {
-      errorHandler(error)
-      return {} as IProfile
-    }
-  }
 
   const setProfile = async (profile: IProfile) : Promise<void> => {
     guardUrl()
@@ -188,7 +166,6 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     downgradeProperties,
     terminateLicense,
     deleteUser,
-    getProfile,
     setProfile,
     changePassword,
     setConsent,

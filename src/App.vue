@@ -4,7 +4,7 @@
 import TSXUserProfile from './components/feature/TSXUserProfile/TSXUserProfile.ce.vue'
 
 const userData = { 'name':'Sascha Georg Fuchs', 'email':'features@leankoala.com' }
-const inactiveFields = ['removeAccount']
+const inactiveFields = []
 </script>
 
 
@@ -13,6 +13,7 @@ const inactiveFields = ['removeAccount']
     <TSXUserProfile
       user-email="features@leankoala.com"
       :inactive-fields="JSON.stringify(inactiveFields)"
+      override-base-api-url="https://stage.monitoring360.io"
     />
   </div>
 </template>

@@ -55,7 +55,7 @@ const submitPassword = async () => {
   if (!canBeSaved) return
 
   await useApiAbstraction(props.overrideBaseApiUrl)
-    .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.access||'')
+    .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.sessionToken||'')
   successForm.value = true
   setTimeout(() => {
     successForm.value = false
