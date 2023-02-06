@@ -119,7 +119,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const changePassword = async (currentPassword: string, newPassword: string, token: string) : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/profile/change-password`, {
+      const response = await fetch(`${baseUrl.value}/profile/change-password`, {
         credentials: 'include',
         method: 'POST',
         body: JSON.stringify({
@@ -128,7 +128,9 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
           token
         })
       })
+      console.log('response', response)
     } catch (error: unknown) {
+      console.log('eerrr', error)
       errorHandler(error)
     }
   }

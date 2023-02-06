@@ -53,13 +53,17 @@ const successForm = ref(false)
 
 const submitPassword = async () => {
   if (!canBeSaved) return
+  try {
+    await useApiAbstraction(props.overrideBaseApiUrl)
+      .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.sessionToken||'')
+    successForm.value = true
+    setTimeout(() => {
+      successForm.value = false
+    }, 3000)
+  } catch (e) {
+    console.error(e)
+  }
 
-  await useApiAbstraction(props.overrideBaseApiUrl)
-    .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.sessionToken||'')
-  successForm.value = true
-  setTimeout(() => {
-    successForm.value = false
-  }, 3000)
 }
 </script>
 
@@ -101,6 +105,7 @@ const submitPassword = async () => {
           @input="checkNewPasswordMatch"
         />
       </div>
+      <ApiError />
       <div>
         <GeneralButton
           type="submit"

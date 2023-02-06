@@ -20,7 +20,7 @@ const inactiveFields = []
     <TSXUserProfile
       :user-data="JSON.stringify(userData)"
       :inactive-fields="JSON.stringify(inactiveFields)"
-      override-base-api-url="https://stage.monitoring360.io"
+      override-base-api-url="https://app.stage.360monitoring.com"
     />
   </div>
 </template>

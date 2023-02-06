@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "author": "Sascha Fuchs <sascha.fuchs@webpros.com>",
   "license": "MIT",
-  "version": "1.0.39-beta",
+  "version": "1.0.40-beta",
   "engines": {
     "node": "18.x"
   },

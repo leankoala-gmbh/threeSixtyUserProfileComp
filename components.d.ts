@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AnnotationBox: typeof import('./src/components/pure/AnnotationBox/AnnotationBox.vue')['default']
+    ApiError: typeof import('./src/components/base/ApiError/ApiError.vue')['default']
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']

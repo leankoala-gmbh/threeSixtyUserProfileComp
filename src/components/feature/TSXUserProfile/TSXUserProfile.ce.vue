@@ -48,6 +48,8 @@ const checkRoute = () => {
 const userDataObj = ref<IProfileUser>({})
 userDataObj.value = JSON.parse(props.userData)
 
+debugEcho('TSXUserProfile userDataObj', userDataObj.value)
+
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
 
