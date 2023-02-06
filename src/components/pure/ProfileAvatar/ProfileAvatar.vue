@@ -9,11 +9,10 @@ const props = defineProps({
 })
 
 const nameInitials = computed(() => {
-  if (props.userData.gravatar?.length || !props.userData.name?.length) {
+  if (props.userData.gravatar?.length || !props.userData.firstName?.length || !props.userData.familyName?.length) {
     return ''
   }
-  const name = props.userData.name.split(' ')
-  return name.map((n) => n[0]).join('')
+  return props.userData.firstName[0] + props.userData.familyName[0]
 })
 </script>
 

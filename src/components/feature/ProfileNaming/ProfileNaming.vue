@@ -16,8 +16,9 @@ const props = defineProps({
   }
 })
 
-
 const isOpen = ref(false)
+
+console.log('sdfsdf', props.userData)
 
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true

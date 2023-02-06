@@ -29,7 +29,7 @@ const props = defineProps({
   },
   inactiveFields: {
     type: String,
-    default: '["removeAccount"]'
+    default: ''
   }
 })
 
@@ -46,7 +46,7 @@ const checkRoute = () => {
 }
 
 const userDataObj = ref<IProfileUser>({})
-userDataObj.value = JSON.parse(JSON.stringify(props.userData))
+userDataObj.value = JSON.parse(props.userData)
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])

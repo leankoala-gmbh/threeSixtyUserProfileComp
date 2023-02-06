@@ -12,6 +12,7 @@ const errorHandler = (error: unknown) => {
 export function useApiAbstraction (cnameOverride: string|null = null) {
   baseUrl.value = cnameOverride || window.location.origin
 
+
   const guardUrl = () => {
     if (!baseUrl.value) throw new Error('No base url set')
   }
@@ -107,7 +108,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     try {
       await fetch(`${baseUrl.value}/profile`, {
         credentials: 'include',
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(profile)
       })
     } catch (error: unknown) {
@@ -137,7 +138,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     try {
       await fetch(`${baseUrl.value}/consent/set`, {
         credentials: 'include',
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify({ enabled: consent })
       })
     } catch (error: unknown) {
