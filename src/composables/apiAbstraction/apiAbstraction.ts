@@ -108,7 +108,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     try {
       await fetch(`${baseUrl.value}/profile`, {
         credentials: 'include',
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(profile)
       })
     } catch (error: unknown) {
