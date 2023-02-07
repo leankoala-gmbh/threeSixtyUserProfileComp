@@ -74,10 +74,10 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const deleteUser = async () : Promise<void> => {
+  const removeAccount = async (password: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.delete(`${getBaseUrl.value}/user`, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/user`, { password }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -130,7 +130,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     upgradeProperties,
     downgradeProperties,
     terminateLicense,
-    deleteUser,
+    removeAccount,
     setProfile,
     changePassword,
     setConsent,

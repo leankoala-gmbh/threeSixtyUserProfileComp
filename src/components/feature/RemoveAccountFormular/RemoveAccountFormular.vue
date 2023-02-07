@@ -19,9 +19,8 @@ const errorMsgFromApi = ref<IApiError>()
 const handleRemove = async () => {
   errorMsgFromApi.value = undefined
   try {
-    await useApiAbstraction().deleteUser()
+    await useApiAbstraction().removeAccount(password.value)
   } catch (e: any) {
-    console.log('error', e)
     errorMsgFromApi.value = e.response.data
   }
 }
