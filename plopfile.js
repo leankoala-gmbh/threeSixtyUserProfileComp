@@ -45,7 +45,7 @@ module.exports = function (plop) {
           },
           {
             name: 'story',
-            message: 'Storybook file'
+            message: 'Histoire Story file'
           }
         ]
       }
