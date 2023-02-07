@@ -1,8 +1,6 @@
 import type { IProfile, ILicenses } from '@/types/general.schema'
 import axios from 'axios'
 
-const baseUrl = ref<null|string>(null)
-
 const errorHandler = (error: unknown) => {
   if (error instanceof Error) {
     throw error
@@ -10,17 +8,21 @@ const errorHandler = (error: unknown) => {
   console.error(error)
 }
 
-export function useApiAbstraction (cnameOverride: string|null = null) {
-  baseUrl.value = cnameOverride || window.location.origin
+const getBaseUrl = computed(() => {
+  const overrideApiUrl: undefined | string = inject('overrideBaseApiUrl')
+  console.log('sdfsdf', overrideApiUrl)
+  return overrideApiUrl || window.location.origin
+})
 
+export function useApiAbstraction (cnameOverride: string|null = null) {
   const guardUrl = () => {
-    if (!baseUrl.value) throw new Error('No base url set')
+    if (!getBaseUrl.value) throw new Error('No base url set')
   }
 
   const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      return await axios.get(`${baseUrl.value}/license/`, { withCredentials: true })
+      return await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
       return {} as ILicenses
@@ -30,7 +32,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const upgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/license/upgrade-plan`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -39,7 +41,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const downgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/license/downgrade-plan`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-plan`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -48,7 +50,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const upgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/license/upgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/upgrade-properties`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -57,7 +59,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const downgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/license/downgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-properties`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -66,7 +68,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const terminateLicense = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/license/terminate`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/terminate`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -75,7 +77,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const deleteUser = async () : Promise<void> => {
     guardUrl()
     try {
-      await axios.delete(`${baseUrl.value}/user`, { withCredentials: true })
+      await axios.delete(`${getBaseUrl.value}/user`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -85,19 +87,18 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const setProfile = async (profile: IProfile) : Promise<void> => {
     guardUrl()
     try {
-      await axios.put(`${baseUrl.value}/profile`, profile, { withCredentials: true })
+      await axios.put(`${getBaseUrl.value}/profile`, profile, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const changePassword = async (currentPassword: string, newPassword: string, token: string) : Promise<void> => {
+  const changePassword = async (currentPassword: string, newPassword: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/profile/change-password`, {
+      await axios.post(`${getBaseUrl.value}/profile/change-password`, {
         oldPassword: currentPassword,
-        password: newPassword,
-        token
+        password: newPassword
       }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
@@ -107,7 +108,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const setConsent = async(consent: boolean) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${baseUrl.value}/consent/set`, { enabled: consent }, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/consent/set`, { enabled: consent }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -115,7 +116,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getConsent = async() : Promise<{enabled: boolean}> => {
     guardUrl()
     try {
-      return await axios.get(`${baseUrl.value}/consent/get`, { withCredentials: true })
+      return await axios.get(`${getBaseUrl.value}/consent/get`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
       return {} as {enabled: boolean}

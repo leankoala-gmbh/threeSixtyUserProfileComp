@@ -6,10 +6,6 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
-  },
-  overrideBaseApiUrl: {
-    type: String,
-    default: ''
   }
 })
 
@@ -56,8 +52,8 @@ const submitPassword = async () => {
   if (!canBeSaved) return
   errorMsgFromApi.value = undefined
   try {
-    await useApiAbstraction(props.overrideBaseApiUrl)
-      .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.sessionToken||'')
+    await useApiAbstraction()
+      .changePassword(passwordForm.currentPassword, passwordForm.newPassword)
     successForm.value = true
     setTimeout(() => {
       successForm.value = false
