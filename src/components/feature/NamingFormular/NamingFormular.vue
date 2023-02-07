@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { z } from 'zod'
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
-import { IProfileUser, IKeyValue } from '@/types/general.interfaces'
+import { IProfileUser, IKeyValue, IApiError } from '@/types/general.interfaces'
 
 const emit = defineEmits(['update'])
 
@@ -48,6 +48,8 @@ const formIsValid = computed(()=> {
   return namingForm.firstName.length >= 3 && namingForm.familyName.length >= 3
 })
 
+const errorMsgFromApi = ref<IApiError>()
+
 const submitName = async () => {
   const payload = {
     firstName: namingForm.firstName,
@@ -61,8 +63,8 @@ const submitName = async () => {
       firstName: namingForm.firstName,
       familyName: namingForm.familyName
     })
-  } catch (error) {
-    console.error(error)
+  } catch (e: any) {
+    errorMsgFromApi.value = e.response.data
   }
 }
 
@@ -90,6 +92,7 @@ const submitName = async () => {
         @input="lastNameIsValid"
       />
     </div>
+    <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
     <div class="mt-4">
       <GeneralButton
         variant="regular"

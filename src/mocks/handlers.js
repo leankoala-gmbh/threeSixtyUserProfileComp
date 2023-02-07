@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 import licensesData from './fixtures/licenses.json'
 
-const base = 'https://stage.monitoring360.io/' //window.location.origin
+const base = 'https://app.stage.360monitoring.com' //window.location.origin
 
 export const handlers = [
   rest.get(`${base}/license/`, (req, res, ctx) => {

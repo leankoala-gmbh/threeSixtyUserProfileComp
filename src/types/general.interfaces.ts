@@ -35,3 +35,15 @@ export interface ILicensesServers {
   min: number
   max: number
 }
+
+export interface IApiError {
+  type: string;
+  title: string;
+  detail: string;
+  violations?: {
+    propertyPath: string;
+    title: string;
+    parameters: any[];
+    type?: string;
+  }[];
+}

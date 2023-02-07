@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
-import { IProfileUser } from '@/types/general.interfaces'
+import { IApiError, IProfileUser } from '@/types/general.interfaces'
 
 const props = defineProps({
   userData: {
@@ -50,9 +50,11 @@ const checkCanBeSaved = computed(() => {
 })
 
 const successForm = ref(false)
+const errorMsgFromApi = ref<IApiError>()
 
 const submitPassword = async () => {
   if (!canBeSaved) return
+  errorMsgFromApi.value = undefined
   try {
     await useApiAbstraction(props.overrideBaseApiUrl)
       .changePassword(passwordForm.currentPassword, passwordForm.newPassword, props.userData?.sessionToken||'')
@@ -60,10 +62,9 @@ const submitPassword = async () => {
     setTimeout(() => {
       successForm.value = false
     }, 3000)
-  } catch (e) {
-    console.error(e)
+  } catch (e: any) {
+    errorMsgFromApi.value = e.response.data
   }
-
 }
 </script>
 
@@ -105,7 +106,7 @@ const submitPassword = async () => {
           @input="checkNewPasswordMatch"
         />
       </div>
-      <ApiError />
+      <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
       <div>
         <GeneralButton
           type="submit"

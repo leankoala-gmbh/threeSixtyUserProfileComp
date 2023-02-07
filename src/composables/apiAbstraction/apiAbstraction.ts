@@ -1,4 +1,5 @@
 import type { IProfile, ILicenses } from '@/types/general.schema'
+import axios from 'axios'
 
 const baseUrl = ref<null|string>(null)
 
@@ -12,7 +13,6 @@ const errorHandler = (error: unknown) => {
 export function useApiAbstraction (cnameOverride: string|null = null) {
   baseUrl.value = cnameOverride || window.location.origin
 
-
   const guardUrl = () => {
     if (!baseUrl.value) throw new Error('No base url set')
   }
@@ -20,10 +20,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      const response = await fetch(`${baseUrl.value}/license/`, {
-        credentials: 'include'
-      })
-      return await response.json()
+      return await axios.get(`${baseUrl.value}/license/`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
       return {} as ILicenses
@@ -33,10 +30,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const upgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/license/upgrade-plan`, {
-        credentials: 'include',
-        method: 'POST'
-      })
+      await axios.post(`${baseUrl.value}/license/upgrade-plan`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -45,10 +39,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const downgradePlan = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/license/downgrade-plan`, {
-        credentials: 'include',
-        method: 'POST'
-      })
+      await axios.post(`${baseUrl.value}/license/downgrade-plan`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -57,10 +48,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const upgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/license/upgrade-properties`, {
-        credentials: 'include',
-        method: 'POST'
-      })
+      await axios.post(`${baseUrl.value}/license/upgrade-properties`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -69,10 +57,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const downgradeProperties = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/license/downgrade-properties`, {
-        credentials: 'include',
-        method: 'POST'
-      })
+      await axios.post(`${baseUrl.value}/license/downgrade-properties`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -81,10 +66,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const terminateLicense = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/license/terminate`, {
-        credentials: 'include',
-        method: 'POST'
-      })
+      await axios.post(`${baseUrl.value}/license/terminate`, {}, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -93,10 +75,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const deleteUser = async () : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/user`, {
-        credentials: 'include',
-        method: 'DELETE'
-      })
+      await axios.delete(`${baseUrl.value}/user`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -106,11 +85,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const setProfile = async (profile: IProfile) : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/profile`, {
-        credentials: 'include',
-        method: 'PUT',
-        body: JSON.stringify(profile)
-      })
+      await axios.put(`${baseUrl.value}/profile`, profile, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -119,18 +94,12 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const changePassword = async (currentPassword: string, newPassword: string, token: string) : Promise<void> => {
     guardUrl()
     try {
-      const response = await fetch(`${baseUrl.value}/profile/change-password`, {
-        credentials: 'include',
-        method: 'POST',
-        body: JSON.stringify({
-          oldPassword: currentPassword,
-          password: newPassword,
-          token
-        })
-      })
-      console.log('response', response)
+      await axios.post(`${baseUrl.value}/profile/change-password`, {
+        oldPassword: currentPassword,
+        password: newPassword,
+        token
+      }, { withCredentials: true })
     } catch (error: unknown) {
-      console.log('eerrr', error)
       errorHandler(error)
     }
   }
@@ -138,11 +107,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const setConsent = async(consent: boolean) : Promise<void> => {
     guardUrl()
     try {
-      await fetch(`${baseUrl.value}/consent/set`, {
-        credentials: 'include',
-        method: 'POST',
-        body: JSON.stringify({ enabled: consent })
-      })
+      await axios.post(`${baseUrl.value}/consent/set`, { enabled: consent }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -150,11 +115,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getConsent = async() : Promise<{enabled: boolean}> => {
     guardUrl()
     try {
-      const response = await fetch(`${baseUrl.value}/consent/get`, {
-        credentials: 'include',
-        method: 'GET'
-      })
-      return await response.json()
+      return await axios.get(`${baseUrl.value}/consent/get`, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
       return {} as {enabled: boolean}

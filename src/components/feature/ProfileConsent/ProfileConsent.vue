@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IProfileUser } from '@/types/general.interfaces'
+import { IApiError, IProfileUser } from '@/types/general.interfaces'
 
 const props = defineProps({
   userData: {
@@ -43,13 +43,15 @@ const statusSwtich = () => {
   }, 3000)
 }
 
+const errorMsgFromApi = ref<IApiError>()
+
 const saveConsent = async () => {
   try {
     disabledCheckbox.value = true
     await api.setConsent(savedConsent.value)
     statusSwtich()
-  } catch (e) {
-    console.error(e)
+  } catch (e: any) {
+    errorMsgFromApi.value = e.response.data
   } finally {
     disabledCheckbox.value = false
   }
@@ -87,5 +89,6 @@ watch(() => savedConsent.value, () => {
         </div>
       </label>
     </div>
+    <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
   </ProfileDetailBox>
 </template>

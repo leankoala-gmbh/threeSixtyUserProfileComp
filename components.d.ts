@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     ProfilePassword: typeof import('./src/components/feature/ProfilePassword/ProfilePassword.vue')['default']
     ProfileRemove: typeof import('./src/components/feature/ProfileRemove/ProfileRemove.vue')['default']
     ProfileTimezone: typeof import('./src/components/feature/ProfileTimezone/ProfileTimezone.vue')['default']
+    RemoveAccountFormular: typeof import('./src/components/feature/RemoveAccountFormular/RemoveAccountFormular.vue')['default']
     StatusMessage: typeof import('./src/components/base/StatusMessage/StatusMessage.vue')['default']
     TabviewHeader: typeof import('./src/components/pure/TabviewHeader/TabviewHeader.vue')['default']
     TabviewLicense: typeof import('./src/components/feature/TabviewLicense/TabviewLicense.vue')['default']

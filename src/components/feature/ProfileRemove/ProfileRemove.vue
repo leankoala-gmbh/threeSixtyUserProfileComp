@@ -2,13 +2,13 @@
 import { IProfileUser } from '@/types/general.interfaces'
 
 const props = defineProps({
-  userData: {
-    type: Object as () => IProfileUser,
-    default: () => ({})
-  },
   open: {
     type: Boolean,
     default: false
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -17,30 +17,6 @@ const isOpen = ref(false)
 watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
-
-const password = ref('')
-
-const error = reactive<{password: string}>({
-  password: ''
-})
-
-const canBeRemoved = ref(true)
-
-const checkPassword = () => {
-  const isValid = password.value.length === 0
-  error.password = isValid
-    ? translator('emptyError')
-    : ''
-  canBeRemoved.value = isValid
-}
-
-
-const handleRemove = () => {
-  password.value = ''
-  useApiAbstraction().deleteUser()
-  isOpen.value = false
-}
-
 </script>
 
 <template>
@@ -100,24 +76,7 @@ const handleRemove = () => {
           </div>
         </div>
       </AnnotationBox>
-      <div class="my-6">
-        <div class="mt-6 mb-2">
-          {{ translator('enterPasswordConfirmRemove') }}
-        </div>
-        <FormInput
-          v-model="password"
-          name="passwordConfirm"
-          type="password"
-          :error-string="error.password"
-          @input="checkPassword"
-        />
-      </div>
-      <GeneralButton
-        :is-disabled="canBeRemoved"
-        @click="handleRemove"
-      >
-        {{ translator('removeAccountButton') }}
-      </GeneralButton>
+      <RemoveAccountFormular :override-base-api-url="overrideBaseApiUrl" />
     </template>
   </ProfileDetailBox>
 </template>
