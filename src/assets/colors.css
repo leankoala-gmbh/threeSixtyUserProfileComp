@@ -1,24 +1,25 @@
 :root {
   --tsxup-brightest: #ffffff;
   --tsxup-transparent: transparent;
-  --tsxup-brightest-darker: theme('colors.gray.200');
-  --tsxup-darkest: theme('colors.gray.900');
-  --tsxup-darkest-mid: theme('colors.gray.300');
-  --tsxup-darkest-mid-light: theme('colors.gray.500');
-  --tsxup-darkest-light: theme('colors.gray.600');
-  --tsxup-signal-success-lighter: theme('colors.green.100');
-  --tsxup-signal-success-light: theme('colors.green.200');
-  --tsxup-signal-success: theme('colors.green.700');
-  --tsxup-signal-error-lighter: theme('colors.red.100');
-  --tsxup-signal-error-light: theme('colors.red.200');
-  --tsxup-signal-error: theme('colors.red.600');
-  --tsxup-signal-info-lighter: theme('colors.blue.100');
-  --tsxup-signal-info-light: theme('colors.blue.200');
-  --tsxup-signal-info: theme('colors.blue.600');
-  --tsxup-primary: #1E40AF;
+  --tsxup-brightest-darker: theme("colors.gray.200");
+  --tsxup-darkest: theme("colors.gray.900");
+  --tsxup-darkest-mid: theme("colors.gray.300");
+  --tsxup-darkest-mid-light: theme("colors.gray.500");
+  --tsxup-darkest-light: theme("colors.gray.600");
+  --tsxup-signal-success-lighter: theme("colors.green.100");
+  --tsxup-signal-success-light: theme("colors.green.200");
+  --tsxup-signal-success: theme("colors.green.700");
+  --tsxup-signal-error-lighter: theme("colors.red.100");
+  --tsxup-signal-error-light: theme("colors.red.200");
+  --tsxup-signal-error: theme("colors.red.600");
+  --tsxup-signal-info-lighter: theme("colors.blue.100");
+  --tsxup-signal-info-light: theme("colors.blue.200");
+  --tsxup-signal-info: theme("colors.blue.600");
+  --tsxup-primary: #1e40af;
   --tsxup-primary-medium: #003da685;
   --tsxup-primary-light: #dbe8ff;
   --tsxup-primary-lightest: #e6eaf2;
+  --tsxup-button-red: #dd524c;
   --tsxup-text: var(--tsxup-darkest);
   --tsxup-text-lighter: var(--tsxup-darkest-light);
   --tsxup-headline: var(--tsxup-darkest);
@@ -38,6 +39,13 @@
   --tsxup-button-ghost-bg-hover: var(--tsxup-brightest);
   --tsxup-button-ghost-border-hover: var(--tsxup-darkest);
   --tsxup-button-ghost-border-disabled: var(--tsxup-primary-disabled);
+  --tsxup-button-transparent-bg: var(--tsxup-brightest);
+  --tsxup-button-transparent-color: var(--tsxup-primary);
+  --tsxup-button-transparent-color-hover: var(--tsxup-darkest-light);
+  --tsxup-button-red-bg: var(--tsxup-button-red);
+  --tsxup-button-red-color: var(--tsxup-brightest);
+  --tsxup-button-red-bg-hover: var(--tsxup-signal-error-light);
+  --tsxup-button-red-color-hover: var(--tsxup-brightest);
   --tsxup-selectField-border: var(--tsxup-brightest-darker);
   --tsxup-selectField-background: var(--tsxup-brightest);
   --tsxup-selectField-backgroundHover: var(--tsxup-brightest);
@@ -59,5 +67,3 @@
   --tsxup-label-canceled-color: var(--tsxup-signal-info);
   --tsxup-label-canceled-bg: var(--tsxup-signal-info-light);
 }
-
-
