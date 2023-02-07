@@ -29,4 +29,22 @@
       border-color: var(--tsxup-button-ghost-border-hover);
     }
   }
+  &--transparent {
+    background-color: var(--tsxup-button-transparent-bg);
+    color: var(--tsxup-button-transparent-color);
+    border-color: var(--tsxup-button-transparent-bg);
+    &:hover {
+      color: var(--tsxup-button-transparent-color-hover);
+    }
+  }
+  &--red {
+    background-color: var(--tsxup-button-red-bg);
+    color: var(--tsxup-button-red-color);
+    border-color: var(--tsxup-button-red-bg);
+    &:hover {
+      background-color: var(--tsxup-button-red-bg-hover);
+      color: var(--tsxup-button-red-color-hover);
+      border-color: var(--tsxup-button-red-bg-hover);
+    }
+  }
 }

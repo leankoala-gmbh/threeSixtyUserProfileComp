@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 type TButtonTags = 'a' | 'button' | 'div'
-type TVariant = 'regular' | 'ghost'
+type TVariant = 'regular' | 'ghost' | 'transparent' | 'red'
 
 const emit = defineEmits(['click'])
 
