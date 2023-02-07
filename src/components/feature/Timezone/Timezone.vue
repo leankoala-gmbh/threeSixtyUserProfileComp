@@ -15,7 +15,6 @@ const props = defineProps({
 const timeZoneObj = JSON.parse(JSON.stringify(timezones))
 const timezone = ref<null|string>(null)
 const timezoneSavedInfo = ref(false)
-const initialTimeZoneSave = ref(0)
 
 const successInfo = () => {
   timezoneSavedInfo.value = true
@@ -25,18 +24,13 @@ const successInfo = () => {
 }
 
 const saveTimezone = () => {
-  if (initialTimeZoneSave.value > 0) {
-    successInfo()
-  }
-  initialTimeZoneSave.value += 1
-  debugEcho('saveTimezone', timezone.value)
+  successInfo()
   emit('updateTimezone', timezone.value)
 }
 
 const initialTimezone = () => {
   if (!props.userData?.timezone?.length) {
     const browserTZ = Intl.DateTimeFormat().resolvedOptions().timeZone
-    debugEcho('Get timezone from the browser', browserTZ)
     timezone.value = browserTZ
     saveTimezone()
     return
@@ -49,9 +43,7 @@ onMounted(() => {
 })
 
 watch(() => timezone.value, (o, n) => {
-  if (n && n !== o) {
-    saveTimezone()
-  }
+  if (timezone.value && n && n !== o) saveTimezone()
 })
 </script>
 
