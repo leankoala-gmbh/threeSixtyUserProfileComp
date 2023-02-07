@@ -4,10 +4,10 @@
 
 <template>
   <div class="viewLicense">
-    viewLicense
+    <div class="bg-white rounded p-10">
+      <SimpleLabel type="canceled">
+        gello
+      </SimpleLabel>
+    </div>
   </div>
 </template>
-
-<style>
-  .viewLicense {}
-</style>

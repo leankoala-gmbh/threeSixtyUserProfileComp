@@ -54,7 +54,10 @@
   --tsxup-abox-info-bg: var(--tsxup-signal-info-lighter);
   --tsxup-abox-info-color: var(--tsxup-signal-info);
   --tsxup-abox-info-border: var(--tsxup-signal-info-light);
-
+  --tsxup-label-active-color: var(--tsxup-signal-success);
+  --tsxup-label-active-bg: var(--tsxup-signal-success-light);
+  --tsxup-label-canceled-color: var(--tsxup-signal-info);
+  --tsxup-label-canceled-bg: var(--tsxup-signal-info-light);
 }
 
 

@@ -74,7 +74,7 @@ module.exports = function (plop) {
           return !answers.files.includes('story') ? 'skipped' : null
         },
         type: 'add',
-        path: `${COMPONENT_PATH}{{type}}/{{pascalCase name}}/{{pascalCase name}}.stories.ts`,
+        path: `${COMPONENT_PATH}{{type}}/{{pascalCase name}}/{{pascalCase name}}.story.vue`,
         templateFile: 'plopTemplates/componentStory.hbs',
         skipIfExists: true
       }
