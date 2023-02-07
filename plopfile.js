@@ -33,7 +33,7 @@ module.exports = function (plop) {
         type: 'checkbox',
         name: 'files',
         message: 'Files to create?',
-        default: ['vue', 'unit'],
+        default: ['vue', 'unit', 'story'],
         choices: [
           {
             name: 'vue',
