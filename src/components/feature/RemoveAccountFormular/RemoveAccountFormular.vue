@@ -24,6 +24,7 @@ const checkPassword = () => {
 const errorMsgFromApi = ref<IApiError>()
 
 const handleRemove = async () => {
+  errorMsgFromApi.value = undefined
   try {
     await useApiAbstraction(props.overrideBaseApiUrl).deleteUser()
   } catch (e: any) {

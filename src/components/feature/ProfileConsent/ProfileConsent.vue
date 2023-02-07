@@ -46,6 +46,8 @@ const statusSwtich = () => {
 const errorMsgFromApi = ref<IApiError>()
 
 const saveConsent = async () => {
+  errorMsgFromApi.value = undefined
+  if (savedConsent.value === undefined) return
   try {
     disabledCheckbox.value = true
     await api.setConsent(savedConsent.value)
@@ -88,7 +90,7 @@ watch(() => savedConsent.value, () => {
           <p class="text-gray-600 text-sm">{{ translator('consentBody') }}</p>
         </div>
       </label>
+      <ApiError class="mt-4" :error-obj="errorMsgFromApi" />
     </div>
-    <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
   </ProfileDetailBox>
 </template>

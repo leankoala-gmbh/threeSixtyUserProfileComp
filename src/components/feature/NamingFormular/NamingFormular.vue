@@ -51,6 +51,7 @@ const formIsValid = computed(()=> {
 const errorMsgFromApi = ref<IApiError>()
 
 const submitName = async () => {
+  errorMsgFromApi.value = undefined
   const payload = {
     firstName: namingForm.firstName,
     familyName: namingForm.familyName,
