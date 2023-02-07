@@ -17,7 +17,6 @@
   "removeAccount": "アカウント削除",
   "removeAccountBody": "アカウントを削除すると、サーバー、ウェブサイト、ブラックリスト、ログファイルのモニター、およびすべてのヒソカインダストリアルデータへのアクセスが失われます。",
   "removeAccountButton": "アカウントを削除する",
-  "removeAccountInfo": "アカウントを削除すると、サーバー、ウェブサイト、ブラックリスト、ログファイルのモニター、およびすべての履歴データへのアクセスが失われます。",
   "removeAccountAnnotationTitle": "あなたのデータはすべて削除されます",
   "removeAccountAnnotationContent": "アカウントを削除すると、プランの契約も削除されます。アカウントの削除は最終的なものですので、ご注意ください。アカウントを復元する方法はありません。",
   "enterPasswordConfirmRemove": "アカウントの削除を確認するためのパスワードを入力する",
