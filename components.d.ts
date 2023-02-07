@@ -29,5 +29,7 @@ declare module '@vue/runtime-core' {
     TabviewLicense: typeof import('./src/components/feature/TabviewLicense/TabviewLicense.vue')['default']
     Timezone: typeof import('./src/components/feature/Timezone/Timezone.vue')['default']
     'TSXUserProfile.ce': typeof import('./src/components/feature/TSXUserProfile/TSXUserProfile.ce.vue')['default']
+    ViewLicense: typeof import('./src/components/feature/ViewLicense/ViewLicense.vue')['default']
+    ViewProfile: typeof import('./src/components/feature/ViewProfile/ViewProfile.vue')['default']
   }
 }

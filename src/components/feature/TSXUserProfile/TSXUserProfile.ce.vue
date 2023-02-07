@@ -5,7 +5,7 @@ import mitt from 'mitt'
 import { onMounted } from 'vue'
 import { IProfileUser } from '@/types/general.interfaces'
 
-type TBoxRouteTypes = 'naming' | 'password' | 'remove' | 'license'
+type TViewTypes = 'profile' | 'license'
 
 window.mitt = window.mitt || mitt()
 
@@ -29,22 +29,16 @@ const props = defineProps({
   inactiveFields: {
     type: String,
     default: ''
+  },
+  view: {
+    type: String as () => TViewTypes,
+    default: 'profile'
   }
 })
 
 const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : ''
 
 provide('overrideBaseApiUrl', overrideBaseApiUrl)
-
-const boxToOpen = ref<string|null>(null)
-
-const checkRoute = () => {
-  const query = window.location.hash?.length ? window.location.hash.slice(1) : null
-  const routeTargets = ['naming', 'password', 'remove', 'license']
-  if (query && routeTargets.includes(query)) {
-    boxToOpen.value = query
-  }
-}
 
 const userDataObj = ref<IProfileUser>({})
 userDataObj.value = JSON.parse(props.userData)
@@ -57,53 +51,21 @@ const cookies = useCookies(['locale'])
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
-  checkRoute()
+  // checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
-
-const updateName = (payload: {firstName: string, familyName: string}) => {
-  userDataObj.value.firstName = payload.firstName
-  userDataObj.value.familyName = payload.familyName
-}
-const updateTimezone = (payload: {timezone: string}) => {
-  userDataObj.value.timezone = payload.timezone
-}
 </script>
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
-    <template v-if="Object.keys(userDataObj).length">
-      <ProfileNaming
-        v-if="!inactiveFieldsArr.includes('naming')"
-        :user-data="userDataObj"
-        :open="boxToOpen === 'naming'"
-        @update="updateName"
-      />
-      <ProfilePassword
-        v-if="!inactiveFieldsArr.includes('password')"
-        id="password"
-        :user-data="userDataObj"
-        :open="boxToOpen === 'password'"
-      />
-      <ProfileTimezone
-        v-if="!inactiveFieldsArr.includes('timezone')"
-        id="timezone"
-        :user-data="userDataObj"
-        @update="updateTimezone"
-      />
-      <ProfileConsent
-        v-if="!inactiveFieldsArr.includes('consent')"
-        id="consent"
-        :user-data="userDataObj"
-      />
-      <ProfileRemove
-        v-if="!inactiveFieldsArr.includes('removeAccount')"
-        id="remove"
-        :user-data="userDataObj"
-        :open="boxToOpen === 'remove'"
-        :override-base-api-url="overrideBaseApiUrl"
-      />
-    </template>
+    <ViewProfile
+      v-if="view === 'profile'"
+      :user-data="userDataObj"
+      :inactive-fields="inactiveFieldsArr"
+    />
+    <ViewLicense
+      v-if="view === 'license'"
+    />
   </div>
 </template>
 
