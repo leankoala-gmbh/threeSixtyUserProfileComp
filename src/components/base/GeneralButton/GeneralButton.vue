@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 type TButtonTags = 'a' | 'button' | 'div'
-type TVariant = 'regular' | 'ghost' | 'transparent' | 'red'
+type TVariant = 'regular' | 'ghost' | 'transparent' | 'cancel'
 
 const emit = defineEmits(['click'])
 
@@ -31,7 +31,8 @@ const sendClick = () => {
     :disabled="isDisabled"
     class="rounded h-10 flex items-center justify-center px-4 duration-300 transition border-current border font-medium"
     :class="[
-      isDisabled ? 'isDisabled' : '',
+      { 'isDisabled': isDisabled },
+      { 'hover:underline': variant === 'transparent'},
       `generalButton--${variant}`
     ]"
     @click.stop="sendClick"

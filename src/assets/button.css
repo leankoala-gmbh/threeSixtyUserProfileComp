@@ -37,14 +37,14 @@
       color: var(--tsxup-button-transparent-color-hover);
     }
   }
-  &--red {
-    background-color: var(--tsxup-button-red-bg);
-    color: var(--tsxup-button-red-color);
-    border-color: var(--tsxup-button-red-bg);
+  &--cancel {
+    background-color: var(--tsxup-button-cancel-bg);
+    color: var(--tsxup-button-cancel-color);
+    border-color: var(--tsxup-button-cancel-bg);
     &:hover {
-      background-color: var(--tsxup-button-red-bg-hover);
-      color: var(--tsxup-button-red-color-hover);
-      border-color: var(--tsxup-button-red-bg-hover);
+      background-color: var(--tsxup-button-cancel-bg-hover);
+      color: var(--tsxup-button-cancel-color-hover);
+      border-color: var(--tsxup-button-cancel-bg-hover);
     }
   }
 }
