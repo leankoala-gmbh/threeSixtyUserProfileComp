@@ -73,6 +73,7 @@
     "useBoxRouteQuery": true,
     "useCssModule": true,
     "useCssVars": true,
+    "useLocalHelper": true,
     "useSlots": true,
     "validateBetweenLength": true,
     "validateEmail": true,

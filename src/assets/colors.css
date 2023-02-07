@@ -19,6 +19,7 @@
   --tsxup-primary-medium: #003da685;
   --tsxup-primary-light: #dbe8ff;
   --tsxup-primary-lightest: #e6eaf2;
+  --tsxup-active: theme('colors.orange.500');
   --tsxup-text: var(--tsxup-darkest);
   --tsxup-text-lighter: var(--tsxup-darkest-light);
   --tsxup-headline: var(--tsxup-darkest);

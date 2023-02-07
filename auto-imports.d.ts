@@ -74,6 +74,7 @@ declare global {
   const useBoxRouteQuery: typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useLocalHelper: typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']
   const useSlots: typeof import('vue')['useSlots']
   const validateBetweenLength: typeof import('./src/utils/formValidators')['validateBetweenLength']
   const validateEmail: typeof import('./src/utils/formValidators')['validateEmail']
@@ -163,6 +164,7 @@ declare module 'vue' {
     readonly useBoxRouteQuery: UnwrapRef<typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useLocalHelper: UnwrapRef<typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly validateBetweenLength: UnwrapRef<typeof import('./src/utils/formValidators')['validateBetweenLength']>
     readonly validateEmail: UnwrapRef<typeof import('./src/utils/formValidators')['validateEmail']>

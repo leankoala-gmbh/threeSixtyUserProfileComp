@@ -47,3 +47,13 @@ export interface IApiError {
     type?: string;
   }[];
 }
+
+export type TPlanType = 'active' | 'canceled'
+
+export interface ISubscriptionHeaderDetails {
+  type: TPlanType
+  planName: string
+  price?: number
+  date: string
+  currency?: string
+}

@@ -29,5 +29,11 @@
   "newPasswordConfirm": "Confirm New Password",
   "passwordMinLength8": "Password must be at least 8 characters long",
   "passwordsNotMatch": "New Passwords do not match",
-  "successChangePassword": "Your password has been successfully changed"
+  "successChangePassword": "Your password has been successfully changed",
+  "active": "Active",
+  "canceled": "Canceled",
+  "activeDateText": "Next billing date",
+  "canceledDateText": "Canceled since",
+  "mo": "mo",
+  "subscriptionDetails": "subscription details"
 }
