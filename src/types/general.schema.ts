@@ -3,8 +3,8 @@ import { z } from 'zod'
 
 export const ZProfile = z.object({
   access: z.string().optional(),
-  timezone: z.string(),
-  nickname: z.string(),
+  timezone: z.string().optional(),
+  nickname: z.string().optional(),
   firstName: z.string(),
   familyName: z.string()
 })

@@ -17,31 +17,9 @@ const namingForm = reactive<IKeyValue>({
   familyName: ''
 })
 
-const error = reactive<IKeyValue>({
-  firstName: '',
-  familyName: ''
-})
-
 onMounted(() => {
   namingForm.firstName = props.userData?.firstName || ''
   namingForm.familyName = props.userData?.familyName || ''
-})
-
-const validateField = (field: string, errorMsg: string, minLength = 3) => {
-  const isValid = field.length >= minLength
-  return isValid ? '' : translator(errorMsg)
-}
-
-const firstNameIsValid = () => {
-  error.firstName = validateField(namingForm.firstName, 'firstNameError')
-}
-
-const lastNameIsValid = () => {
-  error.familyName = validateField(namingForm.familyName, 'lastNameError')
-}
-
-const formIsValid = computed(()=> {
-  return namingForm.firstName.length >= 3 && namingForm.familyName.length >= 3
 })
 
 const errorMsgFromApi = ref<IApiError>()
@@ -50,16 +28,11 @@ const submitName = async () => {
   errorMsgFromApi.value = undefined
   const payload = {
     firstName: namingForm.firstName,
-    familyName: namingForm.familyName,
-    nickname: props.userData.nickname || '',
-    timezone: props.userData.timezone || ''
+    familyName: namingForm.familyName
   }
   try {
     await useApiAbstraction().setProfile(payload)
-    emit('update', {
-      firstName: namingForm.firstName,
-      familyName: namingForm.familyName
-    })
+    emit('update', payload)
   } catch (e: any) {
     errorMsgFromApi.value = e.response.data
   }
@@ -75,8 +48,6 @@ const submitName = async () => {
         v-model="namingForm.firstName"
         name="firstname"
         type="text"
-        :error-string="error.firstName"
-        @input="firstNameIsValid"
       />
     </div>
     <div class="mb-6">
@@ -85,8 +56,6 @@ const submitName = async () => {
         v-model="namingForm.familyName"
         name="familyName"
         type="text"
-        :error-string="error.familyName"
-        @input="lastNameIsValid"
       />
     </div>
     <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
@@ -94,7 +63,6 @@ const submitName = async () => {
       <GeneralButton
         variant="regular"
         type="submit"
-        :is-disabled="!formIsValid"
       >
         {{ translator('save') }}
       </GeneralButton>
