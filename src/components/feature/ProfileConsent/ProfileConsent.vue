@@ -5,15 +5,11 @@ const props = defineProps({
   userData: {
     type: Object as () => IProfileUser,
     default: () => ({})
-  },
-  overrideBaseApiUrl: {
-    type: String,
-    default: ''
   }
 })
 
 const savedConsent = ref(false)
-const api = useApiAbstraction(props.overrideBaseApiUrl)
+const api = useApiAbstraction()
 
 
 const getInitialConsent = async () => {

@@ -5,10 +5,6 @@ const props = defineProps({
   open: {
     type: Boolean,
     default: false
-  },
-  overrideBaseApiUrl: {
-    type: String,
-    default: ''
   }
 })
 
@@ -76,7 +72,7 @@ watch(() => props.open, () => {
           </div>
         </div>
       </AnnotationBox>
-      <RemoveAccountFormular :override-base-api-url="overrideBaseApiUrl" />
+      <RemoveAccountFormular />
     </template>
   </ProfileDetailBox>
 </template>

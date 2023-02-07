@@ -11,10 +11,6 @@ const props = defineProps({
   open: {
     type: Boolean,
     default: false
-  },
-  overrideBaseApiUrl: {
-    type: String,
-    default: ''
   }
 })
 
@@ -75,7 +71,6 @@ const successForm = (payload: {firstName: string, familyName: string}) => {
       <ProfileAvatar :user-data="userData" class="mb-6" />
       <NamingFormular
         :user-data="userData"
-        :override-base-api-url="overrideBaseApiUrl"
         @update="successForm"
       />
     </template>

@@ -11,7 +11,8 @@ const errorHandler = (error: unknown) => {
 }
 
 export function useApiAbstraction (cnameOverride: string|null = null) {
-  baseUrl.value = cnameOverride || window.location.origin
+  const overrideApiUrl: undefined | string = inject('overrideBaseApiUrl')
+  baseUrl.value = overrideApiUrl || window.location.origin
 
   const guardUrl = () => {
     if (!baseUrl.value) throw new Error('No base url set')
@@ -91,7 +92,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const changePassword = async (currentPassword: string, newPassword: string, token: string) : Promise<void> => {
+  const changePassword = async (currentPassword: string, newPassword: string) : Promise<void> => {
     guardUrl()
     try {
       await axios.post(`${baseUrl.value}/profile/change-password`, {

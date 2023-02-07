@@ -3,7 +3,6 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
-import { useApiAbstraction } from '@/composables/apiAbstraction/apiAbstraction'
 import { IProfileUser } from '@/types/general.interfaces'
 
 type TBoxRouteTypes = 'naming' | 'password' | 'remove' | 'license'
@@ -34,6 +33,8 @@ const props = defineProps({
 })
 
 const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : ''
+
+provide('overrideBaseApiUrl', overrideBaseApiUrl)
 
 const boxToOpen = ref<string|null>(null)
 
@@ -76,7 +77,6 @@ const updateTimezone = (payload: {timezone: string}) => {
         v-if="!inactiveFieldsArr.includes('naming')"
         :user-data="userDataObj"
         :open="boxToOpen === 'naming'"
-        :override-base-api-url="overrideBaseApiUrl"
         @update="updateName"
       />
       <ProfilePassword
@@ -84,20 +84,17 @@ const updateTimezone = (payload: {timezone: string}) => {
         id="password"
         :user-data="userDataObj"
         :open="boxToOpen === 'password'"
-        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfileTimezone
         v-if="!inactiveFieldsArr.includes('timezone')"
         id="timezone"
         :user-data="userDataObj"
-        :override-base-api-url="overrideBaseApiUrl"
         @update="updateTimezone"
       />
       <ProfileConsent
         v-if="!inactiveFieldsArr.includes('consent')"
         id="consent"
         :user-data="userDataObj"
-        :override-base-api-url="overrideBaseApiUrl"
       />
       <ProfileRemove
         v-if="!inactiveFieldsArr.includes('removeAccount')"

@@ -1,13 +1,6 @@
 <script lang="ts" setup>
 import { IApiError } from '@/types/general.interfaces'
 
-const props = defineProps({
-  overrideBaseApiUrl: {
-    type: String,
-    default: ''
-  }
-})
-
 const emit = defineEmits(['close'])
 
 const password = ref('')
@@ -26,7 +19,7 @@ const errorMsgFromApi = ref<IApiError>()
 const handleRemove = async () => {
   errorMsgFromApi.value = undefined
   try {
-    await useApiAbstraction(props.overrideBaseApiUrl).deleteUser()
+    await useApiAbstraction().deleteUser()
   } catch (e: any) {
     console.log('error', e)
     errorMsgFromApi.value = e.response.data
