@@ -7,6 +7,7 @@ const props = defineProps({
     default: () => ({})
   }
 })
+
 </script>
 
 <template>
@@ -31,7 +32,7 @@ const props = defineProps({
       </ul>
     </template>
     <template v-else>
-      {{ errorObj.detail }}
+      {{ errorObj.detail || errorObj.message }}
     </template>
   </AnnotationBox>
 </template>
