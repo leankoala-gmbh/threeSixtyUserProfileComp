@@ -20,11 +20,11 @@ const props = defineProps({
 <template>
   <a
     target="_blank"
-    class="profileDetail profileDetail--darker paymentMethod rounded p-4 flex gap-4 justify-between items-center cursor-pointer"
+    class="profileDetail profileDetail--darker paymentMethod rounded px-4 py-2 flex gap-4 justify-between items-center cursor-pointer"
     :href="link"
   >
     <div class="flex gap-2 items-center">
-      <PaymentProviders :provider="provider" />
+      <PaymentProviders :provider="provider" class="ml-4" />
       <div>{{ details }}</div>
     </div>
     <div>

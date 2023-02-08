@@ -35,7 +35,6 @@ declare module '@vue/runtime-core' {
     StatusMessage: typeof import('./src/components/base/StatusMessage/StatusMessage.vue')['default']
     SubscriptionHeader: typeof import('./src/components/feature/SubscriptionHeader/SubscriptionHeader.vue')['default']
     'SubscriptionHeader.story': typeof import('./src/components/feature/SubscriptionHeader/SubscriptionHeader.story.vue')['default']
-    TabviewHeader: typeof import('./src/components/pure/TabviewHeader/TabviewHeader.vue')['default']
     Timezone: typeof import('./src/components/feature/Timezone/Timezone.vue')['default']
     'TSXUserProfile.ce': typeof import('./src/components/feature/TSXUserProfile/TSXUserProfile.ce.vue')['default']
     ViewLicense: typeof import('./src/components/feature/ViewLicense/ViewLicense.vue')['default']

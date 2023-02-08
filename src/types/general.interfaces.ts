@@ -65,6 +65,5 @@ export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wir
 export interface IPlanSelector {
   id: string
   name: string
-  price: number
-  currency: string
+  description: string
 }

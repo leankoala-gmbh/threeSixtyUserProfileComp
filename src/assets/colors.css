@@ -43,7 +43,7 @@
   --tsxup-button-ghost-bg-hover: var(--tsxup-brightest);
   --tsxup-button-ghost-border-hover: var(--tsxup-darkest);
   --tsxup-button-ghost-border-disabled: var(--tsxup-primary-disabled);
-  --tsxup-button-transparent-bg: transparent;
+  --tsxup-button-transparent-bg: var(--tsxup-transparent);
   --tsxup-button-transparent-color: var(--tsxup-primary);
   --tsxup-button-transparent-color-hover: var(--tsxup-darkest-light);
   --tsxup-button-cancel-bg: var(--tsxup-signal-error);
@@ -70,4 +70,15 @@
   --tsxup-label-active-bg: var(--tsxup-signal-success-light);
   --tsxup-label-canceled-color: var(--tsxup-signal-info);
   --tsxup-label-canceled-bg: var(--tsxup-signal-info-light);
+  --tsxup-ps-bg: var(--tsxup-brightest);
+  --tsxup-ps-text-disabled-color: var(--tsxup-darkest-mid-light);
+  --tsxup-ps-text-checked-color: var(--tsxup-primary);
+  --tsxup-ps-text-unchecked-color: var(--tsxup-darkes);
+  --tsxup-ps-option-checked-bg: var(--tsxup-primary-light);
+  --tsxup-ps-option-checked-border: var(--tsxup-primary-medium);
+  --tsxup-ps-option-unchecked-border: var(--tsxup-darkest-mid);
+  --tsxup-ps-bullet-checked-bg: var(--tsxup-primary);
+  --tsxup-ps-bullet-unchecked-bg: var(--tsxup-brightest);
+  --tsxup-ps-bullet-unchecked-border: var(--tsxup-darkest-light);
+  --tsxup-ps-bullet-disabled-border: var(--tsxup-darkest-mid);
 }

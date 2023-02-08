@@ -1,22 +1,19 @@
 <script lang="ts" setup>
 const plans = [
   {
-    id: '0',
-    name: 'Free',
-    price: 0,
-    currency: 'EUR'
-  },
-  {
-    id: '1',
+    id: 'pro',
     name: 'Pro',
-    price: 22.23,
-    currency: 'EUR'
+    description: 'Starting from $19.99/once'
   },
   {
-    id: '2',
+    id: 'business',
+    name: 'Business',
+    description: 'Starting from $55.00/once'
+  },
+  {
+    id: 'enterprise',
     name: 'Enterprise',
-    price: 222.23,
-    currency: 'EUR'
+    description: 'Starting from $99.00/once'
   }
 ]
 </script>
@@ -36,6 +33,9 @@ const plans = [
     >
       hello
     </PaymentMethod>
-    <PlanSelector :plans="plans" current="1" />
+    <PlanSelector
+      :plans="plans"
+      current="pro"
+    />
   </div>
 </template>
