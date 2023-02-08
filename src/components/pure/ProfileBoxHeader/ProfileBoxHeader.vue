@@ -13,7 +13,3 @@ const emit = defineEmits(['close'])
     </GeneralButton>
   </div>
 </template>
-
-<style>
-  .profileBoxHeader {}
-</style>

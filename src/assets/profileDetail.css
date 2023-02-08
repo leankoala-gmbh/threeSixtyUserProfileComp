@@ -2,6 +2,10 @@
   background-color: var(--tsxup-brightest);
   color: var(--tsxup-darkest-light);
 
+  &--darker {
+    background-color: var(--tsxup-primary-lightest);
+  }
+
   &--hover:hover {
     /* todo: check hover color */
     transition: background-color 0.2s ease-in-out;
