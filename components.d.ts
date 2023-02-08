@@ -18,6 +18,8 @@ declare module '@vue/runtime-core' {
     'PaymentMethod.story': typeof import('./src/components/feature/PaymentMethod/PaymentMethod.story.vue')['default']
     PaymentProviders: typeof import('./src/components/pure/PaymentProviders/PaymentProviders.vue')['default']
     'PaymentProviders.story': typeof import('./src/components/pure/PaymentProviders/PaymentProviders.story.vue')['default']
+    PlanSelector: typeof import('./src/components/feature/PlanSelector/PlanSelector.vue')['default']
+    'PlanSelector.story': typeof import('./src/components/feature/PlanSelector/PlanSelector.story.vue')['default']
     ProfileAvatar: typeof import('./src/components/pure/ProfileAvatar/ProfileAvatar.vue')['default']
     ProfileBoxHeader: typeof import('./src/components/pure/ProfileBoxHeader/ProfileBoxHeader.vue')['default']
     ProfileConsent: typeof import('./src/components/feature/ProfileConsent/ProfileConsent.vue')['default']
