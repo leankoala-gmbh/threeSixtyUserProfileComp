@@ -51,7 +51,7 @@ watch(() => quantity.value, () => {
 </script>
 
 <template>
-  <div class="quantitySelector flex flex-wrap mt-1">
+  <div class="quantitySelector w-40 flex flex-wrap mt-1 justify-center">
     <GeneralButton
       :is-disabled="isLowerLimit"
       variant="ghost"
@@ -62,7 +62,7 @@ watch(() => quantity.value, () => {
     <input
       v-model="quantity"
       aria-label="InputQuantity"
-      class="mx-2 rounded text-center"
+      class="mx-2 rounded text-center w-10"
     >
     <GeneralButton
       :is-disabled="isUpperLimit"
@@ -71,9 +71,9 @@ watch(() => quantity.value, () => {
     >
       +
     </GeneralButton>
-    <div class="errorMessage w-full">
+    <div class="errorMessage w-full text-center">
       <p v-if="!isWithinRange" class="text-red-500 text-xs">
-        Quantity must be between {{ props.min }} and {{ props.max }}
+        Must be between {{ props.min }} and {{ props.max }}
       </p>
     </div>
   </div>
