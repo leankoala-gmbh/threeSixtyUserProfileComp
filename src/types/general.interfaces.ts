@@ -50,10 +50,10 @@ export interface IApiError {
   }[];
 }
 
-export type TPlanType = 'active' | 'canceled'
+export type TPlanStatus = 'active' | 'canceled'
 
 export interface ISubscriptionHeaderDetails {
-  type: TPlanType
+  status: TPlanStatus
   planName: string
   price?: number
   date: string

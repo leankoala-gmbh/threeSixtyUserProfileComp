@@ -28,7 +28,7 @@ const planPrice = computed(() => {
 <template>
   <div
     v-if="Object.keys(subscriptionDetail).length"
-    class="subscriptionHeader"
+    class="subscriptionHeader p-2"
   >
     <div
       v-if="closedHeader"
@@ -39,23 +39,23 @@ const planPrice = computed(() => {
         <div class="flex gap-2 items-center mb-2">
           <h3
             class="font-medium text-base"
-            :class="[ subscriptionDetail.type === 'active' ? 'text-active' : '' ]"
+            :class="[ subscriptionDetail.status === 'active' ? 'text-active' : '' ]"
           >
             {{ subscriptionDetail.planName }}
           </h3>
-          <SimpleLabel :type="subscriptionDetail.type">
-            {{ translator(subscriptionDetail.type) }}
+          <SimpleLabel :type="subscriptionDetail.status">
+            {{ translator(subscriptionDetail.status) }}
           </SimpleLabel>
         </div>
         <div class="flex items-center justify-between">
           <div>
             <span class="mr-1 text-gray-500">
-              {{ translator(`${subscriptionDetail.type}DateText`) }}
+              {{ translator(`${subscriptionDetail.status}DateText`) }}
             </span>
             <span>{{ planDate }}</span>
           </div>
           <div
-            v-if="subscriptionDetail.type ==='active'"
+            v-if="subscriptionDetail.status ==='active'"
             class="font-medium"
           >
             {{ planPrice }}/{{ translator('mo') }}
@@ -75,7 +75,7 @@ const planPrice = computed(() => {
     </div>
     <div
       v-else
-      class="flex items-center justify-between px-4 py-5"
+      class="flex items-center justify-between px-4 py-4"
     >
       <h3 class="font-medium text-base">
         {{ subscriptionDetail.planName }} {{ translator('subscriptionDetails') }}

@@ -3,7 +3,7 @@ const props = defineProps({})
 </script>
 
 <template>
-  <div class="subscriptionOverview">
-    <SubscriptionPlan status="canceled" />
+  <div class="subscriptionStepInfo">
+    subscriptionStepInfo
   </div>
 </template>
