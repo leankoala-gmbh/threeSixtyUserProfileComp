@@ -29,6 +29,8 @@ declare module '@vue/runtime-core' {
     ProfilePassword: typeof import('./src/components/feature/ProfilePassword/ProfilePassword.vue')['default']
     ProfileRemove: typeof import('./src/components/feature/ProfileRemove/ProfileRemove.vue')['default']
     ProfileTimezone: typeof import('./src/components/feature/ProfileTimezone/ProfileTimezone.vue')['default']
+    QuantitySelector: typeof import('./src/components/base/QuantitySelector/QuantitySelector.vue')['default']
+    'QuantitySelector.story': typeof import('./src/components/base/QuantitySelector/QuantitySelector.story.vue')['default']
     RemoveAccountFormular: typeof import('./src/components/feature/RemoveAccountFormular/RemoveAccountFormular.vue')['default']
     SimpleLabel: typeof import('./src/components/pure/SimpleLabel/SimpleLabel.vue')['default']
     'SimpleLabel.story': typeof import('./src/components/pure/SimpleLabel/SimpleLabel.story.vue')['default']
