@@ -1,0 +1,99 @@
+<script lang="ts" setup>
+import { IPlanSelector } from '@/types/general.interfaces'
+import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+
+const props = defineProps({
+  plans: {
+    type: Array as () => IPlanSelector[],
+    default: () => []
+  },
+  current: {
+    type: String,
+    default: ''
+  }
+})
+
+const planDisabledMatrix: {[key: string]: string[]} = {
+  pro: [],
+  business: ['pro'],
+  enterprise: ['pro', 'business']
+}
+
+const disabledEntries = computed(() => {
+  return planDisabledMatrix[props.current]
+})
+
+const selected = ref<IPlanSelector>()
+
+const disabledPlan = (id: string) => {
+  const disabled = new Set([...disabledEntries.value, props.current])
+  return [...disabled].includes(id)
+}
+
+const planList = computed(() => {
+  return props.plans.filter((plan) => !disabledEntries.value.find(val => val ===plan.id))
+})
+</script>
+
+<template>
+  <div class="planSelector">
+    <RadioGroup v-model="selected">
+      <div class="planSelector__base relative -space-y-px rounded-md overflow-hidden">
+        <RadioGroupOption
+          v-for="(plan, planIdx) in planList"
+          :key="plan.id"
+          v-slot="{ checked, active, disabled }"
+          as="template"
+          :value="plan"
+          :disabled="disabledPlan(plan.id)"
+        >
+          <div
+            :class="[
+              planIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
+              planIdx === planList.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+              checked ? 'planSelector__option--checked z-10' : 'planselector__option--unchecked',
+              'relative border py-4 cursor-pointer px-7 grid grid-cols-2 focus:outline-none'
+            ]"
+          >
+            <span class="flex items-center text-sm">
+              <span
+                :class="[
+                  disabled ? 'planSelector__bullet--disabled' : checked ? 'planSelector__bullet--checked border-transparent' : 'planSelector__bullet--unchecked',
+
+                  'h-4 w-4 rounded-full border flex items-center justify-center'
+                ]"
+                aria-hidden="true"
+              >
+                <span class="rounded-full bg-white w-1.5 h-1.5" />
+              </span>
+              <RadioGroupLabel
+                as="span"
+                :class="[
+                  disabled ? 'planSelector__text--disabled' : checked ? 'planSelector__text--checked' : 'planSelector__text--unchecked',
+                  'ml-3 font-medium'
+                ]"
+              >
+                {{ plan.name }}
+              </RadioGroupLabel>
+            </span>
+            <RadioGroupDescription
+              as="span"
+              class="ml-6 pl-1  md:ml-0 md:pl-0 text-right font-normal text-sm"
+            >
+              <span
+                class="font-normal"
+                :class="[
+                  disabled ? 'planSelector__text--disabled' : checked ? 'planSelector__text--checked' : 'planSelector__text--unchecked',
+                  'ml-3 font-medium'
+                ]"
+              >
+                {{ plan.id === current ? translator('yourCurrentPlan') : plan.description }}
+              </span>
+              {{ ' ' }}
+            </RadioGroupDescription>
+          </div>
+        </RadioGroupOption>
+      </div>
+    </RadioGroup>
+  </div>
+</template>

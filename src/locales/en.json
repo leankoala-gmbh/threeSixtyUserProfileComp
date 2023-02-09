@@ -35,5 +35,6 @@
   "activeDateText": "Next billing date",
   "canceledDateText": "Canceled since",
   "mo": "mo",
-  "subscriptionDetails": "subscription details"
+  "subscriptionDetails": "subscription details",
+  "yourCurrentPlan": "Your current plan"
 }

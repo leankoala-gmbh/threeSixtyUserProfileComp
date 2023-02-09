@@ -37,9 +37,11 @@ export interface ILicensesServers {
 }
 
 export interface IApiError {
-  type: string;
-  title: string;
-  detail: string;
+  status?: string
+  message?: string
+  type?: string;
+  title?: string;
+  detail?: string;
   violations?: {
     propertyPath: string;
     title: string;
@@ -59,3 +61,9 @@ export interface ISubscriptionHeaderDetails {
 }
 
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'
+
+export interface IPlanSelector {
+  id: string
+  name: string
+  description: string
+}

@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "author": "Sascha Fuchs <sascha.fuchs@webpros.com>",
   "license": "MIT",
-  "version": "1.0.46-beta",
+  "version": "1.0.47-beta",
   "engines": {
     "node": "18.x"
   },
@@ -33,6 +33,7 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.9",
     "@histoire/plugin-vue": "^0.13.0",
     "@tailwindcss/container-queries": "^0.1.0",
     "@vueuse/core": "^9.12.0",
