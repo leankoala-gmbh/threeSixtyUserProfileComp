@@ -20,12 +20,6 @@ const plans = [
 
 <template>
   <div class="viewLicense">
-    <div class="bg-white rounded p-10 mb-4">
-      <SubscriptionHeader
-        :closed-header="true"
-        :subscription-detail="{ planName: 'Pro', type: 'canceled', date: '2022-06-20', price: 22.23, currency: 'EUR'}"
-      />
-    </div>
     <PaymentMethod
       class="mb-4"
       provider="visa"
@@ -37,5 +31,6 @@ const plans = [
       :plans="plans"
       current="pro"
     />
+    <SubscriptionOverview />
   </div>
 </template>

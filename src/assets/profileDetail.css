@@ -6,11 +6,15 @@
     background-color: var(--tsxup-primary-lightest);
   }
 
-  &--hover:hover {
+  &--hover {
+    @apply transition ease-in duration-300;
+
+  &:hover {
     /* todo: check hover color */
-    transition: background-color 0.2s ease-in-out;
     background-color: var(--tsxup-primary-lightest);
   }
+  }
+
 
   a {
     color: var(--tsxup-primary);
