@@ -2,11 +2,11 @@
   /* Color Bindings */
   --tsxup-brightest: #ffffff;
   --tsxup-transparent: transparent;
-  --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-darkest: theme('colors.gray.900');
-  --tsxup-darkest-mid: theme('colors.gray.300');
-  --tsxup-darkest-mid-light: theme('colors.gray.500');
   --tsxup-darkest-light: theme('colors.gray.600');
+  --tsxup-darkest-mid-light: theme('colors.gray.500');
+  --tsxup-darkest-mid: theme('colors.gray.300');
+  --tsxup-brightest-darker: theme('colors.gray.200');
   --tsxup-signal-success-lighter: theme('colors.green.100');
   --tsxup-signal-success-light: theme('colors.green.200');
   --tsxup-signal-success: theme('colors.green.700');
@@ -42,7 +42,9 @@
   --tsxup-button-ghost-color-hover: var(--tsxup-darkest-light);
   --tsxup-button-ghost-bg-hover: var(--tsxup-brightest);
   --tsxup-button-ghost-border-hover: var(--tsxup-darkest);
-  --tsxup-button-ghost-border-disabled: var(--tsxup-primary-disabled);
+  --tsxup-button-ghost-color-disabled: var(--tsxup-darkest-mid-light);
+  --tsxup-button-ghost-bg-disabled: var(--tsxup-brightest-darker);
+  --tsxup-button-ghost-border-disabled: var(--tsxup-darkest-mid-light);
   --tsxup-button-transparent-bg: transparent;
   --tsxup-button-transparent-color: var(--tsxup-primary);
   --tsxup-button-transparent-color-hover: var(--tsxup-darkest-light);

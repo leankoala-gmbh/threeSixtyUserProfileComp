@@ -28,6 +28,16 @@
       color: var(--tsxup-button-ghost-color-hover);
       border-color: var(--tsxup-button-ghost-border-hover);
     }
+     &.isDisabled {
+       background-color: var(--tsxup-button-ghost-bg-disabled);
+      color: var(--tsxup-button-ghost-color-disabled);
+       border-color: var(--tsxup-button-ghost-border-disabled);
+       &:hover {
+        background-color: var(--tsxup-button-ghost-bg-disabled);
+       color: var(--tsxup-button-ghost-color-disabled);
+        border-color: var(--tsxup-button-ghost-border-disabled);
+      }
+    }
   }
   &--transparent {
     background-color: var(--tsxup-button-transparent-bg);
