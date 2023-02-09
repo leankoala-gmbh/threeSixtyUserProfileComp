@@ -14,7 +14,7 @@ const props = defineProps({
   }
 })
 
-const emit= defineEmits(['changeQuantity'])
+const emit = defineEmits(['changeQuantity'])
 
 const quantity = ref(props.value)
 
@@ -29,6 +29,8 @@ const operations = {
     quantity.value++
   }
 }
+
+const errorString = `Must be between ${props.min } and ${props.max }`
 
 const handleQuantity = (operation: TOperations) => {
   if (!isWithinRange.value) return
@@ -51,7 +53,7 @@ watch(() => quantity.value, () => {
 </script>
 
 <template>
-  <div class="quantitySelector w-40 flex flex-wrap mt-1 justify-center">
+  <div class="quantitySelector w-40 flex flex-wrap my-1 py-2 justify-center">
     <GeneralButton
       :is-disabled="isLowerLimit"
       variant="ghost"
@@ -71,11 +73,9 @@ watch(() => quantity.value, () => {
     >
       +
     </GeneralButton>
-    <div class="errorMessage w-full text-center">
-      <p v-if="!isWithinRange" class="text-red-500 text-xs">
-        Must be between {{ props.min }} and {{ props.max }}
-      </p>
-    </div>
+    <ErrorMessage v-if="!isWithinRange">
+      {{ errorString }}
+    </ErrorMessage>
   </div>
 </template>
 
