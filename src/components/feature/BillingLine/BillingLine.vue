@@ -36,7 +36,7 @@ const planDate = computed(() => {
   <div class="flex items-center justify-between">
     <div>
       <span class="mr-1 text-gray-500">
-        {{ translator(`${status}DateText`) }}
+        {{ translator()[`${status}DateText`]() }}
       </span>
       <span>{{ planDate }}</span>
     </div>
@@ -44,11 +44,7 @@ const planDate = computed(() => {
       v-if="status ==='active'"
       class="font-medium"
     >
-      {{ planPrice }}/{{ translator('mo') }}
+      {{ planPrice }}/{{ translator().mo() }}
     </div>
   </div>
 </template>
-
-<style>
-  .billingLine {}
-</style>
