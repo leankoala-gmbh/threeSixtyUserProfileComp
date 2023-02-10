@@ -23,15 +23,15 @@ debugEcho('ProfileInfos UserData', props.userData)
 </script>
 
 <template>
-  <div v-if="!inactiveFields.includes('avatar') && (userData.avatar || userData.name)" class="tsxUp-grid-formRow items-center mb-6">
+  <div v-if="!inactiveFields.includes('avatar') && (userData.gravatar || userData.name)" class="tsxUp-grid-formRow items-center mb-6">
     <div>{{ translator().avatar() }}</div>
     <div>
       <div
-        v-if="userData.avatar"
+        v-if="userData.gravatar"
         class="h-40 w-40 rounded-full overflow-hidden flex items-center justify-center"
       >
         <img
-          :src="userData.avatar"
+          :src="userData.gravatar"
           alt="avatar"
           class="w-full"
         >
