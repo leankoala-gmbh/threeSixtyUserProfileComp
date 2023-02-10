@@ -27,7 +27,7 @@
   "currentPassword": "Current Password",
   "newPassword": "New Password",
   "newPasswordConfirm": "Confirm New Password",
-  "passwordMinLength8": "Password must be at least 8 characters long",
+  "passwordTooShort": "Password is too short",
   "passwordsNotMatch": "New Passwords do not match",
   "successChangePassword": "Your password has been successfully changed",
   "active": "Active",

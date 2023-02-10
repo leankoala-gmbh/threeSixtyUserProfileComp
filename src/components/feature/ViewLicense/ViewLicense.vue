@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ILicenses } from '@/types/general.interfaces'
+
 const plans = [
   {
     id: 'pro',
@@ -16,6 +18,16 @@ const plans = [
     description: 'Starting from $99.00/once'
   }
 ]
+const licenseData = ref<ILicenses|null>(null)
+
+const getLicenseData = async() => {
+  try {
+    const response = await useApiAbstraction().getLicenses()
+    licenseData.value = response
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <template>

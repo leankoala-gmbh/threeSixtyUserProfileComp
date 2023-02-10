@@ -11,8 +11,7 @@ const props = defineProps({
 
 const passwordForm = reactive<{[key: string]: string}>({
   currentPassword: '',
-  newPassword: '',
-  newPasswordRepeat: ''
+  newPassword: ''
 })
 
 const error = reactive<{current: string, new: string}>({
@@ -26,30 +25,18 @@ const canBeSaved = reactive<{current:boolean, new:boolean}>({
 })
 
 const checkCurrentPassword = () => {
-  const isValid = passwordForm.currentPassword.length >=8
+  const isValid = !!passwordForm.currentPassword.trim().length
   error.current = isValid
     ? ''
-    : translator('passwordMinLength8')
+    : translator('passwordTooShort')
   canBeSaved.current = isValid
 }
-
-const checkNewPasswordMatch = () => {
-  const isValid = passwordForm.newPassword.length >= 8 && passwordForm.newPassword === passwordForm.newPasswordRepeat
-  error.new = isValid
-    ? ''
-    : translator('passwordsNotMatch')
-  canBeSaved.new = isValid
-}
-
-const checkCanBeSaved = computed(() => {
-  return canBeSaved.current && canBeSaved.new
-})
 
 const successForm = ref(false)
 const errorMsgFromApi = ref<IApiError>()
 
 const submitPassword = async () => {
-  if (!canBeSaved) return
+  if (!canBeSaved.current ) return
   errorMsgFromApi.value = undefined
   try {
     await useApiAbstraction()
@@ -88,25 +75,13 @@ const submitPassword = async () => {
           v-model="passwordForm.newPassword"
           name="newPassword"
           type="password"
-          @input="checkNewPasswordMatch"
-        />
-      </div>
-      <div class="mb-6">
-        <label class="capitalize"> {{ translator('newPasswordConfirm') }}</label>
-        <FormInput
-          id="newPasswordRepeat"
-          v-model="passwordForm.newPasswordRepeat"
-          name="newPasswordRepeat"
-          type="password"
-          :error-string="error.new"
-          @input="checkNewPasswordMatch"
         />
       </div>
       <ApiError class="mb-4" :error-obj="errorMsgFromApi" />
       <div>
         <GeneralButton
           type="submit"
-          :is-disabled="!checkCanBeSaved"
+          :is-disabled="!canBeSaved.current "
         >
           {{ translator('save') }}
         </GeneralButton>

@@ -14,8 +14,9 @@ const api = useApiAbstraction()
 
 const getInitialConsent = async () => {
   try {
-    const { enabled } = await api.getConsent()
-    savedConsent.value = enabled
+    const res = await api.getConsent()
+    console.log('enabled', res)
+    savedConsent.value = res
   } catch (e) {
     console.error(e)
   }

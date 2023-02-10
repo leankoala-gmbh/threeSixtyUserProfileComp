@@ -54,7 +54,7 @@ export const handlers = [
       })
     )
   }),
-  rest.delete(`${base}/user`, (req, res, ctx) => {
+  rest.delete(`${base}/user/delete`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -85,7 +85,6 @@ export const handlers = [
     )
   }),
   rest.post(`${base}/profile/change-password`, (req, res, ctx) => {
-    console.log('hello')
     return res(
       ctx.status(409),
       ctx.json({ 'type':'https://symfony.com/errors/validation', 'title':'Validation Failed', 'detail':'password: Password must be at least 8 characters and contain lowercase and uppercase letters, numbers and special characters\npassword: This password has been leaked in a data breach, it must not be used. Please use another password.', 'violations':[{ 'propertyPath':'password', 'title':'Password must be at least 8 characters and contain lowercase and uppercase letters, numbers and special characters', 'parameters':[]}, { 'propertyPath':'password', 'title':'This password has been leaked in a data breach, it must not be used. Please use another password.', 'parameters':[], 'type':'urn:uuid:d9bcdbfe-a9d6-4bfa-a8ff-da5fd93e0f6d' }]})
@@ -95,7 +94,7 @@ export const handlers = [
       // })
     )
   }),
-  rest.post(`${base}/consent/set`, (req, res, ctx) => {
+  rest.post(`${base}/consent/setee`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -104,7 +103,7 @@ export const handlers = [
       })
     )
   }),
-  rest.get(`${base}/consent/get`, (req, res, ctx) => {
+  rest.get(`${base}/consent/getee`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

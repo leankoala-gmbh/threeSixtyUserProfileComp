@@ -10,7 +10,6 @@ const errorHandler = (error: unknown) => {
 
 const getBaseUrl = computed(() => {
   const overrideApiUrl: undefined | string = inject('overrideBaseApiUrl')
-  console.log('sdfsdf', overrideApiUrl)
   return overrideApiUrl || window.location.origin
 })
 
@@ -77,12 +76,11 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const removeAccount = async (password: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/user`, { password }, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/user/delete`, { password }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
-
 
   const setProfile = async (profile: IProfile) : Promise<void> => {
     guardUrl()
@@ -113,13 +111,14 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
       errorHandler(error)
     }
   }
-  const getConsent = async() : Promise<{enabled: boolean}> => {
+  const getConsent = async() : Promise<boolean> => {
     guardUrl()
     try {
-      return await axios.get(`${getBaseUrl.value}/consent/get`, { withCredentials: true })
+      const res = await axios.get(`${getBaseUrl.value}/consent/get`, { withCredentials: true })
+      return res.data.enabled || false
     } catch (error: unknown) {
       errorHandler(error)
-      return {} as {enabled: boolean}
+      return false
     }
   }
 
