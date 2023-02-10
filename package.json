@@ -17,6 +17,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "devall": "npm-run-all --parallel dev typesafe-i18n",
+    "typesafe-i18n": "typesafe-i18n",
     "build": "vite build",
     "preview": "vite build && vite preview",
     "start": "yarn dev & wait-on tcp:3000 -v",
