@@ -9,7 +9,7 @@ interface ILocales {
 
 const currentLanguage = ref<string>('en')
 
-export function translator (key: string) : string {
+export function translatorOld (key: string) : string {
   const translations: ILocales = locales()
   const languageSpectrum = Object.keys(translations)
   if (languageSpectrum.includes(currentLanguage.value)) {

@@ -87,7 +87,7 @@ const planList = computed(() => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ plan.id === current ? translator('yourCurrentPlan') : plan.description }}
+                {{ plan.id === current ? translator().yourCurrentPlan() : plan.description }}
               </span>
               {{ ' ' }}
             </RadioGroupDescription>

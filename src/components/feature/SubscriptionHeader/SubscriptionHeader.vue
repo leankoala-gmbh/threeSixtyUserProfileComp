@@ -44,13 +44,13 @@ const planPrice = computed(() => {
             {{ subscriptionDetail.planName }}
           </h3>
           <SimpleLabel :type="subscriptionDetail.status">
-            {{ translator(subscriptionDetail.status) }}
+            {{ translator()[`${subscriptionDetail.status}`]() }}
           </SimpleLabel>
         </div>
         <div class="flex items-center justify-between">
           <div>
             <span class="mr-1 text-gray-500">
-              {{ translator(`${subscriptionDetail.status}DateText`) }}
+              {{ translator()[`${subscriptionDetail.status}DateText`]() }}
             </span>
             <span>{{ planDate }}</span>
           </div>
@@ -58,7 +58,7 @@ const planPrice = computed(() => {
             v-if="subscriptionDetail.status ==='active'"
             class="font-medium"
           >
-            {{ planPrice }}/{{ translator('mo') }}
+            {{ planPrice }}/{{ translator().mo() }}
           </div>
         </div>
       </div>
@@ -78,14 +78,14 @@ const planPrice = computed(() => {
       class="flex items-center justify-between px-4 py-4"
     >
       <h3 class="font-medium text-base">
-        {{ subscriptionDetail.planName }} {{ translator('subscriptionDetails') }}
+        {{ subscriptionDetail.planName }} {{ translator().subscriptionDetails() }}
       </h3>
 
       <GeneralButton
         variant="ghost"
         @click="emit('headerEvent', false)"
       >
-        {{ translator('Close') }}
+        {{ translator().close() }}
       </GeneralButton>
     </div>
   </div>

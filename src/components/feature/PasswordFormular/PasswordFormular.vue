@@ -28,7 +28,7 @@ const checkCurrentPassword = () => {
   const isValid = !!passwordForm.currentPassword.trim().length
   error.current = isValid
     ? ''
-    : translator('passwordTooShort')
+    : translator().passwordTooShort()
   canBeSaved.current = isValid
 }
 
@@ -54,11 +54,11 @@ const submitPassword = async () => {
 <template>
   <div class="passwordFormular">
     <StatusMessage v-if="successForm" class="mb-4">
-      {{ translator('successChangePassword') }}
+      {{ translator().successChangePassword() }}
     </StatusMessage>
     <form @submit.prevent="submitPassword">
       <div class="mb-6">
-        <label class="capitalize">{{ translator('currentPassword') }}</label>
+        <label class="capitalize">{{ translator().currentPassword() }}</label>
         <FormInput
           id="currentPassword"
           v-model="passwordForm.currentPassword"
@@ -69,7 +69,7 @@ const submitPassword = async () => {
         />
       </div>
       <div class="mb-6">
-        <label class="capitalize">{{ translator('newPassword') }}</label>
+        <label class="capitalize">{{ translator().newPassword() }}</label>
         <FormInput
           id="newPassword"
           v-model="passwordForm.newPassword"
@@ -83,7 +83,7 @@ const submitPassword = async () => {
           type="submit"
           :is-disabled="!canBeSaved.current "
         >
-          {{ translator('save') }}
+          {{ translator().save() }}
         </GeneralButton>
       </div>
     </form>
