@@ -12,7 +12,7 @@ export interface IProfileUser {
   sessionToken?: string
 }
 
-export interface ILicenses {
+export interface ILicensesDetails {
   keyId: string
   keyNumber: string
   status: string
@@ -28,6 +28,9 @@ export interface ILicenses {
   changePaymentSubscriptionUrl: string
   websites: ILicensesServers
   servers: ILicensesServers
+}
+export interface ILicenses {
+  [key: string]: ILicensesDetails[]
 }
 
 export interface ILicensesServers {
@@ -53,7 +56,7 @@ export interface IApiError {
 export type TPlanStatus = 'active' | 'canceled'
 
 export interface ISubscriptionHeaderDetails {
-  status: TPlanStatus
+  status: string
   planName: string
   price?: number
   date: string

@@ -82,5 +82,4 @@
   --tsxup-ps-bullet-checked-bg: var(--tsxup-primary);
   --tsxup-ps-bullet-unchecked-bg: var(--tsxup-brightest);
   --tsxup-ps-bullet-unchecked-border: var(--tsxup-darkest-light);
-  --tsxup-ps-bullet-disabled-border: var(--tsxup-darkest-mid);
 }

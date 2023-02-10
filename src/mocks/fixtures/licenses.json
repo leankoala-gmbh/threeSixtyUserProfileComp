@@ -48,5 +48,30 @@
       "min": 1,
       "max": 1000
     }
+  },
+  {
+    "keyId": "955343dfd8",
+    "keyNumber": "EXT.09553438.0010ssd",
+    "activationCode": "A00N00-7RHN09-HAAK55-K12934-MX8438",
+    "status": "canceled",
+    "createDate": "2022-06-20T00:00:00+00:00",
+    "nextBillingDate": "2023-02-01T00:00:00+00:00",
+    "type": "haha",
+    "renewalCostNet": 9.94,
+    "renewalCostVat": 2.09,
+    "renewalCostGross": 12.03,
+    "renewalCurrency": "EUR",
+    "billingPeriod": "1m",
+    "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
+    "websites": {
+      "count": 20,
+      "min": 20,
+      "max": 10000
+    },
+    "servers": {
+      "count": 6,
+      "min": 1,
+      "max": 1000
+    }
   }
 ]

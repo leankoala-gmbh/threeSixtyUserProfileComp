@@ -22,27 +22,37 @@ const licenseData = ref<ILicenses|null>(null)
 
 const getLicenseData = async() => {
   try {
-    const response = await useApiAbstraction().getLicenses()
-    licenseData.value = response
+    licenseData.value = await useApiAbstraction().getLicenses()
   } catch (error) {
     console.error(error)
   }
 }
+
+onMounted(() => {
+  getLicenseData()
+})
 </script>
 
 <template>
   <div class="viewLicense">
-    <PaymentMethod
-      class="mb-4"
-      provider="visa"
-      details="visa xxxxxxxxx3232 11/27"
-    >
-      hello
-    </PaymentMethod>
     <PlanSelector
       :plans="plans"
       current="pro"
     />
-    <SubscriptionOverview />
+
+    <template v-if="licenseData">
+      <div v-for="([key, group]) in Object.entries(licenseData)" :key="key">
+        <h3 class="text-lg font-semibold mb-2">
+          {{ key }}
+        </h3>
+        <SubscriptionPlan
+          v-for="(plan, index) in group"
+          :key="index"
+          class="mb-4"
+          :status="key"
+          :plan="plan"
+        />
+      </div>
+    </template>
   </div>
 </template>

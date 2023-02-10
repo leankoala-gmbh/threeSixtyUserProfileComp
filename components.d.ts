@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AnnotationBox: typeof import('./src/components/pure/AnnotationBox/AnnotationBox.vue')['default']
     ApiError: typeof import('./src/components/base/ApiError/ApiError.vue')['default']
+    BillingLine: typeof import('./src/components/feature/BillingLine/BillingLine.vue')['default']
+    'BillingLine.story': typeof import('./src/components/feature/BillingLine/BillingLine.story.vue')['default']
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
@@ -35,6 +37,8 @@ declare module '@vue/runtime-core' {
     SimpleLabel: typeof import('./src/components/pure/SimpleLabel/SimpleLabel.vue')['default']
     'SimpleLabel.story': typeof import('./src/components/pure/SimpleLabel/SimpleLabel.story.vue')['default']
     StatusMessage: typeof import('./src/components/base/StatusMessage/StatusMessage.vue')['default']
+    SubscriptionDetails: typeof import('./src/components/feature/SubscriptionDetails/SubscriptionDetails.vue')['default']
+    'SubscriptionDetails.story': typeof import('./src/components/feature/SubscriptionDetails/SubscriptionDetails.story.vue')['default']
     SubscriptionHeader: typeof import('./src/components/feature/SubscriptionHeader/SubscriptionHeader.vue')['default']
     'SubscriptionHeader.story': typeof import('./src/components/feature/SubscriptionHeader/SubscriptionHeader.story.vue')['default']
     SubscriptionOverview: typeof import('./src/components/feature/SubscriptionOverview/SubscriptionOverview.vue')['default']

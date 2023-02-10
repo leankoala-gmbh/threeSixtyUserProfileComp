@@ -14,15 +14,6 @@ const props = defineProps({
   }
 })
 
-const planDate = computed(() => {
-  return useLocalHelper().displayDate(props.subscriptionDetail.date)
-})
-
-const planPrice = computed(() => {
-  if (!props.subscriptionDetail.price) return ''
-  const { price, currency } = props.subscriptionDetail
-  return useLocalHelper().displayPrice(price, currency)
-})
 </script>
 
 <template>
@@ -35,7 +26,7 @@ const planPrice = computed(() => {
       class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5 cursor-pointer"
       @click="emit('headerEvent', true)"
     >
-      <div>
+      <div class="w-full">
         <div class="flex gap-2 items-center mb-2">
           <h3
             class="font-medium text-base"
@@ -47,20 +38,13 @@ const planPrice = computed(() => {
             {{ translator(subscriptionDetail.status) }}
           </SimpleLabel>
         </div>
-        <div class="flex items-center justify-between">
-          <div>
-            <span class="mr-1 text-gray-500">
-              {{ translator(`${subscriptionDetail.status}DateText`) }}
-            </span>
-            <span>{{ planDate }}</span>
-          </div>
-          <div
-            v-if="subscriptionDetail.status ==='active'"
-            class="font-medium"
-          >
-            {{ planPrice }}/{{ translator('mo') }}
-          </div>
-        </div>
+        <BillingLine
+          class="pr-4"
+          :date="subscriptionDetail.date"
+          :status="subscriptionDetail.status"
+          :price="subscriptionDetail.price"
+          :currency="subscriptionDetail.currency"
+        />
       </div>
       <div class="w-10 h-10 flex items-center justify-center text-gray-500">
         <svg

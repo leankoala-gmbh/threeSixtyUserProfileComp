@@ -1,4 +1,4 @@
-import type { IProfile, ILicenses } from '@/types/general.schema'
+import type { IProfileUser, ILicenses } from '@/types/general.interfaces'
 import axios from 'axios'
 
 const errorHandler = (error: unknown) => {
@@ -21,7 +21,13 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      return await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
+      const { data } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
+      return data.reduce((acc: any, license: any) => {
+        const { status } = license
+        if (!acc[status]) { acc[status] = [] }
+        acc[status].push(license)
+        return acc
+      }, {})
     } catch (error: unknown) {
       errorHandler(error)
       return {} as ILicenses
@@ -82,7 +88,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const setProfile = async (profile: IProfile) : Promise<void> => {
+  const setProfile = async (profile: IProfileUser) : Promise<void> => {
     guardUrl()
     try {
       await axios.put(`${getBaseUrl.value}/profile`, profile, { withCredentials: true })
