@@ -9,7 +9,7 @@ const emit = defineEmits(['close'])
       variant="ghost"
       @click="emit('close')"
     >
-      {{ translator('close') }}
+      {{ t('close') }}
     </GeneralButton>
   </div>
 </template>

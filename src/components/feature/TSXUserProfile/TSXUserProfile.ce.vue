@@ -54,22 +54,21 @@ onMounted(() => {
   // checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
+
 </script>
 
 <template>
-  <I18nHost>
-    <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
-      {{ translator('test' , {n: 299}) }}
-      <ViewProfile
-        v-if="view === 'profile'"
-        :user-data="userDataObj"
-        :inactive-fields="inactiveFieldsArr"
-      />
-      <ViewLicense
-        v-if="view === 'license'"
-      />
-    </div>
-  </I18nHost>
+  <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
+    {{ t('test' , {n: '299', m: '2w'}) }}
+    <ViewProfile
+      v-if="view === 'profile'"
+      :user-data="userDataObj"
+      :inactive-fields="inactiveFieldsArr"
+    />
+    <ViewLicense
+      v-if="view === 'license'"
+    />
+  </div>
 </template>
 
 <style lang="postcss">

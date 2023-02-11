@@ -35,7 +35,7 @@ const props = defineProps({
             {{ subscriptionDetail.planName }}
           </h3>
           <SimpleLabel :type="subscriptionDetail.status">
-            {{ translator(subscriptionDetail.status) }}
+            {{ t(subscriptionDetail.status) }}
           </SimpleLabel>
         </div>
         <BillingLine
@@ -62,14 +62,14 @@ const props = defineProps({
       class="flex items-center justify-between px-4 py-4"
     >
       <h3 class="font-medium text-base">
-        {{ subscriptionDetail.planName }} {{ translator('subscriptionDetails') }}
+        {{ subscriptionDetail.planName }} {{ t('subscriptionDetails') }}
       </h3>
 
       <GeneralButton
         variant="ghost"
         @click="emit('headerEvent', false)"
       >
-        {{ translator('close') }}
+        {{ t('close') }}
       </GeneralButton>
     </div>
   </div>

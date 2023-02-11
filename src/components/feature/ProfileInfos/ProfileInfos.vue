@@ -23,8 +23,11 @@ debugEcho('ProfileInfos UserData', props.userData)
 </script>
 
 <template>
-  <div v-if="!inactiveFields.includes('avatar') && (userData.gravatar || userData.name)" class="tsxUp-grid-formRow items-center mb-6">
-    <div>{{ translator('avatar') }}</div>
+  <div
+    v-if="!inactiveFields.includes('avatar') && (userData.gravatar || userData.name)"
+    class="tsxUp-grid-formRow items-center mb-6"
+  >
+    <div>{{ t('avatar') }}</div>
     <div>
       <div
         v-if="userData.gravatar"
@@ -50,7 +53,7 @@ debugEcho('ProfileInfos UserData', props.userData)
     v-if="!inactiveFields.includes('email') && userData.email?.length"
     class="tsxUp-grid-formRow items-center mb-6"
   >
-    <div>{{ translator('email') }}</div>
+    <div>{{ t('email') }}</div>
     <div class="font-medium">
       {{ userData.email }}
     </div>

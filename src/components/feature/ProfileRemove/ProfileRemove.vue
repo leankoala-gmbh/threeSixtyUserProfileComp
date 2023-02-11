@@ -24,10 +24,10 @@ watch(() => props.open, () => {
       <div class="flex justify-between" @click="isOpen = true">
         <div>
           <div class="text-base font-medium mb-2">
-            {{ translator('removeAccount') }}
+            {{ t('removeAccount') }}
           </div>
           <p class="text-sm text-gray-600">
-            {{ translator('removeAccountBody') }}
+            {{ t('removeAccountBody') }}
           </p>
         </div>
 
@@ -50,7 +50,7 @@ watch(() => props.open, () => {
       class="my-1"
       @close="isOpen = false"
     >
-      {{ translator('removeAccount') }}
+      {{ t('removeAccount') }}
     </ProfileBoxHeader>
     <template #body>
       <AnnotationBox type="error">
@@ -66,9 +66,9 @@ watch(() => props.open, () => {
           </div>
           <div class="text-justify px-4">
             <div class="font-bold mb-2">
-              {{ translator('removeAccountAnnotationTitle') }}
+              {{ t('removeAccountAnnotationTitle') }}
             </div>
-            {{ translator('removeAccountAnnotationContent') }}
+            {{ t('removeAccountAnnotationContent') }}
           </div>
         </div>
       </AnnotationBox>

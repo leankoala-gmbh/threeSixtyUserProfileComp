@@ -10,7 +10,7 @@ const canBeRemoved = ref(true)
 
 const checkPassword = () => {
   const isValid = password.value.length === 0
-  error.value = isValid ? translator('emptyError') : ''
+  error.value = isValid ? t('emptyError') : ''
   canBeRemoved.value = isValid
 }
 
@@ -30,7 +30,7 @@ const handleRemove = async () => {
   <div class="removeAccountFormular">
     <div class="my-6">
       <div class="mt-6 mb-2">
-        {{ translator('enterPasswordConfirmRemove') }}
+        {{ t('enterPasswordConfirmRemove') }}
       </div>
       <FormInput
         v-model="password"
@@ -45,7 +45,7 @@ const handleRemove = async () => {
       :is-disabled="canBeRemoved"
       @click="handleRemove"
     >
-      {{ translator('removeAccountButton') }}
+      {{ t('removeAccountButton') }}
     </GeneralButton>
   </div>
 </template>

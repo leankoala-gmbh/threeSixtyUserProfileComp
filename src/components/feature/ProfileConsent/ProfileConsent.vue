@@ -27,7 +27,7 @@ onMounted(() => {
 })
 
 const consentConfirm = computed(() => {
-  return savedConsent.value ? translator('consentSuccess') : translator('consentRevoke')
+  return savedConsent.value ? t('consentSuccess') : t('consentRevoke')
 })
 
 const disabledCheckbox = ref(false)
@@ -83,8 +83,8 @@ watch(() => savedConsent.value, () => {
           >
         </div>
         <div>
-          <h3 class="font-medium mb-2 text-base">{{ translator('consentHeadline') }}</h3>
-          <p class="text-gray-600 text-sm">{{ translator('consentBody') }}</p>
+          <h3 class="font-medium mb-2 text-base">{{ t('consentHeadline') }}</h3>
+          <p class="text-gray-600 text-sm">{{ t('consentBody') }}</p>
         </div>
       </label>
       <ApiError class="mt-4" :error-obj="errorMsgFromApi" />

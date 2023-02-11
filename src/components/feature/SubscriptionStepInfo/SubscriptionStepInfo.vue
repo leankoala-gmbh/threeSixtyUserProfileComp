@@ -27,7 +27,7 @@ const props = defineProps({
         {{ plan.type }}
       </h3>
       <SimpleLabel :type="status">
-        {{ translator(status) }}
+        {{ t(status) }}
       </SimpleLabel>
     </div>
     <BillingLine

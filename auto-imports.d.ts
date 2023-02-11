@@ -63,10 +63,10 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const some: typeof import('./src/utils/index')['some']
+  const t: typeof import('./src/composables/translateHelper')['t']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
-  const translator: typeof import('./src/composables/translateHelper')['translator']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useApiAbstraction: typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']
@@ -153,10 +153,10 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly some: UnwrapRef<typeof import('./src/utils/index')['some']>
+    readonly t: UnwrapRef<typeof import('./src/composables/translateHelper')['t']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
-    readonly translator: UnwrapRef<typeof import('./src/composables/translateHelper')['translator']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useApiAbstraction: UnwrapRef<typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']>
