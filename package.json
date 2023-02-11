@@ -1,6 +1,6 @@
 {
   "name": "@webpros/tsxuserprofile",
-  "description": "A component for managing user specific data",
+  "description": "WebComponent for managing user profile and license",
   "main": "dist/index.js",
   "author": "Sascha Fuchs <sascha.fuchs@webpros.com>",
   "license": "MIT",
