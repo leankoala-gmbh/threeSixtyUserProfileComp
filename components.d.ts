@@ -14,6 +14,8 @@ declare module '@vue/runtime-core' {
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
+    'I18nHost.ce': typeof import('./src/components/base/I18nHost/I18nHost.ce.vue')['default']
+    'I18nHost.story': typeof import('./src/components/base/I18nHost/I18nHost.story.vue')['default']
     NamingFormular: typeof import('./src/components/feature/NamingFormular/NamingFormular.vue')['default']
     PasswordFormular: typeof import('./src/components/feature/PasswordFormular/PasswordFormular.vue')['default']
     PaymentMethod: typeof import('./src/components/feature/PaymentMethod/PaymentMethod.vue')['default']

@@ -55,18 +55,18 @@ const successForm = (payload: {firstName: string, familyName: string}) => {
         </div>
       </div>
       <GeneralButton variant="ghost" @click="isOpen = true">
-        {{ translator().edit() }}
+        {{ translator('edit') }}
       </GeneralButton>
     </div>
     <ProfileBoxHeader v-else @close="isOpen = false">
-      {{ translator().editPersonalInformation() }}
+      {{ translator('editPersonalInformation') }}
     </ProfileBoxHeader>
     <template #body>
       <StatusMessage
         v-if="formSuccess"
         class="mb-4"
       >
-        {{ translator().successPersonalInformation() }}
+        {{ translator('successPersonalInformation') }}
       </StatusMessage>
       <ProfileAvatar :user-data="userData" class="mb-6" />
       <NamingFormular

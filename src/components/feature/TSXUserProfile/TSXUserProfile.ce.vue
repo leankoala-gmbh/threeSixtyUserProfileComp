@@ -4,15 +4,6 @@ import 'container-query-polyfill'
 import mitt from 'mitt'
 import { onMounted } from 'vue'
 import { IProfileUser } from '@/types/general.interfaces'
-import { Locales } from '@/i18n/i18n-types'
-import { loadLocaleAsync } from '@/i18n/i18n-util.async'
-import { typesafeI18n } from '@/i18n/i18n-vue'
-
-const { setLocale, locale } = typesafeI18n()
-const chooseLocale = async(locale:Locales) =>{
-  await loadLocaleAsync(locale)
-  setLocale(locale)
-}
 
 type TViewTypes = 'profile' | 'license'
 
@@ -60,23 +51,25 @@ const cookies = useCookies(['locale'])
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
-  chooseLocale(cookieLang || props.currentLanguage)
   // checkRoute()
   debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
 </script>
 
 <template>
-  <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
-    <ViewProfile
-      v-if="view === 'profile'"
-      :user-data="userDataObj"
-      :inactive-fields="inactiveFieldsArr"
-    />
-    <ViewLicense
-      v-if="view === 'license'"
-    />
-  </div>
+  <I18nHost>
+    <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
+      {{ translator('test' , {n: 299}) }}
+      <ViewProfile
+        v-if="view === 'profile'"
+        :user-data="userDataObj"
+        :inactive-fields="inactiveFieldsArr"
+      />
+      <ViewLicense
+        v-if="view === 'license'"
+      />
+    </div>
+  </I18nHost>
 </template>
 
 <style lang="postcss">

@@ -24,7 +24,7 @@ const updateTimezone = (event: string) => {
   >
     <div class="p-6">
       <div class="text-base font-medium mb-4">
-        {{ translator().timezone() }}
+        {{ translator('timezone') }}
       </div>
       <div class="smoothGridBox">
         <Timezone

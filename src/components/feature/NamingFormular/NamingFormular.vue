@@ -43,7 +43,7 @@ const submitName = async () => {
 <template>
   <form class="namingFormular" @submit.prevent="submitName">
     <div class="mb-6">
-      <label class="mb-1 block text-sm">{{ translator().firstName() }}</label>
+      <label class="mb-1 block text-sm">{{ translator('firstName') }}</label>
       <FormInput
         v-model="namingForm.firstName"
         name="firstname"
@@ -51,7 +51,7 @@ const submitName = async () => {
       />
     </div>
     <div class="mb-6">
-      <label class="mb-1 block">{{ translator().lastName() }}</label>
+      <label class="mb-1 block">{{ translator('lastName') }}</label>
       <FormInput
         v-model="namingForm.familyName"
         name="familyName"
@@ -64,7 +64,7 @@ const submitName = async () => {
         variant="regular"
         type="submit"
       >
-        {{ translator().save() }}
+        {{ translator('save') }}
       </GeneralButton>
     </div>
   </form>

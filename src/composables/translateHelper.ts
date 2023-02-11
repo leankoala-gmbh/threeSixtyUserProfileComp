@@ -9,11 +9,15 @@ interface ILocales {
 
 const currentLanguage = ref<string>('en')
 
-export function translatorOld (key: string) : string {
+export function translator (key: string, dynamicVars : null|{[key: string]: string} = null) : string {
   const translations: ILocales = locales()
   const languageSpectrum = Object.keys(translations)
+
   if (languageSpectrum.includes(currentLanguage.value)) {
-    return translations[currentLanguage.value][key] || key
+    const translationString = translations[currentLanguage.value][key]
+    if (!translationString) return key
+    if (!dynamicVars) return translationString
+    return translationString.replace(/{([^}]+)}/g, (match, rkey) => dynamicVars[rkey] || match)
   }
   return key
 }

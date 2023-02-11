@@ -19,7 +19,6 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getLanguage: typeof import('./src/composables/translateHelper')['getLanguage']
-  const getTranslatorLocale: typeof import('./src/utils/translatorUse')['getTranslatorLocale']
   const groupBy: typeof import('./src/utils/index')['groupBy']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
@@ -67,8 +66,7 @@ declare global {
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
-  const translator: typeof import('./src/utils/translatorUse')['translator']
-  const translatorOld: typeof import('./src/composables/translateHelper')['translatorOld']
+  const translator: typeof import('./src/composables/translateHelper')['translator']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useApiAbstraction: typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']
@@ -111,7 +109,6 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getLanguage: UnwrapRef<typeof import('./src/composables/translateHelper')['getLanguage']>
-    readonly getTranslatorLocale: UnwrapRef<typeof import('./src/utils/translatorUse')['getTranslatorLocale']>
     readonly groupBy: UnwrapRef<typeof import('./src/utils/index')['groupBy']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -159,8 +156,7 @@ declare module 'vue' {
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
-    readonly translator: UnwrapRef<typeof import('./src/utils/translatorUse')['translator']>
-    readonly translatorOld: UnwrapRef<typeof import('./src/composables/translateHelper')['translatorOld']>
+    readonly translator: UnwrapRef<typeof import('./src/composables/translateHelper')['translator']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useApiAbstraction: UnwrapRef<typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']>
