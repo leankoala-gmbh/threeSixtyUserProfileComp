@@ -37,6 +37,5 @@
   "canceledDateText": "Canceled since",
   "mo": "mo",
   "subscriptionDetails": "subscription details",
-  "yourCurrentPlan": "Your current plan",
-  "test": "This is a test with {n} Variable {m} Variable"
+  "yourCurrentPlan": "Your current plan"
 }
