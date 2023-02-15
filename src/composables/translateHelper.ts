@@ -1,6 +1,4 @@
 import locales from '@/locales/loader'
-import { LooseOnionString } from '@/types/general.interfaces'
-import { TLocaleKeys } from '@/types/localeKeys'
 import { ref } from 'vue'
 
 interface ILocales {
@@ -11,7 +9,7 @@ interface ILocales {
 
 const currentLanguage = ref<string>('en')
 
-export function t (key: TLocaleKeys, dynamicVars : null|{[key: string]: string} = null) : string {
+export function t (key: string, dynamicVars : null|{[key: string]: string} = null) : string {
   const translations: ILocales = locales()
   const languageSpectrum = Object.keys(translations)
 
