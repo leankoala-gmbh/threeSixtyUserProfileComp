@@ -66,7 +66,8 @@ export interface ISubscriptionHeaderDetails {
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'
 
 export interface IPlanSelector {
-  id: string
   name: string
-  description: string
+  price: number
+  currency: string
+  interval: string
 }

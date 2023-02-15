@@ -1,0 +1,20 @@
+[
+  {
+    "name": "professional",
+    "price": 55.00,
+    "currency": "USD",
+    "interval": "month"
+  },
+  {
+    "name": "business",
+    "price": 77.00,
+    "currency": "USD",
+    "interval": "month"
+  },
+  {
+    "name": "enterprise",
+    "price": 99.00,
+    "currency": "USD",
+    "interval": "month"
+  }
+]

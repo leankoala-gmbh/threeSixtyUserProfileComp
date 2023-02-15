@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
 
 const props = defineProps({
   status: {
@@ -24,6 +24,24 @@ const subscriptionDetails = computed(() => {
     currency: props.plan.renewalCurrency
   }
 })
+
+const selectedPlan = ref<null|IPlanSelector>(null)
+const boxOpenHeader = ref<string>('')
+
+watchEffect(() => {
+  if (!isOpen.value) {
+    currentStep.value = 'info'
+    boxOpenHeader.value = ''
+  }
+})
+
+watchEffect(() => {
+  if (['confirm', 'cancel'].includes(currentStep.value)) {
+    boxOpenHeader.value = currentStep.value
+  } else {
+    boxOpenHeader.value = ''
+  }
+})
 </script>
 
 <template>
@@ -34,6 +52,7 @@ const subscriptionDetails = computed(() => {
     <SubscriptionHeader
       :closed-header="!isOpen"
       :subscription-detail="subscriptionDetails"
+      :override-header-step="boxOpenHeader"
       @header-event="isOpen = $event"
     />
     <template #body>
@@ -46,12 +65,20 @@ const subscriptionDetails = computed(() => {
         />
         <SubscriptionStepChange
           v-if="status === 'active' && currentStep === 'change'"
+          :status="status"
+          :plan="plan"
+          @trigger="currentStep = $event"
+          @selected-plan="selectedPlan = $event"
         />
         <SubscriptionStepConfirm
           v-if="status === 'active' && currentStep === 'confirm'"
+          :status="status"
+          :plan="plan"
         />
         <SubscriptionStepCancel
           v-if="status === 'active' && currentStep === 'cancel'"
+          :status="status"
+          :plan="plan"
         />
       </div>
     </template>

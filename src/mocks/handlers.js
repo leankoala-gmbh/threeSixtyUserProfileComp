@@ -1,12 +1,27 @@
 import { rest } from 'msw'
 import licensesData from './fixtures/licenses.json'
+import plansData from './fixtures/plans.json'
 
 const base = 'https://app.stage.360monitoring.com' //window.location.origin
 
 export const handlers = [
+  rest.get(`${base}/license/getPlans`, (req, res, ctx) => {
+    return res(
+      ctx.json(plansData)
+    )
+  }),
   rest.get(`${base}/license/`, (req, res, ctx) => {
     return res(
       ctx.json(licensesData)
+    )
+  }),
+  rest.get(`${base}/license/properties`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        properties: 10,
+        maxProperties: 10
+      })
     )
   }),
   rest.post(`${base}/license/upgrade-plan`, (req, res, ctx) => {
@@ -54,6 +69,7 @@ export const handlers = [
       })
     )
   }),
+  // Profile Endpoints
   rest.delete(`${base}/user/delete`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -94,7 +110,7 @@ export const handlers = [
       // })
     )
   }),
-  rest.post(`${base}/consent/setee`, (req, res, ctx) => {
+  rest.post(`${base}/consent/set`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -103,7 +119,7 @@ export const handlers = [
       })
     )
   }),
-  rest.get(`${base}/consent/getee`, (req, res, ctx) => {
+  rest.get(`${base}/consent/get`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

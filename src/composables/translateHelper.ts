@@ -1,4 +1,5 @@
 import locales from '@/locales/loader'
+import { LooseOnionString } from '@/types/general.interfaces'
 import { TLocaleKeys } from '@/types/localeKeys'
 import { ref } from 'vue'
 

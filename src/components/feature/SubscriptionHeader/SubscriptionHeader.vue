@@ -11,9 +11,28 @@ const props = defineProps({
   subscriptionDetail: {
     type: Object as () => ISubscriptionHeaderDetails,
     required: true
+  },
+  headerOverride: {
+    type: String,
+    default: ''
+  },
+  overrideHeaderStep: {
+    type: String,
+    default: ''
   }
 })
 
+const headerDict: {[key: string]: string} = {
+  default: `${props.subscriptionDetail.planName } ${ t('subscriptionDetails') }`,
+  confirm: t('confirmPlanChange'),
+  cancel: t('cancelSubscription')
+}
+
+const headline = ref(headerDict.default)
+
+watchEffect(() => {
+  headline.value = headerDict[props.overrideHeaderStep] || headerDict.default
+})
 </script>
 
 <template>
@@ -62,7 +81,7 @@ const props = defineProps({
       class="flex items-center justify-between px-4 py-4"
     >
       <h3 class="font-medium text-base">
-        {{ subscriptionDetail.planName }} {{ t('subscriptionDetails') }}
+        {{ headerDict[overrideHeaderStep] || headerDict.default }}
       </h3>
 
       <GeneralButton

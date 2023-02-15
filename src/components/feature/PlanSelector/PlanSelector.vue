@@ -2,6 +2,8 @@
 import { IPlanSelector } from '@/types/general.interfaces'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
+const emit = defineEmits(['updatePlan'])
+
 const props = defineProps({
   plans: {
     type: Array as () => IPlanSelector[],
@@ -9,18 +11,19 @@ const props = defineProps({
   },
   current: {
     type: String,
-    default: ''
+    default: 'pro'
   }
 })
 
 const planDisabledMatrix: {[key: string]: string[]} = {
-  pro: [],
-  business: ['pro'],
-  enterprise: ['pro', 'business']
+  DEFAULT: [],
+  professional: [],
+  business: ['professional'],
+  enterprise: ['professional', 'business']
 }
 
 const disabledEntries = computed(() => {
-  return planDisabledMatrix[props.current]
+  return planDisabledMatrix[props.current] || planDisabledMatrix.DEFAULT
 })
 
 const selected = ref<IPlanSelector>()
@@ -31,7 +34,20 @@ const disabledPlan = (id: string) => {
 }
 
 const planList = computed(() => {
-  return props.plans.filter((plan) => !disabledEntries.value.find(val => val ===plan.id))
+  console.log('sdfsdf', props.plans)
+  return props.plans.filter((plan) => {
+    return !disabledEntries.value.find(val => val === plan.name )
+  })
+})
+
+const planDetails = (currentPlan: IPlanSelector) => {
+  const plan = props.plans.find((plan) => plan.name === currentPlan.name)
+  if (!plan) return ''
+  return useLocalHelper().displayPrice(plan?.price, plan?.currency)
+}
+
+watch(() => selected.value, (val) => {
+  emit('updatePlan', selected.value)
 })
 </script>
 
@@ -41,11 +57,11 @@ const planList = computed(() => {
       <div class="planSelector__base relative -space-y-px rounded-md overflow-hidden">
         <RadioGroupOption
           v-for="(plan, planIdx) in planList"
-          :key="plan.id"
+          :key="planIdx"
           v-slot="{ checked, active, disabled }"
           as="template"
           :value="plan"
-          :disabled="disabledPlan(plan.id)"
+          :disabled="disabledPlan(plan.name)"
         >
           <div
             :class="[
@@ -76,7 +92,7 @@ const planList = computed(() => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ plan.name }}
+                {{ t(`planName${plan.name}`) }}
               </RadioGroupLabel>
             </span>
             <RadioGroupDescription
@@ -90,7 +106,7 @@ const planList = computed(() => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ plan.id === current ? t('yourCurrentPlan') : plan.description }}
+                {{ plan.name === current ? t('yourCurrentPlan') : planDetails(plan) }}
               </span>
               {{ ' ' }}
             </RadioGroupDescription>
