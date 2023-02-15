@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ILicensesDetails } from '@/types/general.interfaces'
+import { string } from 'zod'
 
 const emit = defineEmits(['trigger'])
 
@@ -37,13 +38,13 @@ const props = defineProps({
     />
     <div class="flex gap-2 items-center mb-6">
       <GeneralButton @click="emit('trigger', 'change')">
-        Change Plan
+        {{ t('changePlan') }}
       </GeneralButton>
       <GeneralButton
         variant="transparent"
         @click="emit('trigger', 'cancel')"
       >
-        Cancel subscription
+        {{ t('cancelSubscription') }}
       </GeneralButton>
     </div>
     <PaymentMethod

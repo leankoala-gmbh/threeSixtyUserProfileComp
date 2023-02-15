@@ -36,6 +36,17 @@ watchEffect(() => {
 })
 
 watchEffect(() => {
+  if (currentStep.value === 'buynow') {
+    console.log('buy now')
+    boxOpenHeader.value = ''
+    currentStep.value = 'info'
+    return
+  }
+  if (currentStep.value === 'cancelSubscription') {
+    console.log('cancel subscription')
+    boxOpenHeader.value = ''
+    return
+  }
   if (['confirm', 'cancel'].includes(currentStep.value)) {
     boxOpenHeader.value = currentStep.value
   } else {
@@ -74,11 +85,14 @@ watchEffect(() => {
           v-if="status === 'active' && currentStep === 'confirm'"
           :status="status"
           :plan="plan"
+          :selected-plan="selectedPlan?.name || ''"
+          @trigger="currentStep = $event"
         />
         <SubscriptionStepCancel
           v-if="status === 'active' && currentStep === 'cancel'"
           :status="status"
           :plan="plan"
+          @trigger="currentStep = $event"
         />
       </div>
     </template>

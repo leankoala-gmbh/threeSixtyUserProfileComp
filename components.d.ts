@@ -11,6 +11,8 @@ declare module '@vue/runtime-core' {
     ApiError: typeof import('./src/components/base/ApiError/ApiError.vue')['default']
     BillingLine: typeof import('./src/components/feature/BillingLine/BillingLine.vue')['default']
     'BillingLine.story': typeof import('./src/components/feature/BillingLine/BillingLine.story.vue')['default']
+    DisplayChangeBox: typeof import('./src/components/base/DisplayChangeBox/DisplayChangeBox.vue')['default']
+    'DisplayChangeBox.story': typeof import('./src/components/base/DisplayChangeBox/DisplayChangeBox.story.vue')['default']
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']
     FormInput: typeof import('./src/components/base/FormInput/FormInput.vue')['default']
     GeneralButton: typeof import('./src/components/base/GeneralButton/GeneralButton.vue')['default']
