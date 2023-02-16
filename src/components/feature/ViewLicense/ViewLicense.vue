@@ -31,6 +31,7 @@ onMounted(() => {
           :plan="plan"
         />
       </div>
+      <MonitorAddition />
     </template>
   </div>
 </template>
