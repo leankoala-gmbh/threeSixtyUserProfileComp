@@ -3,7 +3,7 @@
   "timezoneInfo": "Tu zona horaria ha sido cambiada con éxito",
   "save": "Guardar",
   "avatar": "Avatar",
-  "close": "Close",
+  "close": "Cerrar",
   "email": "Correo electrónico",
   "profile": "Perfil",
   "edit": "Editar",
@@ -31,11 +31,11 @@
   "passwordTooShort": "La contraseña es demasiado corta",
   "passwordsNotMatch": "Las nuevas contraseñas no coinciden",
   "successChangePassword": "Su contraseña ha sido modificada correctamente",
-  "active": "Active",
-  "canceled": "Canceled",
+  "active": "Activa",
+  "canceled": "Cancelada",
   "activeDateText": "Próxima fecha de facturación",
   "canceledDateText": "Fecha de cancelación",
-  "mo": "mo",
+  "mo": "mes",
   "subscriptionDetails": "detalles de la suscripción",
   "yourCurrentPlan": "Su plan actual"
 }
