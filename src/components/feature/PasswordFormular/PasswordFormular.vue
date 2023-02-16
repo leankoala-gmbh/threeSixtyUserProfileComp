@@ -45,6 +45,7 @@ const submitPassword = async () => {
     setTimeout(() => {
       successForm.value = false
     }, 3000)
+    window.mitt.emit('tsxUserProfile:changePassword')
   } catch (e: any) {
     errorMsgFromApi.value = e.response.data
   }
