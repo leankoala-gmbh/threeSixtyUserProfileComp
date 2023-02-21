@@ -10,13 +10,13 @@ const props = defineProps({
 
 const savedConsent = ref(false)
 const api = useApiAbstraction()
-
+const requestAfterMount = ref(false)
 
 const getInitialConsent = async () => {
   try {
     const res = await api.getConsent()
-    console.log('enabled', res)
     savedConsent.value = res
+    requestAfterMount.value = true
   } catch (e) {
     console.error(e)
   }
@@ -57,6 +57,7 @@ const saveConsent = async () => {
 }
 
 watch(() => savedConsent.value, () => {
+  if (!requestAfterMount.value) return
   saveConsent()
 })
 </script>
