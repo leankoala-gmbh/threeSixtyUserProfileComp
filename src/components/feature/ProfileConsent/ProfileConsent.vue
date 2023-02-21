@@ -34,6 +34,7 @@ const disabledCheckbox = ref(false)
 const statusState = ref(false)
 
 const statusSwtich = () => {
+  if (!requestAfterMount.value) return
   statusState.value = true
   setTimeout(() => {
     statusState.value = false
@@ -57,7 +58,6 @@ const saveConsent = async () => {
 }
 
 watch(() => savedConsent.value, () => {
-  if (!requestAfterMount.value) return
   saveConsent()
 })
 </script>
