@@ -10,7 +10,7 @@ const props = defineProps({
 
 const savedConsent = ref(false)
 const api = useApiAbstraction()
-const requestAfterMount = ref(0)
+const requestAfterMount = ref(false)
 
 const getInitialConsent = async () => {
   try {
@@ -33,7 +33,7 @@ const disabledCheckbox = ref(false)
 const statusState = ref(false)
 
 const statusSwtich = () => {
-  if (requestAfterMount.value > 0) {
+  if (requestAfterMount.value) {
     statusState.value = true
     setTimeout(() => {
       statusState.value = false
@@ -44,7 +44,6 @@ const statusSwtich = () => {
 const errorMsgFromApi = ref<IApiError>()
 
 const saveConsent = async () => {
-  console.log('saveConsent')
   errorMsgFromApi.value = undefined
   if (savedConsent.value === undefined) return
   try {
@@ -55,7 +54,6 @@ const saveConsent = async () => {
     errorMsgFromApi.value = e.response.data
   } finally {
     disabledCheckbox.value = false
-    requestAfterMount.value++
   }
 }
 
@@ -83,6 +81,7 @@ watch(() => savedConsent.value, () => {
             type="checkbox"
             :disabled="disabledCheckbox"
             aria-label="input"
+            @change="requestAfterMount = true"
           >
         </div>
         <div>
