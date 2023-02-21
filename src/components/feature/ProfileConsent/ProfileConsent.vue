@@ -16,8 +16,6 @@ const getInitialConsent = async () => {
   try {
     const res = await api.getConsent()
     savedConsent.value = res
-    requestAfterMount.value = true
-    console.log('initial consent')
   } catch (e) {
     console.error(e)
   }
