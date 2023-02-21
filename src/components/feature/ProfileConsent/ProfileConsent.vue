@@ -35,7 +35,6 @@ const disabledCheckbox = ref(false)
 const statusState = ref(false)
 
 const statusSwtich = () => {
-  if (!requestAfterMount.value) return
   statusState.value = true
   setTimeout(() => {
     statusState.value = false
@@ -50,11 +49,12 @@ const saveConsent = async () => {
   try {
     disabledCheckbox.value = true
     await api.setConsent(savedConsent.value)
-    statusSwtich()
+    if (requestAfterMount.value) statusSwtich()
   } catch (e: any) {
     errorMsgFromApi.value = e.response.data
   } finally {
     disabledCheckbox.value = false
+    requestAfterMount.value = true
   }
 }
 
