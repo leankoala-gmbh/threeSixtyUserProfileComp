@@ -56,8 +56,7 @@ const saveConsent = async () => {
   }
 }
 
-watch(() => savedConsent.value, (n, o) => {
-  if (n === o) return
+watch(() => savedConsent.value, () => {
   saveConsent()
 })
 </script>
