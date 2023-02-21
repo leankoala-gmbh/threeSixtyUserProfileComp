@@ -17,6 +17,7 @@ const getInitialConsent = async () => {
     const res = await api.getConsent()
     savedConsent.value = res
     requestAfterMount.value = true
+    console.log('initial consent')
   } catch (e) {
     console.error(e)
   }
@@ -57,7 +58,8 @@ const saveConsent = async () => {
   }
 }
 
-watch(() => savedConsent.value, () => {
+watch(() => savedConsent.value, (n, o) => {
+  if (n === o) return
   saveConsent()
 })
 </script>
