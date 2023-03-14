@@ -20,7 +20,6 @@ const emit = defineEmits(['handleStatus', 'handleBuy'])
 
 <template>
   <div class="monitorAdditionConfirm">
-    Current {{ type }} monitors amount: {{ size.count }}
     <DisplayChangeBox
       class="my-4"
       :title="t('additionalTypeChangeBox', {type: useTextHelper().capitalize(props.type)})"
