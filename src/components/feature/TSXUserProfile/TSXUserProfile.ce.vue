@@ -41,7 +41,7 @@ const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBase
 provide('overrideBaseApiUrl', overrideBaseApiUrl)
 
 const userDataObj = ref<IProfileUser>({})
-userDataObj.value = JSON.parse(props.userData)
+userDataObj.value = props.view === 'profile' ? JSON.parse(props.userData) : {}
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
@@ -61,6 +61,7 @@ onMounted(() => {
     />
     <ViewLicense
       v-if="view === 'license'"
+      :inactive-fields="inactiveFieldsArr"
     />
   </div>
 </template>

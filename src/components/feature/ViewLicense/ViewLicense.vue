@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { ILicenses } from '@/types/general.interfaces'
 
+const props = defineProps({
+  inactiveFields: {
+    type: Array as () => string[],
+    default: () => []
+  }
+})
+
 const licenseData = ref<ILicenses|null>(null)
 
 const getLicenseData = async() => {
