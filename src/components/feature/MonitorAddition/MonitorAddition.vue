@@ -113,6 +113,7 @@ onMounted(() => {
       v-if="!isOpen"
       :title="title"
       :is-alert="isAlert"
+      :type="type"
       :price-display="priceDisplay"
       :is-open="isOpen"
       :quantity="quantity"
