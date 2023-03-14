@@ -23,15 +23,21 @@ onMounted(() => {
         <h3 class="text-lg font-semibold mb-2">
           {{ key }}
         </h3>
-        <SubscriptionPlan
+        <div
           v-for="(plan, index) in group"
           :key="index"
           class="mb-4"
-          :status="key"
-          :plan="plan"
-        />
+        >
+          <SubscriptionPlan
+            class="mb-1"
+            :status="key"
+            :plan="plan"
+          />
+          <div v-if="key == 'active'" class="mb-6">
+            <MonitorAdditionPlans :plan="plan" />
+          </div>
+        </div>
       </div>
-      <MonitorAddition />
     </template>
   </div>
 </template>

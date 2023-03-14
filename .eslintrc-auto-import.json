@@ -75,6 +75,7 @@
     "useCssVars": true,
     "useLocalHelper": true,
     "useSlots": true,
+    "useTextHelper": true,
     "validateBetweenLength": true,
     "validateEmail": true,
     "validateMaxLength": true,
