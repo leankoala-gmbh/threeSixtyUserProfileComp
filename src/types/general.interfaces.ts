@@ -71,3 +71,11 @@ export interface IPlanSelector {
   currency: string
   interval: string
 }
+
+export type TMonitorTypes = 'servers' | 'websites'
+export type TMonitorStatus = 'info' | 'confirm' | 'summary'
+export type IMonitorStatusTitle = {
+  [key in TMonitorTypes]: {
+    [key in TMonitorStatus]?: string
+  }
+}

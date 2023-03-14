@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ILicensesDetails } from '@/types/general.interfaces'
-import { string } from 'zod'
 
 const emit = defineEmits(['trigger'])
 

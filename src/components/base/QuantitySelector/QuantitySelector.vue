@@ -18,44 +18,46 @@ const emit = defineEmits(['changeQuantity'])
 
 const quantity = ref(props.value)
 
-type TOperations = 'minus'| 'plus'
-const operations = {
-  minus: ()=>{
+const operations = (operation: string) => {
+  if (operation === 'minus'){
     if (isLowerLimit.value) return
     quantity.value--
-  },
-  plus: ()=>{
+  }
+  else if (operation === 'plus'){
     if (isUpperLimit.value) return
     quantity.value++
+  } else {
+    return
   }
 }
 
 const errorString = `Must be between ${props.min } and ${props.max }`
 
-const handleQuantity = (operation: TOperations) => {
-  if (!isWithinRange.value) return
-  operations[operation]()
-  emit('changeQuantity', quantity)
+const handleQuantity = (operation: string) => {
+  operations(operation)
+  emit('changeQuantity', quantity.value)
 }
-const isWithinRange = computed(()=>{
+const isWithinRange = computed(() => {
   return quantity.value >= props.min && quantity.value <= props.max
 })
 
-const isLowerLimit = computed(()=>{
+const isLowerLimit = computed(() => {
   return quantity.value === props.min
 })
-const isUpperLimit = computed(()=>{
+const isUpperLimit = computed(() => {
   return quantity.value === props.max
 })
-watch(() => quantity.value, () => {
+watch( () => quantity.value, () => {
   if (isWithinRange || !isLowerLimit || !isUpperLimit) return
 }, { immediate: true })
+
 </script>
 
 <template>
   <div class="quantitySelector w-40 flex flex-wrap my-1 py-2 justify-center">
     <button
-      class="rounded-l-md border-[1px] w-8 h-8"
+      class="rounded-l-md border-[1px] w-8 h-8 disabled:bg-gray-200"
+      :disabled="!isWithinRange || isLowerLimit"
       @click="handleQuantity('minus')"
     >
       -
@@ -64,9 +66,11 @@ watch(() => quantity.value, () => {
       v-model="quantity"
       aria-label="InputQuantity"
       class="border-y-[1px] text-center w-8 h-8"
+      @input="handleQuantity('')"
     >
     <button
-      class="rounded-r-md border-[1px] w-8 h-8"
+      class="rounded-r-md border-[1px] w-8 h-8 disabled:bg-gray-200"
+      :disabled="!isWithinRange || isUpperLimit"
       @click="handleQuantity('plus')"
     >
       +
