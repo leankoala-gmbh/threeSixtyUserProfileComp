@@ -27,6 +27,7 @@ const inactiveFields = []
       :inactive-fields="JSON.stringify(inactiveFields)"
       override-base-api-url="https://app.stage.360monitoring.com"
       view="profile"
+      base-api-url=""
     />
     <div class="mb-4 text-xl font-bold">
       License
@@ -36,6 +37,7 @@ const inactiveFields = []
       :inactive-fields="JSON.stringify(inactiveFields)"
       override-base-api-url="https://app.stage.360monitoring.com"
       view="license"
+      base-api-url=""
     />
   </div>
 </template>
