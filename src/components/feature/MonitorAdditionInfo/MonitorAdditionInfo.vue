@@ -106,8 +106,6 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
           </p>
           <PaymentMethod
             class="mb-8 mt-2"
-            provider="visa"
-            details="visa xxxxxxxxx3232 11/27"
           />
         </div>
         <div class="confirmSubscription">

@@ -49,8 +49,7 @@ const props = defineProps({
       </div>
       <PaymentMethod
         class="mb-8"
-        provider="visa"
-        details="visa xxxxxxxxx3232 11/27"
+        :link="''"
       />
     </div>
     <SubscriptionDetails :plan="plan" />
