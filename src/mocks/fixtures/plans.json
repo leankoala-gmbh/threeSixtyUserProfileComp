@@ -1,20 +1,41 @@
-[
-  {
-    "name": "professional",
-    "price": 55.00,
-    "currency": "USD",
-    "interval": "month"
-  },
-  {
-    "name": "business",
-    "price": 77.00,
-    "currency": "USD",
-    "interval": "month"
-  },
-  {
-    "name": "enterprise",
-    "price": 99.00,
-    "currency": "USD",
-    "interval": "month"
-  }
-]
+{
+  "planOrder": [
+    "pro",
+    "business",
+    "enterprise"
+  ],
+  "plans": [
+    {
+      "id": "pro",
+      "name": "360 Monitoring Pro",
+      "upgradeable": [
+        "business",
+        "enterprise"
+      ],
+      "downgradeable": [
+
+      ]
+    },
+    {
+      "id": "business",
+      "name": "360 Monitoring Business",
+      "upgradeable": [
+        "enterprise"
+      ],
+      "downgradeable": [
+        "pro"
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "360 Monitoring Enterprise",
+      "upgradeable": [
+
+      ],
+      "downgradeable": [
+        "pro",
+        "business"
+      ]
+    }
+  ]
+}

@@ -37,7 +37,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getPlans = async () : Promise<IPlanSelector[]> => {
     guardUrl()
     try {
-      const { data } = await axios.get(`${getBaseUrl.value}/license/getPlans`, { withCredentials: true })
+      const { data } = await axios.get(`${getBaseUrl.value}/license/plans`, { withCredentials: true })
       return data
     } catch (error: unknown) {
       errorHandler(error)

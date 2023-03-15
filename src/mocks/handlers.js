@@ -5,7 +5,7 @@ import plansData from './fixtures/plans.json'
 const base = 'https://app.stage.360monitoring.com' //window.location.origin
 
 export const handlers = [
-  rest.get(`${base}/license/getPlans`, (req, res, ctx) => {
+  rest.get(`${base}/license/plans>=`, (req, res, ctx) => {
     return res(
       ctx.json(plansData)
     )
