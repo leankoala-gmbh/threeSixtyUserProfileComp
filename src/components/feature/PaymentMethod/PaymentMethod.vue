@@ -1,15 +1,5 @@
 <script lang="ts" setup>
-import { TPaymentProviders } from '@/types/general.interfaces'
-
 const props = defineProps({
-  provider: {
-    type: String as () => TPaymentProviders,
-    default: ''
-  },
-  details: {
-    type: String,
-    default: ''
-  },
   link: {
     type: String,
     default: ''
@@ -24,8 +14,7 @@ const props = defineProps({
     :href="link"
   >
     <div class="flex gap-2 items-center">
-      <PaymentProviders :provider="provider" class="ml-4" />
-      <div>{{ details }}</div>
+      <div>{{ t('WIP.changePaymentDetails') }}</div>
     </div>
     <div>
       <div

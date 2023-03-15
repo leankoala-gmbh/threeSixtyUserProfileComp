@@ -17,13 +17,14 @@ const props = defineProps({
 
 const planDisabledMatrix: {[key: string]: string[]} = {
   DEFAULT: [],
-  professional: [],
-  business: ['professional'],
-  enterprise: ['professional', 'business']
+  pro: [],
+  business: ['pro'],
+  enterprise: ['pro', 'business']
 }
 
 const disabledEntries = computed(() => {
-  return planDisabledMatrix[props.current] || planDisabledMatrix.DEFAULT
+  const isDisabled = planDisabledMatrix[props.current] || planDisabledMatrix.DEFAULT
+  return isDisabled
 })
 
 const selected = ref<IPlanSelector>()
@@ -36,14 +37,17 @@ const disabledPlan = (id: string) => {
 const planList = computed(() => {
   console.log('sdfsdf', props.plans)
   return props.plans.filter((plan) => {
-    return !disabledEntries.value.find(val => val === plan.name )
+    return !disabledEntries.value.find(val => {
+      return val === plan.id
+    }
+    )
   })
 })
 
 const planDetails = (currentPlan: IPlanSelector) => {
   const plan = props.plans.find((plan) => plan.name === currentPlan.name)
   if (!plan) return ''
-  return useLocalHelper().displayPrice(plan?.price, plan?.currency)
+  return useLocalHelper().displayPrice(plan?.price.gross, plan?.price.currency)
 }
 
 watch(() => selected.value, (val) => {
@@ -61,7 +65,7 @@ watch(() => selected.value, (val) => {
           v-slot="{ checked, active, disabled }"
           as="template"
           :value="plan"
-          :disabled="disabledPlan(plan.name)"
+          :disabled="disabledPlan(plan.id)"
         >
           <div
             :class="[
@@ -92,7 +96,7 @@ watch(() => selected.value, (val) => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ t(`planName${plan.name}`) }}
+                {{ t(`WIP.planName${plan.id}`) }}
               </RadioGroupLabel>
             </span>
             <RadioGroupDescription

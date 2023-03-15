@@ -1,5 +1,7 @@
+subscriptionStepChange
+
 <script lang="ts" setup>
-import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector, IPlans } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger', 'selectedPlan'])
 
@@ -15,10 +17,15 @@ const props = defineProps({
 })
 
 const subscriptionPlans = ref<null|IPlanSelector[]>(null)
+const subscriptionPlansOrder = ref<null|string[]>(null)
+console.log(props.plan)
 
 const getSubscriptionPlans = async() => {
   try {
-    subscriptionPlans.value = await useApiAbstraction().getPlans()
+
+    const { plans, planOrder } = await useApiAbstraction().getPlans()
+    subscriptionPlans.value = plans
+    subscriptionPlansOrder.value = planOrder
   } catch (error) {
     console.error(error)
   }
@@ -28,14 +35,17 @@ onMounted(() => {
   getSubscriptionPlans()
 })
 
+
+const paymentLink = ref<string>(props.plan.changePaymentSubscriptionUrl)
 const selectedPlan = ref<null|IPlanSelector>(null)
 const statusHeadline = ref<string>('')
 const statusText = ref<string>('')
 
 const generateStatusText = () => {
   if (!selectedPlan.value) return
-  const price = useLocalHelper().displayPrice(selectedPlan.value.price, selectedPlan.value.currency)
-  const vat = useLocalHelper().displayPrice(selectedPlan.value.price / 100 * 19, selectedPlan.value.currency)
+
+  const price = useLocalHelper().displayPrice(selectedPlan.value.price.gross, selectedPlan.value.price.currency)
+  const vat = useLocalHelper().displayPrice(selectedPlan.value.price.vat, selectedPlan.value.price.currency)
 
   statusHeadline.value = t('chargedHeadline', {
     price,
@@ -46,7 +56,7 @@ const generateStatusText = () => {
     price,
     date: useLocalHelper().displayDate(String(new Date())),
     ie: t('incl'),
-    interval: t(selectedPlan.value.interval),
+    interval: t('mo'),
     vat
   })
 }
@@ -73,7 +83,7 @@ watchEffect(() => {
       <PlanSelector
         class="mb-4"
         :plans="subscriptionPlans"
-        current="professional"
+        current="pro"
         @update-plan="selectedPlan = $event"
       />
       <template v-if="selectedPlan">
@@ -124,8 +134,7 @@ watchEffect(() => {
         </p>
         <PaymentMethod
           class="mb-8"
-          provider="visa"
-          details="visa xxxxxxxxx3232 11/27"
+          :link="paymentLink"
         />
         <p class="font-medium mb-2">
           {{ t('confirmSubscription') }}

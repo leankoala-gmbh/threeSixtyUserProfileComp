@@ -1,4 +1,4 @@
-import type { IProfileUser, ILicenses, IPlanSelector } from '@/types/general.interfaces'
+import type { IProfileUser, ILicenses, IPlans } from '@/types/general.interfaces'
 import axios from 'axios'
 
 const errorHandler = (error: unknown) => {
@@ -34,14 +34,14 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const getPlans = async () : Promise<IPlanSelector[]> => {
+  const getPlans = async () : Promise<IPlans> => {
     guardUrl()
     try {
       const { data } = await axios.get(`${getBaseUrl.value}/license/plans`, { withCredentials: true })
       return data
     } catch (error: unknown) {
       errorHandler(error)
-      return []
+      return {} as IPlans
     }
   }
 

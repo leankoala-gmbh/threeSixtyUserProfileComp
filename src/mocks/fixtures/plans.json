@@ -12,9 +12,13 @@
         "business",
         "enterprise"
       ],
-      "downgradeable": [
-
-      ]
+      "downgradeable": [],
+      "price": {
+        "net": 4.99,
+        "vat": 0.95,
+        "gross": 5.94,
+        "currency": "EUR"
+      }
     },
     {
       "id": "business",
@@ -24,18 +28,28 @@
       ],
       "downgradeable": [
         "pro"
-      ]
+      ],
+      "price": {
+        "net": 24.99,
+        "vat": 4.75,
+        "gross": 29.74,
+        "currency": "EUR"
+      }
     },
     {
       "id": "enterprise",
       "name": "360 Monitoring Enterprise",
-      "upgradeable": [
-
-      ],
+      "upgradeable": [],
       "downgradeable": [
         "pro",
         "business"
-      ]
+      ],
+      "price": {
+        "net": 99.99,
+        "vat": 19,
+        "gross": 118.99,
+        "currency": "EUR"
+      }
     }
   ]
 }

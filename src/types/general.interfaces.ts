@@ -65,11 +65,22 @@ export interface ISubscriptionHeaderDetails {
 
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'
 
-export interface IPlanSelector {
-  name: string
-  price: number
+export interface IPlanPricing {
+  net: number
+  vat: number
+  gross: number
   currency: string
-  interval: string
+}
+export interface IPlanSelector {
+  id: string
+  name: string
+  upgradeable: string[]
+  downgradable: string[]
+  price: IPlanPricing
+}
+export interface IPlans {
+  planOrder: string[]
+  plans: IPlanSelector[]
 }
 
 export type TMonitorTypes = 'servers' | 'websites'

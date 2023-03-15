@@ -14,7 +14,7 @@ const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
   } catch (error) {
-  console.error(error)
+    console.error(error)
   }
 }
 
