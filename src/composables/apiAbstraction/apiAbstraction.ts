@@ -45,19 +45,25 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const upgradePlan = async () : Promise<void> => {
+  const upgradePlan = async (keyId: string, planId: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {
+        keyId,
+        planId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const downgradePlan = async () : Promise<void> => {
+  const downgradePlan = async (keyId: string, planId: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/downgrade-plan`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-plan`, {
+        keyId,
+        planId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -81,10 +87,12 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const terminateLicense = async () : Promise<void> => {
+  const terminateLicense = async (keyId: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/terminate`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/terminate`, {
+        keyId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }

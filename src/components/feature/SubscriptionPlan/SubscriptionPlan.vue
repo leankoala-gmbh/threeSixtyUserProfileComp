@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
+import planMatrix from '@/data/planMatrix.json'
 
 const props = defineProps({
   status: {
@@ -35,15 +36,40 @@ watchEffect(() => {
   }
 })
 
+const { terminateLicense, upgradePlan } = useApiAbstraction()
+
+const selectPlanIds = computed(() => {
+  const planIds = planMatrix.map((plan) => plan.id)
+  return planIds
+})
+
+const buyPlan = async () => {
+  if (selectedPlan.value === null) return
+  try {
+    await upgradePlan(props.plan.keyId, selectedPlan.value.id)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const cancelPlan = async () => {
+  if (props.plan.keyId === undefined) return
+  try {
+    await terminateLicense(props.plan.keyId)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 watchEffect(() => {
   if (currentStep.value === 'buynow') {
-    console.log('buy now')
+    buyPlan()
     boxOpenHeader.value = ''
     currentStep.value = 'info'
     return
   }
   if (currentStep.value === 'cancelSubscription') {
-    console.log('cancel subscription')
+    cancelPlan()
     boxOpenHeader.value = ''
     return
   }
