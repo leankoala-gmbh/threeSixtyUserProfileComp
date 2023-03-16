@@ -22,6 +22,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     guardUrl()
     try {
       const { data } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
+      console.log('licenses', data)
       return data.licenses.reduce((acc: any, license: any) => {
         const { status } = license
         if (!acc[status]) { acc[status] = [] }
