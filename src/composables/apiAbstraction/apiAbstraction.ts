@@ -21,9 +21,8 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      const { data } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
-      console.log('licenses', data)
-      return data.licenses.reduce((acc: any, license: any) => {
+      const { data: { data: { licenses } } } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
+      return licenses.reduce((acc: any, license: any) => {
         const { status } = license
         if (!acc[status]) { acc[status] = [] }
         acc[status].push(license)
