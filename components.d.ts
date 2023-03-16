@@ -11,8 +11,6 @@ declare module '@vue/runtime-core' {
     ApiError: typeof import('./src/components/base/ApiError/ApiError.vue')['default']
     BillingLine: typeof import('./src/components/feature/BillingLine/BillingLine.vue')['default']
     'BillingLine.story': typeof import('./src/components/feature/BillingLine/BillingLine.story.vue')['default']
-    BookingInfo: typeof import('./src/components/feature/BookingInfo/BookingInfo.vue')['default']
-    'BookingInfo.story': typeof import('./src/components/feature/BookingInfo/BookingInfo.story.vue')['default']
     CleverBridgeInfo: typeof import('./src/components/feature/CleverBridgeInfo/CleverBridgeInfo.vue')['default']
     'CleverBridgeInfo.story': typeof import('./src/components/feature/CleverBridgeInfo/CleverBridgeInfo.story.vue')['default']
     DisplayChangeBox: typeof import('./src/components/base/DisplayChangeBox/DisplayChangeBox.vue')['default']
