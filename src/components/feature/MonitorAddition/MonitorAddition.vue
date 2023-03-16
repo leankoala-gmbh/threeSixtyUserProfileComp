@@ -121,7 +121,7 @@ onMounted(() => {
     />
     <MonitorBoxHeader
       v-else
-      class="m-1 font-bold"
+      class=" font-bold"
       @close="handleClose"
     >
       {{ subTitle[type][status] }}

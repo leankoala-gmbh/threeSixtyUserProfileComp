@@ -134,12 +134,9 @@ watchEffect(() => {
         </p>
         <PaymentMethod
           class="mb-8"
-          :link="paymentLink"
+          :plan-details="plan"
         />
-        <p class="font-medium mb-2">
-          {{ t('confirmSubscription') }}
-        </p>
-        <p>Cleverbridge Content</p>
+        <CleverBridgeInfo />
       </template>
     </template>
   </div>

@@ -32,7 +32,10 @@ const emit = defineEmits(['header-event'])
 </script>
 
 <template>
-  <div class="monitorAdditionHeader profileDetail--hover justify-center align-middle text-sm rounded py-2 mx-4 cursor-pointer">
+  <div class="monitoringAdditionHeader p-2">
+
+
+  <div class="monitorAdditionHeader profileDetail--hover justify-center align-middle text-sm rounded px-4 py-1 cursor-pointer">
     <StatusMessage
       v-if="isAlert"
       class="mb-4"
@@ -65,4 +68,5 @@ const emit = defineEmits(['header-event'])
       </div>
     </div>
   </div>
+</div>
 </template>

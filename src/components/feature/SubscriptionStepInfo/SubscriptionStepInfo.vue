@@ -49,9 +49,8 @@ const props = defineProps({
       </div>
       <PaymentMethod
         class="mb-8"
-        :link="''"
+        :plan-details="plan"
       />
     </div>
-    <SubscriptionDetails :plan="plan" />
   </div>
 </template>

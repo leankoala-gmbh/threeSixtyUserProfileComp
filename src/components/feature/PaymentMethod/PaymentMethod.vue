@@ -1,8 +1,14 @@
 <script lang="ts" setup>
+import { ILicensesDetails } from '@/types/general.interfaces'
+
 const props = defineProps({
   link: {
     type: String,
     default: ''
+  },
+  planDetails: {
+    type: Object as () => ILicensesDetails,
+    default: () => ({})
   }
 })
 </script>
@@ -11,7 +17,7 @@ const props = defineProps({
   <a
     target="_blank"
     class="profileDetail profileDetail--darker paymentMethod rounded px-4 py-2 flex gap-4 justify-between items-center cursor-pointer"
-    :href="link"
+    :href="planDetails.changePaymentSubscriptionUrl"
   >
     <div class="flex gap-2 items-center">
       <div>{{ t('WIP.changePaymentDetails') }}</div>

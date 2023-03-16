@@ -3,7 +3,7 @@ const emit = defineEmits(['close'])
 </script>
 
 <template>
-  <div class="monitorBoxHeader flex justify-between items-center p-6">
+  <div class="monitorBoxHeader flex justify-between items-center py-4 px-6">
     <span class="font-medium text-base"><slot /></span>
     <GeneralButton
       variant="ghost"

@@ -10,7 +10,6 @@ module.exports = {
     'eslint:recommended',
     '@vue/typescript',
     'plugin:vue/base',
-    'plugin:storybook/recommended',
     './.eslintrc-auto-import.json'
   ],
   plugins: [
