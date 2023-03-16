@@ -26,11 +26,7 @@ const emit = defineEmits(['handleStatus', 'handleBuy'])
       :start="size.count.toString()"
       :target="(size.count + quantity).toString()"
     />
-    <p
-      class="mb-4"
-    >
-      Cleverbridge info
-    </p>
+    <p class="mb-4" v-html="t('confirmNote')" />
     <div class="flex gap-4">
       <GeneralButton @click="emit('handleBuy')">
         {{ t('additionalBuy') }}

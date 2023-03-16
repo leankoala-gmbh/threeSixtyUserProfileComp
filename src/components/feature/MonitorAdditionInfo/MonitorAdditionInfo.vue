@@ -97,30 +97,22 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
             </div>
           </div>
         </AnnotationBox>
-        <div class="paymentSubscription">
-          <div class="font-bold mt-6 mb-2">
-            Payment
-          </div>
-          <p class="font-normal text-gray-600 text-base">
-            The 360 Monitoring Store operated by cleverbridge AG will process this order using the payment method attached to the selected subscription.
-          </p>
-          <PaymentMethod
-            class="mb-8 mt-2"
-          />
-        </div>
-        <div class="confirmSubscription">
-          <GeneralButton
-            @click="() => emit('handleStatus','confirm')"
-          >
-            {{ t('confirmSubscription') }}
-          </GeneralButton>
-          <div class="font-bold mt-6 mb-2">
-            Confirm subscription
-          </div>
-          <p class="info">
-            Cleverbridge info
-          </p>
-        </div>
+        <p class="font-medium mb-2'">
+          {{ t('payment') }}
+        </p>
+        <p class="mb-4">
+          {{ t('paymentInfo') }}
+        </p>
+        <PaymentMethod
+          class="mb-8 mt-2"
+        />
+        <GeneralButton
+          class="mb-6"
+          @click="emit('handleStatus','confirm')"
+        >
+          {{ t('confirmSubscription') }}
+        </GeneralButton>
+        <CleverBridgeInfo />
       </div>
     </Transition>
   </div>
