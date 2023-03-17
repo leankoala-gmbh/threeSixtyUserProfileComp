@@ -69,19 +69,29 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const upgradeProperties = async () : Promise<void> => {
+  const upgradeProperties = async (keyId: string, planId: string, websites: number, servers: number) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/upgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/upgrade-properties`, {
+        keyId,
+        planId,
+        websites,
+        servers
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const downgradeProperties = async () : Promise<void> => {
+  const downgradeProperties = async (keyId: string, planId: string, websites: number, servers: number) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/downgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-properties`, {
+        keyId,
+        planId,
+        websites,
+        servers
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }

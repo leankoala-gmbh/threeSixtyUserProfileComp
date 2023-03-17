@@ -1,21 +1,23 @@
 <script lang="ts" setup>
-import { ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle } from '@/types/general.interfaces'
+import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle } from '@/types/general.interfaces'
+import { planMatrix } from '@/data/planMatrix.js'
+
 const props = defineProps({
   open: {
     type: Boolean,
     default: false
   },
-  currency:{
-    type: String,
-    default: 'USD'
+  plan: {
+    type: Object as () => ILicensesDetails,
+    default: () => ({})
   },
-  type:{
-    type: String as ()=> TMonitorTypes,
+  type: {
+    type: String as () => TMonitorTypes,
     default: 'servers'
   },
-  size:{
-    type: Object as ()=> ILicensesServers,
-    default: ()=>({})
+  size: {
+    type: Object as () => ILicensesServers,
+    default: () => ({})
   }
 })
 
@@ -38,24 +40,19 @@ const subTitle = reactive<IMonitorStatusTitle>({
     confirm: t('additionalTypeConfirm', { type: props.type })
   }
 })
+
 const isOpen = ref(false)
-
-
 const price = ref(1.19)
 
-const priceDisplay = computed( () =>
-  useLocalHelper().displayPrice(price.value, props.currency)
-)
+const { displayPrice } = useLocalHelper()
 
-const vat = computed( () =>
-  useLocalHelper().displayPrice(total.value / 100 * 19, props.currency)
-)
+const priceDisplay = computed(() => displayPrice(price.value, props.plan.renewalCurrency))
 
 const quantity = ref(1)
 const total = ref(quantity.value * price.value)
-const totalDisplay = computed(()=>{
-  return useLocalHelper().displayPrice(total.value, props.currency)
-})
+const vat = computed(() => displayPrice(total.value / 100 * 19, props.plan.renewalCurrency))
+const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
+
 const generateStatusText = () => {
   if (quantity.value <= 0) return
 
@@ -64,6 +61,7 @@ const generateStatusText = () => {
     ie: t('incl'),
     vat: vat.value
   })
+
   statusText.value = t('chargedText', {
     price: totalDisplay.value,
     date: useLocalHelper().displayDate(String(new Date())),
@@ -78,26 +76,67 @@ watch(() => props.open, () => {
 }, { immediate: true })
 
 const handleChange = (e: number) => {
-  quantity.value = e as number
+  quantity.value = e
   total.value = +(quantity.value * price.value).toFixed(2)
   generateStatusText()
 }
+
 const handleClose = () => {
   status.value = 'info'
   isOpen.value = false
 }
+
 const handleStatus = (screen: TMonitorStatus) =>{
   status.value = screen
 }
-const handleBuy = () => {
-  //TODO
-  //useApiAbstraction().buyAdditionalMonitors()
-  isAlert.value = true
-  setTimeout(() => {
-    isAlert.value = false
-  }, 3000)
-  status.value = 'info'
-  isOpen.value = false
+
+const selectMonitorDetails = computed(() => {
+  if (props.type === 'servers') return props.plan.servers
+  return props.plan.websites
+})
+
+const checkUpgradeDowngrade = computed(() => {
+  if (quantity.value === selectMonitorDetails.value.count) return 'same'
+  return quantity.value > selectMonitorDetails.value.count ? 'upgrade' : 'downgrade'
+})
+
+const { upgradeProperties, downgradeProperties } = useApiAbstraction()
+
+const selectPlanIds = computed(() => {
+  const planIds = planMatrix.find((plan) => plan.name === props.plan.type)
+  return planIds
+})
+
+const handleBuy = async () => {
+  if (quantity.value <= 0 || !selectPlanIds.value) return
+  try {
+    if (checkUpgradeDowngrade.value === 'upgrade') {
+      await upgradeProperties(
+        props.plan.keyId,
+        selectPlanIds.value.id,
+        props.type === 'websites' ? quantity.value : props.plan.websites.count,
+        props.type === 'servers' ? quantity.value : props.plan.servers.count
+      )
+    } else {
+      await downgradeProperties(
+        props.plan.keyId,
+        selectPlanIds.value.id,
+        props.type === 'websites' ? quantity.value : props.plan.websites.count,
+        props.type === 'servers' ? quantity.value : props.plan.servers.count
+      )
+    }
+    status.value = 'info'
+    isOpen.value = false
+    isAlert.value = true
+    setTimeout(() => {
+      isAlert.value = false
+    }, 3000)
+    status.value = 'info'
+    isOpen.value = false
+  } catch (e) {
+    console.error(e)
+  }
+
 }
 onMounted(() => {
   generateStatusText()
@@ -121,14 +160,14 @@ onMounted(() => {
     />
     <MonitorBoxHeader
       v-else
-      class=" font-bold"
+      class="font-bold"
       @close="handleClose"
     >
       {{ subTitle[type][status] }}
     </MonitorBoxHeader>
     <template #body>
       <MonitorAdditionInfo
-        v-if="status==='info'"
+        v-if="status === 'info'"
         :status="status"
         :sub-title="subTitle"
         :type="type"
@@ -140,15 +179,15 @@ onMounted(() => {
         :status-headline="statusHeadline"
         :status-text="statusText"
         @handle-change="handleChange"
-        @handle-status="(e)=>handleStatus(e)"
+        @handle-status="(e) => handleStatus(e)"
       />
       <MonitorAdditionConfirm
-        v-if="status==='confirm'"
+        v-if="status === 'confirm'"
         :type="type"
         :size="size"
         :quantity="quantity"
         @handle-buy="handleBuy"
-        @handle-status="(e)=>handleStatus(e)"
+        @handle-status="(e) => handleStatus(e)"
       />
     </template>
   </MonitorDetailBox>

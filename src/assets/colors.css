@@ -76,7 +76,7 @@
   --tsxup-ps-bg: var(--tsxup-brightest);
   --tsxup-ps-text-disabled-color: var(--tsxup-darkest-mid-light);
   --tsxup-ps-text-checked-color: var(--tsxup-primary);
-  --tsxup-ps-text-unchecked-color: var(--tsxup-darkes);
+  --tsxup-ps-text-unchecked-color: var(--tsxup-darkest);
   --tsxup-ps-option-checked-bg: var(--tsxup-primary-light);
   --tsxup-ps-option-checked-border: var(--tsxup-primary-medium);
   --tsxup-ps-option-unchecked-border: var(--tsxup-darkest-mid);

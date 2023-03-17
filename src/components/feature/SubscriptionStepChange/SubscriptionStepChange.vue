@@ -18,7 +18,6 @@ const props = defineProps({
 
 const subscriptionPlans = ref<null|IPlanSelector[]>(null)
 const subscriptionPlansOrder = ref<null|string[]>(null)
-console.log(props.plan)
 
 const getSubscriptionPlans = async() => {
   try {
