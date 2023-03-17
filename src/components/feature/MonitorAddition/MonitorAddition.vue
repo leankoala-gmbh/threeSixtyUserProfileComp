@@ -171,7 +171,7 @@ onMounted(() => {
         :status="status"
         :sub-title="subTitle"
         :type="type"
-        :size="size"
+        :size="selectMonitorDetails"
         :current="quantity"
         :quantity="quantity"
         :price-display="priceDisplay"
@@ -184,7 +184,7 @@ onMounted(() => {
       <MonitorAdditionConfirm
         v-if="status === 'confirm'"
         :type="type"
-        :size="size"
+        :size="selectMonitorDetails"
         :quantity="quantity"
         @handle-buy="handleBuy"
         @handle-status="(e) => handleStatus(e)"
