@@ -117,7 +117,3 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
     </Transition>
   </div>
 </template>
-
-<style>
-  .monitorAdditionInfo {}
-</style>

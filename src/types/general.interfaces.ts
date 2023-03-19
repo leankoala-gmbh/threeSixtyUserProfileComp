@@ -65,6 +65,28 @@ export interface ISubscriptionHeaderDetails {
 
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'
 
+export interface IPlansNew {
+  productName: string;
+  extensionCatalogCode: string;
+  currency: string;
+  billingPeriod: string;
+  changePaymentUrl: string;
+  upsells: IPlansUpsells[];
+}
+
+export interface IPlansUpsells {
+  productId: string;
+  planId: string;
+  productName: string;
+  alignmentGrossPrice: number;
+  alignmentVatPrice: number;
+  alignmentNetPrice: number;
+  nextBillingGrossPrice: number;
+  nextBillingVatPrice: number;
+  nextBillingNetPrice: number;
+  nextBillingDate: string;
+}
+
 export interface IPlanPricing {
   net: number
   vat: number
@@ -76,6 +98,7 @@ export interface IPlanSelector {
   name: string
   upgradeable: string[]
   downgradable: string[]
+  upsells: []
   price: IPlanPricing
 }
 export interface IPlans {
@@ -89,4 +112,18 @@ export type IMonitorStatusTitle = {
   [key in TMonitorTypes]: {
     [key in TMonitorStatus]?: string
   }
+}
+
+export interface IPrices {
+  alignmentGrossPrice:number
+  alignmentVatPrice:number
+  alignmentNetPrice:number
+  nextBillingGrossPrice:number
+  nextBillingVatPrice:number
+  nextBillingNetPrice:number
+  currency: string
+  resultMessage: string
+  nextBillingDate: string
+  changePaymentUrl: string
+  merchantOfRecordType: string
 }

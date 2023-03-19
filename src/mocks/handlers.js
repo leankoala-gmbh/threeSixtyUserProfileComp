@@ -29,7 +29,7 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         status: 'ok',
-        message: 'Plan upgraded'
+        data: []
       })
     )
   }),
@@ -57,6 +57,37 @@ export const handlers = [
       ctx.json({
         status: 'ok',
         message: 'Properties downgraded'
+      })
+    )
+  }),
+  rest.post(`${base}/license/modify-properties/preview`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: 'ok',
+        data: {
+          alignmentGrossPrice: 1.09,
+          alignmentVatPrice: 0.17,
+          alignmentNetPrice: 0.92,
+          nextBillingGrossPrice: 1.13,
+          nextBillingVatPrice: 0.18,
+          nextBillingNetPrice: 0.95,
+          currency: 'EUR',
+          resultMessage: 'OK',
+          nextBillingDate: '2023-04-17',
+          changePaymentUrl: 'https://store.plesk.com/1404/scp/s51442806-5pKvp9mXCusR83Pd',
+          merchantOfRecordType: 'A'
+        }
+      })
+    )
+  }
+  ),
+  rest.post(`${base}/license/modify-properties`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        'status': 'ok',
+        'data': []
       })
     )
   }),

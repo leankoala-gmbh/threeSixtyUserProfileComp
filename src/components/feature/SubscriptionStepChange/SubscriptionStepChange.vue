@@ -1,7 +1,7 @@
 subscriptionStepChange
 
 <script lang="ts" setup>
-import { ILicensesDetails, IPlanSelector, IPlans } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector, IPlansUpsells } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger', 'selectedPlan'])
 
@@ -17,14 +17,12 @@ const props = defineProps({
 })
 
 const subscriptionPlans = ref<null|IPlanSelector[]>(null)
-const subscriptionPlansOrder = ref<null|string[]>(null)
+const subscriptionPlansOrder = ['pro', 'business', 'enterprise']
 
 const getSubscriptionPlans = async() => {
   try {
-
-    const { plans, planOrder } = await useApiAbstraction().getPlans()
+    const { plans } = await useApiAbstraction().getPlans()
     subscriptionPlans.value = plans
-    subscriptionPlansOrder.value = planOrder
   } catch (error) {
     console.error(error)
   }

@@ -15,34 +15,12 @@ const props = defineProps({
   }
 })
 
-const planDisabledMatrix: {[key: string]: string[]} = {
-  DEFAULT: [],
-  pro: [],
-  business: ['pro'],
-  enterprise: ['pro', 'business']
-}
-
-const disabledEntries = computed(() => {
-  const isDisabled = planDisabledMatrix[props.current] || planDisabledMatrix.DEFAULT
-  return isDisabled
-})
-
 const selected = ref<IPlanSelector>()
 
 const disabledPlan = (id: string) => {
-  const disabled = new Set([...disabledEntries.value, props.current])
+  const disabled = new Set([...props.plans, props.current])
   return [...disabled].includes(id)
 }
-
-const planList = computed(() => {
-  console.log('sdfsdf', props.plans)
-  return props.plans.filter((plan) => {
-    return !disabledEntries.value.find(val => {
-      return val === plan.id
-    }
-    )
-  })
-})
 
 const planDetails = (currentPlan: IPlanSelector) => {
   const plan = props.plans.find((plan) => plan.name === currentPlan.name)
@@ -60,7 +38,7 @@ watch(() => selected.value, (val) => {
     <RadioGroup v-model="selected">
       <div class="planSelector__base relative -space-y-px rounded-md overflow-hidden">
         <RadioGroupOption
-          v-for="(plan, planIdx) in planList"
+          v-for="(plan, planIdx) in plans"
           :key="planIdx"
           v-slot="{ checked, active, disabled }"
           as="template"
@@ -70,7 +48,7 @@ watch(() => selected.value, (val) => {
           <div
             :class="[
               planIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-              planIdx === planList.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+              planIdx === plans.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
               checked ? 'planSelector__option--checked z-10' : 'planselector__option--unchecked',
               'relative border py-4 cursor-pointer px-5 grid grid-cols-2 focus:outline-none'
             ]"

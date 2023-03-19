@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle } from '@/types/general.interfaces'
+import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 
 const props = defineProps({
@@ -49,9 +49,10 @@ const { displayPrice } = useLocalHelper()
 const priceDisplay = computed(() => displayPrice(price.value, props.plan.renewalCurrency))
 
 const quantity = ref(1)
-const total = ref(quantity.value * price.value)
-const vat = computed(() => displayPrice(total.value / 100 * 19, props.plan.renewalCurrency))
+const total = computed(()=>priceObject.value?.nextBillingNetPrice || 0)
+const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
 const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
+
 
 const generateStatusText = () => {
   if (quantity.value <= 0) return
@@ -75,9 +76,24 @@ watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
-const handleChange = (e: number) => {
+const priceObject = ref<IPrices|null>(null)
+const getPricePreview = async () => {
+  const reqObject = props.type === 'websites'? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 } : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
+  try {
+    const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
+    console.log(data)
+    priceObject.value = data
+  } catch (error) {
+    console.log(error)
+
+  }
+}
+
+const handleChange = async (e: number) => {
+  console.log(e)
+
   quantity.value = e
-  total.value = +(quantity.value * price.value).toFixed(2)
+  await getPricePreview()
   generateStatusText()
 }
 
@@ -95,12 +111,7 @@ const selectMonitorDetails = computed(() => {
   return props.plan.websites
 })
 
-const checkUpgradeDowngrade = computed(() => {
-  if (quantity.value === selectMonitorDetails.value.count) return 'same'
-  return quantity.value > selectMonitorDetails.value.count ? 'upgrade' : 'downgrade'
-})
-
-const { upgradeProperties, downgradeProperties } = useApiAbstraction()
+const { modifyProperties } = useApiAbstraction()
 
 const selectPlanIds = computed(() => {
   const planIds = planMatrix.find((plan) => plan.name === props.plan.type)
@@ -110,21 +121,11 @@ const selectPlanIds = computed(() => {
 const handleBuy = async () => {
   if (quantity.value <= 0 || !selectPlanIds.value) return
   try {
-    if (checkUpgradeDowngrade.value === 'upgrade') {
-      await upgradeProperties(
-        props.plan.keyId,
-        selectPlanIds.value.id,
-        props.type === 'websites' ? quantity.value : props.plan.websites.count,
-        props.type === 'servers' ? quantity.value : props.plan.servers.count
-      )
-    } else {
-      await downgradeProperties(
-        props.plan.keyId,
-        selectPlanIds.value.id,
-        props.type === 'websites' ? quantity.value : props.plan.websites.count,
-        props.type === 'servers' ? quantity.value : props.plan.servers.count
-      )
-    }
+    await modifyProperties(
+      props.plan.keyId,
+      props.type === 'websites' ? quantity.value : props.plan.websites.count,
+      props.type === 'servers' ? quantity.value : props.plan.servers.count
+    )
     status.value = 'info'
     isOpen.value = false
     isAlert.value = true
@@ -138,7 +139,10 @@ const handleBuy = async () => {
   }
 
 }
+
+
 onMounted(() => {
+  getPricePreview()
   generateStatusText()
 })
 </script>

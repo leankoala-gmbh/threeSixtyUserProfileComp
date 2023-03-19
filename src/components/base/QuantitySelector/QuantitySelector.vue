@@ -18,6 +18,20 @@ const emit = defineEmits(['changeQuantity'])
 
 const quantity = ref(props.value)
 
+const errorString = `Must be between ${props.min } and ${props.max }`
+
+
+const isWithinRange = computed(() => {
+  return quantity.value >= props.min && quantity.value <= props.max
+})
+
+const isLowerLimit = computed(() => {
+  return quantity.value === props.min
+})
+const isUpperLimit = computed(() => {
+  return quantity.value === props.max
+})
+
 const operations = (operation: string) => {
   if (operation === 'minus'){
     if (isLowerLimit.value) return
@@ -30,23 +44,11 @@ const operations = (operation: string) => {
     return
   }
 }
-
-const errorString = `Must be between ${props.min } and ${props.max }`
-
 const handleQuantity = (operation: string) => {
   operations(operation)
   emit('changeQuantity', quantity.value)
 }
-const isWithinRange = computed(() => {
-  return quantity.value >= props.min && quantity.value <= props.max
-})
 
-const isLowerLimit = computed(() => {
-  return quantity.value === props.min
-})
-const isUpperLimit = computed(() => {
-  return quantity.value === props.max
-})
 watch( () => quantity.value, () => {
   if (isWithinRange || !isLowerLimit || !isUpperLimit) return
 }, { immediate: true })
@@ -80,8 +82,3 @@ watch( () => quantity.value, () => {
     </ErrorMessage>
   </div>
 </template>
-
-<style>
-  .quantitySelector {}
-</style>
-

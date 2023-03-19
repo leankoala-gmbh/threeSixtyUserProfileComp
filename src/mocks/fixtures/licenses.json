@@ -1,7 +1,32 @@
-
 {
-  "data" : {
+  "data": {
     "licenses": [
+      {
+        "keyId": "10318994",
+        "keyNumber": "EXT.10318994.0000",
+        "activationCode": "A00V00-2MGX10-T8MS14-P8MD67-DC2S24",
+        "status": "active",
+        "createDate": "2023-03-17T00:00:00+00:00",
+        "nextBillingDate": "2023-04-17T00:00:00+00:00",
+        "type": "360 Monitoring Pro",
+        "renewalCostNet": 3.99,
+        "renewalCostVat": 0.76,
+        "renewalCostGross": 4.75,
+        "renewalCurrency": "EUR",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https://store.plesk.com/1404/scp/s51442806-5pKvp9mXCusR83Pd",
+        "subscriptionId": "S51442806",
+        "websites": {
+          "count": 0,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 0,
+          "min": 0,
+          "max": 999999
+        }
+      },
       {
         "keyId": "9553438",
         "keyNumber": "EXT.09553438.0010",
@@ -16,6 +41,7 @@
         "renewalCurrency": "EUR",
         "billingPeriod": "1m",
         "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
+        "subscriptionId": "S51442806",
         "websites": {
           "count": 20,
           "min": 20,
@@ -40,6 +66,7 @@
         "renewalCostGross": 12.03,
         "renewalCurrency": "EUR",
         "billingPeriod": "1m",
+        "subscriptionId": "S51442806",
         "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
         "websites": {
           "count": 20,
@@ -65,6 +92,7 @@
         "renewalCostGross": 12.03,
         "renewalCurrency": "EUR",
         "billingPeriod": "1m",
+        "subscriptionId": "S51442806",
         "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
         "websites": {
           "count": 20,

@@ -1,55 +1,35 @@
-{
-  "planOrder": [
-    "pro",
-    "business",
-    "enterprise"
-  ],
-  "plans": [
-    {
-      "id": "pro",
-      "name": "360 Monitoring Pro",
-      "upgradeable": [
-        "business",
-        "enterprise"
-      ],
-      "downgradeable": [],
-      "price": {
-        "net": 4.99,
-        "vat": 0.95,
-        "gross": 5.94,
-        "currency": "EUR"
+[
+  {
+    "productName": "360 Monitoring Pro",
+    "extensionCatalogCode": "360-monitoring",
+    "currency": "EUR",
+    "billingPeriod": "1m",
+    "changePaymentUrl": "https://store.plesk.com/1404/scp/s51442806-5pKvp9mXCusR83Pd",
+    "upsells": [
+      {
+        "productId": "241492",
+        "planId": "business",
+        "productName": "360 Monitoring Business",
+        "alignmentGrossPrice": 24.17,
+        "alignmentVatPrice": 3.86,
+        "alignmentNetPrice": 20.31,
+        "nextBillingGrossPrice": 29.74,
+        "nextBillingVatPrice": 4.75,
+        "nextBillingNetPrice": 24.99,
+        "nextBillingDate": "2023-04-17"
+      },
+      {
+        "productId": "241947",
+        "planId": "enterprise",
+        "productName": "360 Monitoring Enterprise",
+        "alignmentGrossPrice": 110.54,
+        "alignmentVatPrice": 17.65,
+        "alignmentNetPrice": 92.89,
+        "nextBillingGrossPrice": 118.99,
+        "nextBillingVatPrice": 19,
+        "nextBillingNetPrice": 99.99,
+        "nextBillingDate": "2023-04-17"
       }
-    },
-    {
-      "id": "business",
-      "name": "360 Monitoring Business",
-      "upgradeable": [
-        "enterprise"
-      ],
-      "downgradeable": [
-        "pro"
-      ],
-      "price": {
-        "net": 24.99,
-        "vat": 4.75,
-        "gross": 29.74,
-        "currency": "EUR"
-      }
-    },
-    {
-      "id": "enterprise",
-      "name": "360 Monitoring Enterprise",
-      "upgradeable": [],
-      "downgradeable": [
-        "pro",
-        "business"
-      ],
-      "price": {
-        "net": 99.99,
-        "vat": 19,
-        "gross": 118.99,
-        "currency": "EUR"
-      }
-    }
-  ]
-}
+    ]
+  }
+]
