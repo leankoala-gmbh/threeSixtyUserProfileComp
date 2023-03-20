@@ -61,5 +61,9 @@
   "additionalTypeConfirm": "Confirm additional {type} monitor amount change",
   "additionalTypeChangeBox": "{type} monitor amount change",
   "additionalBuy": "Buy now",
-  "additionalSuccessMessage": "Additional {type} monitor count has been successfully changed"
+  "additionalSuccessMessage": "Additional {type} monitor count has been successfully changed",
+  "changePaymentDetails": "See your payment details",
+  "planNamepro": "360 Monitoring Pro",
+  "planNamebusiness": "360 Monitoring Business",
+  "planNameenterprise": "360 Monitoring Enterprise"
 }

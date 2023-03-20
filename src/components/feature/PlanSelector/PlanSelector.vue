@@ -74,7 +74,7 @@ watch(() => selected.value, (val) => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ t(`WIP.planName${plan.id}`) }}
+                {{ t(`planName${plan.id}`) }}
               </RadioGroupLabel>
             </span>
             <RadioGroupDescription

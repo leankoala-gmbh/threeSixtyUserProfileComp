@@ -20,7 +20,7 @@ const props = defineProps({
     :href="planDetails.changePaymentSubscriptionUrl"
   >
     <div class="flex gap-2 items-center">
-      <div>{{ t('WIP.changePaymentDetails') }}</div>
+      <div>{{ t('changePaymentDetails') }}</div>
     </div>
     <div>
       <div

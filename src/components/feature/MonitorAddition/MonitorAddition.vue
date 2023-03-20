@@ -42,11 +42,10 @@ const subTitle = reactive<IMonitorStatusTitle>({
 })
 
 const isOpen = ref(false)
-const price = ref(1.19)
 
 const { displayPrice } = useLocalHelper()
-
-const priceDisplay = computed(() => displayPrice(price.value, props.plan.renewalCurrency))
+const priceObject = ref<IPrices|null>(null)
+const priceDisplay = computed(() => displayPrice(priceObject.value?.nextBillingNetPrice || 0, props.plan.renewalCurrency))
 
 const quantity = ref(1)
 const total = computed(()=>priceObject.value?.nextBillingNetPrice || 0)
@@ -76,12 +75,10 @@ watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
-const priceObject = ref<IPrices|null>(null)
 const getPricePreview = async () => {
   const reqObject = props.type === 'websites'? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 } : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
-    console.log(data)
     priceObject.value = data
   } catch (error) {
     console.log(error)
@@ -90,8 +87,6 @@ const getPricePreview = async () => {
 }
 
 const handleChange = async (e: number) => {
-  console.log(e)
-
   quantity.value = e
   await getPricePreview()
   generateStatusText()
@@ -141,8 +136,8 @@ const handleBuy = async () => {
 }
 
 
-onMounted(() => {
-  getPricePreview()
+onMounted(async () => {
+  await getPricePreview()
   generateStatusText()
 })
 </script>
