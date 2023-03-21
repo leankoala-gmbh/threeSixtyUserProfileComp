@@ -1,22 +1,30 @@
 <script lang="ts" setup>
-import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle } from '@/types/general.interfaces'
+import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails } from '@/types/general.interfaces'
 
 const props = defineProps({
   subTitle: {
-    type: Object as ()=> IMonitorStatusTitle,
+    type: Object as () => IMonitorStatusTitle,
     default: ()=> ({})
+  },
+  type:{
+    type: String as () => TMonitorTypes,
+    default: 'servers'
+  },
+  size:{
+    type: Object as () => ILicensesServers,
+    default: ()=>({})
+  },
+  planDetails:{
+    type: Object as () => ILicensesDetails,
+    default: ()=>({})
   },
   status: {
     type: String,
     required: true
   },
-  type:{
-    type: String as ()=> TMonitorTypes,
-    default: 'servers'
-  },
-  size:{
-    type: Object as ()=> ILicensesServers,
-    default: ()=>({})
+  link:{
+    type: String,
+    required:true
   },
   priceDisplay: {
     type: String,
@@ -104,6 +112,7 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
           {{ t('paymentInfo') }}
         </p>
         <PaymentMethod
+          :plan-details="props.planDetails"
           class="mb-8 mt-2"
         />
         <GeneralButton

@@ -167,12 +167,14 @@ onMounted(async () => {
     <template #body>
       <MonitorAdditionInfo
         v-if="status === 'info'"
+        :plan-details="plan"
         :status="status"
         :sub-title="subTitle"
         :type="type"
         :size="selectMonitorDetails"
         :current="quantity"
         :quantity="quantity"
+        :link="plan.changePaymentSubscriptionUrl"
         :price-display="priceDisplay"
         :total-display="totalDisplay"
         :status-headline="statusHeadline"

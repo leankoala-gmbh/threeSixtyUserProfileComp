@@ -2,10 +2,6 @@
 import { ILicensesDetails } from '@/types/general.interfaces'
 
 const props = defineProps({
-  link: {
-    type: String,
-    default: ''
-  },
   planDetails: {
     type: Object as () => ILicensesDetails,
     default: () => ({})
