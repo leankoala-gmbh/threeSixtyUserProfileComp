@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { TPlanType } from '@/types/general.interfaces'
+import { TPlanStatus } from '@/types/general.interfaces'
 
 const props = defineProps({
   type: {
-    type: String as () => TPlanType,
-    default: 'active' as TPlanType
+    type: String as () => TPlanStatus,
+    default: 'active' as TPlanStatus
   }
 })
 </script>
