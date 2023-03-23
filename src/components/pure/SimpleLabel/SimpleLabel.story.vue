@@ -3,14 +3,14 @@ import SimpleLabel from './SimpleLabel.vue'
 </script>
 
 <docs lang="md">
-  Simple label for displaying status from a plan
+  Lorem ipsum
 </docs>
 
 <template>
   <Story
     title="SimpleLabel component story"
   >
-    <SimpleLabel>Hello Label</SimpleLabel>
+    <SimpleLabel />
   </Story>
 </template>
 
