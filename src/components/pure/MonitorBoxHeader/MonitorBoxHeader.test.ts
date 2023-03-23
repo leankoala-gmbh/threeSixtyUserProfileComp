@@ -7,4 +7,13 @@ describe('MonitorBoxHeader.vue', () => {
     const wrapper = mount(MonitorBoxHeader)
     expect(wrapper).toBeTruthy()
   })
+
+  it('it should render the slot', () => {
+    const wrapper = mount(MonitorBoxHeader, {
+      slots:{
+        default: 'Default content'
+      }
+    })
+    expect(wrapper.text()).toContain('Default content')
+  })
 })

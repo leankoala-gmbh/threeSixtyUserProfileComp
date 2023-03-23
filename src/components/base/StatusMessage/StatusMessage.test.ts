@@ -7,4 +7,16 @@ describe('StatusMessage.vue', () => {
     const wrapper = mount(StatusMessage)
     expect(wrapper).toBeTruthy()
   })
+
+  it('should show annotation when shoeMessageBox is true', ()=>{
+    const wrapper = mount(StatusMessage, {
+      slots:{
+        default: 'Default slot content'
+      },
+      props:{
+        timeout: 100
+      }
+    })
+    expect(wrapper.text()).toContain('Default slot content')
+  })
 })

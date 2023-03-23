@@ -33,7 +33,6 @@ onMounted(() => {
 })
 
 
-const paymentLink = ref<string>(props.plan.changePaymentSubscriptionUrl)
 const selectedPlan = ref<null|IPlanSelector>(null)
 const statusHeadline = ref<string>('')
 const statusText = ref<string>('')
