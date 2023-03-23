@@ -58,7 +58,8 @@ watch( () => quantity.value, () => {
 <template>
   <div class="quantitySelector w-40 flex flex-wrap my-1 py-2 justify-center">
     <button
-      class="rounded-l-md border-[1px] w-8 h-8 disabled:bg-gray-200"
+      aria-label="handleMinusQuantity"
+      class="rounded-l-md border w-8 h-8 disabled:bg-gray-200"
       :disabled="!isWithinRange || isLowerLimit"
       @click="handleQuantity('minus')"
     >
@@ -66,12 +67,13 @@ watch( () => quantity.value, () => {
     </button>
     <input
       v-model="quantity"
-      aria-label="InputQuantity"
-      class="border-y-[1px] text-center w-8 h-8"
+      aria-label="handleInputQuantity"
+      class="border-y text-center w-8 h-8"
       @input="handleQuantity('')"
     >
     <button
-      class="rounded-r-md border-[1px] w-8 h-8 disabled:bg-gray-200"
+      aria-label="handlePlusQuantity"
+      class="rounded-r-md border w-8 h-8 disabled:bg-gray-200"
       :disabled="!isWithinRange || isUpperLimit"
       @click="handleQuantity('plus')"
     >

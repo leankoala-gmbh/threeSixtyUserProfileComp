@@ -7,4 +7,14 @@ describe('DisplayChangeBox.vue', () => {
     const wrapper = mount(DisplayChangeBox)
     expect(wrapper).toBeTruthy()
   })
+  it('should render text', () => {
+    const wrapper = mount(DisplayChangeBox, {
+      props:{
+        title: 'This is a title',
+        start: 'Start Text',
+        target: 'Target Text'
+      }
+    })
+    expect(wrapper).toMatchSnapshot()
+  })
 })

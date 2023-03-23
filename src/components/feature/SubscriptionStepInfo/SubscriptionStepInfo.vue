@@ -36,7 +36,7 @@ const props = defineProps({
       :currency="plan.renewalCurrency"
     />
     <div v-if="props.status === 'active'">
-      <div class="flex gap-2 items-center mb-6">
+      <div class="flex gap-2 items-center mb-6" aria-label="changePlanDetails">
         <GeneralButton @click="emit('trigger', 'change')">
           {{ t('changePlan') }}
         </GeneralButton>
