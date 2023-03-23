@@ -16,14 +16,13 @@ describe('Timezone.vue', () => {
     const wrapper = mount(Timezone)
     const multiSelect = () => wrapper.find('.multiselect__input')
     const timeZoneList = () => wrapper.findAll('.multiselect__element')
-    const success = () => wrapper.find('.text-signalSuccess')
+    const success = () => wrapper.find('[aria-label="statusMessage"]')
     expect(success().exists()).toBe(false)
     await multiSelect().trigger('focus')
     await multiSelect().trigger('click')
 
     await timeZoneList()[2].trigger('focus')
     await timeZoneList()[2].trigger('click')
-
     expect(success().exists()).toBe(true)
   })
 })

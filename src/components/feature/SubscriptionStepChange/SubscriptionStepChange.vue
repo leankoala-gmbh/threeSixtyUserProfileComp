@@ -68,7 +68,11 @@ watchEffect(() => {
 <template>
   <div class="subscriptionStepChange">
     <div class="flex gap-2 items-center mb-4">
-      <h3 class="font-medium text-xl" :class="[ status === 'active' ? 'text-active' : '' ]">
+      <h3
+        class="font-medium text-xl"
+        :class="[ status === 'active' ? 'text-active' : '' ]"
+        data-testId="planType"
+      >
         {{ plan.type }}
       </h3>
     </div>

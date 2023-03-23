@@ -50,7 +50,11 @@ watch(() => timezone.value, (o, n) => {
 <template>
   <div>
     <div class="w-full relative">
-      <StatusMessage v-if="timezoneSavedInfo" class="mb-4">
+      <StatusMessage
+        v-if="timezoneSavedInfo"
+        class="mb-4"
+        aria-label="statusMessage"
+      >
         {{ t('timezoneInfo') }}
       </StatusMessage>
       <VueMultiselect
