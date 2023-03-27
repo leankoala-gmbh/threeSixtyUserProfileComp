@@ -13,7 +13,7 @@ const selectedType = ref(types[0])
 
 <template>
   <Story
-    title="SimpleLabel component story"
+    title="pure/SimpleLabel"
   >
     <SimpleLabel :type="selectedType">
       {{ testString }}

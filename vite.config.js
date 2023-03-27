@@ -1,3 +1,5 @@
+/// <reference types="@histoire/plugin-vue/components" />
+
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
