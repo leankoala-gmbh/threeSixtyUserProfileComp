@@ -64,5 +64,6 @@
   "changePaymentDetails": "See your payment details",
   "planNamepro": "360 Monitoring Pro",
   "planNamebusiness": "360 Monitoring Business",
-  "planNameenterprise": "360 Monitoring Enterprise"
+  "planNameenterprise": "360 Monitoring Enterprise",
+  "monitorRange": "Must be between {min} and {max}"
 }

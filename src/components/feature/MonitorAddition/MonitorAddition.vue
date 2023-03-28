@@ -2,6 +2,7 @@
 import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 import { Ref } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 
 const props = defineProps({
   open: {
@@ -15,6 +16,10 @@ const props = defineProps({
   type: {
     type: String as () => TMonitorTypes,
     default: 'servers'
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -73,7 +78,9 @@ watch(() => props.open, () => {
 }, { immediate: true })
 
 const getPricePreview = async (object: Ref<IPrices | undefined>) => {
-  const reqObject = props.type === 'websites'? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 } : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
+  const reqObject = props.type === 'websites'
+    ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
+    : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
     object.value = data
@@ -83,10 +90,13 @@ const getPricePreview = async (object: Ref<IPrices | undefined>) => {
   }
 }
 
-const handleChange = async (e: number) => {
-  quantity.value = e
+const debouncedFn = useDebounceFn(async() => {
   await getPricePreview(priceObject)
   generateStatusText()
+}, 500)
+const handleChange = async (e: number) => {
+  quantity.value = e
+  await debouncedFn()
 }
 
 const handleClose = () => {
@@ -161,6 +171,7 @@ onMounted(async () => {
       :price-display="priceDisplay"
       :is-open="isOpen"
       :quantity="plan[type].count"
+      :read-only="readOnly"
       @header-event="(e)=> isOpen = e"
     />
     <MonitorBoxHeader

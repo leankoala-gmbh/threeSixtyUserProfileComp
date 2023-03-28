@@ -7,6 +7,10 @@ defineProps({
   plan: {
     type: Object as () => ILicensesDetails,
     default: () => ({})
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -17,12 +21,14 @@ defineProps({
       :plan="plan"
       type="servers"
       class="mb-1"
+      :read-only="readOnly"
       @update="emit('update')"
     />
     <MonitorAddition
       :plan="plan"
       type="websites"
       class="mb-1"
+      :read-only="readOnly"
       @update="emit('update')"
     />
   </div>

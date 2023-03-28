@@ -29,10 +29,19 @@ const props = defineProps({
   priceDisplay:{
     type: String,
     required: true
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
 const emit = defineEmits(['header-event'])
+
+const openBox = () => {
+  if (props.readOnly) return
+  emit('header-event', true)
+}
 </script>
 
 <template>
@@ -44,8 +53,11 @@ const emit = defineEmits(['header-event'])
       >
         {{ t('additionalSuccessMessage', {type: props.type}) }}
       </StatusMessage>
-      <div class="flex justify-between items-center" @click="emit('header-event',true)">
-        <div class="flex gap-4 items-center font-bold flex-grow">
+      <div
+        class="flex justify-between items-center flex-wrap"
+        @click="openBox"
+      >
+        <div class="flex w-full @[550px]/tsxupmain:w-auto gap-4 items-center font-bold flex-grow">
           {{ title[type] }}
         </div>
         <div class="flex gap-8 justify-between">
@@ -60,6 +72,7 @@ const emit = defineEmits(['header-event'])
           class="w-10 h-10 flex items-center justify-center"
         >
           <svg
+            v-if="!readOnly"
             class="w-4 h-4"
             viewBox="0 0 8 13"
             fill="none"

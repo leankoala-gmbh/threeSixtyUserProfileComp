@@ -2,7 +2,7 @@
 const props = defineProps({
   min: {
     type: Number,
-    default: 1
+    default: 0
   },
   max: {
     type: Number,
@@ -18,7 +18,10 @@ const emit = defineEmits(['changeQuantity'])
 
 const quantity = ref(props.value)
 
-const errorString = `Must be between ${props.min } and ${props.max }`
+const errorString = t('monitorRange', {
+  min: props.min.toString(),
+  max: props.max.toString()
+})
 
 
 const isWithinRange = computed(() => {

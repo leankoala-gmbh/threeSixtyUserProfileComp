@@ -13,6 +13,10 @@ const props = defineProps({
   subscriptionPlans: {
     type: Object as () => IPlanSelector[],
     default: () => ({})
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -93,6 +97,7 @@ watchEffect(() => {
       :closed-header="!isOpen"
       :subscription-detail="subscriptionDetails"
       :override-header-step="boxOpenHeader"
+      :read-only="readOnly"
       @header-event="isOpen = $event"
     />
     <template #body>
@@ -102,12 +107,14 @@ watchEffect(() => {
           :status="status"
           :subscription-plans="subscriptionPlans"
           :plan="plan"
+          :read-only="readOnly"
           @trigger="currentStep = $event"
         />
         <SubscriptionStepChange
           v-if="status === 'active' && currentStep === 'change'"
           :status="status"
           :plan="plan"
+          :read-only="readOnly"
           :subscription-plans="subscriptionPlans"
           @trigger="currentStep = $event"
           @selected-plan="selectedPlan = $event"

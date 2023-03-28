@@ -33,6 +33,10 @@ const props = defineProps({
   view: {
     type: String as () => TViewTypes,
     default: 'profile'
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -61,6 +65,7 @@ onMounted(() => {
     />
     <ViewLicense
       v-if="view === 'license'"
+      :read-only="readOnly"
       :inactive-fields="inactiveFieldsArr"
     />
   </div>

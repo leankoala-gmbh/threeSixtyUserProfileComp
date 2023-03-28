@@ -50,7 +50,7 @@ watch(() => selected.value, (val) => {
               planIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
               planIdx === plans.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
               checked ? 'planSelector__option--checked z-10' : 'planselector__option--unchecked',
-              'relative border py-4 cursor-pointer px-5 grid grid-cols-2 focus:outline-none'
+              'relative border py-4 cursor-pointer px-5 grid grid-cols-2 focus:outline-none flex-shrink-0'
             ]"
           >
             <span class="flex items-center text-sm">
@@ -58,7 +58,7 @@ watch(() => selected.value, (val) => {
                 :class="[
                   disabled ? 'border-gray-400 bg-gray-300' : checked ? 'planSelector__bullet--checked border-transparent' : 'planSelector__bullet--unchecked',
 
-                  'h-4 w-4 rounded-full border flex items-center justify-center'
+                  'h-4 w-4 rounded-full border flex items-center justify-center  flex-shrink-0'
                 ]"
                 aria-hidden="true"
               >

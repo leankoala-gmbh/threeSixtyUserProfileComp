@@ -5,6 +5,10 @@ const props = defineProps({
   inactiveFields: {
     type: Array as () => string[],
     default: () => []
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -57,11 +61,13 @@ const updateLicenseData = async() => {
             :status="key"
             :plan="plan"
             :subscription-plans="subscriptionPlans"
+            :read-only="readOnly"
             @update="updateLicenseData"
           />
           <div v-if="key == 'active'" class="mb-6">
             <MonitorAdditionPlans
               :plan="plan"
+              :read-only="readOnly"
               @update="updateLicenseData"
             />
           </div>

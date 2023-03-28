@@ -69,7 +69,7 @@ const isSameQuantity = computed(() => {
         {{ subTitle[type][status] }}
       </div>
       <QuantitySelector
-        :min="1"
+        :min="0"
         :max="size.max - size.count"
         :value="size.count"
         @change-quantity="onChangeQuantity"

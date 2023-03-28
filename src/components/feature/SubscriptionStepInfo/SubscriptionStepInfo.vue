@@ -15,6 +15,10 @@ const props = defineProps({
   subscriptionPlans: {
     type: Object as () => IPlanSelector[],
     default: () => ({})
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -39,9 +43,15 @@ const props = defineProps({
       :price="plan.renewalCostGross"
       :currency="plan.renewalCurrency"
     />
-    <div v-if="props.status === 'active'">
-      <div class="flex gap-2 items-center mb-6" aria-label="changePlanDetails">
-        <GeneralButton v-if="subscriptionPlans.length" @click="emit('trigger', 'change')">
+    <div v-if="props.status === 'active' && !readOnly">
+      <div
+        class="flex gap-2 items-center mb-6"
+        aria-label="changePlanDetails"
+      >
+        <GeneralButton
+          v-if="subscriptionPlans.length"
+          @click="emit('trigger', 'change')"
+        >
           {{ t('changePlan') }}
         </GeneralButton>
         <GeneralButton

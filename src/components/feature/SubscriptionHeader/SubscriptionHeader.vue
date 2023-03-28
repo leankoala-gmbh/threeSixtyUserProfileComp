@@ -19,6 +19,10 @@ const props = defineProps({
   overrideHeaderStep: {
     type: String,
     default: ''
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -33,6 +37,11 @@ const headline = ref(headerDict.default)
 watchEffect(() => {
   headline.value = headerDict[props.overrideHeaderStep] || headerDict.default
 })
+
+const openBox = () => {
+  if (props.readOnly) return
+  emit('headerEvent', true)
+}
 </script>
 
 <template>
@@ -43,7 +52,7 @@ watchEffect(() => {
     <div
       v-if="closedHeader"
       class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5 cursor-pointer"
-      @click="emit('headerEvent', true)"
+      @click="openBox"
     >
       <div class="w-full">
         <div class="flex gap-2 items-center mb-2">
@@ -67,6 +76,7 @@ watchEffect(() => {
       </div>
       <div class="w-10 h-10 flex items-center justify-center text-gray-500">
         <svg
+          v-if="!readOnly"
           class="w-4 h-4"
           viewBox="0 0 8 13"
           fill="none"
