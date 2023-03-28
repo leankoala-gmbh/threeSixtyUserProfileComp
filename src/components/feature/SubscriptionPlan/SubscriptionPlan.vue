@@ -38,15 +38,13 @@ watchEffect(() => {
 
 const { terminateLicense, upgradePlan } = useApiAbstraction()
 
-const selectPlanIds = computed(() => {
-  const planIds = planMatrix.find((plan) => plan.name === props.plan.type)
-  return planIds
-})
+const emit = defineEmits(['update'])
 
 const buyPlan = async () => {
-  if (selectedPlan.value === null || !selectPlanIds.value) return
+  if (selectedPlan.value === null) return
   try {
     await upgradePlan(props.plan.keyId, selectedPlan.value.id)
+    emit('update')
   } catch (error) {
     console.error(error)
   }
@@ -56,7 +54,7 @@ const cancelPlan = async () => {
   if (props.plan.keyId === undefined) return
   try {
     await terminateLicense(props.plan.keyId)
-
+    emit('update')
   } catch (error) {
     console.error(error)
   }

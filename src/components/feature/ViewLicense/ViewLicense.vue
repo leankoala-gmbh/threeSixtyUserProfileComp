@@ -21,6 +21,10 @@ const getLicenseData = async() => {
 onMounted(() => {
   getLicenseData()
 })
+
+const updateLicenseData = async() => {
+  await getLicenseData()
+}
 </script>
 
 <template>
@@ -35,13 +39,18 @@ onMounted(() => {
           :key="index"
           class="mb-4"
         >
-          <SubscriptionPlan
+          <Subscri
+            ption-plan
             class="mb-1"
             :status="key"
             :plan="plan"
+            @update="updateLicenseData"
           />
           <div v-if="key == 'active'" class="mb-6">
-            <MonitorAdditionPlans :plan="plan" />
+            <MonitorAdditionPlans
+              :plan="plan"
+              @update="updateLicenseData"
+            />
           </div>
         </div>
       </div>

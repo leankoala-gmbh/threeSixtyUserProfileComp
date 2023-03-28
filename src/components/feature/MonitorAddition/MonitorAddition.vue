@@ -113,6 +113,8 @@ const selectPlanIds = computed(() => {
   return planIds
 })
 
+const emit = defineEmits(['update'])
+
 const handleBuy = async () => {
   if (quantity.value <= 0 || !selectPlanIds.value) return
   try {
@@ -129,6 +131,7 @@ const handleBuy = async () => {
     }, 3000)
     status.value = 'info'
     isOpen.value = false
+    emit('update')
   } catch (e) {
     console.error(e)
   }
