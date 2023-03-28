@@ -22,6 +22,10 @@ const props = defineProps({
     type:Number,
     required: true
   },
+  initialPriceDisplay:{
+    type: String,
+    required: true
+  },
   priceDisplay:{
     type: String,
     required: true
@@ -46,7 +50,7 @@ const emit = defineEmits(['header-event'])
         </div>
         <div class="flex gap-8 justify-between">
           <div class="text-xs">
-            {{ quantity }} x {{ priceDisplay }}
+            {{ quantity }} x {{ initialPriceDisplay }}
           </div>
           <div class="text-xs font-bold pr-5">
             {{ priceDisplay }} / mo

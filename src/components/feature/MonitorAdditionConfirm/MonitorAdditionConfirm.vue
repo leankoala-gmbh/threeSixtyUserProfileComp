@@ -24,7 +24,7 @@ const emit = defineEmits(['handleStatus', 'handleBuy'])
       class="my-4"
       :title="t('additionalTypeChangeBox', {type: useTextHelper().capitalize(props.type)})"
       :start="size.count.toString()"
-      :target="(size.count + quantity).toString()"
+      :target="(quantity).toString()"
     />
     <p class="mb-4" v-html="t('confirmNote')" />
     <div class="flex gap-4">

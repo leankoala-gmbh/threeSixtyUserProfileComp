@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
+import { Ref } from 'vue'
 
 const props = defineProps({
   open: {
@@ -40,13 +41,13 @@ const subTitle = reactive<IMonitorStatusTitle>({
 const isOpen = ref(false)
 
 const { displayPrice } = useLocalHelper()
-const priceObject = ref<IPrices|null>(null)
+const priceObject = ref<IPrices>()
 const priceDisplay = computed(() => displayPrice(priceObject.value?.nextBillingNetPrice || 0, props.plan.renewalCurrency))
 
 const quantity = ref(1)
 const total = computed(() => priceObject.value?.nextBillingNetPrice || 0)
-const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
 const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
+const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
 
 
 const generateStatusText = () => {
@@ -71,11 +72,11 @@ watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
-const getPricePreview = async () => {
+const getPricePreview = async (object: Ref<IPrices | undefined>) => {
   const reqObject = props.type === 'websites'? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 } : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
-    priceObject.value = data
+    object.value = data
   } catch (error) {
     console.log(error)
 
@@ -84,7 +85,7 @@ const getPricePreview = async () => {
 
 const handleChange = async (e: number) => {
   quantity.value = e
-  await getPricePreview()
+  await getPricePreview(priceObject)
   generateStatusText()
 }
 
@@ -135,9 +136,13 @@ const handleBuy = async () => {
 
 }
 
-
+const initialPrice = ref<IPrices>()
+const initialPriceDisplay = computed(() => {
+  return displayPrice(initialPrice.value?.nextBillingNetPrice || 0, initialPrice.value?.currency)
+})
 onMounted(async () => {
-  await getPricePreview()
+  await getPricePreview(initialPrice)
+  await getPricePreview(priceObject)
   generateStatusText()
 })
 </script>
@@ -152,6 +157,7 @@ onMounted(async () => {
       :title="title"
       :is-alert="isAlert"
       :type="type"
+      :initial-price-display="initialPriceDisplay"
       :price-display="priceDisplay"
       :is-open="isOpen"
       :quantity="plan[type].count"
