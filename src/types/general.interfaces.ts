@@ -127,3 +127,10 @@ export interface IPrices {
   changePaymentUrl: string
   merchantOfRecordType: string
 }
+
+export interface ILicenseCache {
+  [keyId : string]: {
+    websiteCount: number
+    serverCount: number
+  }
+}
