@@ -11,7 +11,7 @@ const props = defineProps({
     default: () => ({})
   },
   subscriptionPlans: {
-    type: Object as () => IPlanSelector,
+    type: Object as () => IPlanSelector[],
     default: () => ({})
   }
 })

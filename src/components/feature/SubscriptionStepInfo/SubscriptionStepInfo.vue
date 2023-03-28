@@ -13,7 +13,7 @@ const props = defineProps({
     default: () => ({})
   },
   subscriptionPlans: {
-    type: Object as () => IPlanSelector,
+    type: Object as () => IPlanSelector[],
     default: () => ({})
   }
 })
@@ -41,7 +41,7 @@ const props = defineProps({
     />
     <div v-if="props.status === 'active'">
       <div class="flex gap-2 items-center mb-6" aria-label="changePlanDetails">
-        <GeneralButton v-if="subscriptionPlans.upsells.length" @click="emit('trigger', 'change')">
+        <GeneralButton v-if="subscriptionPlans.length" @click="emit('trigger', 'change')">
           {{ t('changePlan') }}
         </GeneralButton>
         <GeneralButton

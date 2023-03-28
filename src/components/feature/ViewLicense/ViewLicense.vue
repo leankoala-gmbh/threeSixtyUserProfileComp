@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicenses, IPlanSelector } from '@/types/general.interfaces'
+import { ILicenses, IPlanSelector, IPlansNew } from '@/types/general.interfaces'
 
 const props = defineProps({
   inactiveFields: {
@@ -10,7 +10,7 @@ const props = defineProps({
 
 const licenseData = ref<ILicenses|null>(null)
 
-const subscriptionPlans = ref<null|IPlanSelector[]>(null)
+const subscriptionPlans = ref<IPlanSelector[]>()
 
 const getSubscriptionPlans = async() => {
   try {

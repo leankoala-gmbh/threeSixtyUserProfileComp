@@ -1,6 +1,5 @@
 {
-  "data":
-  [
+  "data": [
     {
       "productName": "360 Monitoring Pro",
       "extensionCatalogCode": "360-monitoring",
@@ -35,6 +34,4 @@
       ]
     }
   ]
-  }
-
-
+}
