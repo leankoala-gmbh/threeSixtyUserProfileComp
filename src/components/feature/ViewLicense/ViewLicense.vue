@@ -13,6 +13,7 @@ const licenseData = ref<ILicenses|null>(null)
 const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
+    console.log(licenseData.value)
   } catch (error) {
     console.error(error)
   }
@@ -39,8 +40,7 @@ const updateLicenseData = async() => {
           :key="index"
           class="mb-4"
         >
-          <Subscri
-            ption-plan
+          <SubscriptionPlan
             class="mb-1"
             :status="key"
             :plan="plan"
