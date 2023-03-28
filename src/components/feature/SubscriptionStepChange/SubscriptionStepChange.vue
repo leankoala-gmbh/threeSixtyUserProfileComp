@@ -17,7 +17,6 @@ const props = defineProps({
 })
 
 const subscriptionPlans = ref<null|IPlanSelector[]>(null)
-const subscriptionPlansOrder = ['pro', 'business', 'enterprise']
 
 const getSubscriptionPlans = async() => {
   try {
@@ -31,7 +30,6 @@ const getSubscriptionPlans = async() => {
 onMounted(() => {
   getSubscriptionPlans()
 })
-
 
 const selectedPlan = ref<null|IPlanSelector>(null)
 const statusHeadline = ref<string>('')

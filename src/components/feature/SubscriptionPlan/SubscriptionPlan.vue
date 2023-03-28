@@ -46,7 +46,7 @@ const selectPlanIds = computed(() => {
 const buyPlan = async () => {
   if (selectedPlan.value === null || !selectPlanIds.value) return
   try {
-    await upgradePlan(props.plan.keyId, selectPlanIds.value.id)
+    await upgradePlan(props.plan.keyId, selectedPlan.value.id)
   } catch (error) {
     console.error(error)
   }

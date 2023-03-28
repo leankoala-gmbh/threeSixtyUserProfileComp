@@ -59,9 +59,10 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
 
   const upgradePlan = async (keyId: string, planId: string) : Promise<void> => {
     guardUrl()
+    const keyIdNumber = Number(keyId)
     try {
       await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {
-        keyId,
+        keyIdNumber,
         planId
       }, { withCredentials: true })
     } catch (error: unknown) {
