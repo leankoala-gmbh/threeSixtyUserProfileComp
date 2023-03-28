@@ -45,14 +45,20 @@ const props = defineProps({
   statusText : {
     type: String,
     required: true
-  },
-  current: {
-    type: Number,
-    default: 1
   }
 })
 
 const emit = defineEmits(['handleChange', 'handleStatus'])
+
+const newQuantity = ref(props.size.count)
+const onChangeQuantity = (e: number) => {
+  newQuantity.value = e
+  emit('handleChange', e)
+}
+
+const isSameQuantity = computed(() => {
+  return props.size.count === newQuantity.value
+})
 
 </script>
 
@@ -65,8 +71,8 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
       <QuantitySelector
         :min="1"
         :max="size.max - size.count"
-        :value="current"
-        @change-quantity="(e) => emit('handleChange',e)"
+        :value="size.count"
+        @change-quantity="onChangeQuantity"
       />
       <div class="font-light text-xs">
         x
@@ -77,7 +83,7 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
       </div>
     </div>
     <Transition name="fade">
-      <div v-if="quantity >= 1">
+      <div v-if="!isSameQuantity">
         <AnnotationBox
           type="info"
           class="mb-4"

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger'])
 
@@ -10,6 +10,10 @@ const props = defineProps({
   },
   plan: {
     type: Object as () => ILicensesDetails,
+    default: () => ({})
+  },
+  subscriptionPlans: {
+    type: Object as () => IPlanSelector,
     default: () => ({})
   }
 })
@@ -37,7 +41,7 @@ const props = defineProps({
     />
     <div v-if="props.status === 'active'">
       <div class="flex gap-2 items-center mb-6" aria-label="changePlanDetails">
-        <GeneralButton @click="emit('trigger', 'change')">
+        <GeneralButton v-if="subscriptionPlans.upsells.length" @click="emit('trigger', 'change')">
           {{ t('changePlan') }}
         </GeneralButton>
         <GeneralButton

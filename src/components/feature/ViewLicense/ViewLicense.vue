@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicenses } from '@/types/general.interfaces'
+import { ILicenses, IPlanSelector } from '@/types/general.interfaces'
 
 const props = defineProps({
   inactiveFields: {
@@ -9,6 +9,17 @@ const props = defineProps({
 })
 
 const licenseData = ref<ILicenses|null>(null)
+
+const subscriptionPlans = ref<null|IPlanSelector[]>(null)
+
+const getSubscriptionPlans = async() => {
+  try {
+    const { plans } = await useApiAbstraction().getPlans()
+    subscriptionPlans.value = plans
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 const getLicenseData = async() => {
   try {
@@ -21,6 +32,7 @@ const getLicenseData = async() => {
 
 onMounted(() => {
   getLicenseData()
+  getSubscriptionPlans()
 })
 
 const updateLicenseData = async() => {
@@ -44,6 +56,7 @@ const updateLicenseData = async() => {
             class="mb-1"
             :status="key"
             :plan="plan"
+            :subscription-plans="subscriptionPlans"
             @update="updateLicenseData"
           />
           <div v-if="key == 'active'" class="mb-6">

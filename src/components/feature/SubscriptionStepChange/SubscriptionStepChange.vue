@@ -1,7 +1,7 @@
 subscriptionStepChange
 
 <script lang="ts" setup>
-import { ILicensesDetails, IPlanSelector, IPlansUpsells } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector, IPlansNew, IPlansUpsells } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger', 'selectedPlan'])
 
@@ -11,24 +11,14 @@ const props = defineProps({
     default: 'active'
   },
   plan: {
-    type: Object as () => ILicensesDetails,
+    type: Object as () => IPlansNew,
+    default: () => ({})
+  },
+  subscriptionPlans: {
+    type: Object as () => IPlanSelector,
     default: () => ({})
   }
-})
 
-const subscriptionPlans = ref<null|IPlanSelector[]>(null)
-
-const getSubscriptionPlans = async() => {
-  try {
-    const { plans } = await useApiAbstraction().getPlans()
-    subscriptionPlans.value = plans
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-onMounted(() => {
-  getSubscriptionPlans()
 })
 
 const selectedPlan = ref<null|IPlanSelector>(null)
@@ -71,13 +61,13 @@ watchEffect(() => {
         :class="[ status === 'active' ? 'text-active' : '' ]"
         data-testId="planType"
       >
-        {{ plan.type }}
+        {{ plan.productName }}
       </h3>
     </div>
     <p class="font-medium mb-2">
       {{ t('chooseNewPlan') }}
     </p>
-    <template v-if="subscriptionPlans?.length">
+    <template v-if="subscriptionPlans.upsells.length">
       <PlanSelector
         class="mb-4"
         :plans="subscriptionPlans"

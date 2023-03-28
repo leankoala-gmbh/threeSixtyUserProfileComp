@@ -17,12 +17,12 @@
         "changePaymentSubscriptionUrl": "https://store.plesk.com/1404/scp/s51442806-5pKvp9mXCusR83Pd",
         "subscriptionId": "S51442806",
         "websites": {
-          "count": 0,
+          "count": 9,
           "min": 0,
           "max": 999999
         },
         "servers": {
-          "count": 0,
+          "count": 4,
           "min": 0,
           "max": 999999
         }

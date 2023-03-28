@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
-import { planMatrix } from '@/data/planMatrix'
 
 const props = defineProps({
   status: {
@@ -9,6 +8,10 @@ const props = defineProps({
   },
   plan: {
     type: Object as () => ILicensesDetails,
+    default: () => ({})
+  },
+  subscriptionPlans: {
+    type: Object as () => IPlanSelector,
     default: () => ({})
   }
 })
@@ -97,6 +100,7 @@ watchEffect(() => {
         <SubscriptionStepInfo
           v-if="currentStep === 'info'"
           :status="status"
+          :subscription-plans="subscriptionPlans"
           :plan="plan"
           @trigger="currentStep = $event"
         />
@@ -104,6 +108,7 @@ watchEffect(() => {
           v-if="status === 'active' && currentStep === 'change'"
           :status="status"
           :plan="plan"
+          :subscription-plans="subscriptionPlans"
           @trigger="currentStep = $event"
           @selected-plan="selectedPlan = $event"
         />

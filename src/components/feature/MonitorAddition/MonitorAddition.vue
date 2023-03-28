@@ -14,10 +14,6 @@ const props = defineProps({
   type: {
     type: String as () => TMonitorTypes,
     default: 'servers'
-  },
-  size: {
-    type: Object as () => ILicensesServers,
-    default: () => ({})
   }
 })
 
@@ -95,6 +91,7 @@ const handleChange = async (e: number) => {
 const handleClose = () => {
   status.value = 'info'
   isOpen.value = false
+  quantity.value = 0
 }
 
 const handleStatus = (screen: TMonitorStatus) =>{
@@ -157,7 +154,7 @@ onMounted(async () => {
       :type="type"
       :price-display="priceDisplay"
       :is-open="isOpen"
-      :quantity="quantity"
+      :quantity="plan[type].count"
       @header-event="(e)=> isOpen = e"
     />
     <MonitorBoxHeader
@@ -175,7 +172,6 @@ onMounted(async () => {
         :sub-title="subTitle"
         :type="type"
         :size="selectMonitorDetails"
-        :current="quantity"
         :quantity="quantity"
         :link="plan.changePaymentSubscriptionUrl"
         :price-display="priceDisplay"
