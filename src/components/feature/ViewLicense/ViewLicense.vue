@@ -132,7 +132,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
   <div class="viewLicense">
     <template v-if="licenseData">
       <div v-for="([key, group]) in Object.entries(licenseData)" :key="key">
-        <div v-if="group.length">
+        <div v-if="group?.length">
           <h3 class="text-lg font-semibold mb-2">
             {{ key }}
           </h3>
