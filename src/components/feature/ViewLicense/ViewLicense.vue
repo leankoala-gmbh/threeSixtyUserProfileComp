@@ -56,8 +56,8 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
     })
 
     additionalMonitorBasePrices.value = {
-      websites: websitePrice.nextGrossPrice,
-      servers: serverPrice.nextGrossPrice
+      websites: websitePrice.nextBillingGrossPrice,
+      servers: serverPrice.nextBillingGrossPrice
     }
   } catch (error) {
     console.error(error)
