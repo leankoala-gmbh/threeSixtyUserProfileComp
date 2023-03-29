@@ -67,6 +67,7 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
 const mapAdditionPriceToLicense = () => {
   if (!licenseData.value) return
   const { active, canceled } = licenseData.value
+
   const activeWithPrice = active.map((plan) => {
     const { keyId, websites, servers } = plan
     const { websites: websiteBasePrice, servers: serverBasePrice } = additionalMonitorBasePrices.value
@@ -115,11 +116,7 @@ interface IUpdateLicenseData {
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
-  console.log('hello', keyId, type, count)
   licenseCache.value[keyId][type] = count
-  console.log(licenseCache.value[keyId][type])
-
-  console.log(licenseCache.value)
 }
 
 const updateLicenseData = async(e: IUpdateLicenseData) => {
@@ -127,7 +124,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
   }
-  // await getLicenseData()
+  await getLicenseData()
 }
 </script>
 
@@ -135,30 +132,32 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
   <div class="viewLicense">
     <template v-if="licenseData">
       <div v-for="([key, group]) in Object.entries(licenseData)" :key="key">
-        <h3 class="text-lg font-semibold mb-2">
-          {{ key }}
-        </h3>
-        <div
-          v-for="(plan, index) in group"
-          :key="index"
-          class="mb-4"
-        >
-          <SubscriptionPlan
-            class="mb-1"
-            :status="key"
-            :plan="plan"
-            :subscription-plans="subscriptionPlans"
-            :read-only="readOnly"
-            @update="updateLicenseData"
-          />
-          <div v-if="key == 'active'" class="mb-6">
-            <MonitorAdditionPlans
+        <div v-if="group.length">
+          <h3 class="text-lg font-semibold mb-2">
+            {{ key }}
+          </h3>
+          <div
+            v-for="(plan, index) in group"
+            :key="index"
+            class="mb-4"
+          >
+            <SubscriptionPlan
+              class="mb-1"
+              :status="key"
               :plan="plan"
+              :subscription-plans="subscriptionPlans"
               :read-only="readOnly"
-              :base-prices="additionalMonitorBasePrices"
-              :license-cache="licenseCache"
               @update="updateLicenseData"
             />
+            <div v-if="key == 'active'" class="mb-6">
+              <MonitorAdditionPlans
+                :plan="plan"
+                :read-only="readOnly"
+                :base-prices="additionalMonitorBasePrices"
+                :license-cache="licenseCache"
+                @update="updateLicenseData"
+              />
+            </div>
           </div>
         </div>
       </div>
