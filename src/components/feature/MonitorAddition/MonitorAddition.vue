@@ -58,7 +58,7 @@ const priceObject = ref<IPrices>()
 const priceDisplay = computed(() => displayPrice(priceObject.value?.nextBillingNetPrice || 0, props.plan.renewalCurrency))
 
 const quantity = ref(0)
-const total = computed(() => priceObject.value?.nextBillingNetPrice || 0)
+const total = computed(() => priceObject.value?.nextBillingGrossPrice || 0)
 const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
 const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
 
