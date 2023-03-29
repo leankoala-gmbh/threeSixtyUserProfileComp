@@ -22,11 +22,11 @@ const props = defineProps({
     type:Number,
     required: true
   },
-  initialPriceDisplay:{
+  totalPriceDisplay:{
     type: String,
     required: true
   },
-  priceDisplay:{
+  initialPriceDisplay:{
     type: String,
     required: true
   },
@@ -42,6 +42,8 @@ const openBox = () => {
   if (props.readOnly) return
   emit('header-event', true)
 }
+
+
 </script>
 
 <template>
@@ -65,7 +67,7 @@ const openBox = () => {
             {{ quantity }} x {{ initialPriceDisplay }}
           </div>
           <div class="text-xs font-bold pr-5">
-            {{ priceDisplay }} / mo
+            {{ totalPriceDisplay }} / mo
           </div>
         </div>
         <div

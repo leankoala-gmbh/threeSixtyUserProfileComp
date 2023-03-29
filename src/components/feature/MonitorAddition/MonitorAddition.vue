@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices } from '@/types/general.interfaces'
+import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
-import { Ref } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 
 const props = defineProps({
@@ -20,6 +19,14 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  basePrices: {
+    type: Object as () => Record<string, number>,
+    default: () => ({})
+  },
+  licenseCache: {
+    type: Object as () => ILicenseCache,
+    default: () => ({})
   }
 })
 
@@ -44,12 +51,13 @@ const subTitle = reactive<IMonitorStatusTitle>({
 })
 
 const isOpen = ref(false)
+console.log(props.basePrices)
 
 const { displayPrice } = useLocalHelper()
 const priceObject = ref<IPrices>()
 const priceDisplay = computed(() => displayPrice(priceObject.value?.nextBillingNetPrice || 0, props.plan.renewalCurrency))
 
-const quantity = ref(1)
+const quantity = ref(0)
 const total = computed(() => priceObject.value?.nextBillingNetPrice || 0)
 const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
 const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
@@ -77,23 +85,23 @@ watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
-const getPricePreview = async (object: Ref<IPrices | undefined>) => {
+const getPricePreview = async () => {
   const reqObject = props.type === 'websites'
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
     : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
-    object.value = data
+    priceObject.value = data
   } catch (error) {
     console.log(error)
-
   }
 }
 
 const debouncedFn = useDebounceFn(async() => {
-  await getPricePreview(priceObject)
+  await getPricePreview()
   generateStatusText()
 }, 500)
+
 const handleChange = async (e: number) => {
   quantity.value = e
   await debouncedFn()
@@ -139,20 +147,29 @@ const handleBuy = async () => {
     }, 3000)
     status.value = 'info'
     isOpen.value = false
-    emit('update')
+    emit('update', { keyId: props.plan.keyId, type: props.type, count: quantity.value })
   } catch (e) {
     console.error(e)
   }
-
 }
 
 const initialPrice = ref<IPrices>()
-const initialPriceDisplay = computed(() => {
-  return displayPrice(initialPrice.value?.nextBillingNetPrice || 0, initialPrice.value?.currency)
+
+const currentLicenseData = computed(() => {
+  return props.licenseCache[props.plan.keyId]?.[props.type]
 })
+
+const initialPriceDisplay = computed(() => {
+  if (!currentLicenseData.value) return false
+  const licenseCount = currentLicenseData.value
+  return {
+    base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),
+    total: displayPrice(props.basePrices[props.type] * licenseCount || 0, props.plan.renewalCurrency)
+  }
+})
+
 onMounted(async () => {
-  await getPricePreview(initialPrice)
-  await getPricePreview(priceObject)
+  await getPricePreview()
   generateStatusText()
 })
 </script>
@@ -163,14 +180,14 @@ onMounted(async () => {
     class="monitorAddition"
   >
     <MonitorAdditionHeader
-      v-if="!isOpen"
+      v-if="!isOpen && initialPriceDisplay"
       :title="title"
       :is-alert="isAlert"
       :type="type"
-      :initial-price-display="initialPriceDisplay"
-      :price-display="priceDisplay"
+      :initial-price-display="initialPriceDisplay.base"
+      :total-price-display="initialPriceDisplay.total"
       :is-open="isOpen"
-      :quantity="plan[type].count"
+      :quantity="currentLicenseData"
       :read-only="readOnly"
       @header-event="(e)=> isOpen = e"
     />
@@ -183,18 +200,20 @@ onMounted(async () => {
     </MonitorBoxHeader>
     <template #body>
       <MonitorAdditionInfo
-        v-if="status === 'info'"
+        v-if="status === 'info' && initialPriceDisplay"
         :plan-details="plan"
         :status="status"
         :sub-title="subTitle"
         :type="type"
         :size="selectMonitorDetails"
+        :license-cache="licenseCache"
         :quantity="quantity"
         :link="plan.changePaymentSubscriptionUrl"
-        :price-display="priceDisplay"
-        :total-display="totalDisplay"
+        :price-display="initialPriceDisplay.base"
+        :total-display="initialPriceDisplay.total"
         :status-headline="statusHeadline"
         :status-text="statusText"
+        :current-count="currentLicenseData"
         @handle-change="handleChange"
         @handle-status="(e) => handleStatus(e)"
       />

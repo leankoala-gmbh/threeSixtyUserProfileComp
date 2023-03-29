@@ -130,7 +130,7 @@ export interface IPrices {
 
 export interface ILicenseCache {
   [keyId : string]: {
-    websiteCount: number
-    serverCount: number
+    websites: number
+    servers: number
   }
 }

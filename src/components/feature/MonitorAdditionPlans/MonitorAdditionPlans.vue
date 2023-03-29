@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { ILicensesDetails } from '@/types/general.interfaces'
+import { ILicenseCache, ILicensesDetails } from '@/types/general.interfaces'
 
 const emit = defineEmits(['update'])
 
-defineProps({
+const props = defineProps({
   plan: {
     type: Object as () => ILicensesDetails,
     default: () => ({})
@@ -11,8 +11,18 @@ defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  basePrices: {
+    type: Object as () => Record<string, number>,
+    default: () => ({})
+  },
+  licenseCache: {
+    type: Object as () => ILicenseCache,
+    default: () => ({})
   }
 })
+
+
 </script>
 
 <template>
@@ -22,14 +32,18 @@ defineProps({
       type="servers"
       class="mb-1"
       :read-only="readOnly"
-      @update="emit('update')"
+      :base-prices="basePrices"
+      :license-cache="licenseCache"
+      @update="(e) => emit('update', e)"
     />
     <MonitorAddition
       :plan="plan"
       type="websites"
       class="mb-1"
       :read-only="readOnly"
-      @update="emit('update')"
+      :base-prices="basePrices"
+      :license-cache="licenseCache"
+      @update="(e) => emit('update', e)"
     />
   </div>
 </template>

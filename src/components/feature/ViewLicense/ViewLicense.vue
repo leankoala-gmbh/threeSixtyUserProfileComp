@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ILicenses, IPlanSelector, ILicenseCache } from '@/types/general.interfaces'
+import { number } from 'zod'
 
 const props = defineProps({
   inactiveFields: {
@@ -19,6 +20,7 @@ const subscriptionPlans = ref<IPlanSelector[]>()
 const getSubscriptionPlans = async() => {
   try {
     const { plans } = await useApiAbstraction().getPlans()
+
     subscriptionPlans.value = plans
   } catch (error) {
     console.error(error)
@@ -26,17 +28,73 @@ const getSubscriptionPlans = async() => {
 }
 
 const setLicenseCache = (plan: ILicenses) => {
-  licenseCache.value = plan.active.reduce((acc:any, curr) => {
-    if (!acc[curr.keyId]) {acc[curr.keyId] = { websiteCount: curr.websites.count, serverCount: curr.servers.count }}
+  licenseCache.value = plan.active.reduce((acc: any, curr) => {
+    if (!acc[curr.keyId]) {acc[curr.keyId] = { websites: curr.websites.count, servers: curr.servers.count }}
     return acc
   }, {})
-  console.log(licenseCache.value)
+}
+
+
+const additionalMonitorBasePrices = ref({
+  websites: 0,
+  servers: 0
+})
+
+const getAdditionalBasePrices = async(keyId: number | string) => {
+  if (!keyId) return
+  try {
+    const { data: websitePrice } = await useApiAbstraction().modifyPropertiesPreview({
+      keyId: keyId.toString(),
+      websites: 1,
+      servers: 0
+    })
+
+    const { data: serverPrice } = await useApiAbstraction().modifyPropertiesPreview({
+      keyId: keyId.toString(),
+      websites: 0,
+      servers: 1
+    })
+
+    additionalMonitorBasePrices.value = {
+      websites: websitePrice.alignmentNetPrice,
+      servers: serverPrice.alignmentNetPrice
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const mapAdditionPriceToLicense = () => {
+  if (!licenseData.value) return
+  const { active, canceled } = licenseData.value
+  const activeWithPrice = active.map((plan) => {
+    const { keyId, websites, servers } = plan
+    const { websites: websiteBasePrice, servers: serverBasePrice } = additionalMonitorBasePrices.value
+    return {
+      ...plan,
+      websites: {
+        ...websites,
+        price: websiteBasePrice
+      },
+      servers: {
+        ...servers,
+        price: serverBasePrice
+      }
+    }
+  })
+
+  licenseData.value = {
+    active: activeWithPrice,
+    canceled
+  }
 }
 
 const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
-    console.log(licenseData.value)
+    const firstKeyId = licenseData.value?.active[0]?.keyId || false
+    if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
+    mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
   } catch (error) {
     console.error(error)
@@ -48,8 +106,28 @@ onMounted(() => {
   getSubscriptionPlans()
 })
 
-const updateLicenseData = async() => {
-  await getLicenseData()
+interface IUpdateLicenseData {
+  keyId: number | string
+  type: 'websites' | 'servers'
+  count: number
+}
+
+const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
+  if (!licenseCache.value) return
+  if (!licenseCache.value[keyId]) return
+  console.log('hello', keyId, type, count)
+  licenseCache.value[keyId][type] = count
+  console.log(licenseCache.value[keyId][type])
+
+  console.log(licenseCache.value)
+}
+
+const updateLicenseData = async(e: IUpdateLicenseData) => {
+  if (Object.keys(e).length) {
+    const { keyId, type, count } = e
+    updateLicenseCache(keyId, type, count)
+  }
+  // await getLicenseData()
 }
 </script>
 
@@ -77,6 +155,8 @@ const updateLicenseData = async() => {
             <MonitorAdditionPlans
               :plan="plan"
               :read-only="readOnly"
+              :base-prices="additionalMonitorBasePrices"
+              :license-cache="licenseCache"
               @update="updateLicenseData"
             />
           </div>

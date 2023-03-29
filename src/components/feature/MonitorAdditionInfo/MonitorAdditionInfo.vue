@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails } from '@/types/general.interfaces'
+import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails, ILicenseCache } from '@/types/general.interfaces'
 
 const props = defineProps({
   subTitle: {
@@ -45,6 +45,10 @@ const props = defineProps({
   statusText : {
     type: String,
     required: true
+  },
+  currentCount: {
+    type: Number,
+    default: 0
   }
 })
 
@@ -70,13 +74,12 @@ const isSameQuantity = computed(() => {
       </div>
       <QuantitySelector
         :min="0"
-        :max="size.max - size.count"
-        :value="size.count"
+        :max="size.max - currentCount"
+        :value="currentCount"
         @change-quantity="onChangeQuantity"
       />
       <div class="font-light text-xs">
-        x
-        {{ priceDisplay }}
+        x {{ priceDisplay }}
       </div>
       <div class="text-sm">
         {{ totalDisplay }}/{{ t('mo') }}
