@@ -51,11 +51,9 @@ const subTitle = reactive<IMonitorStatusTitle>({
 })
 
 const isOpen = ref(false)
-console.log(props.basePrices)
 
 const { displayPrice } = useLocalHelper()
 const priceObject = ref<IPrices>()
-const priceDisplay = computed(() => displayPrice(priceObject.value?.nextBillingNetPrice || 0, props.plan.renewalCurrency))
 
 const quantity = ref(0)
 const total = computed(() => priceObject.value?.nextBillingGrossPrice || 0)
@@ -154,8 +152,6 @@ const handleBuy = async () => {
   }
 }
 
-const initialPrice = ref<IPrices>()
-
 const currentLicenseData = computed(() => {
   return props.licenseCache[props.plan.keyId]?.[props.type]
 })
@@ -169,14 +165,9 @@ const initialPriceDisplay = computed(() => {
   }
 })
 
-// onMounted(async () => {
-//   await getPricePreview()
-//   generateStatusText()
-// })
-
 const detailTotalPrice = computed(() => {
   if (priceObject.value) {
-    return displayPrice(priceObject.value.nextBillingNetPrice || 0, props.plan.renewalCurrency)
+    return displayPrice(priceObject.value.nextBillingGrossPrice || 0, props.plan.renewalCurrency)
   }
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
