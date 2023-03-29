@@ -85,6 +85,7 @@ watch(() => props.open, () => {
   if (props.open) isOpen.value = true
 }, { immediate: true })
 
+
 const getPricePreview = async () => {
   const reqObject = props.type === 'websites'
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
@@ -97,14 +98,14 @@ const getPricePreview = async () => {
   }
 }
 
-const debouncedFn = useDebounceFn(async() => {
+const debouncedStatus = useDebounceFn(async() => {
   await getPricePreview()
   generateStatusText()
 }, 500)
 
 const handleChange = async (e: number) => {
   quantity.value = e
-  await debouncedFn()
+  await debouncedStatus()
 }
 
 const handleClose = () => {
@@ -168,9 +169,16 @@ const initialPriceDisplay = computed(() => {
   }
 })
 
-onMounted(async () => {
-  await getPricePreview()
-  generateStatusText()
+// onMounted(async () => {
+//   await getPricePreview()
+//   generateStatusText()
+// })
+
+const detailTotalPrice = computed(() => {
+  if (priceObject.value) {
+    return displayPrice(priceObject.value.nextBillingNetPrice || 0, props.plan.renewalCurrency)
+  }
+  return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
 </script>
 
@@ -210,7 +218,7 @@ onMounted(async () => {
         :quantity="quantity"
         :link="plan.changePaymentSubscriptionUrl"
         :price-display="initialPriceDisplay.base"
-        :total-display="initialPriceDisplay.total"
+        :total-display="detailTotalPrice"
         :status-headline="statusHeadline"
         :status-text="statusText"
         :current-count="currentLicenseData"
