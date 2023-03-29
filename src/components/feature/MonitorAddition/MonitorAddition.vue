@@ -188,6 +188,7 @@ const detailTotalPrice = computed(() => {
       :is-open="isOpen"
       :quantity="currentLicenseData"
       :read-only="readOnly"
+      :status="plan.cbItemStatusId"
       @header-event="(e)=> isOpen = e"
     />
     <MonitorBoxHeader

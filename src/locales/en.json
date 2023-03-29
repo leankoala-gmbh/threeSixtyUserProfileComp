@@ -33,6 +33,7 @@
   "successChangePassword": "Your password has been successfully changed",
   "active": "Active",
   "canceled": "Canceled",
+  "inactiveDateText": "License expires on",
   "activeDateText": "Next billing date",
   "canceledDateText": "Canceled since",
   "mo": "mo",

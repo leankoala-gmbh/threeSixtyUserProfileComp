@@ -51,7 +51,10 @@ const openBox = () => {
   >
     <div
       v-if="closedHeader"
-      class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5 cursor-pointer"
+      class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5"
+      :class="[
+        readOnly ? '': 'cursor-pointer'
+      ]"
       @click="openBox"
     >
       <div class="w-full">

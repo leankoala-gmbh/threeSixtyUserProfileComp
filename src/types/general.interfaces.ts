@@ -28,6 +28,7 @@ export interface ILicensesDetails {
   changePaymentSubscriptionUrl: string
   websites: ILicensesServers
   servers: ILicensesServers
+  cbItemStatusId: string
 }
 export interface ILicenses {
   [key: string]: ILicensesDetails[]

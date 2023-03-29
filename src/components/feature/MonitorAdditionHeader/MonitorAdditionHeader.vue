@@ -33,13 +33,17 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  status: {
+    type: String,
+    default: 'ACT'
   }
 })
 
 const emit = defineEmits(['header-event'])
 
 const openBox = () => {
-  if (props.readOnly) return
+  if (props.readOnly || props.status === 'DEA') return
   emit('header-event', true)
 }
 
@@ -48,7 +52,12 @@ const openBox = () => {
 
 <template>
   <div class="monitoringAdditionHeader p-2">
-    <div class="monitorAdditionHeader profileDetail--hover justify-center align-middle text-sm rounded px-4 py-1 cursor-pointer">
+    <div
+      class="monitorAdditionHeader profileDetail--hover justify-center align-middle text-sm rounded px-4 py-1"
+      :class="[
+        readOnly || status === 'DEA' ? '' : 'cursor-pointer',
+      ]"
+    >
       <StatusMessage
         v-if="isAlert"
         class="mb-4"
@@ -64,9 +73,11 @@ const openBox = () => {
         </div>
         <div class="flex gap-8 justify-between">
           <div class="text-xs">
-            {{ quantity }} x {{ initialPriceDisplay }}
+            {{ quantity }} <template v-if="status === 'ACT'">
+              x {{ initialPriceDisplay }}
+            </template>
           </div>
-          <div class="text-xs font-bold pr-5">
+          <div v-if="status === 'ACT'" class="text-xs font-bold pr-5">
             {{ totalPriceDisplay }} / mo
           </div>
         </div>
@@ -74,7 +85,7 @@ const openBox = () => {
           class="w-10 h-10 flex items-center justify-center"
         >
           <svg
-            v-if="!readOnly"
+            v-if="!readOnly && status === 'ACT'"
             class="w-4 h-4"
             viewBox="0 0 8 13"
             fill="none"
