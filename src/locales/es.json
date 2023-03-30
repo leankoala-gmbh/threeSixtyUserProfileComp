@@ -51,7 +51,7 @@
   "confirmPlanChange": "Confirme el cambio de plan",
   "cancelSubscription": "Cancelar la suscripción",
   "changePlan": "Cambiar plan",
-  "confirmNote": "By submitting this order, you agree to the <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Right of revocation as a consumer.",
+  "confirmNote": "Al enviar este pedido, acepta los <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">términos y condiciones</a> de cleverbridge y confirma que ha leído y entendido la <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">directiva de privacidad</a> de cleverbridge y su <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">derecho de revocación como cliente.",
   "buyNow": "Comprar ahora",
   "cancelSubscriptionText": "Como consecuencia, en el futuro no se efectuará ningún otro cargo. Puede seguir usando la licencia hasta el {date} (no se reembolsará el periodo de facturación actual).",
   "additionalServer": "Monitor de servidor adicional",
