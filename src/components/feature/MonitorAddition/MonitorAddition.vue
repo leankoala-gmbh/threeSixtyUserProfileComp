@@ -151,8 +151,6 @@ const handleBuy = async () => {
 }
 
 const currentLicenseData = computed(() => {
-  console.log('currentLicenseData Entry', props.licenseCache[props.plan.keyId]?.[props.type])
-  console.log('currentLicenseData Entry', props.licenseCache, props.plan.keyId)
   return props.licenseCache[props.plan.keyId]?.[props.type]
 })
 
@@ -172,7 +170,6 @@ const detailTotalPrice = computed(() => {
   if (priceObject.value) {
     return displayPrice(priceObject.value.nextBillingGrossPrice || 0, props.plan.renewalCurrency)
   }
-  console.log('initialPriceDisplay', initialPriceDisplay.value, priceObject.value)
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
 </script>
@@ -205,7 +202,7 @@ const detailTotalPrice = computed(() => {
     </MonitorBoxHeader>
     <template #body>
       <MonitorAdditionInfo
-        v-if="status === 'info' && initialPriceDisplay"
+        v-if="isOpen && status === 'info' && initialPriceDisplay"
         :plan-details="plan"
         :status="status"
         :sub-title="subTitle"

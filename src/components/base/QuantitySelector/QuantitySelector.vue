@@ -8,7 +8,7 @@ const props = defineProps({
     type: Number,
     default: 10
   },
-  value: {
+  quantityValue: {
     type: Number,
     default: 1
   }
@@ -16,7 +16,12 @@ const props = defineProps({
 
 const emit = defineEmits(['changeQuantity'])
 
-const quantity = ref(props.value)
+const quantity = ref(0)
+
+watch(() => props.quantityValue, () => {
+  quantity.value = props.quantityValue
+}, { immediate: true })
+
 
 const errorString = t('monitorRange', {
   min: props.min.toString(),
@@ -47,6 +52,7 @@ const operations = (operation: string) => {
     return
   }
 }
+
 const handleQuantity = (operation: string) => {
   operations(operation)
   emit('changeQuantity', quantity.value)
@@ -55,7 +61,6 @@ const handleQuantity = (operation: string) => {
 watch( () => quantity.value, () => {
   if (isWithinRange || !isLowerLimit || !isUpperLimit) return
 }, { immediate: true })
-
 </script>
 
 <template>
