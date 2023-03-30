@@ -157,7 +157,10 @@ const currentLicenseData = computed(() => {
 })
 
 const initialPriceDisplay = computed(() => {
-  if (!currentLicenseData.value) return { base: '0', total: '0' }
+
+  if (!currentLicenseData.value) return {
+    base: props.plan.renewalCurrency ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency): '0'
+    , total: '0' }
   const licenseCount = currentLicenseData.value
   return {
     base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),
