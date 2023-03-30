@@ -45,7 +45,7 @@
   "paymentInfo": "The 360 Monitoring Store operated by cleverbridge AG will process this order using the payment method attached to the selected subscription.",
   "chargedHeadline": "You will be charged {price} ({ie} VAT {vat})",
   "chargedText": "Starting from {date}, you will be charged {price}/{interval} ({ie} VAT {vat}) for this product.",
-  "back": "Back",
+  "back": "Indietro",
   "incl": "incl.",
   "excl": "excl.",
   "confirmPlanChange": "Confirm plan change",
@@ -70,7 +70,7 @@
   "terms": "Terms & Conditions",
   "contact": "Contact",
   "revocation": "Rights of revocation",
-  "security": "Security",
+  "security": "Sicurezza",
   "legal": "Legal info",
   "privacy": "Privacy Policy"
 }
