@@ -79,9 +79,9 @@ const generateStatusText = () => {
   })
 }
 
-watch(() => props.open, () => {
-  if (props.open) isOpen.value = true
-}, { immediate: true })
+// watch(() => props.open, () => {
+//   if (props.open) isOpen.value = true
+// }, { immediate: true })
 
 
 const getPricePreview = async () => {
@@ -157,7 +157,7 @@ const currentLicenseData = computed(() => {
 })
 
 const initialPriceDisplay = computed(() => {
-  if (!currentLicenseData.value) return false
+  if (!currentLicenseData.value) return { base: '0', total: '0' }
   const licenseCount = currentLicenseData.value
   return {
     base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),
@@ -179,7 +179,7 @@ const detailTotalPrice = computed(() => {
     class="monitorAddition"
   >
     <MonitorAdditionHeader
-      v-if="!isOpen && initialPriceDisplay"
+      v-if="!isOpen"
       :title="title"
       :is-alert="isAlert"
       :type="type"
@@ -189,11 +189,12 @@ const detailTotalPrice = computed(() => {
       :quantity="currentLicenseData"
       :read-only="readOnly"
       :status="plan.cbItemStatusId"
-      @header-event="(e)=> isOpen = e"
+      @header-event="(e) => isOpen = e"
     />
     <MonitorBoxHeader
       v-else
       class="font-bold"
+      :status="plan.cbItemStatusId"
       @close="handleClose"
     >
       {{ subTitle[type][status] }}
