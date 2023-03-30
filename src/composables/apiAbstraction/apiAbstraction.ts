@@ -39,6 +39,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     const planOrder = ['pro', 'business', 'enterprise']
     try {
       const { data } = await axios.get(`${getBaseUrl.value}/license/plans`, { withCredentials: true })
+      if (!data.data?.length) return {} as IPlans
       const plans = data.data[0].upsells.map((upsell : IPlansUpsells) => {
         return {
           id: upsell.planId,
