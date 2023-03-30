@@ -23,6 +23,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  inactiveLicense: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -39,7 +43,7 @@ watchEffect(() => {
 })
 
 const openBox = () => {
-  if (props.readOnly) return
+  if (props.readOnly || props.inactiveLicense) return
   emit('headerEvent', true)
 }
 </script>
@@ -53,7 +57,7 @@ const openBox = () => {
       v-if="closedHeader"
       class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5"
       :class="[
-        readOnly ? '': 'cursor-pointer'
+        readOnly || inactiveLicense ? '' : 'cursor-pointer'
       ]"
       @click="openBox"
     >
@@ -75,11 +79,12 @@ const openBox = () => {
           :status="subscriptionDetail.status"
           :price="subscriptionDetail.price"
           :currency="subscriptionDetail.currency"
+          :inactive="inactiveLicense"
         />
       </div>
       <div class="w-10 h-10 flex items-center justify-center text-gray-500">
         <svg
-          v-if="!readOnly"
+          v-if="!readOnly && !inactiveLicense"
           class="w-4 h-4"
           viewBox="0 0 8 13"
           fill="none"

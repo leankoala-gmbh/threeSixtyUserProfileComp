@@ -97,7 +97,8 @@ watchEffect(() => {
       :closed-header="!isOpen"
       :subscription-detail="subscriptionDetails"
       :override-header-step="boxOpenHeader"
-      :read-only="readOnly || plan.cbItemStatusId === 'DEA'"
+      :read-only="readOnly"
+      :inactive-license="plan.cbItemStatusId === 'DEA'"
       @header-event="isOpen = $event"
     />
     <template #body>

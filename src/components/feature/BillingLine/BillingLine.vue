@@ -19,6 +19,10 @@ const props = defineProps({
   interval: {
     type: String,
     default: 'mo'
+  },
+  inactive: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -36,7 +40,7 @@ const planDate = computed(() => {
   <div class="flex items-center justify-between">
     <div>
       <span class="mr-1 text-gray-500">
-        {{ t(`${price > 0 ? status : 'inactive'}DateText`) }}
+        {{ t(`${!inactive ? status : 'inactive'}DateText`) }}
       </span>
       <span>{{ planDate }}</span>
     </div>
