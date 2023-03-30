@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger'])
 
@@ -11,10 +11,16 @@ const props = defineProps({
   plan: {
     type: Object as () => ILicensesDetails,
     default: () => ({})
+  },
+  subscriptionPlans: {
+    type: Object as () => IPlanSelector[],
+    default: () => ({})
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
-
-
 </script>
 
 <template>
@@ -37,22 +43,28 @@ const props = defineProps({
       :price="plan.renewalCostGross"
       :currency="plan.renewalCurrency"
     />
-    <div class="flex gap-2 items-center mb-6">
-      <GeneralButton @click="emit('trigger', 'change')">
-        Change Plan
-      </GeneralButton>
-      <GeneralButton
-        variant="transparent"
-        @click="emit('trigger', 'cancel')"
+    <div v-if="props.status === 'active' && !readOnly">
+      <div
+        class="flex gap-2 items-center mb-6"
+        aria-label="changePlanDetails"
       >
-        Cancel subscription
-      </GeneralButton>
+        <GeneralButton
+          v-if="subscriptionPlans.length"
+          @click="emit('trigger', 'change')"
+        >
+          {{ t('changePlan') }}
+        </GeneralButton>
+        <GeneralButton
+          variant="transparent"
+          @click="emit('trigger', 'cancel')"
+        >
+          {{ t('cancelSubscription') }}
+        </GeneralButton>
+      </div>
+      <PaymentMethod
+        class="mb-8"
+        :plan-details="plan"
+      />
     </div>
-    <PaymentMethod
-      class="mb-8"
-      provider="visa"
-      details="visa xxxxxxxxx3232 11/27"
-    />
-    <SubscriptionDetails :plan="plan" />
   </div>
 </template>

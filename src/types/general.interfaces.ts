@@ -28,6 +28,7 @@ export interface ILicensesDetails {
   changePaymentSubscriptionUrl: string
   websites: ILicensesServers
   servers: ILicensesServers
+  cbItemStatusId: string
 }
 export interface ILicenses {
   [key: string]: ILicensesDetails[]
@@ -65,8 +66,72 @@ export interface ISubscriptionHeaderDetails {
 
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'
 
+export interface IPlansNew {
+  productName: string;
+  extensionCatalogCode: string;
+  currency: string;
+  billingPeriod: string;
+  changePaymentUrl: string;
+  upsells: IPlansUpsells[];
+}
+
+export interface IPlansUpsells {
+  productId: string;
+  planId: string;
+  productName: string;
+  alignmentGrossPrice: number;
+  alignmentVatPrice: number;
+  alignmentNetPrice: number;
+  nextBillingGrossPrice: number;
+  nextBillingVatPrice: number;
+  nextBillingNetPrice: number;
+  nextBillingDate: string;
+}
+
+export interface IPlanPricing {
+  net: number
+  vat: number
+  gross: number
+  currency: string
+}
 export interface IPlanSelector {
   id: string
   name: string
-  description: string
+  upgradeable: string[]
+  downgradable: string[]
+  upsells: []
+  price: IPlanPricing
+}
+export interface IPlans {
+  planOrder: string[]
+  plans: IPlanSelector[]
+}
+
+export type TMonitorTypes = 'servers' | 'websites'
+export type TMonitorStatus = 'info' | 'confirm' | 'summary'
+export type IMonitorStatusTitle = {
+  [key in TMonitorTypes]: {
+    [key in TMonitorStatus]?: string
+  }
+}
+
+export interface IPrices {
+  alignmentGrossPrice:number
+  alignmentVatPrice:number
+  alignmentNetPrice:number
+  nextBillingGrossPrice:number
+  nextBillingVatPrice:number
+  nextBillingNetPrice:number
+  currency: string
+  resultMessage: string
+  nextBillingDate: string
+  changePaymentUrl: string
+  merchantOfRecordType: string
+}
+
+export interface ILicenseCache {
+  [keyId : string]: {
+    websites: number
+    servers: number
+  }
 }

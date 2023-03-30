@@ -11,9 +11,41 @@ const props = defineProps({
   subscriptionDetail: {
     type: Object as () => ISubscriptionHeaderDetails,
     required: true
+  },
+  headerOverride: {
+    type: String,
+    default: ''
+  },
+  overrideHeaderStep: {
+    type: String,
+    default: ''
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
+  },
+  inactiveLicense: {
+    type: Boolean,
+    default: false
   }
 })
 
+const headerDict: {[key: string]: string} = {
+  default: `${props.subscriptionDetail.planName } ${ t('subscriptionDetails') }`,
+  confirm: t('confirmPlanChange'),
+  cancel: t('cancelSubscription')
+}
+
+const headline = ref(headerDict.default)
+
+watchEffect(() => {
+  headline.value = headerDict[props.overrideHeaderStep] || headerDict.default
+})
+
+const openBox = () => {
+  if (props.readOnly || props.inactiveLicense) return
+  emit('headerEvent', true)
+}
 </script>
 
 <template>
@@ -23,8 +55,11 @@ const props = defineProps({
   >
     <div
       v-if="closedHeader"
-      class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5 cursor-pointer"
-      @click="emit('headerEvent', true)"
+      class="profileDetail--hover  flex justify-between items-center rounded px-4 py-5"
+      :class="[
+        readOnly || inactiveLicense ? '' : 'cursor-pointer'
+      ]"
+      @click="openBox"
     >
       <div class="w-full">
         <div class="flex gap-2 items-center mb-2">
@@ -44,10 +79,12 @@ const props = defineProps({
           :status="subscriptionDetail.status"
           :price="subscriptionDetail.price"
           :currency="subscriptionDetail.currency"
+          :inactive="inactiveLicense"
         />
       </div>
       <div class="w-10 h-10 flex items-center justify-center text-gray-500">
         <svg
+          v-if="!readOnly && !inactiveLicense"
           class="w-4 h-4"
           viewBox="0 0 8 13"
           fill="none"
@@ -62,7 +99,7 @@ const props = defineProps({
       class="flex items-center justify-between px-4 py-4"
     >
       <h3 class="font-medium text-base">
-        {{ subscriptionDetail.planName }} {{ t('subscriptionDetails') }}
+        {{ headerDict[overrideHeaderStep] || headerDict.default }}
       </h3>
 
       <GeneralButton

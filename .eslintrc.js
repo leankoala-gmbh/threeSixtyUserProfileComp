@@ -10,7 +10,6 @@ module.exports = {
     'eslint:recommended',
     '@vue/typescript',
     'plugin:vue/base',
-    'plugin:storybook/recommended',
     './.eslintrc-auto-import.json'
   ],
   plugins: [
@@ -72,7 +71,7 @@ module.exports = {
     'keyword-spacing': ['error', {
       'before': true
     }],
-    'max-params': ['error', 3],
+    'max-params': ['error', 5],
     'max-statements': ['off', 10],
     'comma-dangle': ['error', 'never'],
     'object-curly-spacing': ['error', 'always', {

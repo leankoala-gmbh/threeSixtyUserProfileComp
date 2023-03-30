@@ -1,12 +1,27 @@
 import { rest } from 'msw'
 import licensesData from './fixtures/licenses.json'
+import plansData from './fixtures/plans.json'
 
 const base = 'https://app.stage.360monitoring.com' //window.location.origin
 
 export const handlers = [
+  rest.get(`${base}/license/plans`, (req, res, ctx) => {
+    return res(
+      ctx.json(plansData)
+    )
+  }),
   rest.get(`${base}/license/`, (req, res, ctx) => {
     return res(
       ctx.json(licensesData)
+    )
+  }),
+  rest.get(`${base}/license/properties`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        properties: 10,
+        maxProperties: 10
+      })
     )
   }),
   rest.post(`${base}/license/upgrade-plan`, (req, res, ctx) => {
@@ -14,7 +29,7 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         status: 'ok',
-        message: 'Plan upgraded'
+        data: []
       })
     )
   }),
@@ -45,6 +60,37 @@ export const handlers = [
       })
     )
   }),
+  rest.post(`${base}/license/modify-properties/preview`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: 'ok',
+        data: {
+          alignmentGrossPrice: 1.09,
+          alignmentVatPrice: 0.17,
+          alignmentNetPrice: 0.92,
+          nextBillingGrossPrice: 1.13,
+          nextBillingVatPrice: 0.18,
+          nextBillingNetPrice: 0.95,
+          currency: 'EUR',
+          resultMessage: 'OK',
+          nextBillingDate: '2023-04-17',
+          changePaymentUrl: 'https://store.plesk.com/1404/scp/s51442806-5pKvp9mXCusR83Pd',
+          merchantOfRecordType: 'A'
+        }
+      })
+    )
+  }
+  ),
+  rest.post(`${base}/license/modify-properties`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        'status': 'ok',
+        'data': []
+      })
+    )
+  }),
   rest.post(`${base}/license/terminate`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -54,6 +100,7 @@ export const handlers = [
       })
     )
   }),
+  // Profile Endpoints
   rest.delete(`${base}/user/delete`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -94,7 +141,7 @@ export const handlers = [
       // })
     )
   }),
-  rest.post(`${base}/consent/setee`, (req, res, ctx) => {
+  rest.post(`${base}/consent/set`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -103,7 +150,7 @@ export const handlers = [
       })
     )
   }),
-  rest.get(`${base}/consent/getee`, (req, res, ctx) => {
+  rest.get(`${base}/consent/get`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

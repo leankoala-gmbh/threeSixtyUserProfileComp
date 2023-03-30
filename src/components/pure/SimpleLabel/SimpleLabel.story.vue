@@ -1,16 +1,30 @@
 <script lang="ts" setup>
 import SimpleLabel from './SimpleLabel.vue'
+
+const testString = 'helloWorld'
+
+const types = ['active', 'canceled']
+const selectedType = ref(types[0])
 </script>
 
 <docs lang="md">
-  Simple label for displaying status from a plan
+  Creates a simple label to indicate the status of the license.
 </docs>
 
 <template>
   <Story
-    title="SimpleLabel component story"
+    title="pure/SimpleLabel"
   >
-    <SimpleLabel>Hello Label</SimpleLabel>
+    <SimpleLabel :type="selectedType">
+      {{ testString }}
+    </SimpleLabel>
+    <template #controls="{ state}">
+      <HstSelect
+        v-model="selectedType"
+        title="Types"
+        :options="types"
+      />
+    </template>
   </Story>
 </template>
 

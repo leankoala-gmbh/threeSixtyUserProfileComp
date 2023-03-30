@@ -20,6 +20,7 @@ const handleRemove = async () => {
   errorMsgFromApi.value = undefined
   try {
     await useApiAbstraction().removeAccount(password.value)
+    window.mitt.emit('tsxUserProfile:removeAccount')
   } catch (e: any) {
     errorMsgFromApi.value = e.response.data
   }

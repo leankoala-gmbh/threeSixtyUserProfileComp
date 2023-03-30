@@ -8,6 +8,9 @@
 @import 'baseTypo.css';
 @import 'tabs.css';
 @import 'profileDetail.css';
+@import 'monitorDetail.css';
+@import 'transitions.css';
 @import 'annotationBox.css';
 @import 'simpleLabel.css';
 @import 'planSelector.css';
+@import 'displayChange.css';

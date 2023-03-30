@@ -1,6 +1,7 @@
 :root {
   /* Color Bindings */
   --tsxup-brightest: #ffffff;
+  --tsxup-bright: #F2F5F9;
   --tsxup-transparent: transparent;
   --tsxup-darkest: theme('colors.gray.900');
   --tsxup-darkest-light: theme('colors.gray.600');
@@ -75,11 +76,15 @@
   --tsxup-ps-bg: var(--tsxup-brightest);
   --tsxup-ps-text-disabled-color: var(--tsxup-darkest-mid-light);
   --tsxup-ps-text-checked-color: var(--tsxup-primary);
-  --tsxup-ps-text-unchecked-color: var(--tsxup-darkes);
+  --tsxup-ps-text-unchecked-color: var(--tsxup-darkest);
   --tsxup-ps-option-checked-bg: var(--tsxup-primary-light);
   --tsxup-ps-option-checked-border: var(--tsxup-primary-medium);
   --tsxup-ps-option-unchecked-border: var(--tsxup-darkest-mid);
   --tsxup-ps-bullet-checked-bg: var(--tsxup-primary);
   --tsxup-ps-bullet-unchecked-bg: var(--tsxup-brightest);
   --tsxup-ps-bullet-unchecked-border: var(--tsxup-darkest-light);
+  --tsx-display-change-box-bg: var(--tsxup-bright);
+  --tsx-display-change-box-color: var(--tsxup-darkest);
+  --tsx-display-change-box-start-color: var(--tsxup-darkest-mid-light);
+  --tsx-display-change-box-target-color: var(--tsxup-active);
 }

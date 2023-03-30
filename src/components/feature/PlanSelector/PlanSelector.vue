@@ -2,6 +2,8 @@
 import { IPlanSelector } from '@/types/general.interfaces'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
+const emit = defineEmits(['updatePlan'])
+
 const props = defineProps({
   plans: {
     type: Array as () => IPlanSelector[],
@@ -9,29 +11,25 @@ const props = defineProps({
   },
   current: {
     type: String,
-    default: ''
+    default: 'pro'
   }
-})
-
-const planDisabledMatrix: {[key: string]: string[]} = {
-  pro: [],
-  business: ['pro'],
-  enterprise: ['pro', 'business']
-}
-
-const disabledEntries = computed(() => {
-  return planDisabledMatrix[props.current]
 })
 
 const selected = ref<IPlanSelector>()
 
 const disabledPlan = (id: string) => {
-  const disabled = new Set([...disabledEntries.value, props.current])
+  const disabled = new Set([...props.plans, props.current])
   return [...disabled].includes(id)
 }
 
-const planList = computed(() => {
-  return props.plans.filter((plan) => !disabledEntries.value.find(val => val ===plan.id))
+const planDetails = (currentPlan: IPlanSelector) => {
+  const plan = props.plans.find((plan) => plan.name === currentPlan.name)
+  if (!plan) return ''
+  return useLocalHelper().displayPrice(plan?.price.gross, plan?.price.currency)
+}
+
+watch(() => selected.value, (val) => {
+  emit('updatePlan', selected.value)
 })
 </script>
 
@@ -40,8 +38,8 @@ const planList = computed(() => {
     <RadioGroup v-model="selected">
       <div class="planSelector__base relative -space-y-px rounded-md overflow-hidden">
         <RadioGroupOption
-          v-for="(plan, planIdx) in planList"
-          :key="plan.id"
+          v-for="(plan, planIdx) in plans"
+          :key="planIdx"
           v-slot="{ checked, active, disabled }"
           as="template"
           :value="plan"
@@ -50,9 +48,9 @@ const planList = computed(() => {
           <div
             :class="[
               planIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-              planIdx === planList.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+              planIdx === plans.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
               checked ? 'planSelector__option--checked z-10' : 'planselector__option--unchecked',
-              'relative border py-4 cursor-pointer px-5 grid grid-cols-2 focus:outline-none'
+              'relative border py-4 cursor-pointer px-5 grid grid-cols-2 focus:outline-none flex-shrink-0'
             ]"
           >
             <span class="flex items-center text-sm">
@@ -60,7 +58,7 @@ const planList = computed(() => {
                 :class="[
                   disabled ? 'border-gray-400 bg-gray-300' : checked ? 'planSelector__bullet--checked border-transparent' : 'planSelector__bullet--unchecked',
 
-                  'h-4 w-4 rounded-full border flex items-center justify-center'
+                  'h-4 w-4 rounded-full border flex items-center justify-center  flex-shrink-0'
                 ]"
                 aria-hidden="true"
               >
@@ -76,7 +74,7 @@ const planList = computed(() => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ plan.name }}
+                {{ t(`planName${plan.id}`) }}
               </RadioGroupLabel>
             </span>
             <RadioGroupDescription
@@ -90,7 +88,7 @@ const planList = computed(() => {
                   'ml-3 font-medium'
                 ]"
               >
-                {{ plan.id === current ? t('yourCurrentPlan') : plan.description }}
+                {{ plan.name === current ? t('yourCurrentPlan') : planDetails(plan) }}
               </span>
               {{ ' ' }}
             </RadioGroupDescription>

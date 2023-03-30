@@ -19,6 +19,10 @@ const props = defineProps({
   interval: {
     type: String,
     default: 'mo'
+  },
+  inactive: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -36,12 +40,12 @@ const planDate = computed(() => {
   <div class="flex items-center justify-between">
     <div>
       <span class="mr-1 text-gray-500">
-        {{ t(`${status}DateText`) }}
+        {{ t(`${!inactive ? status : 'inactive'}DateText`) }}
       </span>
       <span>{{ planDate }}</span>
     </div>
     <div
-      v-if="status ==='active'"
+      v-if="status ==='active' && !inactive"
       class="font-medium"
     >
       {{ planPrice }}/{{ t('mo') }}

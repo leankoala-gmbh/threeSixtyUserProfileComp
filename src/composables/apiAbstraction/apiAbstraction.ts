@@ -1,4 +1,4 @@
-import type { IProfileUser, ILicenses } from '@/types/general.interfaces'
+import type { IProfileUser, ILicenses, IPlans, IPlansUpsells } from '@/types/general.interfaces'
 import axios from 'axios'
 
 const errorHandler = (error: unknown) => {
@@ -21,8 +21,8 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
   const getLicenses = async () : Promise<ILicenses> => {
     guardUrl()
     try {
-      const { data } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
-      return data.reduce((acc: any, license: any) => {
+      const { data: { data: { licenses } } } = await axios.get(`${getBaseUrl.value}/license/`, { withCredentials: true })
+      return licenses.reduce((acc: any, license: any) => {
         const { status } = license
         if (!acc[status]) { acc[status] = [] }
         acc[status].push(license)
@@ -34,46 +34,116 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
-  const upgradePlan = async () : Promise<void> => {
+  const getPlans = async () : Promise<IPlans> => {
     guardUrl()
+    const planOrder = ['pro', 'business', 'enterprise']
     try {
-      await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {}, { withCredentials: true })
+      const { data } = await axios.get(`${getBaseUrl.value}/license/plans`, { withCredentials: true })
+      const plans = data.data[0].upsells.map((upsell : IPlansUpsells) => {
+        return {
+          id: upsell.planId,
+          name: upsell.productName,
+          price: {
+            net: upsell.nextBillingNetPrice,
+            vat: upsell.nextBillingVatPrice,
+            gross: upsell.nextBillingGrossPrice,
+            currency: data.currency
+          } }
+      })
+      return { planOrder, plans }
+    } catch (error: unknown) {
+      errorHandler(error)
+      return {} as IPlans
+    }
+  }
+
+  const upgradePlan = async (keyId: string, planId: string) : Promise<void> => {
+    guardUrl()
+    const keyIdNumber = Number(keyId)
+    try {
+      await axios.post(`${getBaseUrl.value}/license/upgrade-plan`, {
+        keyId: keyIdNumber,
+        planId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const downgradePlan = async () : Promise<void> => {
+  const downgradePlan = async (keyId: string, planId: string) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/downgrade-plan`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-plan`, {
+        keyId,
+        planId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const upgradeProperties = async () : Promise<void> => {
+  const upgradeProperties = async (keyId: string, planId: string, websites: number, servers: number) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/upgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/upgrade-properties`, {
+        keyId,
+        planId,
+        websites,
+        servers
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const downgradeProperties = async () : Promise<void> => {
+  const downgradeProperties = async (keyId: string, planId: string, websites: number, servers: number) : Promise<void> => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/downgrade-properties`, {}, { withCredentials: true })
+      await axios.post(`${getBaseUrl.value}/license/downgrade-properties`, {
+        keyId,
+        planId,
+        websites,
+        servers
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
   }
 
-  const terminateLicense = async () : Promise<void> => {
+  const modifyPropertiesPreview = async ({ keyId, websites, servers }: {keyId: string, websites: number, servers: number}) => {
     guardUrl()
     try {
-      await axios.post(`${getBaseUrl.value}/license/terminate`, {}, { withCredentials: true })
+
+      const { data } = await axios.post(`${getBaseUrl.value}/license/modify-properties/preview`, {
+        keyId,
+        websites,
+        servers
+      }, { withCredentials: true })
+      return data
+    } catch (error: unknown) {
+      errorHandler(error)
+    }
+  }
+
+  const modifyProperties = async (keyId: string, websites: number, servers: number) : Promise<void> => {
+    guardUrl()
+    try {
+      await axios.post(`${getBaseUrl.value}/license/modify-properties`, {
+        keyId,
+        websites,
+        servers
+      }, { withCredentials: true })
+    } catch (error: unknown) {
+      errorHandler(error)
+    }
+  }
+
+  const terminateLicense = async (keyId: string) : Promise<void> => {
+    guardUrl()
+    try {
+      await axios.post(`${getBaseUrl.value}/license/terminate`, {
+        keyId
+      }, { withCredentials: true })
     } catch (error: unknown) {
       errorHandler(error)
     }
@@ -130,10 +200,13 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
 
   return {
     getLicenses,
+    getPlans,
     upgradePlan,
     downgradePlan,
     upgradeProperties,
     downgradeProperties,
+    modifyProperties,
+    modifyPropertiesPreview,
     terminateLicense,
     removeAccount,
     setProfile,

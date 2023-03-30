@@ -1,4 +1,4 @@
-/// <reference types="histoire" />
+/// <reference types="@histoire/plugin-vue/components" />
 
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'

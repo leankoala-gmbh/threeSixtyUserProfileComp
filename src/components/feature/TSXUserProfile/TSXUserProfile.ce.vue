@@ -33,6 +33,10 @@ const props = defineProps({
   view: {
     type: String as () => TViewTypes,
     default: 'profile'
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -41,9 +45,7 @@ const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBase
 provide('overrideBaseApiUrl', overrideBaseApiUrl)
 
 const userDataObj = ref<IProfileUser>({})
-userDataObj.value = JSON.parse(props.userData)
-
-debugEcho('TSXUserProfile userDataObj', userDataObj.value)
+userDataObj.value = props.view === 'profile' ? JSON.parse(props.userData) : {}
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
@@ -51,15 +53,11 @@ const cookies = useCookies(['locale'])
 onMounted(() => {
   const cookieLang = cookies.get('locale')
   setLanguage(cookieLang || props.currentLanguage)
-  // checkRoute()
-  debugEcho('TSXUserProfile userProfileData', userDataObj)
 })
-
 </script>
 
 <template>
   <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
-    {{ t('test' , {n: '299', m: '2w'}) }}
     <ViewProfile
       v-if="view === 'profile'"
       :user-data="userDataObj"
@@ -67,6 +65,8 @@ onMounted(() => {
     />
     <ViewLicense
       v-if="view === 'license'"
+      :read-only="readOnly"
+      :inactive-fields="inactiveFieldsArr"
     />
   </div>
 </template>

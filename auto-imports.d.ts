@@ -76,6 +76,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useLocalHelper: typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']
   const useSlots: typeof import('vue')['useSlots']
+  const useTextHelper: typeof import('./src/composables/textHelper/textHelper')['useTextHelper']
   const validateBetweenLength: typeof import('./src/utils/formValidators')['validateBetweenLength']
   const validateEmail: typeof import('./src/utils/formValidators')['validateEmail']
   const validateMaxLength: typeof import('./src/utils/formValidators')['validateMaxLength']
@@ -166,6 +167,7 @@ declare module 'vue' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useLocalHelper: UnwrapRef<typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useTextHelper: UnwrapRef<typeof import('./src/composables/textHelper/textHelper')['useTextHelper']>
     readonly validateBetweenLength: UnwrapRef<typeof import('./src/utils/formValidators')['validateBetweenLength']>
     readonly validateEmail: UnwrapRef<typeof import('./src/utils/formValidators')['validateEmail']>
     readonly validateMaxLength: UnwrapRef<typeof import('./src/utils/formValidators')['validateMaxLength']>
