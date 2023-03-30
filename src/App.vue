@@ -18,7 +18,7 @@ const inactiveFields = []
 
 <template>
   <div class="p-12 bg-slate-600">
-    <div class="mb-4 text-xl font-bold">
+    <!-- <div class="mb-4 text-xl font-bold">
       Profile
     </div>
     <TSXUserProfile
@@ -28,7 +28,7 @@ const inactiveFields = []
       override-base-api-url="https://app.stage.360monitoring.com"
       view="profile"
       base-api-url=""
-    />
+    /> -->
     <div class="mb-4 text-xl font-bold">
       License
     </div>

@@ -212,7 +212,7 @@ const detailTotalPrice = computed(() => {
         :type="type"
         :size="selectMonitorDetails"
         :license-cache="licenseCache"
-        :quantity="quantity"
+        :quantity="currentLicenseData"
         :link="plan.changePaymentSubscriptionUrl"
         :price-display="initialPriceDisplay.base"
         :total-display="detailTotalPrice"
