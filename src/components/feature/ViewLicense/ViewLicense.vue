@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ILicenses, IPlanSelector, ILicenseCache } from '@/types/general.interfaces'
-import { number } from 'zod'
 
 const props = defineProps({
   inactiveFields: {
@@ -93,6 +92,7 @@ const mapAdditionPriceToLicense = () => {
 const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
+    console.log('licenseData.value', licenseData.value)
     const firstKeyId = licenseData.value?.active[0]?.keyId || false
     if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
@@ -120,7 +120,7 @@ const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers'
 }
 
 const updateLicenseData = async(e: IUpdateLicenseData) => {
-  if (Object.keys(e).length) {
+  if (e && Object.keys(e).length) {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
   }
