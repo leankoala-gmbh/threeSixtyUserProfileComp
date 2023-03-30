@@ -21,6 +21,7 @@ const getSubscriptionPlans = async() => {
     const { plans } = await useApiAbstraction().getPlans()
 
     subscriptionPlans.value = plans
+    console.log('plans', plans)
   } catch (error) {
     console.error(error)
   }
@@ -92,11 +93,13 @@ const mapAdditionPriceToLicense = () => {
 const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
-    console.log('licenseData.value', licenseData.value)
+    console.log('licenseData.value RAW', licenseData.value)
     const firstKeyId = licenseData.value?.active[0]?.keyId || false
     if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
+    console.log('licenseData.value remapped', licenseData.value)
+    console.log('licenseCache.value', licenseCache.value)
   } catch (error) {
     console.error(error)
   }
@@ -116,6 +119,7 @@ interface IUpdateLicenseData {
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
+  console.log('updateLicenseCache', keyId, type, count)
   licenseCache.value[keyId][type] = count
 }
 
@@ -124,6 +128,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
   }
+  console.log('updateLicenseData')
   await getLicenseData()
 }
 </script>

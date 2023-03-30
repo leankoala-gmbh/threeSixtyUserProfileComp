@@ -109,7 +109,7 @@ const handleChange = async (e: number) => {
 const handleClose = () => {
   status.value = 'info'
   isOpen.value = false
-  quantity.value = 0
+  quantity.value = props.plan[props.type].count
 }
 
 const handleStatus = (screen: TMonitorStatus) =>{
@@ -151,13 +151,15 @@ const handleBuy = async () => {
 }
 
 const currentLicenseData = computed(() => {
+  console.log('currentLicenseData Entry', props.licenseCache[props.plan.keyId]?.[props.type])
+  console.log('currentLicenseData Entry', props.licenseCache, props.plan.keyId)
   return props.licenseCache[props.plan.keyId]?.[props.type]
 })
 
 const initialPriceDisplay = computed(() => {
 
   if (!currentLicenseData.value) return {
-    base: props.plan.renewalCurrency ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency): '0'
+    base: props.plan.renewalCurrency ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency): displayPrice(0, props.plan.renewalCurrency)
     , total: '0' }
   const licenseCount = currentLicenseData.value
   return {
@@ -170,6 +172,7 @@ const detailTotalPrice = computed(() => {
   if (priceObject.value) {
     return displayPrice(priceObject.value.nextBillingGrossPrice || 0, props.plan.renewalCurrency)
   }
+  console.log('initialPriceDisplay', initialPriceDisplay.value, priceObject.value)
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
 </script>
