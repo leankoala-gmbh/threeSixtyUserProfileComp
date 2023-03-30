@@ -21,7 +21,6 @@ const getSubscriptionPlans = async() => {
     const { plans } = await useApiAbstraction().getPlans()
 
     subscriptionPlans.value = plans
-    console.log('plans', plans)
   } catch (error) {
     console.error(error)
   }
@@ -31,9 +30,8 @@ const setLicenseCache = (plan: ILicenses) => {
   licenseCache.value = plan.active.reduce((acc: any, curr) => {
     if (!acc[curr.keyId]) {acc[curr.keyId] = { websites: curr.websites.count, servers: curr.servers.count }}
     return acc
-  }, {})
+  }, licenseCache.value)
 }
-
 
 const additionalMonitorBasePrices = ref({
   websites: 0,
@@ -93,7 +91,6 @@ const mapAdditionPriceToLicense = () => {
 const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
-    console.log('licenseData.value RAW', licenseData.value)
     const firstKeyId = licenseData.value?.active[0]?.keyId || false
     if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
