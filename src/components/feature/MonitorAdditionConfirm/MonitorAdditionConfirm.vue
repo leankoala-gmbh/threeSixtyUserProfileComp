@@ -31,11 +31,7 @@ const emit = defineEmits(['handleStatus', 'handleBuy'])
     />
     <p
       class="mb-4"
-      v-html="t('confirmNote',{
-        terms: cleverBridgeLinks.terms.url,
-        privacy: cleverBridgeLinks.privacy.url,
-        revocation: cleverBridgeLinks.revocation.url
-      })"
+      v-html="t('confirmNote')"
     />
     <div class="flex gap-4">
       <GeneralButton @click="emit('handleBuy')">
