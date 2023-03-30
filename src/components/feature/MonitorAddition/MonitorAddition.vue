@@ -144,8 +144,6 @@ const handleBuy = async () => {
     setTimeout(() => {
       isAlert.value = false
     }, 3000)
-    status.value = 'info'
-    isOpen.value = false
     emit('update', { keyId: props.plan.keyId, type: props.type, count: quantity.value })
   } catch (e) {
     console.error(e)

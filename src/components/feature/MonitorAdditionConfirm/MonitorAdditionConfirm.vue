@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { TMonitorTypes, ILicensesServers } from '@/types/general.interfaces'
+
 const props = defineProps({
   type:{
     type: String as ()=> TMonitorTypes,
