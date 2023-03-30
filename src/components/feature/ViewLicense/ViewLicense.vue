@@ -13,7 +13,7 @@ const props = defineProps({
 })
 
 const licenseData = ref<ILicenses|null>(null)
-const licenseCache = ref<ILicenseCache>()
+const licenseCache = ref<ILicenseCache>({})
 const subscriptionPlans = ref<IPlanSelector[]>()
 
 const getSubscriptionPlans = async() => {
