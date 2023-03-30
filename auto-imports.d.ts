@@ -72,6 +72,7 @@ declare global {
   const useApiAbstraction: typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']
   const useAttrs: typeof import('vue')['useAttrs']
   const useBoxRouteQuery: typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']
+  const useCbLinks: typeof import('./src/composables/cbLinks/cbLinks')['useCbLinks']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useLocalHelper: typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']
@@ -163,6 +164,7 @@ declare module 'vue' {
     readonly useApiAbstraction: UnwrapRef<typeof import('./src/composables/apiAbstraction/apiAbstraction')['useApiAbstraction']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useBoxRouteQuery: UnwrapRef<typeof import('./src/composables/boxRouteQuery/boxRouteQuery')['useBoxRouteQuery']>
+    readonly useCbLinks: UnwrapRef<typeof import('./src/composables/cbLinks/cbLinks')['useCbLinks']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useLocalHelper: UnwrapRef<typeof import('./src/composables/localHelper/localHelper')['useLocalHelper']>

@@ -21,14 +21,14 @@ const inactiveFields = []
     <div class="mb-4 text-xl font-bold">
       Profile
     </div>
-    <!-- <TSXUserProfile
+    <TSXUserProfile
       class="mb-8"
       :user-data="JSON.stringify(userData)"
       :inactive-fields="JSON.stringify(inactiveFields)"
       override-base-api-url="https://app.stage.360monitoring.com"
       view="profile"
       base-api-url=""
-    /> -->
+    />
     <div class="mb-4 text-xl font-bold">
       License
     </div>

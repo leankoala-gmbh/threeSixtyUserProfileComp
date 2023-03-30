@@ -15,6 +15,9 @@ const props = defineProps({
   }
 })
 
+const cleverBridgeLinks = useCbLinks().getLinks()
+
+
 const emit = defineEmits(['handleStatus', 'handleBuy'])
 </script>
 
@@ -26,7 +29,14 @@ const emit = defineEmits(['handleStatus', 'handleBuy'])
       :start="size.count.toString()"
       :target="(quantity).toString()"
     />
-    <p class="mb-4" v-html="t('confirmNote')" />
+    <p
+      class="mb-4"
+      v-html="t('confirmNote',{
+        terms: cleverBridgeLinks.terms.url,
+        privacy: cleverBridgeLinks.privacy.url,
+        revocation: cleverBridgeLinks.revocation.url
+      })"
+    />
     <div class="flex gap-4">
       <GeneralButton @click="emit('handleBuy')">
         {{ t('additionalBuy') }}

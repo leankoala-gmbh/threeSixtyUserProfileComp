@@ -71,6 +71,7 @@
     "useApiAbstraction": true,
     "useAttrs": true,
     "useBoxRouteQuery": true,
+    "useCbLinks": true,
     "useCssModule": true,
     "useCssVars": true,
     "useLocalHelper": true,

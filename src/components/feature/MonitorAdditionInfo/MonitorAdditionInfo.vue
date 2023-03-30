@@ -68,21 +68,23 @@ const isSameQuantity = computed(() => {
 
 <template>
   <div v-if="status === 'info'" class="monitorAdditionInfo">
-    <div class="flex items-center justify-between">
-      <div class="font-bold">
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="font-bold @[550px]/tsxupmain:w-auto">
         {{ subTitle[type][status] }}
       </div>
-      <QuantitySelector
-        :min="0"
-        :max="size.max - currentCount"
-        :value="currentCount"
-        @change-quantity="onChangeQuantity"
-      />
-      <div class="font-light text-xs">
-        x {{ priceDisplay }}
-      </div>
-      <div class="text-sm">
-        {{ totalDisplay }}/{{ t('mo') }}
+      <div class="flex gap-2 @[400px]/tsxupmain:gap-4 justify-between items-center">
+        <QuantitySelector
+          :min="0"
+          :max="size.max - currentCount"
+          :value="currentCount"
+          @change-quantity="onChangeQuantity"
+        />
+        <div class="font-light text-xs">
+          x {{ priceDisplay }}
+        </div>
+        <div class="text-sm">
+          {{ totalDisplay }}/{{ t('mo') }}
+        </div>
       </div>
     </div>
     <Transition name="fade">
