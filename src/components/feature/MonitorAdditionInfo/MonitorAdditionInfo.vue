@@ -55,6 +55,7 @@ const props = defineProps({
 const emit = defineEmits(['handleChange', 'handleStatus'])
 
 const newQuantity = ref(props.size.count)
+
 const onChangeQuantity = (e: number) => {
   newQuantity.value = e
   emit('handleChange', e)
@@ -74,9 +75,9 @@ const isSameQuantity = computed(() => {
       </div>
       <div class="flex gap-2 @[400px]/tsxupmain:gap-4 justify-between items-center">
         <QuantitySelector
-          :min="0"
+          :min="size.min"
           :max="size.max - currentCount"
-          :value="currentCount"
+          :quantity-value="currentCount"
           @change-quantity="onChangeQuantity"
         />
         <div class="font-light text-xs">

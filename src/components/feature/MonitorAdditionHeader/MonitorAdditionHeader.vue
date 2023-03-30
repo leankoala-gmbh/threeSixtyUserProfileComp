@@ -46,8 +46,6 @@ const openBox = () => {
   if (props.readOnly || props.status === 'DEA') return
   emit('header-event', true)
 }
-
-
 </script>
 
 <template>
@@ -78,7 +76,7 @@ const openBox = () => {
             </template>
           </div>
           <div v-if="status === 'ACT'" class="text-xs font-bold pr-5">
-            {{ totalPriceDisplay }} / mo
+            {{ totalPriceDisplay }}/mo
           </div>
         </div>
         <div

@@ -95,8 +95,6 @@ const getLicenseData = async() => {
     if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
-    console.log('licenseData.value remapped', licenseData.value)
-    console.log('licenseCache.value', licenseCache.value)
   } catch (error) {
     console.error(error)
   }
@@ -116,7 +114,6 @@ interface IUpdateLicenseData {
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
-  console.log('updateLicenseCache', keyId, type, count)
   licenseCache.value[keyId][type] = count
 }
 
@@ -125,7 +122,6 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
   }
-  console.log('updateLicenseData')
   await getLicenseData()
 }
 </script>
