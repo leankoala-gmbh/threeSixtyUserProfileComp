@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-import VueMultiselect from 'vue-multiselect'
 import timezones from '@/data/timezones.json'
-import { onMounted, ref, watch } from 'vue'
-import { translator } from '@/composables/translator'
-import GeneralButton from '@/components/base/GeneralButton/GeneralButton.vue'
-import { debugEcho } from '@/utils/echo'
-import { IProfileUser } from '@/types/general.interfaces'
+import type { IProfileUser } from '@/types/general.interfaces'
+import VueMultiselect from 'vue-multiselect'
 
 const emit = defineEmits(['updateTimezone'])
 
@@ -29,14 +25,12 @@ const successInfo = () => {
 
 const saveTimezone = () => {
   successInfo()
-  debugEcho('saveTimezone', timezone.value)
   emit('updateTimezone', timezone.value)
 }
 
 const initialTimezone = () => {
   if (!props.userData?.timezone?.length) {
     const browserTZ = Intl.DateTimeFormat().resolvedOptions().timeZone
-    debugEcho('Get timezone from the browser', browserTZ)
     timezone.value = browserTZ
     saveTimezone()
     return
@@ -49,33 +43,32 @@ onMounted(() => {
 })
 
 watch(() => timezone.value, (o, n) => {
-  if (n && n !== o) {
-    saveTimezone()
-  }
+  if (timezone.value && n && n !== o) saveTimezone()
 })
 </script>
 
 <template>
-  <div class="tsx-up-timeZonesForm tsxUp-grid-formRow items-center">
-    <div>
-      {{ translator('Timezone') }}
-    </div>
-    <div class=" w-full relative">
+  <div>
+    <div class="w-full relative">
+      <StatusMessage
+        v-if="timezoneSavedInfo"
+        class="mb-4"
+        aria-label="statusMessage"
+      >
+        {{ t('timezoneInfo') }}
+      </StatusMessage>
       <VueMultiselect
         v-model="timezone"
         :options="Object.keys(timeZoneObj)"
         :searchable="true"
         :close-on-select="true"
         :allow-empty="false"
-        :custom-label="opt => timeZoneObj[opt]"
+        :custom-label="(opt:string) => timeZoneObj[opt]"
         placeholder=""
         select-label=""
         deselect-label=""
         selected-label=""
       />
-      <div v-if="timezoneSavedInfo" class="absolute top-0 left-0 mt-12 pl-2 text-sm text-signalSuccess">
-        {{ translator('TimezoneSaved') }}
-      </div>
     </div>
   </div>
 </template>

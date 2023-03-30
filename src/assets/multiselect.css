@@ -9,20 +9,20 @@ fieldset[disabled] .multiselect{pointer-events:none}.multiselect__spinner{positi
 }
 
 .multiselect {
-  color: var(--tsxUp-selectField-color);
+  color: var(--tsxup-selectField-color);
 }
 
 .multiselect__tags-wrap {
-  border-color: var(--tsxUp-selectField-border);
-  background-color: var(--tsxUp-selectField-background);
+  border-color: var(--tsxup-selectField-border);
+  background-color: var(--tsxup-selectField-background);
 }
 
 .multiselect__single {
-  color: var(--tsxUp-selectField-color);
+  color: var(--tsxup-selectField-color);
 }
 
 .multiselect--disabled{
-  background: var(--tsxUp-selectField-backgroundDisabled);
+  background: var(--tsxup-selectField-backgroundDisabled);
 }
 
 .multiselect__content-wrapper {
@@ -30,13 +30,13 @@ fieldset[disabled] .multiselect{pointer-events:none}.multiselect__spinner{positi
 }
 
 .multiselect__option--selected.multiselect__option--highlight {
-  background: var(--tsxUp-selectField-selectedBackground) !important;
+  background: var(--tsxup-selectField-selectedBackground) !important;
   outline: none;
-  color: var(--tsxUp-selectField-selectedColor);
+  color: var(--tsxup-selectField-selectedColor);
 }
 
 .multiselect__option--highlight {
-  background: var(--tsxUp-selectField-selectedBackground) !important;
+  background: var(--tsxup-selectField-selectedBackground) !important;
 }
 .multiselect__option--selected {
   font-weight: normal !important;

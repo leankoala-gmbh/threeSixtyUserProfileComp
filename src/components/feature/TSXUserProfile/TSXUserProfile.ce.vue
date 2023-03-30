@@ -1,47 +1,54 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import mitt from 'mitt'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { setLanguage, translator } from '@/composables/translator'
-import Timezone from '@/components/feature/Timezone/Timezone.vue'
 import 'container-query-polyfill'
-import ProfileInfos from '@/components/feature/ProfileInfos/ProfileInfos.vue'
+import mitt from 'mitt'
+import { onMounted } from 'vue'
 import { IProfileUser } from '@/types/general.interfaces'
+
+type TViewTypes = 'profile' | 'license'
 
 window.mitt = window.mitt || mitt()
 
 const props = defineProps({
-  /**
-   * Current language of the application
-   */
+  baseApiUrl: {
+    type: String,
+    required: true
+  },
   currentLanguage: {
     type: String,
     default: 'en'
   },
   userData: {
     type: String,
-    required: true
+    default: '{}'
+  },
+  overrideBaseApiUrl: {
+    type: String,
+    default: ''
   },
   inactiveFields: {
     type: String,
-    default: '["removeAccount"]'
+    default: ''
   },
-  header: {
-    type: String,
-    default: 'Profile'
+  view: {
+    type: String as () => TViewTypes,
+    default: 'profile'
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
-const userDataObj: IProfileUser = JSON.parse(props.userData)
+const overrideBaseApiUrl = props.overrideBaseApiUrl?.length ? props.overrideBaseApiUrl : ''
+
+provide('overrideBaseApiUrl', overrideBaseApiUrl)
+
+const userDataObj = ref<IProfileUser>({})
+userDataObj.value = props.view === 'profile' ? JSON.parse(props.userData) : {}
+
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
-
 const cookies = useCookies(['locale'])
-
-const updateTimezone = (event: string) => {
-  window.mitt.emit('tsxUserProfile', {
-    timezone: event
-  })
-}
 
 onMounted(() => {
   const cookieLang = cookies.get('locale')
@@ -50,18 +57,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="@container/tsxupmain tsxUserProfile">
-    <h2 v-if="header?.length" class="text-3xl font-medium mb-6">
-      {{ translator('Profile') }}
-    </h2>
-    <ProfileInfos
+  <div class="@container/tsxupmain tsxUserProfile flex flex-col gap-2">
+    <ViewProfile
+      v-if="view === 'profile'"
       :user-data="userDataObj"
       :inactive-fields="inactiveFieldsArr"
     />
-    <Timezone
-      v-if="!inactiveFieldsArr.includes('timezone')"
-      :user-data="userDataObj"
-      @update-timezone="updateTimezone"
+    <ViewLicense
+      v-if="view === 'license'"
+      :read-only="readOnly"
+      :inactive-fields="inactiveFieldsArr"
     />
   </div>
 </template>

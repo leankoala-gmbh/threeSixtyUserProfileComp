@@ -7,7 +7,7 @@ import ja from './ja.json'
 import pt from './pt.json'
 import ru from './ru.json'
 
-const languages = {'de': de, 'en': en, 'es': es, 'fr': fr, 'it': it, 'ja': ja, 'pt': pt, 'ru': ru}
+const languages = { 'de': de, 'en': en, 'es': es, 'fr': fr, 'it': it, 'ja': ja, 'pt': pt, 'ru': ru }
 
 export default function () {
   return Object.entries(languages).reduce((acc: any, [key, lang]: [string, any]) => {
