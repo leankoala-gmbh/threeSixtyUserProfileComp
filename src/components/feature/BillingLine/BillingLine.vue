@@ -45,7 +45,7 @@ const planDate = computed(() => {
       <span>{{ planDate }}</span>
     </div>
     <div
-      v-if="status ==='active' && planPrice.length > 0"
+      v-if="status ==='active' && !inactive"
       class="font-medium"
     >
       {{ planPrice }}/{{ t('mo') }}
