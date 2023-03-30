@@ -51,7 +51,7 @@
   "confirmPlanChange": "Confirm plan change",
   "cancelSubscription": "Cancel subscription",
   "changePlan": "Change plan",
-  "confirmNote": "By submitting this order, you agree to the <a href=\"{terms}\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"{privacy}\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"{revocation}\" target=\"_blank\">Right of revocation as a consumer.",
+  "confirmNote": "By submitting this order, you agree to the <a href=\"\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"\" target=\"_blank\">Right of revocation as a consumer.",
   "buyNow": "Buy now",
   "cancelSubscriptionText": "This will stop future charges. You can keep using the license until {date} (the current billing period will not be refunded).",
   "additionalServer": "Additional server monitor",
@@ -66,11 +66,5 @@
   "planNamepro": "360 Monitoring Pro",
   "planNamebusiness": "360 Monitoring Business",
   "planNameenterprise": "360 Monitoring Enterprise",
-  "monitorRange": "Must be between {min} and {max}",
-  "terms": "Terms & Conditions",
-  "contact": "Contact",
-  "revocation": "Rights of revocation",
-  "security": "Security",
-  "legal": "Legal info",
-  "privacy": "Privacy Policy"
+  "monitorRange": "Must be between {min} and {max}"
 }
