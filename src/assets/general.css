@@ -13,3 +13,8 @@
   grid-template-rows: 1fr;
   transition: grid-template-rows 0.5s ease-in-out;
 }
+
+.spinner { animation:spinnerAnimation .8s linear infinite; animation-delay:-.8s }
+.spinnerDot1 { animation-delay:-.65s }
+.spinnerDot2 { animation-delay:-.5s }
+@keyframes spinnerAnimation{ 93.75%, 100% { opacity: .2 } }
