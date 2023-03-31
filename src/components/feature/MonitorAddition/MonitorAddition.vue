@@ -79,13 +79,12 @@ const generateStatusText = () => {
   })
 }
 
-// watch(() => props.open, () => {
-//   if (props.open) isOpen.value = true
-// }, { immediate: true })
-
+const loading = ref(false)
 
 const getPricePreview = async () => {
+  loading.value = true
   const reqObject = props.type === 'websites'
+
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
     : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
@@ -93,6 +92,8 @@ const getPricePreview = async () => {
     priceObject.value = data
   } catch (error) {
     console.log(error)
+  } finally {
+    loading.value = false
   }
 }
 
@@ -190,6 +191,7 @@ const detailTotalPrice = computed(() => {
       :quantity="currentLicenseData"
       :read-only="readOnly"
       :status="plan.cbItemStatusId"
+      :loading="loading"
       @header-event="(e) => isOpen = e"
     />
     <MonitorBoxHeader

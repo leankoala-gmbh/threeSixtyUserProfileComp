@@ -45,6 +45,8 @@ declare module '@vue/runtime-core' {
     RemoveAccountFormular: typeof import('./src/components/feature/RemoveAccountFormular/RemoveAccountFormular.vue')['default']
     SimpleLabel: typeof import('./src/components/pure/SimpleLabel/SimpleLabel.vue')['default']
     'SimpleLabel.story': typeof import('./src/components/pure/SimpleLabel/SimpleLabel.story.vue')['default']
+    Spinner: typeof import('./src/components/pure/Spinner/Spinner.vue')['default']
+    'Spinner.story': typeof import('./src/components/pure/Spinner/Spinner.story.vue')['default']
     StatusMessage: typeof import('./src/components/base/StatusMessage/StatusMessage.vue')['default']
     SubscriptionDetails: typeof import('./src/components/feature/SubscriptionDetails/SubscriptionDetails.vue')['default']
     SubscriptionHeader: typeof import('./src/components/feature/SubscriptionHeader/SubscriptionHeader.vue')['default']
