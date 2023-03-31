@@ -22,23 +22,17 @@ const props = defineProps({
   }
 })
 
+const types = ['servers', 'websites']
 
 </script>
 
 <template>
   <div class="monitorAdditionPlans">
     <MonitorAddition
+      v-for="(type, i) in types"
+      :key="i"
       :plan="plan"
-      type="servers"
-      class="mb-1"
-      :read-only="readOnly"
-      :base-prices="basePrices"
-      :license-cache="licenseCache"
-      @update="(e) => emit('update', e)"
-    />
-    <MonitorAddition
-      :plan="plan"
-      type="websites"
+      :type="type"
       class="mb-1"
       :read-only="readOnly"
       :base-prices="basePrices"
