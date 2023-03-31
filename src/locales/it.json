@@ -73,5 +73,7 @@
   "security": "Sicurezza",
   "legal": "Legal info",
   "privacy": "Privacy Policy",
-  "noUpsellAvailable": "You have reached the limit off all plans :D"
+  "noUpsellAvailable": "Currently no more upgrades available.",
+  "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
+  "buyLicense": "Buy license"
 }
