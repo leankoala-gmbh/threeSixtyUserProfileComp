@@ -72,5 +72,6 @@
   "revocation": "Derechos de revocación",
   "security": "Seguridad",
   "legal": "Información legal",
-  "privacy": "Directiva de privacidad"
+  "privacy": "Directiva de privacidad",
+  "noUpsellAvailable": "You have reached the limit off all plans :D"
 }
