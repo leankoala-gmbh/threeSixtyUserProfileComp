@@ -72,5 +72,8 @@
   "revocation": "Rights of revocation",
   "security": "Security",
   "legal": "Legal info",
-  "privacy": "Privacy Policy"
+  "privacy": "Privacy Policy",
+  "noUpsellAvailable": "Currently no more upgrades available.",
+  "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
+  "buyLicense": "Buy license"
 }

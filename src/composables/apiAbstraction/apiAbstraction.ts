@@ -1,4 +1,4 @@
-import type { IProfileUser, ILicenses, IPlans, IPlansUpsells } from '@/types/general.interfaces'
+import type { IProfileUser, ILicenses, IPlans, IPlansUpsells, IPlanUpsellsFull } from '@/types/general.interfaces'
 import axios from 'axios'
 
 const errorHandler = (error: unknown) => {
@@ -40,18 +40,23 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     try {
       const { data } = await axios.get(`${getBaseUrl.value}/license/plans`, { withCredentials: true })
       if (!data.data?.length) return {} as IPlans
-      const plans = data.data[0].upsells.map((upsell : IPlansUpsells) => {
+      const upsellPlans = data.data.map((val: IPlanUpsellsFull) => {
         return {
-          id: upsell.planId,
-          name: upsell.productName,
-          price: {
-            net: upsell.nextBillingNetPrice,
-            vat: upsell.nextBillingVatPrice,
-            gross: upsell.nextBillingGrossPrice,
-            currency: data.currency
-          } }
+          productName: val.productName,
+          upsells: val.upsells.map((upsell : IPlansUpsells) => {
+            return {
+              id: upsell.planId,
+              name: upsell.productName,
+              price: {
+                net: upsell.nextBillingNetPrice,
+                vat: upsell.nextBillingVatPrice,
+                gross: upsell.nextBillingGrossPrice,
+                currency: data.currency
+              } }
+          })
+        }
       })
-      return { planOrder, plans }
+      return { planOrder, plans: [...new Set([...upsellPlans])]}
     } catch (error: unknown) {
       errorHandler(error)
       return {} as IPlans

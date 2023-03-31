@@ -1,7 +1,7 @@
 subscriptionStepChange
 
 <script lang="ts" setup>
-import { ILicensesDetails, IPlans, IPlanSelector, IPlansNew, IPlansUpsells } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector, IPlanUpsellsFull } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger', 'selectedPlan'])
 
@@ -15,10 +15,9 @@ const props = defineProps({
     default: () => ({})
   },
   subscriptionPlans: {
-    type: Object as () => IPlanSelector[],
-    default: () => ({})
+    type: Array as () => IPlanUpsellsFull[],
+    default: () => ([])
   }
-
 })
 
 const selectedPlan = ref<null|IPlanSelector>(null)
@@ -50,6 +49,10 @@ watchEffect(() => {
   generateStatusText()
 })
 
+const subscription = computed(() => {
+  return props.subscriptionPlans.find((val) => val.productName === props.plan.type)?.upsells
+})
+
 
 </script>
 
@@ -64,13 +67,14 @@ watchEffect(() => {
         {{ plan.type }}
       </h3>
     </div>
-    <p class="font-medium mb-2">
-      {{ t('chooseNewPlan') }}
-    </p>
-    <template v-if="subscriptionPlans.length">
+
+    <template v-if="subscription?.length">
+      <p class="font-medium mb-2">
+        {{ t('chooseNewPlan') }}
+      </p>
       <PlanSelector
         class="mb-4"
-        :plans="subscriptionPlans"
+        :plans="subscription"
         current="pro"
         @update-plan="selectedPlan = $event"
       />
@@ -126,6 +130,9 @@ watchEffect(() => {
         />
         <CleverBridgeInfo />
       </template>
+    </template>
+    <template v-else>
+      <p>{{ t('noUpsellAvailable') }}</p>
     </template>
   </div>
 </template>

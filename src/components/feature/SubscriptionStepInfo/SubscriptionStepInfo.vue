@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
+import { ILicensesDetails, TPlanStatus, IPlanUpsellsFull } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger'])
 
@@ -13,7 +13,7 @@ const props = defineProps({
     default: () => ({})
   },
   subscriptionPlans: {
-    type: Object as () => IPlanSelector[],
+    type: Object as () => IPlanUpsellsFull[],
     default: () => ({})
   },
   readOnly: {
@@ -32,7 +32,7 @@ const props = defineProps({
       >
         {{ plan.type }}
       </h3>
-      <SimpleLabel :type="status">
+      <SimpleLabel :type="status as TPlanStatus">
         {{ t(status) }}
       </SimpleLabel>
     </div>

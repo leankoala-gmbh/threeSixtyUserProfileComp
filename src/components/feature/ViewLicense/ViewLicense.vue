@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicenses, IPlanSelector, ILicenseCache } from '@/types/general.interfaces'
+import { ILicenses, IPlanSelector, ILicenseCache, IPlanUpsellsFull } from '@/types/general.interfaces'
 
 const props = defineProps({
   inactiveFields: {
@@ -14,12 +14,11 @@ const props = defineProps({
 
 const licenseData = ref<ILicenses|null>(null)
 const licenseCache = ref<ILicenseCache>({})
-const subscriptionPlans = ref<IPlanSelector[]>()
+const subscriptionPlans = ref<IPlanUpsellsFull[]>()
 
 const getSubscriptionPlans = async() => {
   try {
     const { plans } = await useApiAbstraction().getPlans()
-
     subscriptionPlans.value = plans
   } catch (error) {
     console.error(error)
@@ -124,6 +123,10 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
   }
   await getLicenseData()
 }
+
+const buyFreshLicense = () => {
+  window.mitt.emit('tsxUserProfile:buyNewLicense')
+}
 </script>
 
 <template>
@@ -159,6 +162,14 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
           </div>
         </div>
       </div>
+    </template>
+    <template v-if="licenseData && Object.keys(licenseData).length === 0 && !readOnly">
+      <p class="mb-4">
+        {{ t('currentlyNoLicense') }}
+      </p>
+      <GeneralButton @click="buyFreshLicense">
+        {{ t('buyLicense') }}
+      </GeneralButton>
     </template>
   </div>
 </template>
