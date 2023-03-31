@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails, ILicenseCache } from '@/types/general.interfaces'
+import { loadConfigFromFile } from 'vite'
 
 const props = defineProps({
   subTitle: {
@@ -49,6 +50,10 @@ const props = defineProps({
   currentCount: {
     type: Number,
     required: true
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -96,7 +101,9 @@ const isSameQuantity = computed(() => {
         >
           <div class="flex">
             <div class="self-center mx-2 text-center text-current">
+              <Spinner v-if="loading" />
               <svg
+                v-else
                 class="icon"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
@@ -129,6 +136,7 @@ const isSameQuantity = computed(() => {
         />
         <GeneralButton
           class="mb-6"
+          :is-disabled="loading"
           @click="emit('handleStatus','confirm')"
         >
           {{ t('confirmSubscription') }}

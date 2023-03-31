@@ -84,7 +84,6 @@ const loading = ref(false)
 const getPricePreview = async () => {
   loading.value = true
   const reqObject = props.type === 'websites'
-
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
     : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
@@ -218,6 +217,7 @@ const detailTotalPrice = computed(() => {
         :status-headline="statusHeadline"
         :status-text="statusText"
         :current-count="currentLicenseData"
+        :loading="loading"
         @handle-change="handleChange"
         @handle-status="(e) => handleStatus(e)"
       />
