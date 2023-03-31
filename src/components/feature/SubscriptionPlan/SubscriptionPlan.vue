@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, IPlanSelector } from '@/types/general.interfaces'
+import { ILicensesDetails, IPlanSelector, IPlanUpsellsFull } from '@/types/general.interfaces'
 
 const props = defineProps({
   status: {
@@ -11,7 +11,7 @@ const props = defineProps({
     default: () => ({})
   },
   subscriptionPlans: {
-    type: Object as () => IPlanSelector[],
+    type: Object as () => IPlanUpsellsFull[],
     default: () => ({})
   },
   readOnly: {

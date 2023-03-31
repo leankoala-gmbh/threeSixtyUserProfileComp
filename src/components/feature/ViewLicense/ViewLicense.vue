@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicenses, IPlanSelector, ILicenseCache } from '@/types/general.interfaces'
+import { ILicenses, IPlanSelector, ILicenseCache, IPlanUpsellsFull } from '@/types/general.interfaces'
 
 const props = defineProps({
   inactiveFields: {
@@ -14,12 +14,11 @@ const props = defineProps({
 
 const licenseData = ref<ILicenses|null>(null)
 const licenseCache = ref<ILicenseCache>({})
-const subscriptionPlans = ref<IPlanSelector[]>()
+const subscriptionPlans = ref<IPlanUpsellsFull[]>()
 
 const getSubscriptionPlans = async() => {
   try {
     const { plans } = await useApiAbstraction().getPlans()
-
     subscriptionPlans.value = plans
   } catch (error) {
     console.error(error)

@@ -75,6 +75,11 @@ export interface IPlansNew {
   upsells: IPlansUpsells[];
 }
 
+export interface IPlanUpsellsFull {
+  productName: string
+  upsells: IPlansUpsells[]
+}
+
 export interface IPlansUpsells {
   productId: string;
   planId: string;
@@ -104,7 +109,7 @@ export interface IPlanSelector {
 }
 export interface IPlans {
   planOrder: string[]
-  plans: IPlanSelector[]
+  plans: IPlanUpsellsFull[]
 }
 
 export type TMonitorTypes = 'servers' | 'websites'

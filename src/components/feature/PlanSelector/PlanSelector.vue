@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { IPlanSelector } from '@/types/general.interfaces'
+import { IPlanSelector, IPlansUpsells } from '@/types/general.interfaces'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
 const emit = defineEmits(['updatePlan'])
 
 const props = defineProps({
   plans: {
-    type: Array as () => IPlanSelector[],
+    type: Array as () => any[],
     default: () => []
   },
   current: {
@@ -15,6 +15,8 @@ const props = defineProps({
   }
 })
 
+console.log(props.plans)
+
 const selected = ref<IPlanSelector>()
 
 const disabledPlan = (id: string) => {
@@ -22,7 +24,7 @@ const disabledPlan = (id: string) => {
   return [...disabled].includes(id)
 }
 
-const planDetails = (currentPlan: IPlanSelector) => {
+const planDetails = (currentPlan: any) => {
   const plan = props.plans.find((plan) => plan.name === currentPlan.name)
   if (!plan) return ''
   return useLocalHelper().displayPrice(plan?.price.gross, plan?.price.currency)
