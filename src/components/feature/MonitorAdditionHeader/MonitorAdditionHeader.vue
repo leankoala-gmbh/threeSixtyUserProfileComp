@@ -81,7 +81,7 @@ const openBox = () => {
               </template>
             </div>
             <div v-if="status === 'ACT'" class="text-xs font-bold pr-5">
-              {{ totalPriceDisplay }}/mo
+              {{ totalPriceDisplay }}/{{ t('mo') }}
             </div>
           </div>
           <div

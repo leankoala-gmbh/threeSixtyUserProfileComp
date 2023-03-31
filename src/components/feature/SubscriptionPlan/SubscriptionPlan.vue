@@ -47,11 +47,13 @@ const { terminateLicense, upgradePlan } = useApiAbstraction()
 
 const emit = defineEmits(['update'])
 
+const planIsBuyed = ref(false)
+const subscriptionIsCanceled = ref(false)
+
 const buyPlan = async () => {
   if (selectedPlan.value === null) return
   try {
     await upgradePlan(props.plan.keyId, selectedPlan.value.id)
-    emit('update')
   } catch (error) {
     console.error(error)
   }
@@ -67,17 +69,55 @@ const cancelPlan = async () => {
   }
 }
 
+const planBuyHandler = () => {
+  if (planIsBuyed.value) return
+  planIsBuyed.value = true
+  setTimeout(() => {
+    planIsBuyed.value = false
+    isOpen.value = false
+    window.mitt.emit('tsxUserProfile:updateLicense')
+  }, 5000)
+}
+
+
+const triggerProcessingModifyLicense = () => {
+  currentStep.value = 'processingLicense'
+  setTimeout(() => {
+    emit('update')
+    boxOpenHeader.value = ''
+    currentStep.value = 'info'
+    planBuyHandler()
+  }, 5000)
+}
+
+const cancelSubscriptionHandler = () => {
+  if (subscriptionIsCanceled.value) return
+  subscriptionIsCanceled.value = true
+  setTimeout(() => {
+    subscriptionIsCanceled.value = false
+    isOpen.value = false
+    window.mitt.emit('tsxUserProfile:updateLicense')
+  }, 5000)
+}
+const triggerCancelSubscription = () => {
+  currentStep.value = 'processingCanceling'
+  setTimeout(() => {
+    emit('update')
+    boxOpenHeader.value = ''
+    currentStep.value = ''
+    cancelSubscriptionHandler()
+  }, 5000)
+}
+
 watchEffect(() => {
   if (currentStep.value === 'buynow') {
     buyPlan()
-    boxOpenHeader.value = ''
-    currentStep.value = 'info'
+    triggerProcessingModifyLicense()
     return
   }
   if (currentStep.value === 'cancelSubscription') {
     cancelPlan()
-    isOpen.value = false
-    boxOpenHeader.value = ''
+    triggerCancelSubscription()
     return
   }
   if (['confirm', 'cancel'].includes(currentStep.value)) {
@@ -103,6 +143,17 @@ watchEffect(() => {
     />
     <template #body>
       <div v-if="isOpen" class="">
+        <StatusMessage
+          v-if="planIsBuyed || subscriptionIsCanceled"
+          class="mb-4"
+        >
+          <template v-if="planIsBuyed">
+            {{ t('subscriptionChanged', {type: 'changed'}) }}
+          </template>
+          <template v-if="subscriptionIsCanceled">
+            {{ t('subscriptionChanged', {type: 'canceled'}) }}
+          </template>
+        </StatusMessage>
         <SubscriptionStepInfo
           v-if="currentStep === 'info'"
           :status="status"
@@ -127,6 +178,12 @@ watchEffect(() => {
           :selected-plan="selectedPlan?.name || ''"
           @trigger="currentStep = $event"
         />
+        <div
+          v-if="currentStep === 'processingLicense' || currentStep === 'processingCanceling'"
+          class="flex gap-4 text-sm justify-center items-center text-gray-500"
+        >
+          <Spinner />...{{ t('processingModification') }}
+        </div>
         <SubscriptionStepCancel
           v-if="status === 'active' && currentStep === 'cancel'"
           :status="status"
