@@ -50,6 +50,7 @@
   "excl": "excl.",
   "confirmPlanChange": "Confirm plan change",
   "cancelSubscription": "Cancel subscription",
+  "subscriptionChanged": "Your subscription plan has been succesfully {type}",
   "changePlan": "Change plan",
   "confirmNote": "By submitting this order, you agree to the <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Right of revocation as a consumer.",
   "buyNow": "Buy now",
@@ -75,5 +76,6 @@
   "privacy": "Privacy Policy",
   "noUpsellAvailable": "Currently no more upgrades available.",
   "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
-  "buyLicense": "Buy license"
+  "buyLicense": "Buy license",
+  "processingModification": "Your order is currently being processed."
 }
