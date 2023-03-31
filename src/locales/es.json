@@ -42,7 +42,7 @@
   "chooseNewPlan": "Seleccionar un nuevo plan",
   "confirmSubscription": "Confirme la suscripción",
   "payment": "Pago",
-  "paymentInfo": "The 360 Monitoring Store operated by cleverbridge AG will process this order using the payment method attached to the selected subscription.",
+  "paymentInfo": "La tienda de 360 Monitoring gestionada por cleverbridge AG procesará este pedido usando el método de pago asociado a la suscripción seleccionada.",
   "chargedHeadline": "Se le cobrará {price} ({ie} IVA {vat})",
   "chargedText": "A partir del {date}, se le cobrará {price}/{interval} ({ie} IVA {vat}) para este producto.",
   "back": "Atrás",
@@ -73,7 +73,7 @@
   "security": "Seguridad",
   "legal": "Información legal",
   "privacy": "Directiva de privacidad",
-  "noUpsellAvailable": "Currently no more upgrades available.",
-  "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
-  "buyLicense": "Buy license"
+  "noUpsellAvailable": "En este momento no existe ninguna otra mejora disponible.",
+  "currentlyNoLicense": "En este momento no existe ninguna licencia disponible. Si lo desea, puede comprar una licencia nueva.",
+  "buyLicense": "Comprar licencia"
 }
