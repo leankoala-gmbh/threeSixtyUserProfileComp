@@ -125,7 +125,9 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
 }
 
 const buyFreshLicense = () => {
-  window.mitt.emit('tsxUserProfile:buyNewLicense')
+  window.mitt.emit('tsxUserProfile', {
+    action: 'buyNewLicense'
+  })
 }
 </script>
 
