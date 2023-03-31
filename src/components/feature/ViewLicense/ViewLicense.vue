@@ -123,6 +123,10 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
   }
   await getLicenseData()
 }
+
+const buyFreshLicense = () => {
+  window.mitt.emit('tsxUserProfile:buyNewLicense')
+}
 </script>
 
 <template>
@@ -158,6 +162,14 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
           </div>
         </div>
       </div>
+    </template>
+    <template v-if="licenseData && Object.keys(licenseData).length === 0 && !readOnly">
+      <p class="mb-4">
+        {{ t('currentlyNoLicense') }}
+      </p>
+      <GeneralButton @click="buyFreshLicense">
+        {{ t('buyLicense') }}
+      </GeneralButton>
     </template>
   </div>
 </template>
