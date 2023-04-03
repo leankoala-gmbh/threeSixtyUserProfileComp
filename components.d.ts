@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AnnotationBox: typeof import('./src/components/pure/AnnotationBox/AnnotationBox.vue')['default']
     ApiError: typeof import('./src/components/base/ApiError/ApiError.vue')['default']
+    ApiStatus: typeof import('./src/components/feature/ApiStatus/ApiStatus.vue')['default']
+    'ApiStatus.story': typeof import('./src/components/feature/ApiStatus/ApiStatus.story.vue')['default']
     BillingLine: typeof import('./src/components/feature/BillingLine/BillingLine.vue')['default']
     'BillingLine.story': typeof import('./src/components/feature/BillingLine/BillingLine.story.vue')['default']
     CleverBridgeInfo: typeof import('./src/components/feature/CleverBridgeInfo/CleverBridgeInfo.vue')['default']
@@ -41,6 +43,8 @@ declare module '@vue/runtime-core' {
     ProfilePassword: typeof import('./src/components/feature/ProfilePassword/ProfilePassword.vue')['default']
     ProfileRemove: typeof import('./src/components/feature/ProfileRemove/ProfileRemove.vue')['default']
     ProfileTimezone: typeof import('./src/components/feature/ProfileTimezone/ProfileTimezone.vue')['default']
+    ProgressBar: typeof import('./src/components/pure/ProgressBar/ProgressBar.vue')['default']
+    'ProgressBar.story': typeof import('./src/components/pure/ProgressBar/ProgressBar.story.vue')['default']
     QuantitySelector: typeof import('./src/components/base/QuantitySelector/QuantitySelector.vue')['default']
     RemoveAccountFormular: typeof import('./src/components/feature/RemoveAccountFormular/RemoveAccountFormular.vue')['default']
     SimpleLabel: typeof import('./src/components/pure/SimpleLabel/SimpleLabel.vue')['default']

@@ -38,6 +38,7 @@ const title = reactive({
   servers: t('additionalServer'),
   websites: t('additionalWebsite')
 })
+const apiError = ref<unknown | null>(null)
 
 const subTitle = reactive<IMonitorStatusTitle>({
   servers: {
@@ -82,6 +83,7 @@ const generateStatusText = () => {
 const loading = ref(false)
 
 const getPricePreview = async () => {
+  apiError.value = null
   loading.value = true
   const reqObject = props.type === 'websites'
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
@@ -90,7 +92,8 @@ const getPricePreview = async () => {
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
     priceObject.value = data
   } catch (error) {
-    console.log(error)
+    apiError.value = error
+    console.error(error)
   } finally {
     loading.value = false
   }
@@ -131,6 +134,7 @@ const selectPlanIds = computed(() => {
 const emit = defineEmits(['update'])
 
 const handleBuy = async () => {
+  apiError.value = null
   if (quantity.value <= 0 || !selectPlanIds.value) return
   try {
     await modifyProperties(
@@ -146,6 +150,7 @@ const handleBuy = async () => {
     }, 3000)
     emit('update', { keyId: props.plan.keyId, type: props.type, count: quantity.value })
   } catch (e) {
+    apiError.value = e
     console.error(e)
   }
 }

@@ -47,37 +47,82 @@ const { terminateLicense, upgradePlan } = useApiAbstraction()
 
 const emit = defineEmits(['update'])
 
+const planIsBuyed = ref(false)
+const subscriptionIsCanceled = ref(false)
+
 const buyPlan = async () => {
   if (selectedPlan.value === null) return
+  apiError.value = null
   try {
     await upgradePlan(props.plan.keyId, selectedPlan.value.id)
-    emit('update')
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
-
+const apiError = ref<unknown | null>()
 const cancelPlan = async () => {
+  apiError.value = null
   if (props.plan.keyId === undefined) return
   try {
     await terminateLicense(props.plan.keyId)
     emit('update')
+
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
+}
+
+const planBuyHandler = () => {
+  if (planIsBuyed.value) return
+  planIsBuyed.value = true
+  setTimeout(() => {
+    planIsBuyed.value = false
+    isOpen.value = false
+    window.mitt.emit('tsxUserProfile:updateLicense')
+  }, 5000)
+}
+
+
+const triggerProcessingModifyLicense = () => {
+  currentStep.value = 'processingLicense'
+  setTimeout(() => {
+    emit('update')
+    boxOpenHeader.value = ''
+    currentStep.value = 'info'
+    planBuyHandler()
+  }, 5000)
+}
+
+const cancelSubscriptionHandler = () => {
+  if (subscriptionIsCanceled.value) return
+  subscriptionIsCanceled.value = true
+  setTimeout(() => {
+    subscriptionIsCanceled.value = false
+    isOpen.value = false
+    window.mitt.emit('tsxUserProfile:updateLicense')
+  }, 5000)
+}
+const triggerCancelSubscription = () => {
+  currentStep.value = 'processingCanceling'
+  setTimeout(() => {
+    emit('update')
+    boxOpenHeader.value = ''
+    currentStep.value = ''
+    cancelSubscriptionHandler()
+  }, 5000)
 }
 
 watchEffect(() => {
   if (currentStep.value === 'buynow') {
     buyPlan()
-    boxOpenHeader.value = ''
-    currentStep.value = 'info'
+    triggerProcessingModifyLicense()
     return
   }
   if (currentStep.value === 'cancelSubscription') {
     cancelPlan()
-    isOpen.value = false
-    boxOpenHeader.value = ''
+    triggerCancelSubscription()
     return
   }
   if (['confirm', 'cancel'].includes(currentStep.value)) {
@@ -86,6 +131,12 @@ watchEffect(() => {
     boxOpenHeader.value = ''
   }
 })
+
+const progressDisapear = ref(false)
+
+setTimeout(() => {
+  progressDisapear.value = true
+}, 1000)
 </script>
 
 <template>
@@ -103,6 +154,17 @@ watchEffect(() => {
     />
     <template #body>
       <div v-if="isOpen" class="">
+        <StatusMessage
+          v-if="planIsBuyed || subscriptionIsCanceled"
+          class="mb-4"
+        >
+          <template v-if="planIsBuyed">
+            {{ t('subscriptionChanged') }}
+          </template>
+          <template v-if="subscriptionIsCanceled">
+            {{ t('subscriptionCanceled') }}
+          </template>
+        </StatusMessage>
         <SubscriptionStepInfo
           v-if="currentStep === 'info'"
           :status="status"
@@ -127,6 +189,15 @@ watchEffect(() => {
           :selected-plan="selectedPlan?.name || ''"
           @trigger="currentStep = $event"
         />
+        <div
+          v-if="currentStep === 'processingLicense' || currentStep === 'processingCanceling'"
+          class="text-sm  text-gray-500"
+        >
+          <div class="flex gap-4 items-center mb-2">
+            <Spinner />...{{ t('processingModification') }}
+          </div>
+          <ProgressBar :time="5" />
+        </div>
         <SubscriptionStepCancel
           v-if="status === 'active' && currentStep === 'cancel'"
           :status="status"

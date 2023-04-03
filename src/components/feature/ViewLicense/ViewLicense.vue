@@ -17,10 +17,12 @@ const licenseCache = ref<ILicenseCache>({})
 const subscriptionPlans = ref<IPlanUpsellsFull[]>()
 
 const getSubscriptionPlans = async() => {
+  apiError.value = null
   try {
     const { plans } = await useApiAbstraction().getPlans()
     subscriptionPlans.value = plans
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
@@ -37,7 +39,10 @@ const additionalMonitorBasePrices = ref({
   servers: 0
 })
 
+const apiError = ref<unknown|null>(null)
+
 const getAdditionalBasePrices = async(keyId: number | string) => {
+  apiError.value = null
   if (!keyId) return
   try {
     const { data: websitePrice } = await useApiAbstraction().modifyPropertiesPreview({
@@ -57,6 +62,7 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
       servers: serverPrice.nextBillingGrossPrice
     }
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
@@ -88,6 +94,7 @@ const mapAdditionPriceToLicense = () => {
 }
 
 const getLicenseData = async() => {
+  apiError.value = null
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
     const firstKeyId = licenseData.value?.active[0]?.keyId || false
@@ -95,6 +102,7 @@ const getLicenseData = async() => {
     mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
@@ -173,5 +181,8 @@ const buyFreshLicense = () => {
         {{ t('buyLicense') }}
       </GeneralButton>
     </template>
+    <ApiStatus>
+      {{ apiError }}
+    </ApiStatus>
   </div>
 </template>
