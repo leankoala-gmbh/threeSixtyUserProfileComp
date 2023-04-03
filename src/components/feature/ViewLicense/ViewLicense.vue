@@ -97,7 +97,7 @@ const getLicenseData = async() => {
   apiError.value = null
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
-    const firstKeyId = licenseData.value?.active[0]?.keyId || false
+    const firstKeyId = licenseData.value?.active?.[0]?.keyId || false
     if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
