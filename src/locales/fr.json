@@ -54,7 +54,6 @@
   "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
   "changePlan": "Change plan",
   "confirmNote": "By submitting this order, you agree to the <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Right of revocation as a consumer.",
-  "confirmNote": "By submitting this order, you agree to the <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Right of revocation as a consumer.",
   "buyNow": "Buy now",
   "cancelSubscriptionText": "This will stop future charges. You can keep using the license until {date} (the current billing period will not be refunded).",
   "additionalServer": "Additional server monitor",
