@@ -28,6 +28,7 @@ const getSubscriptionPlans = async() => {
 }
 
 const setLicenseCache = (plan: ILicenses) => {
+  if (!plan.active?.length) return
   licenseCache.value = plan.active.reduce((acc: any, curr) => {
     if (!acc[curr.keyId]) {acc[curr.keyId] = { websites: curr.websites.count, servers: curr.servers.count }}
     return acc
@@ -70,6 +71,7 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
 const mapAdditionPriceToLicense = () => {
   if (!licenseData.value) return
   const { active, canceled } = licenseData.value
+  if (!active || !canceled) return
 
   const activeWithPrice = active.map((plan) => {
     const { keyId, websites, servers } = plan
@@ -181,7 +183,7 @@ const buyFreshLicense = () => {
         {{ t('buyLicense') }}
       </GeneralButton>
     </template>
-    <ApiStatus>
+    <ApiStatus v-if="!licenseData && !readOnly && apiError">
       {{ apiError }}
     </ApiStatus>
   </div>
