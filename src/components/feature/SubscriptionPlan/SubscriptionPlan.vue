@@ -52,19 +52,24 @@ const subscriptionIsCanceled = ref(false)
 
 const buyPlan = async () => {
   if (selectedPlan.value === null) return
+  apiError.value = null
   try {
     await upgradePlan(props.plan.keyId, selectedPlan.value.id)
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
-
+const apiError = ref<unknown | null>()
 const cancelPlan = async () => {
+  apiError.value = null
   if (props.plan.keyId === undefined) return
   try {
     await terminateLicense(props.plan.keyId)
     emit('update')
+
   } catch (error) {
+    apiError.value = error
     console.error(error)
   }
 }
@@ -126,6 +131,12 @@ watchEffect(() => {
     boxOpenHeader.value = ''
   }
 })
+
+const progressDisapear = ref(false)
+
+setTimeout(() => {
+  progressDisapear.value = true
+}, 1000)
 </script>
 
 <template>
@@ -180,9 +191,12 @@ watchEffect(() => {
         />
         <div
           v-if="currentStep === 'processingLicense' || currentStep === 'processingCanceling'"
-          class="flex gap-4 text-sm justify-center items-center text-gray-500"
+          class="text-sm  text-gray-500"
         >
-          <Spinner />...{{ t('processingModification') }}
+          <div class="flex gap-4 items-center mb-2">
+            <Spinner />...{{ t('processingModification') }}
+          </div>
+          <ProgressBar :time="5" />
         </div>
         <SubscriptionStepCancel
           v-if="status === 'active' && currentStep === 'cancel'"
