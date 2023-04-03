@@ -148,10 +148,10 @@ watchEffect(() => {
           class="mb-4"
         >
           <template v-if="planIsBuyed">
-            {{ t('subscriptionChanged', {type: 'changed'}) }}
+            {{ t('subscriptionChanged') }}
           </template>
           <template v-if="subscriptionIsCanceled">
-            {{ t('subscriptionChanged', {type: 'canceled'}) }}
+            {{ t('subscriptionCanceled') }}
           </template>
         </StatusMessage>
         <SubscriptionStepInfo
