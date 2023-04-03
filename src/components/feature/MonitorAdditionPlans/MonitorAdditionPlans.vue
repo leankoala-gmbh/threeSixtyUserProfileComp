@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicenseCache, ILicensesDetails } from '@/types/general.interfaces'
+import { ILicenseCache, ILicensesDetails, TMonitorTypes } from '@/types/general.interfaces'
 
 const emit = defineEmits(['update'])
 
@@ -32,7 +32,7 @@ const types = ['servers', 'websites']
       v-for="(type, i) in types"
       :key="i"
       :plan="plan"
-      :type="type"
+      :type="type as TMonitorTypes"
       class="mb-1"
       :read-only="readOnly"
       :base-prices="basePrices"
