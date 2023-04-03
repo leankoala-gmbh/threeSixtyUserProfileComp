@@ -80,7 +80,7 @@ const planBuyHandler = () => {
   setTimeout(() => {
     planIsBuyed.value = false
     isOpen.value = false
-    window.mitt.emit('tsxUserProfile:updateLicense')
+    window.mitt.emit('tsxUserProfile', { action: 'updateLicense' })
   }, 5000)
 }
 
@@ -101,7 +101,7 @@ const cancelSubscriptionHandler = () => {
   setTimeout(() => {
     subscriptionIsCanceled.value = false
     isOpen.value = false
-    window.mitt.emit('tsxUserProfile:updateLicense')
+    window.mitt.emit('tsxUserProfile', { action: 'cancelLicense' })
   }, 5000)
 }
 const triggerCancelSubscription = () => {
