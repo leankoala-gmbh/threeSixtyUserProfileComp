@@ -58,7 +58,7 @@
   "cancelSubscriptionText": "Como consecuencia, en el futuro no se efectuará ningún otro cargo. Puede seguir usando la licencia hasta el {date} (no se reembolsará el periodo de facturación actual).",
   "additionalServer": "Monitor de servidor adicional",
   "additionalWebsite": "Monitor de sitio web adicional",
-  "additionalServers": "Monitores de servidor adicionales",
+  "additionalServers": "Servidor adicional monitorizado",
   "additionalWebsites": "Monitores de sitio web adicionales",
   "additionalTypeConfirm": "Confirme el cambio de cantidad de monitores {type} adicionales",
   "additionalTypeChangeBox": "cambio de cantidad de monitores {type}",
