@@ -26,9 +26,7 @@ watch(() => props.open, () => {
           <div class="text-base font-medium mb-2">
             {{ t('removeAccount') }}
           </div>
-          <p class="text-sm text-gray-600">
-            {{ t('removeAccountBody') }}
-          </p>
+          <div class="text-sm text-gray-600" v-html="t('removeAccountNote')" />
         </div>
 
         <div
