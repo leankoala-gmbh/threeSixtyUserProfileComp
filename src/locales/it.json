@@ -54,7 +54,7 @@
   "subscriptionChanged": "Your subscription plan has been succesfully changed.",
   "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
   "changePlan": "Cambia piano",
-  "confirmNote": "By submitting this order, you agree to the <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Terms & Conditions</a> of cleverbridge and confirm that you have read and understood the <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Privacy Policy</a> of cleverbridge and your <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Right of revocation as a consumer.",
+  "confirmNote": "Inviando questo ordine, accetterai <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Termini e condizioni</a> \n di cleverbridge e confermerai di aver letto e compreso l'<a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Informativa sulla privacy</a> di cleverbridge e il <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Diritto di recesso in qualità di consumatore.",
   "buyNow": "Acquista ora",
   "cancelSubscriptionText": "Questo interromperà addebiti futuri. Puoi continuare a usare la licenza fino al {date} (l'attuale periodo di fatturazione non verrà rimborsato).",
   "additionalServer": "Monitor di server aggiuntivo",
@@ -76,7 +76,7 @@
   "security": "Sicurezza",
   "legal": "Informazioni legali",
   "privacy": "Informativa sulla privacy",
-  "noUpsellAvailable": "Currently no more upgrades available.",
+  "noUpsellAvailable": "Nessun altro upgrade disponibile al momento.",
   "currentlyNoLicense": "Nessuna licenza disponibile al momento. Se vuoi, puoi acquistarne una.",
   "buyLicense": "Acquista licenza",
   "processingModification": "Your order is currently being processed."
