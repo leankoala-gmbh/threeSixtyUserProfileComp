@@ -20,6 +20,7 @@
   "removeAccountButton": "Supprimer mon compte",
   "removeAccountAnnotationTitle": "Toutes vos données seront supprimées",
   "removeAccountAnnotationContent": "Après avoir supprimé le compte, votre abonnement au pack sera également supprimé. Notez que la suppression du compte est définitive. Vous ne pourrez plus restaurer votre compte.",
+  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Saisissez le mot de passe pour confirmer la suppression du compte.",
   "consentHeadline": "Recevoir les informations relatives aux mises à jour de Monitoring 360 ainsi que les communications commerciales",
   "consentBody": "Les entreprises du groupe WebPros peuvent stocker et traiter les données que je fournis afin de proposer du contenu marketing personnalisé comme des newsletters et des offres individuelles, conformément à la politique de confidentialité. Les offres personnalisées peuvent être basées sur des informations supplémentaires comme les données relatives à l'utilisation et au comportement (profilage). Je peux révoquer ce consentement à tout moment depuis les préférences de la plateforme.",
