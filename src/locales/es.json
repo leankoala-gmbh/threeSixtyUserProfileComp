@@ -20,6 +20,7 @@
   "removeAccountButton": "Eliminar mi cuenta",
   "removeAccountAnnotationTitle": "Todos tus datos serán eliminados",
   "removeAccountAnnotationContent": "Después de eliminar la cuenta también se eliminará tu suscripción al plan. Ten en cuenta que la eliminación de la cuenta es definitiva. No habrá forma de restaurar tu cuenta",
+  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Introduce la contraseña para confirmar la eliminación de la cuenta",
   "consentHeadline": "Recibir actualizaciones y comunicaciones comerciales de 360 Monitoring",
   "consentBody": "Las empresas del grupo WebPros pueden almacenar y procesar los datos que facilito para ofrecer contenidos de marketing personalizados, como boletines informativos y ofertas individuales, de acuerdo con la Política de privacidad. Las ofertas personalizadas pueden basarse en información adicional como datos de uso y comportamiento (elaboración de perfiles). Puedo revocar este consentimiento en cualquier momento en las preferencias de la plataforma.",
