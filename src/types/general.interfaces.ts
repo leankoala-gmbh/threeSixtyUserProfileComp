@@ -62,6 +62,7 @@ export interface ISubscriptionHeaderDetails {
   price?: number
   date: string
   currency?: string
+  licenseId?: string
 }
 
 export type TPaymentProviders = 'visa' | 'mastercard' | 'paypal' | 'sepa' | 'wire' | 'amex'

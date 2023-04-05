@@ -29,7 +29,8 @@ const subscriptionDetails = computed(() => {
     status: props.status,
     date: props.plan.nextBillingDate,
     price: props.plan.renewalCostGross,
-    currency: props.plan.renewalCurrency
+    currency: props.plan.renewalCurrency,
+    licenseId: props.plan.keyNumber
   }
 })
 
