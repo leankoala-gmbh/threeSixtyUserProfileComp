@@ -79,5 +79,6 @@
   "noUpsellAvailable": "Currently no more upgrades available.",
   "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
   "buyLicense": "Buy license",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID"
 }
