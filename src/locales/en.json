@@ -20,7 +20,6 @@
   "removeAccountButton": "Remove my account",
   "removeAccountAnnotationTitle": "All you data will be removed",
   "removeAccountAnnotationContent": "After you remove the account your plan subscription will also be removed. Be aware, account removal is final. There will be no way to restore your account.",
-  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Enter the password to confirm the removal of the account",
   "consentHeadline": "Receive 360 Monitoring updates and commercial communication",
   "consentBody": "WebPros group companies may store and process the data I provide to deliver personalized marketing content such as newsletters and individual offers according to the Privacy Policy. Tailored offerings may be based on additional information like usage and behavior data (Profiling). I can revoke this consent at any time in the platform preferences.",
@@ -79,5 +78,8 @@
   "noUpsellAvailable": "Currently no more upgrades available.",
   "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
   "buyLicense": "Buy license",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }
