@@ -30,11 +30,19 @@ const getSubscriptionPlans = async() => {
 const setLicenseCache = (plan: ILicenses) => {
   if (!plan.active?.length) return
   licenseCache.value = plan.active.reduce((acc: any, curr) => {
-    if (!acc[curr.keyId]) {acc[curr.keyId] = { websites: curr.websites.count, servers: curr.servers.count }}
+    if (!acc[curr.keyId]) {acc[curr.keyId] = {
+      websites: curr.websites.count,
+      servers: curr.servers.count,
+      websitesNextCycle: curr.websites.next_cycle_count,
+      serversNextCycle: curr.servers.next_cycle_count,
+      websitesDiff: curr.websites.count - curr.websites.next_cycle_count,
+      serversDiff: curr.servers.count - curr.servers.next_cycle_count
+    }}
     return acc
   }, licenseCache.value)
 }
 
+const additionalMonitorPricesCollected = ref(false)
 const additionalMonitorBasePrices = ref({
   websites: 0,
   servers: 0
@@ -46,22 +54,13 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
   apiError.value = null
   if (!keyId) return
   try {
-    const { data: websitePrice } = await useApiAbstraction().modifyPropertiesPreview({
-      keyId: keyId.toString(),
-      websites: 1,
-      servers: 0
-    })
-
-    const { data: serverPrice } = await useApiAbstraction().modifyPropertiesPreview({
-      keyId: keyId.toString(),
-      websites: 0,
-      servers: 1
-    })
+    const { data } = await useApiAbstraction().getUnitPrices(keyId.toString())
 
     additionalMonitorBasePrices.value = {
-      websites: websitePrice.nextBillingGrossPrice,
-      servers: serverPrice.nextBillingGrossPrice
+      websites: data.websites.nextBillingGrossPrice,
+      servers: data.servers.nextBillingGrossPrice
     }
+    additionalMonitorPricesCollected.value = true
   } catch (error) {
     apiError.value = error
     console.error(error)
@@ -100,7 +99,7 @@ const getLicenseData = async() => {
   try {
     licenseData.value = await useApiAbstraction().getLicenses()
     const firstKeyId = licenseData.value?.active?.[0]?.keyId || false
-    if (firstKeyId) await getAdditionalBasePrices(firstKeyId)
+    if (firstKeyId && !additionalMonitorPricesCollected.value) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
     setLicenseCache(licenseData.value)
   } catch (error) {

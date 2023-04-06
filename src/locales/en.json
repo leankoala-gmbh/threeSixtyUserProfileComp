@@ -79,5 +79,7 @@
   "currentlyNoLicense": "Currently no license available. If you want you can buy a new one.",
   "buyLicense": "Buy license",
   "processingModification": "Your order is currently being processed.",
-  "licenseId": "License ID"
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }

@@ -73,7 +73,7 @@ const openBox = () => {
             {{ t(subscriptionDetail.status) }}
           </SimpleLabel>
         </div>
-        <div v-if="!inactiveLicense && subscriptionDetail.licenseId" class="mb-2">
+        <div v-if="subscriptionDetail.licenseId" class="mb-2">
           {{ t('licenseId') }}: {{ subscriptionDetail.licenseId }}
         </div>
         <BillingLine

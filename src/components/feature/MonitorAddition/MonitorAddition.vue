@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
+import { ILicensesDetails, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 import { useDebounceFn } from '@vueuse/core'
 
@@ -156,7 +156,7 @@ const handleBuy = async () => {
 }
 
 const currentLicenseData = computed(() => {
-  return props.licenseCache[props.plan.keyId]?.[props.type]
+  return props.licenseCache[props.plan.keyId]?.[`${props.type}NextCycle`]
 })
 
 const initialPriceDisplay = computed(() => {
@@ -177,6 +177,8 @@ const detailTotalPrice = computed(() => {
   }
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
+
+
 </script>
 
 <template>
