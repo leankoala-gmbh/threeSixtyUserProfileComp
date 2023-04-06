@@ -35,6 +35,7 @@ export interface ILicenses {
 }
 
 export interface ILicensesServers {
+  next_cycle_count: number
   count: number
   min: number
   max: number
@@ -139,5 +140,9 @@ export interface ILicenseCache {
   [keyId : string]: {
     websites: number
     servers: number
+    websitesDiff: number
+    serversDiff: number
+    websitesNextCycle: number
+    serversNextCycle: number
   }
 }

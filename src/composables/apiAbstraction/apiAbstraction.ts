@@ -34,6 +34,16 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     }
   }
 
+  const getUnitPrices = async (keyId: string) => {
+    guardUrl()
+    try {
+      const { data } = await axios.get(`${getBaseUrl.value}/license/modify-properties/unit-costs/${keyId}`)
+      return data
+    } catch (error) {
+      errorHandler(error)
+    }
+  }
+
   const getPlans = async () : Promise<IPlans> => {
     guardUrl()
     const planOrder = ['pro', 'business', 'enterprise']
@@ -218,6 +228,7 @@ export function useApiAbstraction (cnameOverride: string|null = null) {
     setProfile,
     changePassword,
     setConsent,
-    getConsent
+    getConsent,
+    getUnitPrices
   }
 }
