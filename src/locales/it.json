@@ -20,7 +20,6 @@
   "removeAccountButton": "Rimuovi il mio account",
   "removeAccountAnnotationTitle": "Tutti i tuoi dati saranno rimossi",
   "removeAccountAnnotationContent": "Dopo aver rimosso l'account, anche l'abbonamento al piano verrà rimosso. Attenzione, la rimozione dell'account è definitiva. Non potrai più ripristinare il tuo account.",
-  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Inserisci la password per confermare la rimozione dell'account",
   "consentHeadline": "Ricevi gli aggiornamenti di 360 Monitoring e le comunicazioni commerciali",
   "consentBody": "Le società del gruppo WebPros possono memorizzare ed elaborare i dati da me forniti per fornire contenuti di marketing personalizzati, come newsletter e offerte individuali, in conformità con l'Informativa sulla privacy. Le offerte personalizzate possono basarsi su informazioni aggiuntive come i dati di utilizzo e di comportamento (Profilazione). Posso revocare questo consenso in qualsiasi momento nelle preferenze della piattaforma.",
@@ -79,5 +78,8 @@
   "noUpsellAvailable": "Nessun altro upgrade disponibile al momento.",
   "currentlyNoLicense": "Nessuna licenza disponibile al momento. Se vuoi, puoi acquistarne una.",
   "buyLicense": "Acquista licenza",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }
