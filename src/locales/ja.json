@@ -20,7 +20,6 @@
   "removeAccountButton": "アカウントを削除",
   "removeAccountAnnotationTitle": "あなたのデータはすべて削除されます",
   "removeAccountAnnotationContent": "アカウントを削除すると、プランの契約も削除されます。アカウントの削除は最終的なものですので、ご注意ください。アカウントを復元する方法はありません。",
-  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "パスワードを入力してアカウントの削除を確認する",
   "consentHeadline": "360 Monitoring のアップデートとプロモーション",
   "consentBody": "WebPros のグループ会社は、プライバシーポリシーに基づいて、ニュースレターや個別オファーなどのパーソナライズされたマーケティングコンテンツを提供するために、私が提供したデータを保存し、処理することがあります。また、利用状況や行動データ（プロファイリング）などの追加情報に基づいて、カスタマイズされたサービスを提供することがあります。私は、この同意をいつでもプラットフォームの設定で取り消すことができます。",
@@ -79,5 +78,8 @@
   "noUpsellAvailable": "現在その他のアップグレードはありません。",
   "currentlyNoLicense": "現在ライセンスはありません。必要な場合は新規ライセンスをご購入いただけます。",
   "buyLicense": "ライセンスを購入",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }
