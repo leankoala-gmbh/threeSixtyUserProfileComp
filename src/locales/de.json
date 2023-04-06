@@ -20,7 +20,6 @@
   "removeAccountButton": "Mein Konto entfernen",
   "removeAccountAnnotationTitle": "Alle Ihre Daten werden entfernt",
   "removeAccountAnnotationContent": "Nachdem Sie das Konto entfernt haben, wird auch Ihr Paket-Abonnement entfernt. Bitte beachten Sie, dass die Entfernung des Kontos endgültig ist. Es gibt keine Möglichkeit, Ihr Konto wiederherzustellen.",
-  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Geben Sie das Passwort ein, um die Entfernung des Kontos zu bestätigen",
   "consentHeadline": "Updates zu 360 Monitoring und kommerzielle Kommunikation",
   "consentBody": "Die Unternehmen der WebPros-Gruppe können die von mir zur Verfügung gestellten Daten speichern und verarbeiten, um personalisierte Marketinginhalte wie Newsletter und individuelle Angebote gemäß der Datenschutzrichtlinie zu senden. Maßgeschneiderte Angebote können auf zusätzlichen Informationen wie Nutzungs- und Verhaltensdaten basieren (Profiling). Diese Einwilligung kann ich jederzeit in den Einstellungen der Plattform widerrufen.",
@@ -79,5 +78,8 @@
   "noUpsellAvailable": "Derzeit sind keine weiteren Upgrades verfügbar.",
   "currentlyNoLicense": "Derzeit sind keine Lizenzen verfügbar. Sie können jedoch eine Lizenz erwerben.",
   "buyLicense": "Lizenz kaufen",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }
