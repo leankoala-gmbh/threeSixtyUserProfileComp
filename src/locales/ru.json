@@ -20,7 +20,6 @@
   "removeAccountButton": "Удалить мою учетную запись",
   "removeAccountAnnotationTitle": "Все ваши данные будут удалены",
   "removeAccountAnnotationContent": "После удаления учетной записи ваша подписка на тарифный план тоже будет удалена. Имейте в виду, что удаление учетной записи необратимо, и восстановить ее будет невозможно.",
-  "removeAccountNote": "<p>Your service accounts and licenses will be deleted together with your account. We will also remove your email address and other personal data from. Your account and extensions licenses will not be affected by deleting your account, but you will not be able to view and manage them anymore.</p>",
   "enterPasswordConfirmRemove": "Введите пароль, чтобы подтвердить удаление учетной записи",
   "consentHeadline": "Получать обновления и коммерческие сообщения 360 Monitoring",
   "consentBody": "Компании группы WebPros могут хранить и обрабатывать предоставленные мной данные для создания персонализированных маркетинговых сообщений, таких как информационные письма и индивидуальные предложения, в соответствии с Политикой конфиденциальности. Персонализированные предложения могут быть основаны на дополнительной информации, такой как данные об использовании продукта (профилировании). Я могу отозвать это согласие в любой момент в настройках платформы.",
@@ -44,8 +43,8 @@
   "confirmSubscription": "Подтвердить подписку",
   "payment": "Платеж",
   "paymentInfo": "360 Monitoring Store под управлением cleverbridge AG обработает этот заказ с помощью способа оплаты, привязанного к выбранной подписке.",
-  "chargedHeadline": "Вам будет выставлен счет на {price} ({ie} включая НДС {vat})",
-  "chargedText": "Начиная с {date} вам будет выставляться счет на {price}/{interval}({ie} включая НДС {vat}) за этот продукт.",
+  "chargedHeadline": "Вам будет выставлен счет на {price} ({ie} НДС {vat})",
+  "chargedText": "Начиная с {date} вам будет выставляться счет на {price}/{interval}({ie} НДС {vat}) за этот продукт.",
   "back": "Назад",
   "incl": "с",
   "excl": "без",
@@ -79,5 +78,8 @@
   "noUpsellAvailable": "Пока что больше нет доступных обновлений.",
   "currentlyNoLicense": "Сейчас нет доступных лицензий. Приобретите новую, если необходимо.",
   "buyLicense": "Купить лицензию",
-  "processingModification": "Your order is currently being processed."
+  "processingModification": "Your order is currently being processed.",
+  "licenseId": "License ID",
+  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
 }
