@@ -79,7 +79,7 @@
   "currentlyNoLicense": "En este momento no existe ninguna licencia disponible. Si lo desea, puede comprar una licencia nueva.",
   "buyLicense": "Comprar licencia",
   "processingModification": "Su pedido está siendo procesado en este momento.",
-  "licenseId": "License ID",
-  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "licenseId": "ID de la licencia",
+  "changedServersUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de servidor.",
+  "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web."
 }
