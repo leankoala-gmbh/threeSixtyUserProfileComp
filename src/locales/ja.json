@@ -51,7 +51,7 @@
   "confirmPlanChange": "プランの変更を確認",
   "cancelSubscription": "契約をキャンセル",
   "subscriptionChanged": "Your subscription plan has been succesfully changed.",
-  "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
+  "subscriptionCanceled": "契約プランが正常にキャンセルされました。",
   "changePlan": "プランを変更",
   "confirmNote": "この注文を送信すると、cleverbridge の<a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">利用規約</a> に同意いただき、消費者として cleverbridge の <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">プライバシーポリシー</a>と<a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">契約解除権を読み、理解されたものとみなされます。",
   "buyNow": "今すぐ購入",
@@ -78,8 +78,8 @@
   "noUpsellAvailable": "現在その他のアップグレードはありません。",
   "currentlyNoLicense": "現在ライセンスはありません。必要な場合は新規ライセンスをご購入いただけます。",
   "buyLicense": "ライセンスを購入",
-  "processingModification": "Your order is currently being processed.",
-  "licenseId": "License ID",
-  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "processingModification": "注文は現在処理中です。",
+  "licenseId": "ライセンス ID",
+  "changedServersUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のサーバモニタが使用可能になります。",
+  "changeWebsitesUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のウェブサイトモニタが使用可能になります。"
 }
