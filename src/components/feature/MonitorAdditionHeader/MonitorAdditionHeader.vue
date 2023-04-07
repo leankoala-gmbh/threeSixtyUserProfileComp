@@ -70,17 +70,17 @@ const openBox = () => {
         class="flex justify-between items-center flex-wrap"
         @click="openBox"
       >
-        <div class="flex w-full @[550px]/tsxupmain:w-auto gap-4 items-center font-bold flex-grow">
+        <div class="flex w-full @[550px]/tsxupmain:w-auto gap-4 items-center justify-between font-bold flex-grow">
           {{ title[type] }}
         </div>
         <template v-if="!loading">
-          <div class="flex gap-8 justify-between">
+          <div class="flex gap-8 justify-end">
             <div class="text-xs">
               {{ quantity }} <template v-if="status === 'ACT'">
                 x {{ initialPriceDisplay }}
               </template>
             </div>
-            <div v-if="status === 'ACT'" class="text-xs font-bold pr-5">
+            <div v-if="status === 'ACT'" class="text-xs font-bold pr-3 min-w-[80px] text-right">
               {{ totalPriceDisplay }}/{{ t('mo') }}
             </div>
           </div>

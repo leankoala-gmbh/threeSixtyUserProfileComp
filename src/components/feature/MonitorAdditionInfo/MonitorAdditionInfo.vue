@@ -91,28 +91,22 @@ const additionalDiffenceInfo = computed(() => {
 
 <template>
   <div v-if="status === 'info'" class="monitorAdditionInfo">
-    <h2 class="font-bold @[550px]/tsxupmain:w-auto">
-      {{ subTitle[type][status] }}
-    </h2>
-    <AnnotationBox v-if="additionDifference > 0 && additionalDiffenceInfo.length" class="mt-4 text-xs">
-      <p>
-        {{ additionalDiffenceInfo }}
-      </p>
-    </AnnotationBox>
-    <div class="flex flex-wrap items-center justify-between">
-      <div class="flex gap-2 @[400px]/tsxupmain:gap-4 justify-between items-center">
-        <QuantitySelector
-          :min="size.min"
-          :max="size.max - currentCount"
-          :quantity-value="currentCount"
-          @change-quantity="onChangeQuantity"
-        />
-        <div class="font-light text-xs">
-          x {{ priceDisplay }}
-        </div>
-        <div class="text-sm">
-          {{ totalDisplay }}/{{ t('mo') }}
-        </div>
+    <div class="tsxUp-grid-monitorQuantity">
+      <div class="font-bold tsxUp-grid-monitorQuantity__1">
+        {{ subTitle[type][status] }}
+      </div>
+      <QuantitySelector
+        class="tsxUp-grid-monitorQuantity__2"
+        :min="size.min"
+        :max="size.max - currentCount"
+        :quantity-value="currentCount"
+        @change-quantity="onChangeQuantity"
+      />
+      <div class="font-light text-xs tsxUp-grid-monitorQuantity__3">
+        x {{ priceDisplay }}
+      </div>
+      <div class="text-sm tsxUp-grid-monitorQuantity__4">
+        {{ totalDisplay }}/{{ t('mo') }}
       </div>
     </div>
     <Transition name="fade">
