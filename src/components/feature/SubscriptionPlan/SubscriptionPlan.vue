@@ -169,7 +169,6 @@ setTimeout(() => {
         <SubscriptionStepInfo
           v-if="currentStep === 'info'"
           :status="status"
-          :license-id="subscriptionDetails.licenseId"
           :subscription-plans="subscriptionPlans"
           :plan="plan"
           :read-only="readOnly"

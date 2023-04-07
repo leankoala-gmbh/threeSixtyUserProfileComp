@@ -44,7 +44,7 @@ const props = defineProps({
         {{ t(status) }}
       </SimpleLabel>
     </div>
-    <div v-if="subscriptionDetail.licenseId.length" class="mb-2">
+    <div v-if="subscriptionDetail.licenseId?.length" class="mb-2">
       {{ t('licenseId') }}: {{ subscriptionDetail.licenseId }}
     </div>
     <BillingLine
