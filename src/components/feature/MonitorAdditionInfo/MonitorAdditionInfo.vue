@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails, ILicenseCache } from '@/types/general.interfaces'
-import { loadConfigFromFile } from 'vite'
+import { useLocalHelper } from '@/composables/localHelper/localHelper'
 
 const props = defineProps({
   subTitle: {
@@ -18,6 +18,10 @@ const props = defineProps({
   planDetails:{
     type: Object as () => ILicensesDetails,
     default: ()=>({})
+  },
+  licenseCache: {
+    type: Object as () => ILicenseCache,
+    default: () => ({})
   },
   status: {
     type: String,
@@ -70,6 +74,19 @@ const isSameQuantity = computed(() => {
   return props.size.count === newQuantity.value
 })
 
+const licenseCacheEntry = computed(() => props.licenseCache[props.planDetails.keyId])
+
+const additionDifference = computed(() => licenseCacheEntry.value[`${props.type}Diff`])
+
+const { displayDate } = useLocalHelper()
+const additionalDiffenceInfo = computed(() => {
+  // In the next billing cycle at {date }, you will have {count} {type} monitors.
+  return t(props.type === 'servers' ? 'changedServersUseCount' : 'changeWebsitesUseCount', {
+    date: displayDate(props.planDetails.nextBillingDate),
+    nextCount: licenseCacheEntry.value[`${props.type}NextCycle`].toString(),
+    count: licenseCacheEntry.value[props.type].toString()
+  })
+})
 </script>
 
 <template>

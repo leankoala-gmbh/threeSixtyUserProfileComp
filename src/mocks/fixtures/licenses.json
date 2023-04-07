@@ -18,11 +18,13 @@
         "subscriptionId": "S51442806",
         "cbItemStatusId": "ACT",
         "websites": {
-          "count": 9,
+          "next_cycle_count": 8,
+          "count": 10,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 4,
           "count": 4,
           "min": 0,
           "max": 999999
@@ -46,11 +48,13 @@
         "subscriptionId": "S51597947",
         "cbItemStatusId": "DEA",
         "websites": {
+          "next_cycle_count": 0,
           "count": 1,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 70,
           "count": 80,
           "min": 0,
           "max": 999999
@@ -74,11 +78,13 @@
         "subscriptionId": "S51597947",
         "cbItemStatusId": "DEA",
         "websites": {
+          "next_cycle_count": 0,
           "count": 0,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 10,
           "count": 68,
           "min": 0,
           "max": 999999
@@ -101,11 +107,13 @@
         "subscriptionId": "S51442806",
         "cbItemStatusId": "ACT",
         "websites": {
+          "next_cycle_count": 3,
           "count": 20,
           "min": 20,
           "max": 10000
         },
         "servers": {
+          "next_cycle_count": 1,
           "count": 6,
           "min": 1,
           "max": 1000
@@ -128,6 +136,7 @@
         "cbItemStatusId": "ACT",
         "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
         "websites": {
+          "next_cycle_count": 10,
           "count": 20,
           "min": 20,
           "max": 10000
@@ -156,11 +165,13 @@
         "subscriptionId": "S51651302",
         "cbItemStatusId": "ACT",
         "websites": {
+          "next_cycle_count": 0,
           "count": 2,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 1,
           "count": 3,
           "min": 0,
           "max": 999999
@@ -184,11 +195,13 @@
         "subscriptionId": "S51651316",
         "cbItemStatusId": "ACT",
         "websites": {
+          "next_cycle_count": 0,
           "count": 1,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 3,
           "count": 6,
           "min": 0,
           "max": 999999
@@ -212,11 +225,13 @@
         "subscriptionId": "S51651336",
         "cbItemStatusId": "ACT",
         "websites": {
+          "next_cycle_count": 1,
           "count": 2,
           "min": 0,
           "max": 999999
         },
         "servers": {
+          "next_cycle_count": 0,
           "count": 1,
           "min": 0,
           "max": 999999
@@ -239,11 +254,13 @@
         "cbItemStatusId": "DEA",
         "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s47735868-6gtBvlERzYrAvX0C",
         "websites": {
+          "next_cycle_count": 10,
           "count": 20,
           "min": 20,
           "max": 10000
         },
         "servers": {
+          "next_cycle_count": 0,
           "count": 6,
           "min": 1,
           "max": 1000

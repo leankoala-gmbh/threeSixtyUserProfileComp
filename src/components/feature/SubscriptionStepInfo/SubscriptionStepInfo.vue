@@ -23,6 +23,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  licenseId: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -40,7 +44,7 @@ const props = defineProps({
         {{ t(status) }}
       </SimpleLabel>
     </div>
-    <div v-if="subscriptionDetail.licenseId" class="mb-2">
+    <div v-if="subscriptionDetail.licenseId.length" class="mb-2">
       {{ t('licenseId') }}: {{ subscriptionDetail.licenseId }}
     </div>
     <BillingLine

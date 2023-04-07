@@ -1,6 +1,7 @@
 import { rest } from 'msw'
 import licensesData from './fixtures/licenses.json'
 import plansData from './fixtures/plans.json'
+import unitPricesData from './fixtures/unitPrices.json'
 
 const base = 'https://app.stage.360monitoring.com' //window.location.origin
 
@@ -13,6 +14,12 @@ export const handlers = [
   rest.get(`${base}/license/`, (req, res, ctx) => {
     return res(
       ctx.json(licensesData)
+    )
+  }),
+  rest.get(`${base}/license/modify-properties/unit-costs/10318994`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(unitPricesData)
     )
   }),
   rest.get(`${base}/license/properties`, (req, res, ctx) => {

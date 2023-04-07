@@ -55,10 +55,16 @@ const operations = (operation: string) => {
 
 const handleQuantity = (operation: string) => {
   operations(operation)
+
   emit('changeQuantity', quantity.value)
 }
 
-watch( () => quantity.value, () => {
+watch(() => quantity.value, () => {
+  quantity.value = isNaN(quantity.value ) ? 0 : quantity.value
+  quantity.value = quantity.value < 0 ? 0 : quantity.value
+
+  quantity.value = quantity.value < props.min ? props.min : quantity.value
+  quantity.value = quantity.value > props.max ? props.max : quantity.value
   if (isWithinRange || !isLowerLimit || !isUpperLimit) return
 }, { immediate: true })
 </script>
