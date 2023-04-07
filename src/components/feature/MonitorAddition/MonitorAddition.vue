@@ -135,7 +135,7 @@ const emit = defineEmits(['update'])
 
 const handleBuy = async () => {
   apiError.value = null
-  if (quantity.value <= 0 || !selectPlanIds.value) return
+  if (quantity.value < 0 || !selectPlanIds.value) return
   try {
     await modifyProperties(
       props.plan.keyId,
@@ -162,8 +162,10 @@ const currentLicenseData = computed(() => {
 const initialPriceDisplay = computed(() => {
 
   if (!currentLicenseData.value) return {
-    base: props.plan.renewalCurrency ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency): displayPrice(0, props.plan.renewalCurrency)
-    , total: '0' }
+    base: props.plan.renewalCurrency
+      ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency)
+      : displayPrice(0, props.plan.renewalCurrency)
+    , total: displayPrice(0, props.plan.renewalCurrency) }
   const licenseCount = currentLicenseData.value
   return {
     base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),

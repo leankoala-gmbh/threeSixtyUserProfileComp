@@ -64,7 +64,7 @@ watch( () => quantity.value, () => {
 </script>
 
 <template>
-  <div class="quantitySelector w-40 flex flex-wrap my-1 py-2 justify-center">
+  <div class="quantitySelector flex flex-wrap justify-center">
     <button
       aria-label="handleMinusQuantity"
       class="rounded-l-md border w-8 h-8 disabled:bg-gray-200"
@@ -76,7 +76,7 @@ watch( () => quantity.value, () => {
     <input
       v-model="quantity"
       aria-label="handleInputQuantity"
-      class="border-y text-center w-8 h-8"
+      class="border-y text-center w-10 h-8"
       @input="handleQuantity('')"
     >
     <button

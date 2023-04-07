@@ -172,6 +172,7 @@ setTimeout(() => {
           :subscription-plans="subscriptionPlans"
           :plan="plan"
           :read-only="readOnly"
+          :subscription-detail="subscriptionDetails"
           @trigger="currentStep = $event"
         />
         <SubscriptionStepChange
