@@ -50,7 +50,7 @@
   "excl": "без",
   "confirmPlanChange": "Подтвердить смену плана",
   "cancelSubscription": "Отменить подписку",
-  "subscriptionChanged": "Your subscription plan has been succesfully changed.",
+  "subscriptionChanged": "Ваша подписка на тариф изменена.",
   "subscriptionCanceled": "Ваша подписка на тариф отменена.",
   "changePlan": "Изменить план",
   "confirmNote": "Оставляя заказ, вы выражаете согласие с <a href=\"{terms}\" target=\"_blank\">Условиями и положениями</a> cleverbridge и подверждаете, что прочли и поняли <a href=\"{privacy}\" target=\"_blank\">Политику конфиденциальности</a> cleverbridge и ваше <a href=\"{revocation}\" target=\"_blank\">право отказа как потребителя.",
