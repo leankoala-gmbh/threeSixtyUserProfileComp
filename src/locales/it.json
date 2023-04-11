@@ -51,7 +51,7 @@
   "confirmPlanChange": "Conferma modifica del piano",
   "cancelSubscription": "Annulla abbonamento",
   "subscriptionChanged": "Your subscription plan has been succesfully changed.",
-  "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
+  "subscriptionCanceled": "Il tuo piano di abbonamento è stato annullato.",
   "changePlan": "Cambia piano",
   "confirmNote": "Inviando questo ordine, accetterai <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Termini e condizioni</a> \n di cleverbridge e confermerai di aver letto e compreso l'<a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Informativa sulla privacy</a> di cleverbridge e il <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Diritto di recesso in qualità di consumatore.",
   "buyNow": "Acquista ora",
@@ -78,8 +78,8 @@
   "noUpsellAvailable": "Nessun altro upgrade disponibile al momento.",
   "currentlyNoLicense": "Nessuna licenza disponibile al momento. Se vuoi, puoi acquistarne una.",
   "buyLicense": "Acquista licenza",
-  "processingModification": "Your order is currently being processed.",
-  "licenseId": "License ID",
-  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "processingModification": "Il tuo ordine è in fase di elaborazione.",
+  "licenseId": "ID licenza",
+  "changedServersUseCount": "Al momento puoi continuare a usare {count} monitor. Nel prossimo ciclo di fatturazione del {date}, avrai {nextCount} monitor di server.",
+  "changeWebsitesUseCount": "Al momento puoi continuare a usare {count} monitor. Nel prossimo ciclo di fatturazione del {date}, avrai {nextCount} monitor di siti web."
 }
