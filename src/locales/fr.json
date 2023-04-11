@@ -51,7 +51,7 @@
   "confirmPlanChange": "Confirmer le changement de pack",
   "cancelSubscription": "Annuler l'abonnement",
   "subscriptionChanged": "Your subscription plan has been succesfully changed.",
-  "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
+  "subscriptionCanceled": "Votre pack d'abonnement a bien été annulé.",
   "changePlan": "Modifier le pack",
   "confirmNote": "En soumettant cette commande, vous acceptez les <a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">Conditions générales</a> de cleverbridge et confirmez que vous avez lu et compris la <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">Politique de confidentialité</a> de cleverbridge ainsi que vos <a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">Droits de rétractation en tant que consommateur.",
   "buyNow": "Acheter",
@@ -78,8 +78,8 @@
   "noUpsellAvailable": "Aucune mise à niveau supplémentaire n'est disponible actuellement.",
   "currentlyNoLicense": "Actuellement aucune licence n'est disponible. Vous pouvez en acheter une nouvelle si vous le souhaitez.",
   "buyLicense": "Acheter une licence",
-  "processingModification": "Your order is currently being processed.",
-  "licenseId": "License ID",
-  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "processingModification": "Votre commande est en cours de traitement.",
+  "licenseId": "ID de licence",
+  "changedServersUseCount": "Vous pouvez continuer à utiliser {count} moniteurs actuellement. La prochaine facturation le {date} inclura {nextCount} moniteurs de serveurs.",
+  "changeWebsitesUseCount": "Vous pouvez continuer à utiliser {count} moniteurs actuellement. La prochaine facturation le {date} inclura {nextCount} moniteurs de sites web."
 }
