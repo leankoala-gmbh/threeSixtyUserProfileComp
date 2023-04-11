@@ -51,7 +51,7 @@
   "confirmPlanChange": "Подтвердить смену плана",
   "cancelSubscription": "Отменить подписку",
   "subscriptionChanged": "Your subscription plan has been succesfully changed.",
-  "subscriptionCanceled": "Your subscription plan has been succesfully canceled.",
+  "subscriptionCanceled": "Ваша подписка на тариф отменена.",
   "changePlan": "Изменить план",
   "confirmNote": "Оставляя заказ, вы выражаете согласие с <a href=\"{terms}\" target=\"_blank\">Условиями и положениями</a> cleverbridge и подверждаете, что прочли и поняли <a href=\"{privacy}\" target=\"_blank\">Политику конфиденциальности</a> cleverbridge и ваше <a href=\"{revocation}\" target=\"_blank\">право отказа как потребителя.",
   "buyNow": "Купить",
@@ -78,8 +78,8 @@
   "noUpsellAvailable": "Пока что больше нет доступных обновлений.",
   "currentlyNoLicense": "Сейчас нет доступных лицензий. Приобретите новую, если необходимо.",
   "buyLicense": "Купить лицензию",
-  "processingModification": "Your order is currently being processed.",
-  "licenseId": "License ID",
-  "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "processingModification": "Ваш заказ обрабатывается.",
+  "licenseId": "ID лицензии",
+  "changedServersUseCount": "Вы можете продолжить пользоваться текущим количеством мониторингов ({count}). В следующем расчетном периоде, начиная с {date}, доступных серверных мониторингов будет {nextCount}.",
+  "changeWebsitesUseCount": "Вы можете продолжить пользоваться текущим количеством мониторингов ({count}). В следующем расчетном периоде, начиная с {date}, доступных мониторингов сайтов будет {nextCount}."
 }
