@@ -74,7 +74,12 @@ const openBox = () => {
           </SimpleLabel>
         </div>
         <div v-if="subscriptionDetail.licenseId" class="mb-2">
-          {{ t('licenseId') }}: {{ subscriptionDetail.licenseId }}
+          <span class="mr-1 text-gray-500">
+            {{ t('licenseId') }}:
+          </span>
+          <span>
+            {{ subscriptionDetail.licenseId }}
+          </span>
         </div>
         <BillingLine
           class="pr-4"
