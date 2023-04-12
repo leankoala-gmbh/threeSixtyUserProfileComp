@@ -50,7 +50,7 @@
   "excl": "抜き",
   "confirmPlanChange": "プランの変更を確認",
   "cancelSubscription": "契約をキャンセル",
-  "subscriptionChanged": "Your subscription plan has been succesfully changed.",
+  "subscriptionChanged": "契約プランが正常に変更されました。",
   "subscriptionCanceled": "契約プランが正常にキャンセルされました。",
   "changePlan": "プランを変更",
   "confirmNote": "この注文を送信すると、cleverbridge の<a href=\"https://store.plesk.com/1404/?scope=optandc&id=atVLMDGJLN\" target=\"_blank\">利用規約</a> に同意いただき、消費者として cleverbridge の <a href=\"https://store.plesk.com/1404/?scope=opprivacy&id=atVLMDGJLN\" target=\"_blank\">プライバシーポリシー</a>と<a href=\"https://store.plesk.com/1404/?scope=opcancelation&id=atVLMDGJLN\" target=\"_blank\">契約解除権を読み、理解されたものとみなされます。",
