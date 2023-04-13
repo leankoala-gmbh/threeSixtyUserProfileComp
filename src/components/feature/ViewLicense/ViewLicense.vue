@@ -92,21 +92,23 @@ const mapAdditionPriceToLicense = () => {
     active: activeWithPrice
   }
 }
+
 const mapStatusLicense = () => {
   if (!licenseData.value) return
-  const suspended = licenseData.value.active?.filter((plan) => plan.cbItemStatusId === 'DEA')?.map((plan)=> ({ ...plan, status : 'suspended' }))
-  const updatedActive = licenseData.value.active?.filter((plan) => !suspended.some((suspendedPlan) => suspendedPlan.keyId === plan.keyId))
-  const canceled = licenseData.value.canceled
-  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan)=> ({ ...plan, status: 'canceled' }))
 
-  if (!suspended || !terminated || !canceled) return
+  const suspended = licenseData.value.active?.filter((plan) => plan.cbItemStatusId === 'DEA')?.map((plan) => ({ ...plan, status: 'suspended' })) || []
+  const updatedActive = licenseData.value.active?.filter((plan) => !suspended.some((suspendedPlan) => suspendedPlan.keyId === plan.keyId))
+  const canceled = licenseData.value.canceled || []
+  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan) => ({ ...plan, status: 'canceled' })) || []
   const mergedCancelled = [...canceled, ...terminated]
+
   licenseData.value = {
-    active: updatedActive,
-    suspended,
-    canceled: mergedCancelled
+    ...(updatedActive && updatedActive.length ? { active: updatedActive } : {}),
+    ...(suspended.length ? { suspended } : {}),
+    ...(mergedCancelled.length ? { canceled: mergedCancelled } : {})
   }
 }
+
 
 const licensesOrder = () => {
   const order = ['active', 'suspended', 'canceled']
