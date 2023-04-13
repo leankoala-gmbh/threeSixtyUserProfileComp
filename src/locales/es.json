@@ -82,5 +82,6 @@
   "licenseId": "ID de la licencia",
   "changedServersUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de servidor.",
   "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web.",
-  "addNewLicenses": "¿Desea añadir licencias adicionales a su cuenta?"
+  "addNewLicenses": "Want additional licenses for your account?",
+  "suspended": "Suspended"
 }
