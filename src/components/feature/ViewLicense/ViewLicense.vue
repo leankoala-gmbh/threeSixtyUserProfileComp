@@ -69,8 +69,8 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
 
 const mapAdditionPriceToLicense = () => {
   if (!licenseData.value) return
-  const { active, canceled } = licenseData.value
-  if (!active || !canceled) return
+  const { active } = licenseData.value
+  if (!active) return
 
   const activeWithPrice = active.map((plan) => {
     const { keyId, websites, servers } = plan
@@ -87,11 +87,36 @@ const mapAdditionPriceToLicense = () => {
       }
     }
   })
-
   licenseData.value = {
-    active: activeWithPrice,
-    canceled
+    ...licenseData.value,
+    active: activeWithPrice
   }
+}
+const mapStatusLicense = () => {
+  if (!licenseData.value) return
+  const suspended = licenseData.value.active?.filter((plan) => plan.cbItemStatusId === 'DEA')?.map((plan)=> ({ ...plan, status : 'suspended' }))
+  const updatedActive = licenseData.value.active?.filter((plan) => !suspended.some((suspendedPlan) => suspendedPlan.keyId === plan.keyId))
+  const canceled = licenseData.value.canceled
+  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan)=> ({ ...plan, status: 'canceled' }))
+
+  if (!suspended || !terminated || !canceled) return
+  const mergedCancelled = [...canceled, ...terminated]
+  licenseData.value = {
+    active: updatedActive,
+    suspended,
+    canceled: mergedCancelled
+  }
+}
+
+const licensesOrder = () => {
+  const order = ['active', 'suspended', 'canceled']
+  const newOrder = order.reduce((acc: any, license) => {
+    if (licenseData.value && license in licenseData.value) {
+      acc[license] = licenseData.value[license]
+    }
+    return acc
+  }, {})
+  licenseData.value = newOrder
 }
 
 const getLicenseData = async() => {
@@ -101,6 +126,8 @@ const getLicenseData = async() => {
     const firstKeyId = licenseData.value?.active?.[0]?.keyId || false
     if (firstKeyId && !additionalMonitorPricesCollected.value) await getAdditionalBasePrices(firstKeyId)
     mapAdditionPriceToLicense()
+    mapStatusLicense()
+    licensesOrder()
     setLicenseCache(licenseData.value)
   } catch (error) {
     apiError.value = error

@@ -3,6 +3,10 @@
     color: var(--tsxup-label-active-color);
     background-color: var(--tsxup-label-active-bg);
   }
+  &--suspended {
+    color: var(--tsxup-label-suspended-color);
+    background-color: var(--tsxup-label-suspended-bg);
+  }
   &--canceled {
     color: var(--tsxup-label-canceled-color);
     background-color: var(--tsxup-label-canceled-bg);
