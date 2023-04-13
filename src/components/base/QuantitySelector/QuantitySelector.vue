@@ -55,16 +55,22 @@ const operations = (operation: string) => {
 
 const handleQuantity = (operation: string) => {
   operations(operation)
+
   emit('changeQuantity', quantity.value)
 }
 
-watch( () => quantity.value, () => {
+watch(() => quantity.value, () => {
+  quantity.value = isNaN(quantity.value ) ? 0 : quantity.value
+  quantity.value = quantity.value < 0 ? 0 : quantity.value
+
+  quantity.value = quantity.value < props.min ? props.min : quantity.value
+  quantity.value = quantity.value > props.max ? props.max : quantity.value
   if (isWithinRange || !isLowerLimit || !isUpperLimit) return
 }, { immediate: true })
 </script>
 
 <template>
-  <div class="quantitySelector w-40 flex flex-wrap my-1 py-2 justify-center">
+  <div class="quantitySelector flex flex-wrap justify-center">
     <button
       aria-label="handleMinusQuantity"
       class="rounded-l-md border w-8 h-8 disabled:bg-gray-200"
@@ -76,7 +82,7 @@ watch( () => quantity.value, () => {
     <input
       v-model="quantity"
       aria-label="handleInputQuantity"
-      class="border-y text-center w-8 h-8"
+      class="border-y text-center w-10 h-8"
       @input="handleQuantity('')"
     >
     <button

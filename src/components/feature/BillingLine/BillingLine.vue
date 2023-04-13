@@ -40,12 +40,12 @@ const planDate = computed(() => {
   <div class="flex items-center justify-between">
     <div>
       <span class="mr-1 text-gray-500">
-        {{ t(`${!inactive ? status : 'inactive'}DateText`) }}
+        {{ t(`${!inactive ? status : 'inactive'}DateText`) }}:
       </span>
       <span>{{ planDate }}</span>
     </div>
     <div
-      v-if="status ==='active' && !inactive"
+      v-if="status ==='active' && !inactive && planPrice.length"
       class="font-medium"
     >
       {{ planPrice }}/{{ t('mo') }}

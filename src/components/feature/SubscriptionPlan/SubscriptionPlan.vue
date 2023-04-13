@@ -29,7 +29,8 @@ const subscriptionDetails = computed(() => {
     status: props.status,
     date: props.plan.nextBillingDate,
     price: props.plan.renewalCostGross,
-    currency: props.plan.renewalCurrency
+    currency: props.plan.renewalCurrency,
+    licenseId: props.plan.keyNumber
   }
 })
 
@@ -171,6 +172,7 @@ setTimeout(() => {
           :subscription-plans="subscriptionPlans"
           :plan="plan"
           :read-only="readOnly"
+          :subscription-detail="subscriptionDetails"
           @trigger="currentStep = $event"
         />
         <SubscriptionStepChange

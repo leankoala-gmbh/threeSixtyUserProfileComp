@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails, ILicenseCache } from '@/types/general.interfaces'
-import { loadConfigFromFile } from 'vite'
+import { useLocalHelper } from '@/composables/localHelper/localHelper'
 
 const props = defineProps({
   subTitle: {
@@ -18,6 +18,10 @@ const props = defineProps({
   planDetails:{
     type: Object as () => ILicensesDetails,
     default: ()=>({})
+  },
+  licenseCache: {
+    type: Object as () => ILicenseCache,
+    default: () => ({})
   },
   status: {
     type: String,
@@ -59,7 +63,7 @@ const props = defineProps({
 
 const emit = defineEmits(['handleChange', 'handleStatus'])
 
-const newQuantity = ref(props.size.count)
+const newQuantity = ref(props.size.next_cycle_count)
 
 const onChangeQuantity = (e: number) => {
   newQuantity.value = e
@@ -67,37 +71,57 @@ const onChangeQuantity = (e: number) => {
 }
 
 const isSameQuantity = computed(() => {
-  return props.size.count === newQuantity.value
+  return props.size.next_cycle_count === newQuantity.value
+
 })
 
+const licenseCacheEntry = computed(() => props.licenseCache[props.planDetails.keyId])
+
+const additionDifference = computed(() => licenseCacheEntry.value[`${props.type}Diff`])
+
+const { displayDate } = useLocalHelper()
+const additionalDiffenceInfo = computed(() => {
+  return t(props.type === 'servers' ? 'changedServersUseCount' : 'changeWebsitesUseCount', {
+    date: displayDate(props.planDetails.nextBillingDate),
+    nextCount: licenseCacheEntry.value[`${props.type}NextCycle`].toString(),
+    count: licenseCacheEntry.value[props.type].toString()
+  })
+})
 </script>
 
 <template>
   <div v-if="status === 'info'" class="monitorAdditionInfo">
-    <div class="flex flex-wrap items-center justify-between">
-      <div class="font-bold @[550px]/tsxupmain:w-auto">
+    <AnnotationBox
+      v-if="additionDifference > 0"
+      class="my-4"
+    >
+      {{ additionalDiffenceInfo }}
+    </AnnotationBox>
+
+    <div class="tsxUp-grid-monitorQuantity">
+      <div class="font-bold tsxUp-grid-monitorQuantity__1">
         {{ subTitle[type][status] }}
       </div>
-      <div class="flex gap-2 @[400px]/tsxupmain:gap-4 justify-between items-center">
-        <QuantitySelector
-          :min="size.min"
-          :max="size.max - currentCount"
-          :quantity-value="currentCount"
-          @change-quantity="onChangeQuantity"
-        />
-        <div class="font-light text-xs">
-          x {{ priceDisplay }}
-        </div>
-        <div class="text-sm">
-          {{ totalDisplay }}/{{ t('mo') }}
-        </div>
+
+      <QuantitySelector
+        class="tsxUp-grid-monitorQuantity__2"
+        :min="size.min"
+        :max="size.max - currentCount"
+        :quantity-value="currentCount"
+        @change-quantity="onChangeQuantity"
+      />
+      <div class="font-light text-xs tsxUp-grid-monitorQuantity__3">
+        x&nbsp;{{ priceDisplay }}
+      </div>
+      <div class="text-sm tsxUp-grid-monitorQuantity__4">
+        {{ totalDisplay }}/{{ t('mo') }}
       </div>
     </div>
     <Transition name="fade">
       <div v-if="!isSameQuantity">
         <AnnotationBox
           type="info"
-          class="mb-4"
+          class="my-4"
         >
           <div class="flex">
             <div class="self-center mx-2 text-center text-current">

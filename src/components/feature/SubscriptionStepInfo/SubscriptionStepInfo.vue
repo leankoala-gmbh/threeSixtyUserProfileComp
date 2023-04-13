@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, TPlanStatus, IPlanUpsellsFull } from '@/types/general.interfaces'
+import { ILicensesDetails, TPlanStatus, IPlanUpsellsFull, ISubscriptionHeaderDetails } from '@/types/general.interfaces'
 
 const emit = defineEmits(['trigger'])
 
@@ -12,6 +12,10 @@ const props = defineProps({
     type: Object as () => ILicensesDetails,
     default: () => ({})
   },
+  subscriptionDetail: {
+    type: Object as () => ISubscriptionHeaderDetails,
+    required: true
+  },
   subscriptionPlans: {
     type: Object as () => IPlanUpsellsFull[],
     default: () => ({})
@@ -19,6 +23,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  licenseId: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -35,6 +43,14 @@ const props = defineProps({
       <SimpleLabel :type="status as TPlanStatus">
         {{ t(status) }}
       </SimpleLabel>
+    </div>
+    <div v-if="subscriptionDetail.licenseId?.length" class="mb-2">
+      <span class="mr-1 text-gray-500">
+        {{ t('licenseId') }}:
+      </span>
+      <span>
+        {{ subscriptionDetail.licenseId }}
+      </span>
     </div>
     <BillingLine
       class="mb-4"

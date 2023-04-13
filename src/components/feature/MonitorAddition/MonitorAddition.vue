@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, ILicensesServers, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
+import { ILicensesDetails, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 import { useDebounceFn } from '@vueuse/core'
 
@@ -63,7 +63,7 @@ const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice |
 
 
 const generateStatusText = () => {
-  if (quantity.value <= 0) return
+  if (quantity.value < 0) return
 
   statusHeadline.value = t('chargedHeadline', {
     price: totalDisplay.value,
@@ -135,7 +135,7 @@ const emit = defineEmits(['update'])
 
 const handleBuy = async () => {
   apiError.value = null
-  if (quantity.value <= 0 || !selectPlanIds.value) return
+  if (quantity.value < 0 || !selectPlanIds.value) return
   try {
     await modifyProperties(
       props.plan.keyId,
@@ -156,14 +156,16 @@ const handleBuy = async () => {
 }
 
 const currentLicenseData = computed(() => {
-  return props.licenseCache[props.plan.keyId]?.[props.type]
+  return props.licenseCache[props.plan.keyId]?.[`${props.type}NextCycle`]
 })
 
 const initialPriceDisplay = computed(() => {
 
   if (!currentLicenseData.value) return {
-    base: props.plan.renewalCurrency ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency): displayPrice(0, props.plan.renewalCurrency)
-    , total: '0' }
+    base: props.plan.renewalCurrency
+      ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency)
+      : displayPrice(0, props.plan.renewalCurrency)
+    , total: displayPrice(0, props.plan.renewalCurrency) }
   const licenseCount = currentLicenseData.value
   return {
     base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),
@@ -177,6 +179,8 @@ const detailTotalPrice = computed(() => {
   }
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
+
+
 </script>
 
 <template>
