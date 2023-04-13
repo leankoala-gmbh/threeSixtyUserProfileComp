@@ -81,6 +81,6 @@
   "processingModification": "Your order is currently being processed.",
   "licenseId": "License ID",
   "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
-  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors."
+  "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors.",
   "addNewLicenses": "Want to add new licenses to your account?"
 }

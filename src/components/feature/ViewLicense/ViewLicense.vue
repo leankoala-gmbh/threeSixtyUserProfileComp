@@ -132,12 +132,6 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
   }
   await getLicenseData()
 }
-
-const buyFreshLicense = () => {
-  window.mitt.emit('tsxUserProfile', {
-    action: 'buyNewLicense'
-  })
-}
 </script>
 
 <template>
@@ -174,13 +168,14 @@ const buyFreshLicense = () => {
         </div>
       </div>
     </template>
-    <template v-if="licenseData && Object.keys(licenseData).length === 0 && !readOnly">
-      <p class="mb-4">
+    <template v-if="licenseData && !readOnly">
+      <p v-if="Object.keys(licenseData).length === 0" class="mb-4">
         {{ t('currentlyNoLicense') }}
       </p>
-      <GeneralButton @click="buyFreshLicense">
-        {{ t('buyLicense') }}
-      </GeneralButton>
+      <p v-else class="text-base font-semibold mb-4">
+        {{ t('addNewLicenses') }}
+      </p>
+      <BuyLicenseButton />
     </template>
     <ApiStatus v-if="!licenseData && !readOnly && apiError">
       {{ apiError }}
