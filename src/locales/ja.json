@@ -82,5 +82,6 @@
   "licenseId": "ライセンス ID",
   "changedServersUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のサーバモニタが使用可能になります。",
   "changeWebsitesUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のウェブサイトモニタが使用可能になります。",
-  "addNewLicenses": "Want to add additional licenses to your account?"
+  "addNewLicenses": "Want additional licenses for your account?",
+  "suspended": "Suspended"
 }
