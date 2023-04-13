@@ -81,5 +81,6 @@
   "processingModification": "Ihre Bestellung wird bearbeitet.",
   "licenseId": "Lizenz-ID",
   "changedServersUseCount": "Derzeit können Sie weiterhin {count} Monitorings verwenden. Im nächsten Abrechnungszeitraum, der am {date} beginnt, ist das Monitoring von {nextCount} Servern möglich.",
-  "changeWebsitesUseCount": "Derzeit können Sie weiterhin {count} Monitorings verwenden. Im nächsten Abrechnungszeitraum, der am {date} beginnt, ist das Monitoring von {nextCount} Websites möglich."
+  "changeWebsitesUseCount": "Derzeit können Sie weiterhin {count} Monitorings verwenden. Im nächsten Abrechnungszeitraum, der am {date} beginnt, ist das Monitoring von {nextCount} Websites möglich.",
+  "addNewLicenses": "Want to add new licenses to your account?"
 }
