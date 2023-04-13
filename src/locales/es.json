@@ -81,5 +81,6 @@
   "processingModification": "Su pedido está siendo procesado en este momento.",
   "licenseId": "ID de la licencia",
   "changedServersUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de servidor.",
-  "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web."
+  "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web.",
+  "addNewLicenses": "Want to add new licenses to your account?"
 }
