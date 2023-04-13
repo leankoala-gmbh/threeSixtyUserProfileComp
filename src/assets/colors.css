@@ -71,8 +71,10 @@
   --tsxup-abox-info-border: var(--tsxup-signal-info-light);
   --tsxup-label-active-color: var(--tsxup-signal-success);
   --tsxup-label-active-bg: var(--tsxup-signal-success-light);
-  --tsxup-label-canceled-color: var(--tsxup-signal-info);
-  --tsxup-label-canceled-bg: var(--tsxup-signal-info-light);
+  --tsxup-label-suspended-color: var(--tsxup-signal-info);
+  --tsxup-label-suspended-bg: var(--tsxup-signal-info-light);
+  --tsxup-label-canceled-color: var(--tsxup-darkest);
+  --tsxup-label-canceled-bg: var(--tsxup-darkest-mid);
   --tsxup-ps-bg: var(--tsxup-brightest);
   --tsxup-ps-text-disabled-color: var(--tsxup-darkest-mid-light);
   --tsxup-ps-text-checked-color: var(--tsxup-primary);

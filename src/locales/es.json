@@ -39,7 +39,7 @@
   "mo": "mes",
   "subscriptionDetails": "detalles de la suscripción",
   "yourCurrentPlan": "Su plan actual",
-  "chooseNewPlan": "Seleccionar un nuevo plan",
+  "chooseNewPlan": "Seleccione un nuevo plan",
   "confirmSubscription": "Confirme la suscripción",
   "payment": "Pago",
   "paymentInfo": "La tienda de 360 Monitoring gestionada por cleverbridge AG procesará este pedido usando el método de pago asociado a la suscripción seleccionada.",
@@ -58,7 +58,7 @@
   "cancelSubscriptionText": "Como consecuencia, en el futuro no se efectuará ningún otro cargo. Puede seguir usando la licencia hasta el {date} (no se reembolsará el periodo de facturación actual).",
   "additionalServer": "Monitor de servidor adicional",
   "additionalWebsite": "Monitor de sitio web adicional",
-  "additionalServers": "Monitores de servidor adicionales",
+  "additionalServers": "Servidor adicional monitorizado",
   "additionalWebsites": "Monitores de sitio web adicionales",
   "additionalTypeConfirm": "Confirme el cambio de cantidad de monitores {type} adicionales",
   "additionalTypeChangeBox": "cambio de cantidad de monitores {type}",
@@ -78,5 +78,9 @@
   "noUpsellAvailable": "En este momento no existe ninguna otra mejora disponible.",
   "currentlyNoLicense": "En este momento no existe ninguna licencia disponible. Si lo desea, puede comprar una licencia nueva.",
   "buyLicense": "Comprar licencia",
-  "processingModification": "Su pedido está siendo procesado en este momento."
+  "processingModification": "Su pedido está siendo procesado en este momento.",
+  "licenseId": "ID de la licencia",
+  "changedServersUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de servidor.",
+  "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web.",
+  "addNewLicenses": "Want to add new licenses to your account?"
 }

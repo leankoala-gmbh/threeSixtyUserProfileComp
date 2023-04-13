@@ -13,6 +13,8 @@ declare module '@vue/runtime-core' {
     'ApiStatus.story': typeof import('./src/components/feature/ApiStatus/ApiStatus.story.vue')['default']
     BillingLine: typeof import('./src/components/feature/BillingLine/BillingLine.vue')['default']
     'BillingLine.story': typeof import('./src/components/feature/BillingLine/BillingLine.story.vue')['default']
+    BuyLicenseButton: typeof import('./src/components/feature/BuyLicenseButton/BuyLicenseButton.vue')['default']
+    'BuyLicenseButton.story': typeof import('./src/components/feature/BuyLicenseButton/BuyLicenseButton.story.vue')['default']
     CleverBridgeInfo: typeof import('./src/components/feature/CleverBridgeInfo/CleverBridgeInfo.vue')['default']
     DisplayChangeBox: typeof import('./src/components/base/DisplayChangeBox/DisplayChangeBox.vue')['default']
     ErrorMessage: typeof import('./src/components/pure/ErrorMessage/ErrorMessage.vue')['default']

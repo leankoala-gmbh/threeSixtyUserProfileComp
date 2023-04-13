@@ -63,7 +63,7 @@ const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice |
 
 
 const generateStatusText = () => {
-  if (quantity.value <= 0) return
+  if (quantity.value < 0) return
 
   statusHeadline.value = t('chargedHeadline', {
     price: totalDisplay.value,

@@ -63,7 +63,7 @@ const props = defineProps({
 
 const emit = defineEmits(['handleChange', 'handleStatus'])
 
-const newQuantity = ref(props.size.count)
+const newQuantity = ref(props.size.next_cycle_count)
 
 const onChangeQuantity = (e: number) => {
   newQuantity.value = e
@@ -71,7 +71,8 @@ const onChangeQuantity = (e: number) => {
 }
 
 const isSameQuantity = computed(() => {
-  return props.size.count === newQuantity.value
+  return props.size.next_cycle_count === newQuantity.value
+
 })
 
 const licenseCacheEntry = computed(() => props.licenseCache[props.planDetails.keyId])
@@ -80,7 +81,6 @@ const additionDifference = computed(() => licenseCacheEntry.value[`${props.type}
 
 const { displayDate } = useLocalHelper()
 const additionalDiffenceInfo = computed(() => {
-  // In the next billing cycle at {date }, you will have {count} {type} monitors.
   return t(props.type === 'servers' ? 'changedServersUseCount' : 'changeWebsitesUseCount', {
     date: displayDate(props.planDetails.nextBillingDate),
     nextCount: licenseCacheEntry.value[`${props.type}NextCycle`].toString(),
@@ -91,10 +91,18 @@ const additionalDiffenceInfo = computed(() => {
 
 <template>
   <div v-if="status === 'info'" class="monitorAdditionInfo">
+    <AnnotationBox
+      v-if="additionDifference > 0"
+      class="my-4"
+    >
+      {{ additionalDiffenceInfo }}
+    </AnnotationBox>
+
     <div class="tsxUp-grid-monitorQuantity">
       <div class="font-bold tsxUp-grid-monitorQuantity__1">
         {{ subTitle[type][status] }}
       </div>
+
       <QuantitySelector
         class="tsxUp-grid-monitorQuantity__2"
         :min="size.min"
@@ -103,7 +111,7 @@ const additionalDiffenceInfo = computed(() => {
         @change-quantity="onChangeQuantity"
       />
       <div class="font-light text-xs tsxUp-grid-monitorQuantity__3">
-        x {{ priceDisplay }}
+        x&nbsp;{{ priceDisplay }}
       </div>
       <div class="text-sm tsxUp-grid-monitorQuantity__4">
         {{ totalDisplay }}/{{ t('mo') }}
@@ -113,7 +121,7 @@ const additionalDiffenceInfo = computed(() => {
       <div v-if="!isSameQuantity">
         <AnnotationBox
           type="info"
-          class="mb-4"
+          class="my-4"
         >
           <div class="flex">
             <div class="self-center mx-2 text-center text-current">

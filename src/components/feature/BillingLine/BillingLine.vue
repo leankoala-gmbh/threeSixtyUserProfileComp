@@ -40,7 +40,7 @@ const planDate = computed(() => {
   <div class="flex items-center justify-between">
     <div>
       <span class="mr-1 text-gray-500">
-        {{ t(`${!inactive ? status : 'inactive'}DateText`) }}:
+        {{ t(`${(inactive) ? (status === 'suspended' ? 'inactive': 'canceled') : status}DateText`) }}:
       </span>
       <span>{{ planDate }}</span>
     </div>
