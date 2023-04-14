@@ -58,6 +58,10 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  canUserBuy: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -108,6 +112,7 @@ const additionalDiffenceInfo = computed(() => {
         :min="size.min"
         :max="size.max - currentCount"
         :quantity-value="currentCount"
+        :can-user-buy="canUserBuy"
         @change-quantity="onChangeQuantity"
       />
       <div class="font-light text-xs tsxUp-grid-monitorQuantity__3">
@@ -117,6 +122,13 @@ const additionalDiffenceInfo = computed(() => {
         {{ totalDisplay }}/{{ t('mo') }}
       </div>
     </div>
+    <Transition name="fade">
+      <div v-if="!canUserBuy" class="my-4">
+        <AnnotationBox type="error">
+          {{ t('timeOutBuy') }}
+        </AnnotationBox>
+      </div>
+    </Transition>
     <Transition name="fade">
       <div v-if="!isSameQuantity">
         <AnnotationBox
@@ -160,7 +172,7 @@ const additionalDiffenceInfo = computed(() => {
         />
         <GeneralButton
           class="mb-6"
-          :is-disabled="loading"
+          :is-disabled="loading || !canUserBuy"
           @click="emit('handleStatus','confirm')"
         >
           {{ t('confirmSubscription') }}

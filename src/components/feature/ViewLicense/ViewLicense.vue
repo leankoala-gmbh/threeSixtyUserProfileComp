@@ -30,22 +30,23 @@ const getSubscriptionPlans = async() => {
 const setLicenseCache = (plan: ILicenses) => {
   if (!plan.active?.length) return
   licenseCache.value = plan.active.reduce((acc: any, curr) => {
-    if (!acc[curr.keyId]) {acc[curr.keyId] = {
-      websites: curr.websites.count,
-      servers: curr.servers.count,
-      websitesNextCycle: curr.websites.next_cycle_count,
-      serversNextCycle: curr.servers.next_cycle_count,
-      websitesDiff: curr.websites.count - curr.websites.next_cycle_count,
-      serversDiff: curr.servers.count - curr.servers.next_cycle_count
-    }}
+    if (!acc[curr.keyId]) {
+      acc[curr.keyId] = {
+        websites: curr.websites.count,
+        websitesNextCycle: curr.websites.next_cycle_count,
+        websitesDiff: curr.websites.count - curr.websites.next_cycle_count,
+        servers: curr.servers.count,
+        serversNextCycle: curr.servers.next_cycle_count,
+        serversDiff: curr.servers.count - curr.servers.next_cycle_count
+      }}
     return acc
   }, licenseCache.value)
 }
 
 const additionalMonitorPricesCollected = ref(false)
 const additionalMonitorBasePrices = ref({
-  websites: 0,
-  servers: 0
+  websites :{},
+  servers: {}
 })
 
 const apiError = ref<unknown|null>(null)
@@ -55,10 +56,17 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
   if (!keyId) return
   try {
     const { data } = await useApiAbstraction().getUnitPrices(keyId.toString())
-
     additionalMonitorBasePrices.value = {
-      websites: data.websites.nextBillingGrossPrice,
-      servers: data.servers.nextBillingGrossPrice
+      websites : {
+        gross: await data?.websites.nextBillingGrossPrice,
+        net: await data?.websites.nextBillingNetPrice,
+        vat: await data?.websites.nextBillingVatPrice
+      },
+      servers : {
+        gross: await data?.servers.nextBillingGrossPrice,
+        net: await data?.servers.nextBillingNetPrice,
+        vat: await data?.servers.nextBillingVatPrice
+      }
     }
     additionalMonitorPricesCollected.value = true
   } catch (error) {
@@ -137,9 +145,39 @@ const getLicenseData = async() => {
   }
 }
 
+const canUserBuy = ref(false)
+const timeOut = ref(30)
+const setBuyTimeOut = () => {
+  const currentUnixTime = Math.floor(Date.now() / 1000)
+  localStorage.setItem('buyTimeout', currentUnixTime.toString())
+}
+const checkAndSetBuyTimeout = () => {
+  const buyTimeout = localStorage.getItem('buyTimeout')
+  if (!buyTimeout) {
+    setBuyTimeOut()
+  }
+}
+
+const calculateTimeDifference = (buyTimeout: number): number => {
+  const currentUnixTime = Math.floor(Date.now() / 1000)
+  return currentUnixTime - buyTimeout
+}
+
+const checkUserBuyStatus = () => {
+  checkAndSetBuyTimeout()
+  const buyTimeout = parseInt(localStorage.getItem('buyTimeout') || '0')
+  const timeDifference = calculateTimeDifference(buyTimeout)
+  canUserBuy.value = timeDifference > timeOut.value
+}
+
 onMounted(() => {
   getLicenseData()
   getSubscriptionPlans()
+
+  checkUserBuyStatus()
+  setInterval(() => {
+    checkUserBuyStatus()
+  }, 1000)
 })
 
 interface IUpdateLicenseData {
@@ -151,13 +189,23 @@ interface IUpdateLicenseData {
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
-  licenseCache.value[keyId][type] = count
+  if (licenseCache.value[keyId][type] < count) {
+    licenseCache.value[keyId][type] = count
+    licenseCache.value[keyId][`${type}NextCycle`] = count
+    licenseCache.value[keyId][`${type}Diff`] = 0
+  } else {
+    licenseCache.value[keyId][`${type}NextCycle`] = count
+    licenseCache.value[keyId][`${type}Diff`] = licenseCache.value[keyId][type] - count
+  }
+
 }
 
 const updateLicenseData = async(e: IUpdateLicenseData) => {
+  console.log(e)
   if (e && Object.keys(e).length) {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
+    setBuyTimeOut()
   }
   await getLicenseData()
 }
@@ -190,6 +238,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
                 :read-only="readOnly"
                 :base-prices="additionalMonitorBasePrices"
                 :license-cache="licenseCache"
+                :can-user-buy="canUserBuy"
                 @update="updateLicenseData"
               />
             </div>
