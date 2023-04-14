@@ -83,5 +83,6 @@
   "changedServersUseCount": "Vous pouvez continuer à utiliser {count} moniteurs actuellement. La prochaine facturation le {date} inclura {nextCount} moniteurs de serveurs.",
   "changeWebsitesUseCount": "Vous pouvez continuer à utiliser {count} moniteurs actuellement. La prochaine facturation le {date} inclura {nextCount} moniteurs de sites web.",
   "addNewLicenses": "Want additional licenses for your account?",
-  "suspended": "Suspended"
+  "suspended": "Suspended",
+  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription."
 }
