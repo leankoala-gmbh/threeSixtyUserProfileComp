@@ -41,13 +41,17 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  priceError: {
+    type: String,
+    required: true
   }
 })
 
 const emit = defineEmits(['header-event'])
 
 const openBox = () => {
-  if (props.readOnly || props.status === 'DEA') return
+  if (props.readOnly || props.status === 'DEA' || props.priceError) return
   emit('header-event', true)
 }
 </script>
@@ -73,7 +77,7 @@ const openBox = () => {
         <div class="flex w-full @[550px]/tsxupmain:w-auto gap-4 items-center justify-between font-bold flex-grow">
           {{ title[type] }}
         </div>
-        <template v-if="!loading">
+        <template v-if="!loading && !priceError">
           <div class="flex gap-8 justify-end">
             <div class="text-xs">
               {{ quantity }} <template v-if="status === 'ACT'">
@@ -98,10 +102,17 @@ const openBox = () => {
             </svg>
           </div>
         </template>
-        <template v-else>
+        <template v-if="!priceError && loading">
           <Spinner />
         </template>
       </div>
+      <AnnotationBox
+        v-if="priceError"
+        class="my-2"
+        type="error"
+      >
+        {{ t('apiStatusError') }}
+      </AnnotationBox>
     </div>
   </div>
 </template>

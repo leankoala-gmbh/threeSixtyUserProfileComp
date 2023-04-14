@@ -50,9 +50,11 @@ const additionalMonitorBasePrices = ref({
 })
 
 const apiError = ref<unknown|null>(null)
+const priceError = ref<unknown|null>(null)
 
 const getAdditionalBasePrices = async(keyId: number | string) => {
   apiError.value = null
+  priceError.value = null
   if (!keyId) return
   try {
     const { data } = await useApiAbstraction().getUnitPrices(keyId.toString())
@@ -70,6 +72,7 @@ const getAdditionalBasePrices = async(keyId: number | string) => {
     }
     additionalMonitorPricesCollected.value = true
   } catch (error) {
+    priceError.value = error
     apiError.value = error
     console.error(error)
   }
@@ -239,6 +242,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
                 :base-prices="additionalMonitorBasePrices"
                 :license-cache="licenseCache"
                 :can-user-buy="canUserBuy"
+                :price-error="priceError"
                 @update="updateLicenseData"
               />
             </div>

@@ -23,6 +23,10 @@ const props = defineProps({
   canUserBuy: {
     type: Boolean,
     required: true
+  },
+  priceError: {
+    type: String,
+    required: true
   }
 })
 
@@ -41,6 +45,7 @@ const types = ['websites', 'servers']
       :read-only="readOnly"
       :can-user-buy="canUserBuy"
       :base-prices="basePrices"
+      :price-error="priceError"
       :license-cache="licenseCache"
       @update="(e) => emit('update', e)"
     />
