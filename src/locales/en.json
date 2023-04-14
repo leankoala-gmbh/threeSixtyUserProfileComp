@@ -83,5 +83,6 @@
   "changedServersUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} server monitors.",
   "changeWebsitesUseCount": "Currently you can continue to use {count} monitors. In the next billing cycle on {date}, you will have {nextCount} website monitors.",
   "addNewLicenses": "Want additional licenses for your account?",
-  "suspended": "Suspended"
+  "suspended": "Suspended",
+  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription."
 }
