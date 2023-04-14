@@ -16,11 +16,14 @@ export const handlers = [
       ctx.json(licensesData)
     )
   }),
-  rest.get(`${base}/license/modify-properties/unit-costs/10318994`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json(unitPricesData)
-    )
+  rest.get(`${base}/license/modify-properties/unit-costs/:id`, (req, res, ctx) => {
+    const { id } = req.params
+    if (id.match(/^\d+$/)) {
+      return res(
+        ctx.status(200),
+        ctx.json(unitPricesData)
+      )
+    }
   }),
   rest.get(`${base}/license/properties`, (req, res, ctx) => {
     return res(

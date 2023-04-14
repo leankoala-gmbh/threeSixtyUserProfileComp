@@ -136,6 +136,12 @@ export interface IPrices {
   merchantOfRecordType: string
 }
 
+export interface IPricesSmall {
+  gross: number,
+  vat: number,
+  net: number
+}
+
 export interface ILicenseCache {
   [keyId : string]: {
     websites: number

@@ -2,6 +2,36 @@
   "data": {
     "licenses": [
       {
+        "keyId": "10354650",
+        "keyNumber": "EXT.10354650.0001",
+        "activationCode": "A00S00-92TC10-C30414-F4V079-4BG252",
+        "status": "active",
+        "createDate": "2023-04-04T00:00:00+00:00",
+        "nextBillingDate": "2023-05-04T00:00:00+00:00",
+        "expirationDate": "2023-05-07T00:00:00+00:00",
+        "type": "360 Monitoring Pro",
+        "renewalCostNet": 6.75,
+        "renewalCostVat": 1.28,
+        "renewalCostGross": 8.03,
+        "renewalCurrency": "EUR",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https://store.plesk.com/1404/scp/s51724501?s=1680797552&e=1683389552&c=5209BE9B98C9FB404B3F6900A2B59F431C597356",
+        "subscriptionId": "S51724501",
+        "cbItemStatusId": "ACT",
+        "websites": {
+          "count": 2,
+          "next_cycle_count": 2,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 2,
+          "next_cycle_count": 2,
+          "min": 0,
+          "max": 999999
+        }
+      },
+      {
         "keyId": "10344810",
         "keyNumber": "EXT.10344810.0000",
         "activationCode": "A00D00-BNC910-3NSG14-297576-7YAT14",
