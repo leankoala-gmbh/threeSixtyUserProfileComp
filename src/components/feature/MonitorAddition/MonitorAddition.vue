@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
 import { ILicensesDetails, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, ILicenseCache, IPricesSmall } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 import { useDebounceFn } from '@vueuse/core'
@@ -31,6 +30,10 @@ const props = defineProps({
   },
   canUserBuy: {
     type: Boolean,
+    required: true
+  },
+  priceError: {
+    type: String,
     required: true
   }
 })
@@ -89,22 +92,28 @@ const loading = ref(false)
 
 const getPricesWithBase = (quantity: number, type: TMonitorTypes) => {
   return {
-    gross: +(props.basePrices[type].gross * quantity).toPrecision(3),
-    net: +(props.basePrices[type].net * quantity).toPrecision(3),
-    vat: +(props.basePrices[type].vat * quantity).toPrecision(3)
+    nextBillingGrossPrice: +(props.basePrices[type].gross * quantity).toPrecision(3),
+    nextBillingNetPrice: +(props.basePrices[type].net * quantity).toPrecision(3),
+    nextBillingVatPrice: +(props.basePrices[type].vat * quantity).toPrecision(3)
   }
 }
 
 const getPricePreview = async () => {
   apiError.value = null
   loading.value = true
-  // const reqObject = props.type === 'websites'
-  //   ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
-  //   : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
+  const reqObject = props.type === 'websites'
+    ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
+    : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
-    const data = getPricesWithBase(quantity.value, props.type)
-    // const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
-    priceObject.value = data
+    // const data = getPricesWithBase(quantity.value, props.type)
+    const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
+    priceObject.value = {
+      gross: data.nextBillingGrossPrice,
+      net: data.nextBillingNetPrice,
+      vat: data.nextBillingVatPrice
+    }
+
+
   } catch (error) {
     apiError.value = error
     console.error(error)
@@ -211,6 +220,7 @@ const detailTotalPrice = computed(() => {
       :quantity="currentLicenseData"
       :read-only="readOnly"
       :status="plan.cbItemStatusId"
+      :price-error="priceError"
       :loading="loading"
       @header-event="(e) => isOpen = e"
     />
@@ -239,6 +249,7 @@ const detailTotalPrice = computed(() => {
         :status-text="statusText"
         :current-count="currentLicenseData"
         :loading="loading"
+        :api-error="apiError"
         :can-user-buy="canUserBuy"
         @handle-change="handleChange"
         @handle-status="(e) => handleStatus(e)"

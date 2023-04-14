@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ILicensesServers, TMonitorTypes, IMonitorStatusTitle, ILicensesDetails, ILicenseCache } from '@/types/general.interfaces'
 import { useLocalHelper } from '@/composables/localHelper/localHelper'
+import { useDebounceFn } from '@vueuse/core'
 
 const props = defineProps({
   subTitle: {
@@ -62,6 +63,10 @@ const props = defineProps({
   canUserBuy: {
     type: Boolean,
     default: false
+  },
+  apiError: {
+    type: String,
+    required: true
   }
 })
 
@@ -69,9 +74,17 @@ const emit = defineEmits(['handleChange', 'handleStatus'])
 
 const newQuantity = ref(props.size.next_cycle_count)
 
-const onChangeQuantity = (e: number) => {
+const debounced = ref(false)
+const debouncedMessage = useDebounceFn(async() => {
+  debounced.value = true
+}, 750)
+
+
+const onChangeQuantity = async (e: number) => {
+  debounced.value = false
   newQuantity.value = e
   emit('handleChange', e)
+  await debouncedMessage()
 }
 
 const isSameQuantity = computed(() => {
@@ -123,14 +136,21 @@ const additionalDiffenceInfo = computed(() => {
       </div>
     </div>
     <Transition name="fade">
-      <div v-if="!canUserBuy" class="my-4">
+      <div v-if="apiError" class="my-4">
+        <ApiStatus type="error">
+          {{ apiError }}
+        </ApiStatus>
+      </div>
+    </Transition>
+    <Transition name="fade">
+      <div v-if="!canUserBuy && !apiError" class="my-4">
         <AnnotationBox type="error">
           {{ t('timeOutBuy') }}
         </AnnotationBox>
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-if="!isSameQuantity">
+      <div v-if="canUserBuy && !isSameQuantity && debounced && !apiError">
         <AnnotationBox
           type="info"
           class="my-4"
