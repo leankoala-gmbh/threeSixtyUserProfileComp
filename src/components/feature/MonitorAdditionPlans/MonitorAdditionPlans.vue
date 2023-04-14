@@ -30,7 +30,7 @@ const props = defineProps({
   }
 })
 
-const types = ['websites', 'servers']
+const types = ['servers', 'websites']
 
 </script>
 
