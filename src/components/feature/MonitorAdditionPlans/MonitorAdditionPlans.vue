@@ -13,16 +13,20 @@ const props = defineProps({
     default: false
   },
   basePrices: {
-    type: Object as () => Record<string, number>,
+    type: Object,
     default: () => ({})
   },
   licenseCache: {
     type: Object as () => ILicenseCache,
     default: () => ({})
+  },
+  canUserBuy: {
+    type: Boolean,
+    required: true
   }
 })
 
-const types = ['servers', 'websites']
+const types = ['websites', 'servers']
 
 </script>
 
@@ -35,6 +39,7 @@ const types = ['servers', 'websites']
       :type="type as TMonitorTypes"
       class="mb-1"
       :read-only="readOnly"
+      :can-user-buy="canUserBuy"
       :base-prices="basePrices"
       :license-cache="licenseCache"
       @update="(e) => emit('update', e)"
