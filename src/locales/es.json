@@ -83,7 +83,7 @@
   "changedServersUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de servidor.",
   "changeWebsitesUseCount": "En este momento puede seguir usando {count} monitores. En el próximo ciclo de facturación el {date}, dispondrá de {nextCount} monitores de sitio web.",
   "addNewLicenses": "¿Desea licencias adicionales para su cuenta?",
-  "suspended": "Suspended",
-  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
-  "apiStatusError": "Currently no information could be retrieved. Please try again later."
+  "suspended": "Suspendido",
+  "timeOutBuy": "Todavía estamos procesando un cambio anterior en su cuenta. Compruébelo más tarde para seguir modificando su suscripción actual.",
+  "apiStatusError": "En este momento no pudo recuperarse ninguna información. Inténtelo de nuevo transcurridos unos minutos."
 }
