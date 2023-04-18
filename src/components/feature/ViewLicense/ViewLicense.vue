@@ -152,10 +152,10 @@ const canUserBuy = ref(false)
 const timeOut = ref(30)
 const setBuyTimeOut = () => {
   const currentUnixTime = Math.floor(Date.now() / 1000)
-  localStorage.setItem('buyTimeout', currentUnixTime.toString())
+  sessionStorage.setItem('buyTimeout', currentUnixTime.toString())
 }
 const checkAndSetBuyTimeout = () => {
-  const buyTimeout = localStorage.getItem('buyTimeout')
+  const buyTimeout = sessionStorage.getItem('buyTimeout')
   if (!buyTimeout) {
     setBuyTimeOut()
   }
@@ -168,7 +168,7 @@ const calculateTimeDifference = (buyTimeout: number): number => {
 
 const checkUserBuyStatus = () => {
   checkAndSetBuyTimeout()
-  const buyTimeout = parseInt(localStorage.getItem('buyTimeout') || '0')
+  const buyTimeout = parseInt(sessionStorage.getItem('buyTimeout') || '0')
   const timeDifference = calculateTimeDifference(buyTimeout)
   canUserBuy.value = timeDifference > timeOut.value
 }
