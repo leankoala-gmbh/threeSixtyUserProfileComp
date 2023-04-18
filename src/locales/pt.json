@@ -82,8 +82,8 @@
   "licenseId": "ID da licença",
   "changedServersUseCount": "Atualmente, você pode continuar usando {count} monitores. No próximo ciclo de cobrança em {date}, você terá {nextCount} monitores de servidor.",
   "changeWebsitesUseCount": "Atualmente, você pode continuar usando {count} monitores. No próximo ciclo de cobrança em {date}, você terá {nextCount} monitores de website.",
-  "addNewLicenses": "Want additional licenses for your account?",
-  "suspended": "Suspended",
-  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
-  "apiStatusError": "Currently no information could be retrieved. Please try again later."
+  "addNewLicenses": "Quer licenças adicionais para sua conta?",
+  "suspended": "Suspensa",
+  "timeOutBuy": "Ainda estamos processando uma alteração anterior em sua conta. Verifique novamente mais tarde para continuar modificando sua assinatura atual.",
+  "apiStatusError": "Atualmente nenhuma informação pôde ser recuperada. Por favor, tente novamente mais tarde."
 }
