@@ -189,6 +189,20 @@ interface IUpdateLicenseData {
   count: number
 }
 
+const screenEvents = (action: string) => {
+  debugEcho('ACTION RECEIVED', action)
+  const events = {
+    closeStoreIframe: async () => {
+      debugEcho('closeStoreIframe', action)
+      getLicenseData()
+    }
+  }
+  return events[action as keyof typeof events]?.() || (() => {})
+}
+window.mitt.on('tsxContentScreenEvents', ({ action }: {action:string}) => {
+  screenEvents(action)
+})
+
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
@@ -204,7 +218,6 @@ const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers'
 }
 
 const updateLicenseData = async(e: IUpdateLicenseData) => {
-  console.log(e)
   if (e && Object.keys(e).length) {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
