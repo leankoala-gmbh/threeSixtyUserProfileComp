@@ -82,8 +82,8 @@
   "licenseId": "ID лицензии",
   "changedServersUseCount": "Вы можете продолжить пользоваться текущим количеством мониторингов ({count}). В следующем расчетном периоде, начиная с {date}, доступных серверных мониторингов будет {nextCount}.",
   "changeWebsitesUseCount": "Вы можете продолжить пользоваться текущим количеством мониторингов ({count}). В следующем расчетном периоде, начиная с {date}, доступных мониторингов сайтов будет {nextCount}.",
-  "addNewLicenses": "Want additional licenses for your account?",
-  "suspended": "Suspended",
-  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
-  "apiStatusError": "Currently no information could be retrieved. Please try again later."
+  "addNewLicenses": "Хотите добавить новые лицензии в свою учетную запись?",
+  "suspended": "Приостановлен",
+  "timeOutBuy": "Мы все еще обрабатываем предыдущее изменение в вашей учетной записи. Повторите попытку позже, чтобы продолжить изменение текущей подписки.",
+  "apiStatusError": "Не удалось получить информацию. Пожалуйста, повторите попытку позже."
 }
