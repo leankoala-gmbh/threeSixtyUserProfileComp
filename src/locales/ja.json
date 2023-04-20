@@ -82,8 +82,8 @@
   "licenseId": "ライセンス ID",
   "changedServersUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のサーバモニタが使用可能になります。",
   "changeWebsitesUseCount": "現在、{count} 件のモニタの使用を継続できます。{date} の次回請求サイクルでは、{nextCount} 件のウェブサイトモニタが使用可能になります。",
-  "addNewLicenses": "Want additional licenses for your account?",
-  "suspended": "Suspended",
-  "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
-  "apiStatusError": "Currently no information could be retrieved. Please try again later."
+  "addNewLicenses": "アカウントに追加ライセンスが必要ですか？",
+  "suspended": "一時停止中",
+  "timeOutBuy": "アカウントへの前回の変更をまだ処理しています。現在のサブスクリプションの変更を続けるには、後でもう一度確認してください。",
+  "apiStatusError": "現在、取得できる情報はありません。後でやり直してください。"
 }
