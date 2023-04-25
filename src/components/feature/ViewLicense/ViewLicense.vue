@@ -263,6 +263,11 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
         </div>
       </div>
     </template>
+    <template v-if="licenseData && readOnly">
+      <p v-if="Object.keys(licenseData).length === 0" class="mb-4">
+        {{ t('currentlyNoLicense').split('.')[0] }}.
+      </p>
+    </template>
     <template v-if="licenseData && !readOnly">
       <p v-if="Object.keys(licenseData).length === 0" class="mb-4">
         {{ t('currentlyNoLicense') }}
