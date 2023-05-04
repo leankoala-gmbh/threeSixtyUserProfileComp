@@ -2,6 +2,126 @@
   "data": {
     "licenses": [
       {
+        "keyId": "10344810TEST1",
+        "keyNumber": "EXT.10344810.0000TEST1",
+        "activationCode": "A00D00-BNC910-3NSG14-297576-7YAT14",
+        "status": "expired",
+        "createDate": "2023-03-30T00:00:00+00:00",
+        "nextBillingDate": "2023-04-30T00:00:00+00:00",
+        "expirationDate": "2023-05-03T00:00:00+00:00",
+        "type": "360 Monitoring Pro",
+        "renewalCostNet": 0,
+        "renewalCostVat": 0,
+        "renewalCostGross": 0,
+        "renewalCurrency": "USD",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s51651302?s=1682596800\u0026e=1683806400\u0026c=55CAF8DFA2D14624A893B7065F0B7E3E82EE5FFD",
+        "subscriptionId": "S51651302",
+        "cbItemStatusId": "DEA",
+        "websites": {
+          "count": 2,
+          "next_cycle_count": 2,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 3,
+          "next_cycle_count": 3,
+          "min": 0,
+          "max": 999999
+        }
+      },
+      {
+        "keyId": "10344816TEST2",
+        "keyNumber": "EXT.10344816.0001TEST2",
+        "activationCode": "A00H00-A4FP10-A9CG14-7S4X76-EJG516",
+        "status": "expired",
+        "createDate": "2023-03-30T00:00:00+00:00",
+        "nextBillingDate": "2023-04-30T00:00:00+00:00",
+        "expirationDate": "2023-05-03T00:00:00+00:00",
+        "type": "360 Monitoring Business",
+        "renewalCostNet": 32.13,
+        "renewalCostVat": 0,
+        "renewalCostGross": 32.13,
+        "renewalCurrency": "USD",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s51651316?s=1682596800\u0026e=1683806400\u0026c=B7904A4DA8D75B5E4CDA0CCD9BD70630FF01970D",
+        "subscriptionId": "S51651316",
+        "cbItemStatusId": "ACT",
+        "websites": {
+          "count": 0,
+          "next_cycle_count": 0,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 6,
+          "next_cycle_count": 6,
+          "min": 0,
+          "max": 999999
+        }
+      },
+      {
+        "keyId": "10344824TEST3",
+        "keyNumber": "EXT.10344824.0000TEST3",
+        "activationCode": "A00A00-M75710-FAKD14-218C76-0DJR18",
+        "status": "expired",
+        "createDate": "2023-03-30T00:00:00+00:00",
+        "nextBillingDate": "2023-04-30T00:00:00+00:00",
+        "expirationDate": "2023-05-03T00:00:00+00:00",
+        "type": "360 Monitoring Enterprise",
+        "renewalCostNet": 101.56,
+        "renewalCostVat": 0,
+        "renewalCostGross": 101.56,
+        "renewalCurrency": "USD",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s51651336?s=1682596800\u0026e=1683806400\u0026c=46811CAA363384B94AC090C7BACD7FECBD4495C9",
+        "subscriptionId": "S51651336",
+        "cbItemStatusId": "ACT",
+        "websites": {
+          "count": 2,
+          "next_cycle_count": 2,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 1,
+          "next_cycle_count": 1,
+          "min": 0,
+          "max": 999999
+        }
+      },
+      {
+        "keyId": "10371969TEST4",
+        "keyNumber": "EXT.10371969.0000TEST4",
+        "activationCode": "A00W00-RJ8X10-CDM614-CT9V86-29TY01",
+        "status": "active",
+        "createDate": "2023-04-13T00:00:00+00:00",
+        "nextBillingDate": "2023-05-13T00:00:00+00:00",
+        "expirationDate": "2023-05-16T00:00:00+00:00",
+        "type": "360 Monitoring Pro",
+        "renewalCostNet": 4.18,
+        "renewalCostVat": 0.8,
+        "renewalCostGross": 4.98,
+        "renewalCurrency": "EUR",
+        "billingPeriod": "1m",
+        "changePaymentSubscriptionUrl": "https:\/\/store.plesk.com\/1404\/scp\/s51848420?s=1682596800\u0026e=1683806400\u0026c=2B0322C8005E080D244BD5029BF6E317D465E037",
+        "subscriptionId": "S51848420",
+        "cbItemStatusId": "ACT",
+        "websites": {
+          "count": 1,
+          "next_cycle_count": 1,
+          "min": 0,
+          "max": 999999
+        },
+        "servers": {
+          "count": 0,
+          "next_cycle_count": 0,
+          "min": 0,
+          "max": 999999
+        }
+      },
+      {
         "keyId": "10354650",
         "keyNumber": "EXT.10354650.0001",
         "activationCode": "A00S00-92TC10-C30414-F4V079-4BG252",
