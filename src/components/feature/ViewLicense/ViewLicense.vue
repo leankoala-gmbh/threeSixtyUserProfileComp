@@ -109,9 +109,9 @@ const mapStatusLicense = () => {
 
   const suspended = licenseData.value.active?.filter((plan) => plan.cbItemStatusId === 'DEA')?.map((plan) => ({ ...plan, status: 'suspended' })) || []
   const updatedActive = licenseData.value.active?.filter((plan) => !suspended.some((suspendedPlan) => suspendedPlan.keyId === plan.keyId))
-  const canceled = licenseData.value.canceled || []
-  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan) => ({ ...plan, status: 'canceled' })) || []
-  const expired = licenseData.value.expired?.filter((plan) => plan.status === 'expired').map((plan) => ({ ...plan, status: 'canceled' })) || []
+  const canceled = licenseData.value.canceled?.filter((plan) => plan.status === 'canceled').map((plan) => ({ ...plan, cbItemStatusId: 'DEA' })) || []
+  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan) => ({ ...plan, status: 'canceled', cbItemStatusId: 'DEA' })) || []
+  const expired = licenseData.value.expired?.filter((plan) => plan.status === 'expired').map((plan) => ({ ...plan, status: 'canceled', cbItemStatusId: 'DEA' })) || []
   const mergedCancelled = [...canceled, ...expired, ...terminated]
 
   licenseData.value = {
