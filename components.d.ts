@@ -40,6 +40,8 @@ declare module '@vue/runtime-core' {
     'ProfileBoxHeader.story': typeof import('./src/components/pure/ProfileBoxHeader/ProfileBoxHeader.story.vue')['default']
     ProfileConsent: typeof import('./src/components/feature/ProfileConsent/ProfileConsent.vue')['default']
     ProfileDetailBox: typeof import('./src/components/base/ProfileDetailBox/ProfileDetailBox.vue')['default']
+    ProfileIds: typeof import('./src/components/feature/ProfileIds/ProfileIds.vue')['default']
+    'ProfileIds.story': typeof import('./src/components/feature/ProfileIds/ProfileIds.story.vue')['default']
     ProfileInfos: typeof import('./src/components/feature/ProfileInfos/ProfileInfos.vue')['default']
     ProfileNaming: typeof import('./src/components/feature/ProfileNaming/ProfileNaming.vue')['default']
     ProfilePassword: typeof import('./src/components/feature/ProfilePassword/ProfilePassword.vue')['default']
