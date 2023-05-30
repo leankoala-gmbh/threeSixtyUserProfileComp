@@ -18,7 +18,7 @@ const props = defineProps({
   >
     <template #body>
       <div class="text-base font-medium mb-2">
-        {{ t('Product ID') }}
+        {{ t('userID') }}
       </div>
       <div class="text-sm text-gray-600">
         {{ userData.nixstatsId }}
