@@ -85,5 +85,6 @@
   "addNewLicenses": "Vous avez besoin de licences supplémentaires pour votre compte ?",
   "suspended": "Suspendu",
   "timeOutBuy": "La précédente modification de votre compte est encore en cours de traitement. Nous vous invitons à revenir ultérieurement pour continuer à modifier votre abonnement actuel.",
-  "apiStatusError": "Impossible de récupérer des informations actuellement. Veuillez essayer à nouveau ultérieurement."
+  "apiStatusError": "Impossible de récupérer des informations actuellement. Veuillez essayer à nouveau ultérieurement.",
+  "userID": "User ID"
 }
