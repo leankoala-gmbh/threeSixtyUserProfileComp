@@ -46,6 +46,10 @@ const updateTimezone = (payload: {timezone: string}) => {
       :open="boxToOpen === 'naming'"
       @update="updateName"
     />
+    <ProfileIds
+      v-if="!inactiveFields.includes('ids')"
+      :user-data="userDataObj"
+    />
     <ProfilePassword
       v-if="!inactiveFields.includes('password')"
       id="password"
