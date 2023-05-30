@@ -85,5 +85,6 @@
   "addNewLicenses": "¿Desea licencias adicionales para su cuenta?",
   "suspended": "Suspendido",
   "timeOutBuy": "Todavía estamos procesando un cambio anterior en su cuenta. Compruébelo más tarde para seguir modificando su suscripción actual.",
-  "apiStatusError": "En este momento no pudo recuperarse ninguna información. Inténtelo de nuevo transcurridos unos minutos."
+  "apiStatusError": "En este momento no pudo recuperarse ninguna información. Inténtelo de nuevo transcurridos unos minutos.",
+  "userID": "User ID"
 }
