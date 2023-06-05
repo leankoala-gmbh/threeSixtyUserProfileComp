@@ -85,5 +85,6 @@
   "addNewLicenses": "Want additional licenses for your account?",
   "suspended": "Suspended",
   "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
-  "apiStatusError": "Currently no information could be retrieved. Please try again later."
+  "apiStatusError": "Currently no information could be retrieved. Please try again later.",
+  "userID": "User ID"
 }
