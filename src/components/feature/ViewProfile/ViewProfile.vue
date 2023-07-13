@@ -52,12 +52,20 @@ const updateTimezone = (payload: {timezone: string}) => {
       :user-data="userDataObj"
       :open="boxToOpen === 'password'"
     />
-    <ProfileTimezone
-      v-if="!inactiveFields.includes('timezone')"
-      id="timezone"
-      :user-data="userDataObj"
-      @update="updateTimezone"
-    />
+    <div class="flex flex-col gap-2 w-full @[850px]/tsxupmain:flex-row">
+      <ProfileLanguage
+        v-if="!inactiveFields.includes('language')"
+        class="@[850px]/tsxupmain:w-1/2"
+      />
+      <ProfileTimezone
+        v-if="!inactiveFields.includes('timezone')"
+        id="timezone"
+        class="@[850px]/tsxupmain:w-1/2"
+        :user-data="userDataObj"
+        @update="updateTimezone"
+      />
+    </div>
+
     <ProfileConsent
       v-if="!inactiveFields.includes('consent')"
       id="consent"
@@ -71,7 +79,3 @@ const updateTimezone = (payload: {timezone: string}) => {
     />
   </template>
 </template>
-
-<style>
-  .viewProfile {}
-</style>
