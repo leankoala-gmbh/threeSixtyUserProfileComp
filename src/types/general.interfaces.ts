@@ -9,6 +9,8 @@ export interface IProfileUser {
   nickname?: string
   firstName?: string
   familyName?: string
+  nixstatsId?: string
+  threeSixstyId?: string
   sessionToken?: string
 }
 

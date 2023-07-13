@@ -109,9 +109,10 @@ const mapStatusLicense = () => {
 
   const suspended = licenseData.value.active?.filter((plan) => plan.cbItemStatusId === 'DEA')?.map((plan) => ({ ...plan, status: 'suspended' })) || []
   const updatedActive = licenseData.value.active?.filter((plan) => !suspended.some((suspendedPlan) => suspendedPlan.keyId === plan.keyId))
-  const canceled = licenseData.value.canceled || []
-  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan) => ({ ...plan, status: 'canceled' })) || []
-  const mergedCancelled = [...canceled, ...terminated]
+  const canceled = licenseData.value.canceled?.filter((plan) => plan.status === 'canceled').map((plan) => ({ ...plan, cbItemStatusId: 'DEA' })) || []
+  const terminated = licenseData.value.terminated?.filter((plan) => plan.status === 'terminated').map((plan) => ({ ...plan, status: 'canceled', cbItemStatusId: 'DEA' })) || []
+  const expired = licenseData.value.expired?.filter((plan) => plan.status === 'expired').map((plan) => ({ ...plan, status: 'canceled', cbItemStatusId: 'DEA' })) || []
+  const mergedCancelled = [...canceled, ...expired, ...terminated]
 
   licenseData.value = {
     ...(updatedActive && updatedActive.length ? { active: updatedActive } : {}),
@@ -152,10 +153,10 @@ const canUserBuy = ref(false)
 const timeOut = ref(30)
 const setBuyTimeOut = () => {
   const currentUnixTime = Math.floor(Date.now() / 1000)
-  localStorage.setItem('buyTimeout', currentUnixTime.toString())
+  sessionStorage.setItem('buyTimeout', currentUnixTime.toString())
 }
 const checkAndSetBuyTimeout = () => {
-  const buyTimeout = localStorage.getItem('buyTimeout')
+  const buyTimeout = sessionStorage.getItem('buyTimeout')
   if (!buyTimeout) {
     setBuyTimeOut()
   }
@@ -168,7 +169,7 @@ const calculateTimeDifference = (buyTimeout: number): number => {
 
 const checkUserBuyStatus = () => {
   checkAndSetBuyTimeout()
-  const buyTimeout = parseInt(localStorage.getItem('buyTimeout') || '0')
+  const buyTimeout = parseInt(sessionStorage.getItem('buyTimeout') || '0')
   const timeDifference = calculateTimeDifference(buyTimeout)
   canUserBuy.value = timeDifference > timeOut.value
 }
@@ -189,6 +190,20 @@ interface IUpdateLicenseData {
   count: number
 }
 
+const screenEvents = (action: string) => {
+  debugEcho('ACTION RECEIVED', action)
+  const events = {
+    closeStoreIframe: async () => {
+      debugEcho('closeStoreIframe', action)
+      getLicenseData()
+    }
+  }
+  return events[action as keyof typeof events]?.() || (() => {})
+}
+window.mitt.on('tsxContentScreenEvents', ({ action }: {action:string}) => {
+  screenEvents(action)
+})
+
 const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers', count: number) => {
   if (!licenseCache.value) return
   if (!licenseCache.value[keyId]) return
@@ -204,7 +219,6 @@ const updateLicenseCache = (keyId: number | string, type: 'websites' | 'servers'
 }
 
 const updateLicenseData = async(e: IUpdateLicenseData) => {
-  console.log(e)
   if (e && Object.keys(e).length) {
     const { keyId, type, count } = e
     updateLicenseCache(keyId, type, count)
@@ -249,6 +263,11 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
           </div>
         </div>
       </div>
+    </template>
+    <template v-if="licenseData && readOnly">
+      <p v-if="Object.keys(licenseData).length === 0" class="mb-4">
+        {{ t('currentlyNoLicense').split('.')[0] }}.
+      </p>
     </template>
     <template v-if="licenseData && !readOnly">
       <p v-if="Object.keys(licenseData).length === 0" class="mb-4">
