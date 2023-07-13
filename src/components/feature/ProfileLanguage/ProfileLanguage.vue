@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import VueMultiselect from 'vue-multiselect'
 import { useCookies } from '@vueuse/integrations/useCookies'
+import axios from 'axios'
 
 interface ILanguageMatrix {
   [key: string]: {
@@ -8,6 +9,13 @@ interface ILanguageMatrix {
     short: string
   }
 }
+
+const props = defineProps({
+  localeSavingUrl: {
+    type: String,
+    default: ''
+  }
+})
 
 const cookies = useCookies(['locale'])
 const languageSavedInfo = ref(false)
@@ -59,10 +67,18 @@ onMounted(() => {
   language.value = getLanguage()
 })
 
-const changeLanguage = () => {
-  setLanguageCookie(language.value as string)
-  setLanguage(language.value as string)
-  window.mitt.emit('tsxUserProfile:changeLanguage', language.value)
+const changeLanguage = async () => {
+  try {
+    setLanguage(language.value as string)
+    if (props.localeSavingUrl.length) {
+      await axios.put(props.localeSavingUrl, { localeCode: language.value }, { withCredentials: true })
+    } else {
+      setLanguageCookie(language.value as string)
+    }
+    window.mitt.emit('tsxUserProfile:changeLanguage', language.value)
+  } catch (e) {
+    console.error(e)
+  }
 }
 </script>
 

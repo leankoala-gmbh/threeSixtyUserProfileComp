@@ -37,6 +37,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  localeSavingUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -62,6 +66,7 @@ onMounted(() => {
       v-if="view === 'profile'"
       :user-data="userDataObj"
       :inactive-fields="inactiveFieldsArr"
+      :locale-saving-url="props.localeSavingUrl"
     />
     <ViewLicense
       v-if="view === 'license'"

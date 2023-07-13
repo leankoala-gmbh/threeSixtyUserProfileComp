@@ -9,6 +9,10 @@ const props = defineProps({
   inactiveFields: {
     type: Array as () => string[],
     default: () => []
+  },
+  localeSavingUrl: {
+    type: String,
+    default: ''
   }
 })
 
@@ -60,6 +64,7 @@ const updateTimezone = (payload: {timezone: string}) => {
       <ProfileLanguage
         v-if="!inactiveFields.includes('language')"
         class="@[850px]/tsxupmain:w-1/2"
+        :locale-saving-url="props.localeSavingUrl"
       />
       <ProfileTimezone
         v-if="!inactiveFields.includes('timezone')"
