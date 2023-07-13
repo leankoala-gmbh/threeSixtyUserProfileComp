@@ -86,5 +86,6 @@
   "suspended": "Gesperrt",
   "timeOutBuy": "Wir sind noch dabei, eine frühere Änderung an Ihrem Konto zu bearbeiten. Bitte schauen Sie später noch einmal nach, um Ihr aktuelles Abonnement zu ändern.",
   "apiStatusError": "Derzeit konnten keine Informationen abgerufen werden. Bitte versuchen Sie es später noch einmal.",
+  "language": "Language",
   "userID": "Benutzer-ID"
 }
