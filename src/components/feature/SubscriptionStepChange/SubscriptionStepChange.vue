@@ -2,6 +2,7 @@ subscriptionStepChange
 
 <script lang="ts" setup>
 import { ILicensesDetails, IPlanSelector, IPlanUpsellsFull } from '@/types/general.interfaces'
+import { pricingPageLink } from '@/data/variables'
 
 const emit = defineEmits(['trigger', 'selectedPlan'])
 
@@ -17,6 +18,10 @@ const props = defineProps({
   subscriptionPlans: {
     type: Array as () => IPlanUpsellsFull[],
     default: () => ([])
+  },
+  inactiveFields: {
+    type: Array as () => string[],
+    default: () => []
   }
 })
 
@@ -79,12 +84,14 @@ const subscription = computed(() => {
         @update-plan="selectedPlan = $event"
       />
       <a
+        v-if="!inactiveFields.includes('comparePlansLink')"
+        class="flex mb-2"
         target="_blank"
-        href="https://360monitoring.com/pricing/"
+        :href="pricingPageLink"
       >
         {{ t('comparePlans') }}
         <svg
-          class="w-3 inline"
+          class="w-3 ml-2"
           viewBox="0 0 14 13"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -95,7 +102,7 @@ const subscription = computed(() => {
         </svg>
       </a>
       <template v-if="selectedPlan">
-        <AnnotationBox type="info" class="my-4">
+        <AnnotationBox type="info" class="mb-4">
           <div class="flex">
             <div class="self-center mx-2 text-center text-current">
               <svg
