@@ -88,4 +88,5 @@
   "apiStatusError": "Currently no information could be retrieved. Please try again later.",
   "userID": "User ID",
   "comparePlans": "Compare plans"
+  "language": "Language",
 }
