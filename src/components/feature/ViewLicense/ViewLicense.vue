@@ -247,6 +247,7 @@ const updateLicenseData = async(e: IUpdateLicenseData) => {
               :plan="plan"
               :subscription-plans="subscriptionPlans"
               :read-only="readOnly"
+              :inactive-fields="inactiveFields"
               @update="updateLicenseData"
             />
             <div v-if="key == 'active'" class="mb-6">

@@ -87,5 +87,6 @@
   "timeOutBuy": "We are still processing a previous change to your account. Please check again later to continue modifying your current subscription.",
   "apiStatusError": "Currently no information could be retrieved. Please try again later.",
   "language": "Language",
-  "userID": "User ID"
+  "userID": "User ID",
+  "comparePlans": "Compare plans"
 }
