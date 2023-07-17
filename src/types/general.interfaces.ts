@@ -9,6 +9,8 @@ export interface IProfileUser {
   nickname?: string
   firstName?: string
   familyName?: string
+  nixstatsId?: string
+  threeSixstyId?: string
   sessionToken?: string
 }
 
@@ -134,6 +136,12 @@ export interface IPrices {
   nextBillingDate: string
   changePaymentUrl: string
   merchantOfRecordType: string
+}
+
+export interface IPricesSmall {
+  gross: number,
+  vat: number,
+  net: number
 }
 
 export interface ILicenseCache {

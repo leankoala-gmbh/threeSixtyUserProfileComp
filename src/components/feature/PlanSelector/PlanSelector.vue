@@ -15,7 +15,7 @@ const props = defineProps({
   }
 })
 
-console.log(props.plans)
+debugEcho('props.plans', props.plans)
 
 const selected = ref<IPlanSelector>()
 

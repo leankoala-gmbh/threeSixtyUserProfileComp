@@ -17,6 +17,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  inactiveFields: {
+    type: Array as () => string[],
+    default: () => []
   }
 })
 
@@ -181,6 +185,7 @@ setTimeout(() => {
           :plan="plan"
           :read-only="readOnly"
           :subscription-plans="subscriptionPlans"
+          :inactive-fields="inactiveFields"
           @trigger="currentStep = $event"
           @selected-plan="selectedPlan = $event"
         />

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ILicensesDetails, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, IPrices, ILicenseCache } from '@/types/general.interfaces'
+import { ILicensesDetails, TMonitorTypes, TMonitorStatus, IMonitorStatusTitle, ILicenseCache, IPricesSmall } from '@/types/general.interfaces'
 import { planMatrix } from '@/data/planMatrix.js'
 import { useDebounceFn } from '@vueuse/core'
 
@@ -21,12 +21,20 @@ const props = defineProps({
     default: false
   },
   basePrices: {
-    type: Object as () => Record<string, number>,
+    type: Object,
     default: () => ({})
   },
   licenseCache: {
     type: Object as () => ILicenseCache,
     default: () => ({})
+  },
+  canUserBuy: {
+    type: Boolean,
+    required: true
+  },
+  priceError: {
+    type: String,
+    required: true
   }
 })
 
@@ -54,12 +62,12 @@ const subTitle = reactive<IMonitorStatusTitle>({
 const isOpen = ref(false)
 
 const { displayPrice } = useLocalHelper()
-const priceObject = ref<IPrices>()
+const priceObject = ref<IPricesSmall>()
 
 const quantity = ref(0)
-const total = computed(() => priceObject.value?.nextBillingGrossPrice || 0)
+const total = computed(() => priceObject.value?.gross || 0)
 const totalDisplay = computed(() => displayPrice(total.value, props.plan.renewalCurrency))
-const vat = computed(() => displayPrice(priceObject.value?.nextBillingVatPrice || 0, props.plan.renewalCurrency))
+const vat = computed(() => displayPrice(priceObject.value?.vat || 0, props.plan.renewalCurrency))
 
 
 const generateStatusText = () => {
@@ -82,6 +90,14 @@ const generateStatusText = () => {
 
 const loading = ref(false)
 
+const getPricesWithBase = (quantity: number, type: TMonitorTypes) => {
+  return {
+    nextBillingGrossPrice: +(props.basePrices[type].gross * quantity).toPrecision(3),
+    nextBillingNetPrice: +(props.basePrices[type].net * quantity).toPrecision(3),
+    nextBillingVatPrice: +(props.basePrices[type].vat * quantity).toPrecision(3)
+  }
+}
+
 const getPricePreview = async () => {
   apiError.value = null
   loading.value = true
@@ -89,8 +105,15 @@ const getPricePreview = async () => {
     ? { keyId:props.plan.keyId, websites: quantity.value, servers: 0 }
     : { keyId:props.plan.keyId, websites: 0, servers: quantity.value }
   try {
+    // const data = getPricesWithBase(quantity.value, props.type)
     const { data } = await useApiAbstraction().modifyPropertiesPreview(reqObject)
-    priceObject.value = data
+    priceObject.value = {
+      gross: data.nextBillingGrossPrice,
+      net: data.nextBillingNetPrice,
+      vat: data.nextBillingVatPrice
+    }
+
+
   } catch (error) {
     apiError.value = error
     console.error(error)
@@ -160,26 +183,24 @@ const currentLicenseData = computed(() => {
 })
 
 const initialPriceDisplay = computed(() => {
-
   if (!currentLicenseData.value) return {
     base: props.plan.renewalCurrency
-      ? displayPrice(props.basePrices[props.type], props.plan.renewalCurrency)
+      ? displayPrice(props.basePrices[props.type].gross, props.plan.renewalCurrency)
       : displayPrice(0, props.plan.renewalCurrency)
     , total: displayPrice(0, props.plan.renewalCurrency) }
   const licenseCount = currentLicenseData.value
   return {
-    base: displayPrice(props.basePrices[props.type] || 0, props.plan.renewalCurrency),
-    total: displayPrice(props.basePrices[props.type] * licenseCount || 0, props.plan.renewalCurrency)
+    base: displayPrice(props.basePrices[props.type].gross || 0, props.plan.renewalCurrency),
+    total: displayPrice(props.basePrices[props.type].gross * licenseCount || 0, props.plan.renewalCurrency)
   }
 })
 
 const detailTotalPrice = computed(() => {
   if (priceObject.value) {
-    return displayPrice(priceObject.value.nextBillingGrossPrice || 0, props.plan.renewalCurrency)
+    return displayPrice(priceObject.value.gross || 0, props.plan.renewalCurrency)
   }
   return initialPriceDisplay.value ? initialPriceDisplay.value.total : displayPrice(0, props.plan.renewalCurrency)
 })
-
 
 </script>
 
@@ -199,6 +220,7 @@ const detailTotalPrice = computed(() => {
       :quantity="currentLicenseData"
       :read-only="readOnly"
       :status="plan.cbItemStatusId"
+      :price-error="priceError"
       :loading="loading"
       @header-event="(e) => isOpen = e"
     />
@@ -227,6 +249,8 @@ const detailTotalPrice = computed(() => {
         :status-text="statusText"
         :current-count="currentLicenseData"
         :loading="loading"
+        :api-error="apiError"
+        :can-user-buy="canUserBuy"
         @handle-change="handleChange"
         @handle-status="(e) => handleStatus(e)"
       />

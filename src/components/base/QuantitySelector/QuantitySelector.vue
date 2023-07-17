@@ -11,6 +11,10 @@ const props = defineProps({
   quantityValue: {
     type: Number,
     default: 1
+  },
+  canUserBuy: {
+    type: Boolean,
+    required: true
   }
 })
 
@@ -74,13 +78,14 @@ watch(() => quantity.value, () => {
     <button
       aria-label="handleMinusQuantity"
       class="rounded-l-md border w-8 h-8 disabled:bg-gray-200"
-      :disabled="!isWithinRange || isLowerLimit"
+      :disabled="!isWithinRange || isLowerLimit || !canUserBuy"
       @click="handleQuantity('minus')"
     >
       -
     </button>
     <input
       v-model="quantity"
+      :disabled="!canUserBuy"
       aria-label="handleInputQuantity"
       class="border-y text-center w-10 h-8"
       @input="handleQuantity('')"
@@ -88,7 +93,7 @@ watch(() => quantity.value, () => {
     <button
       aria-label="handlePlusQuantity"
       class="rounded-r-md border w-8 h-8 disabled:bg-gray-200"
-      :disabled="!isWithinRange || isUpperLimit"
+      :disabled="!isWithinRange || isUpperLimit || !canUserBuy"
       @click="handleQuantity('plus')"
     >
       +

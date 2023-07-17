@@ -16,12 +16,6 @@ export const handlers = [
       ctx.json(licensesData)
     )
   }),
-  rest.get(`${base}/license/modify-properties/unit-costs/10318994`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json(unitPricesData)
-    )
-  }),
   rest.get(`${base}/license/properties`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -66,6 +60,24 @@ export const handlers = [
         message: 'Properties downgraded'
       })
     )
+  }),
+  rest.get(`${base}/license/modify-properties/unit-costs/:id`, (req, res, ctx) => {
+    const { id } = req.params
+    if (id.match(/^\d+$/)) {
+      const tryOut = 'ok'
+      if (tryOut === 'ok') {
+        return res(
+          ctx.status(200),
+          ctx.json(unitPricesData)
+        )
+      }
+      return res(
+        ctx.status(500),
+        ctx.json({
+          status: 'error',
+          message: 'Cannot retrieve properties costs'
+        }))
+    }
   }),
   rest.post(`${base}/license/modify-properties/preview`, (req, res, ctx) => {
     return res(
