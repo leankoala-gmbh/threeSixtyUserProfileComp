@@ -34,17 +34,9 @@ const languages: ILanguageMatrix = {
     label: 'Deutsch',
     short: 'DEU'
   },
-  ru: {
-    label: 'Русский',
-    short: 'РУС'
-  },
   es: {
     label: 'Español',
     short: 'ESP'
-  },
-  pt: {
-    label: 'Português (Brasil)',
-    short: 'POR'
   },
   fr: {
     label: 'Français',
@@ -53,6 +45,14 @@ const languages: ILanguageMatrix = {
   it: {
     label: 'Italiano',
     short: 'ITA'
+  },
+  pt: {
+    label: 'Português (Brasil)',
+    short: 'POR'
+  },
+  ru: {
+    label: 'Русский',
+    short: 'РУС'
   },
   ja: {
     label: '日本語',
