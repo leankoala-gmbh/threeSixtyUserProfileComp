@@ -14,6 +14,10 @@ const props = defineProps({
   localeSavingUrl: {
     type: String,
     default: ''
+  },
+  currentLang: {
+    type: String,
+    default: 'en'
   }
 })
 
@@ -64,7 +68,7 @@ const setLanguageCookie = (lang: string) => cookies.set('locale', lang, {
 })
 
 onMounted(() => {
-  language.value = getLanguage()
+  language.value = getLanguage() || props.currentLang
 })
 
 const changeLanguage = async () => {

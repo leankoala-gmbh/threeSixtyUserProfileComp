@@ -53,10 +53,10 @@ userDataObj.value = props.view === 'profile' ? JSON.parse(props.userData) : {}
 
 const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
-
+const cookieLang = ref('')
 onMounted(() => {
-  const cookieLang = cookies.get('locale')
-  setLanguage(cookieLang || props.currentLanguage)
+  cookieLang.value = cookies.get('locale')
+  setLanguage(cookieLang.value)
 })
 </script>
 
@@ -67,6 +67,7 @@ onMounted(() => {
       :user-data="userDataObj"
       :inactive-fields="inactiveFieldsArr"
       :locale-saving-url="props.localeSavingUrl"
+      :current-lang="cookieLang"
     />
     <ViewLicense
       v-if="view === 'license'"
