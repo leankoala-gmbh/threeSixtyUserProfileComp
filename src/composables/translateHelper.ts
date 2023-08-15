@@ -10,7 +10,8 @@ interface ILocales {
 }
 
 const currentLanguage = ref<string>('en')
-currentLanguage.value = useCookies(['locale']).get('locale') || 'en'
+const cookies = useCookies(['locale'])
+currentLanguage.value = cookies.get('i18n_redirected') || cookies.get('locale') || 'en'
 
 
 export function t (key: string, dynamicVars : null|{[key: string]: string} = null) : string {

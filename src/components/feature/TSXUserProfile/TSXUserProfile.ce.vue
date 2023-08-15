@@ -55,6 +55,14 @@ const inactiveFieldsArr: string[] = JSON.parse(props.inactiveFields)
 const cookies = useCookies(['locale'])
 const cookieLang = ref('')
 onMounted(() => {
+  if (!cookies.get('locale')) {
+    cookies.set('locale', cookies.get('i18n_redirected'), {
+      path: '/',
+      sameSite: 'lax',
+      maxAge: 31536000,
+      domain: `.${window.location.hostname}`
+    } )
+  }
   cookieLang.value = cookies.get('locale')
   setLanguage(cookieLang.value)
 })
