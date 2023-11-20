@@ -86,14 +86,6 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "Component": true,
-    "ComponentPublicInstance": true,
-    "ComputedRef": true,
-    "InjectionKey": true,
-    "PropType": true,
-    "Ref": true,
-    "VNode": true,
-    "toValue": true
+    "watchSyncEffect": true
   }
 }
