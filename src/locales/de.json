@@ -88,5 +88,7 @@
   "apiStatusError": "Derzeit konnten keine Informationen abgerufen werden. Bitte versuchen Sie es später noch einmal.",
   "language": "Sprache",
   "userID": "Benutzer-ID",
-  "comparePlans": "Pakete vergleichen"
+  "comparePlans": "Pakete vergleichen",
+  "setPassword": "Set Password",
+  "enterEmailConfirmRemove": "Enter your email to confirm the removal of the account"
 }
