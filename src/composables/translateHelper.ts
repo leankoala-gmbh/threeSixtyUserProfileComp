@@ -1,4 +1,6 @@
 import locales from '@/locales/loader'
+import { useCookies } from '@vueuse/integrations/useCookies'
+
 import { ref } from 'vue'
 
 interface ILocales {
@@ -8,6 +10,9 @@ interface ILocales {
 }
 
 const currentLanguage = ref<string>('en')
+const cookies = useCookies(['locale'])
+currentLanguage.value = cookies.get('i18n_redirected') || cookies.get('locale') || 'en'
+
 
 export function t (key: string, dynamicVars : null|{[key: string]: string} = null) : string {
   const translations: ILocales = locales()
