@@ -8,7 +8,7 @@
   "profile": "Profil",
   "edit": "Éditer",
   "firstName": "Prénom",
-  "lastName": "Nom",
+  "lastName": "Nom de famille",
   "updatePassword": "Mettre à jour le mot de passe",
   "editPersonalInformation": "Éditer les informations personnelles",
   "successPersonalInformation": "Vos informations personnelles ont bien été modifiées.",
@@ -88,5 +88,7 @@
   "apiStatusError": "Impossible de récupérer des informations actuellement. Veuillez essayer à nouveau ultérieurement.",
   "language": "Langue",
   "userID": "ID de l'utilisateur",
-  "comparePlans": "Comparer les offres"
+  "comparePlans": "Comparer les offres",
+  "setPassword": "Set Password",
+  "enterEmailConfirmRemove": "Enter your email to confirm the removal of the account"
 }
